@@ -1,0 +1,985 @@
+<script type="text/javascript">
+	 mgsjQuery.fn.mColorPicker.defaults.imageFolder="<?php echo $this->getJsUrl('mpanel/images/') ?>";
+</script>
+<?php $settings = $this->helper('mpanel')->getThemeSettings() ?>
+<div id="builder-general" style="display:block">
+    <div class="col-md-12">
+        <div class="form-horizontal row">
+            <div id="accordion" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne"><?php echo $this->__('General') ?></a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+						
+							<div class="form-group">
+                                <label for="page_width" class="col-sm-5 control-label"><?php echo $this->__('Width') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][page_width]" class="form-control" id="page_width">
+                                        <option value=""><?php echo $this->__('Default (1170px)') ?></option>
+                                        <option value="width1024"><?php echo $this->__('1024px') ?></option>
+                                        <option value="width1200"<?php if ($settings['page_width'] == 'width1200'): ?> selected="selected"<?php endif ?>><?php echo $this->__('1200px') ?></option>
+                                        <option value="width1366"<?php if ($settings['page_width'] == 'width1366'): ?> selected="selected"<?php endif ?>><?php echo $this->__('1366px') ?></option>
+                                        <option value="fullwidth"<?php if ($settings['page_width'] == 'fullwidth'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Full width') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--div class="form-group">
+                                <label for="layout" class="col-sm-5 control-label"><?php echo $this->__('Right to left layout') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][right_to_left]" class="form-control" id="right_to_left">
+                                        <option value="0"><?php echo $this->__('No') ?></option>
+                                        <option value="1"<?php if ($settings['right_to_left'] == '1'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+                                    </select>
+                                </div>
+                            </div-->
+
+                            <div class="form-group">
+                                <label for="layout" class="col-sm-5 control-label"><?php echo $this->__('Layout') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][layout]" class="form-control" id="layout">
+                                        <option value="wide"><?php echo $this->__('Wide') ?></option>
+                                        <option value="boxed"<?php if ($settings['layout'] == 'boxed'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Boxed') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--div class="form-group">
+                                <label for="layout_style" class="col-sm-5 control-label"><?php echo $this->__('Layout Style') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][layout_style]" class="form-control" id="layout_style">
+                                        <option value="light"><?php echo $this->__('Light') ?></option>
+                                        <option value="dark"<?php if ($settings['layout_style'] == 'dark'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Dark') ?></option>
+                                    </select>
+                                </div>
+                            </div-->
+
+                            <div class="form-group">
+                                <label for="sticky_menu" class="col-sm-5 control-label"><?php echo $this->__('Sticky menu') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][sticky_menu]" class="form-control" id="sticky_menu">
+                                        <option value="0"><?php echo $this->__('No') ?></option>
+                                        <option value="1"<?php if ($settings['sticky_menu'] == '1'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="back_to_top" class="col-sm-5 control-label"><?php echo $this->__('Display back to top icon') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][back_to_top]" class="form-control" id="back_to_top">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if (!$settings['back_to_top']): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preloader" class="col-sm-5 control-label"><?php echo $this->__('Active Preloader') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][preloader]" class="form-control" id="preloader">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if (!$settings['preloader']): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="custom_css" class="col-sm-5 control-label"><?php echo $this->__('Custom css') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][custom_css]" class="form-control" id="custom_css">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if (!$settings['custom_css']): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="snippets" class="col-sm-5 control-label"><?php echo $this->__('Enable Google rich snippets') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][snippets]" class="form-control" id="snippets">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if (!$settings['snippets']): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="popup_newsletter" class="col-sm-5 control-label"><?php echo $this->__('Enable Popup Newsletter') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="mgs_theme[general][popup_newsletter]" class="form-control" id="popup_newsletter">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if (!$settings['popup_newsletter']): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><?php echo $this->__('Background') ?></a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <label for="bg_color" class="col-sm-6 control-label"><?php echo $this->__('Background color') ?></label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control color-picker-input" id="bg_color" name="mgs_theme[background][bg_color]" value="<?php echo $settings['bg_color'] ?>"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bg_color" class="col-sm-6 control-label"><?php echo $this->__('Background image') ?></label>
+                                        <div class="col-sm-6">
+                                            <input type="file" name="groups[background][fields][bg_upload][value]" id="mgs_theme_background_bg_upload" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bg_image" class="col-sm-6 control-label"><?php echo $this->__('Background pattern') ?></label>
+                                        <div class="col-sm-6 image-input">
+                                            <?php $pattern = $this->helper('mpanel')->getBackgroundPattern(); ?>
+                                            <select name="mgs_theme[background][bg_image]" class="form-control" id="theme_color"<?php if ($settings['bg_upload'] == ''): ?> onchange="changeBackgroundPattern(this.value)"<?php endif ?>>
+                                                <?php foreach ($pattern as $_pattern): ?>
+                                                    <option value="<?php echo $_pattern['value'] ?>"<?php if ($settings['bg_image'] == $_pattern['value']): ?> selected="selected"<?php endif ?>><?php echo $_pattern['label'] ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bg_repeat" class="col-sm-6 control-label"><?php echo $this->__('Background repeat') ?></label>
+                                        <div class="col-sm-6">
+                                            <select name="mgs_theme[background][bg_repeat]" class="form-control" id="bg_repeat" onchange="changeBackgroundMain()">
+                                                <option value="repeat"><?php echo $this->__('Repeat') ?></option>
+                                                <option value="repeat-x"<?php if ($settings['bg_repeat'] == 'repeat-x'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Repeat X') ?></option>
+                                                <option value="repeat-y"<?php if ($settings['bg_repeat'] == 'repeat-y'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Repeat Y') ?></option>
+                                                <option value="no-repeat"<?php if ($settings['bg_repeat'] == 'no-repeat'): ?> selected="selected"<?php endif ?>><?php echo $this->__('No Repeat') ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bg_position_x" class="col-sm-6 control-label"><?php echo $this->__('Background position (x)') ?></label>
+                                        <div class="col-sm-6">
+                                            <select name="mgs_theme[background][bg_position_x]" class="form-control" id="bg_position_x" onchange="changeBackgroundMain()">
+                                                <option value="left"><?php echo $this->__('Left') ?></option>
+                                                <option value="right"<?php if ($settings['bg_position_x'] == 'right'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Right') ?></option>
+                                                <option value="center"<?php if ($settings['bg_position_x'] == 'center'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Center') ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bg_position_y" class="col-sm-6 control-label"><?php echo $this->__('Background position (y)') ?></label>
+                                        <div class="col-sm-6">
+                                            <select name="mgs_theme[background][bg_position_y]" class="form-control" id="bg_position_y" onchange="changeBackgroundMain()">
+                                                <option value="top"><?php echo $this->__('Top') ?></option>
+                                                <option value="bottom"<?php if ($settings['bg_position_y'] == 'right'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Bottom') ?></option>
+                                                <option value="center"<?php if ($settings['bg_position_y'] == 'center'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Center') ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-10">
+                                    <?php if ($settings['bg_upload'] != ''): ?>
+                                        <div class="bg-thumbnail-image" style="margin-top:45px">
+                                            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'mpanel/background/' . $settings['bg_upload'] ?>" alt="" class="img-responsive"/>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="mgs_theme_background_bg_upload_delete" class="checkbox" value="1" name="groups[background][fields][bg_upload][value][delete]" style="min-height:unset; padding:0; margin-top:4px"> <?php echo $this->__('Delete Image') ?>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" value="<?php echo $settings['bg_upload'] ?>" name="groups[background][fields][bg_upload][value][value]"/>
+                                    <?php else: ?>
+                                        <div class="partern-thumbnail-image">
+                                            <?php if ($settings['bg_image'] != ''): ?>
+                                                <img src="<?php echo $this->getSkinUrl('images/patterns/' . $settings['bg_image'] . '.png') ?>" alt="" class="img-responsive" id="pattern_temp"/>
+                                            <?php else: ?>
+                                                <img src="" alt="" class="img-responsive" id="pattern_temp" style="display:none"/>
+                                            <?php endif ?>
+                                        </div>
+
+                                        <input type="hidden" value="" name="groups[background][fields][bg_upload][value][value]" />
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion3" href="#collapseFour"><?php echo $this->__('Fonts') ?></a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="font" class="col-sm-3 control-label"><?php echo $this->__('Default font') ?></label>
+                                <div class="col-sm-3">
+                                    <?php $fonts = $this->helper('mpanel')->getFonts(); ?>
+                                    <select name="mgs_theme[fonts][font]" class="form-control" id="font" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['font'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								<div class="col-sm-3">
+									<input type="text" onchange="changeFontsize(this.value, 'mgs_theme_fonts_font_view')" name="mgs_theme[fonts][font_size]" class="form-control font-size" id="mgs_theme_fonts_font" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/font_size') ?>" placeholder="eg:20px"/>
+                                </div>
+                                <div class="col-sm-3">
+									<span id="mgs_theme_fonts_font_view" class="font-view">Lorem ipsum</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="h1" class="col-sm-3 control-label"><?php echo $this->__('Heading 1') ?></label>
+                                <div class="col-sm-3">
+                                    <?php $fonts = $this->helper('mpanel')->getFonts(); ?>
+                                    <select name="mgs_theme[fonts][h1]" class="form-control" id="h1" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['h1'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+									
+									
+                                </div>
+								<div class="col-sm-3">
+									<input type="text" name="mgs_theme[fonts][h1_fontsize]" class="form-control font-size" id="mgs_theme_fonts_h1" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/h1_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_h1_view')" placeholder="eg:20px"/>
+                                </div>
+                                <div class="col-sm-3">
+									<h1 id="mgs_theme_fonts_h1_view" class="font-view">Heading 1</h1>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="h2" class="col-sm-3 control-label"><?php echo $this->__('Heading 2') ?></label>
+                                <div class="col-sm-3">
+                                    <select name="mgs_theme[fonts][h2]" class="form-control" id="h2" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['h2'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								<div class="col-sm-3">
+                                    <input type="text" name="mgs_theme[fonts][h2_fontsize]" class="form-control font-size" id="mgs_theme_fonts_h2" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/h2_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_h2_view')" placeholder="eg:20px"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h2 id="mgs_theme_fonts_h2_view">Heading 2</h2>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="h3" class="col-sm-3 control-label"><?php echo $this->__('Heading 3') ?></label>
+                                <div class="col-sm-3">
+                                    <select name="mgs_theme[fonts][h3]" class="form-control" id="h3" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['h3'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								<div class="col-sm-3">
+                                    <input type="text" name="mgs_theme[fonts][h3_fontsize]" class="form-control font-size" id="mgs_theme_fonts_h3" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/h3_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_h3_view')" placeholder="eg:20px"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h3 id="mgs_theme_fonts_h3_view">Heading 3</h3>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="h4" class="col-sm-3 control-label"><?php echo $this->__('Heading 4') ?></label>
+                                <div class="col-sm-3">
+                                    <select name="mgs_theme[fonts][h4]" class="form-control" id="h4" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['h4'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								
+								<div class="col-sm-3">
+                                    <input type="text" name="mgs_theme[fonts][h4_fontsize]" class="form-control font-size" id="mgs_theme_fonts_h4" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/h4_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_h4_view')" placeholder="eg:20px"/>
+                                </div>
+								
+                                <div class="col-sm-3">
+                                    <h4 id="mgs_theme_fonts_h4_view">Heading 4</h4>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="h5" class="col-sm-3 control-label"><?php echo $this->__('Heading 5') ?></label>
+                                <div class="col-sm-3">
+                                    <select name="mgs_theme[fonts][h5]" class="form-control" id="h5" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['h5'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								
+								<div class="col-sm-3">
+                                    <input type="text" name="mgs_theme[fonts][h5_fontsize]" class="form-control font-size" id="mgs_theme_fonts_h5" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/h5_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_h5_view')" placeholder="eg:20px"/>
+                                </div>
+								
+                                <div class="col-sm-3">
+                                    <h5 id="mgs_theme_fonts_h5_view">Heading 5</h5>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="h6" class="col-sm-3 control-label"><?php echo $this->__('Heading 6') ?></label>
+                                <div class="col-sm-3">
+                                    <select name="mgs_theme[fonts][h6]" class="form-control" id="h6" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['h6'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								
+								<div class="col-sm-3">
+                                    <input type="text" name="mgs_theme[fonts][h6_fontsize]" class="form-control font-size" id="mgs_theme_fonts_h6" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/h6_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_h6_view')" placeholder="eg:20px"/>
+                                </div>
+								
+                                <div class="col-sm-3">
+                                    <h6 id="mgs_theme_fonts_h6_view">Heading 6</h6>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price" class="col-sm-3 control-label"><?php echo $this->__('Price') ?></label>
+                                <div class="col-sm-3">
+                                    <select name="mgs_theme[fonts][price]" class="form-control" id="price" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['price'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								
+								<div class="col-sm-3">
+									<input type="text" name="mgs_theme[fonts][price_fontsize]" class="form-control font-size" id="mgs_theme_fonts_price" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/price_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_price_view')" placeholder="eg:20px"/>
+                                </div>
+								
+                                <div class="col-sm-3">
+                                    <div class="price-box"><span class="price" id="mgs_theme_fonts_price_view">$234</span></div>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="menu" class="col-sm-3 control-label"><?php echo $this->__('Menu') ?></label>
+                                <div class="col-sm-3">
+                                    <select name="mgs_theme[fonts][menu]" class="form-control" id="menu" onchange="changeFont(this.id)">
+                                        <?php foreach ($fonts as $font): ?>
+                                            <option value="<?php echo $font['css-name'] ?>"<?php if ($settings['menu'] == $font['css-name']): ?> selected="selected"<?php endif ?>><?php echo $font['font-name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+								
+								<div class="col-sm-3">
+									<input type="text" name="mgs_theme[fonts][menu_fontsize]" class="form-control font-size" id="mgs_theme_fonts_menu" value="<?php echo Mage::getStoreConfig('mgs_theme/fonts/menu_fontsize') ?>" onchange="changeFontsize(this.value, 'mgs_theme_fonts_menu_view')" placeholder="eg:20px"/>
+                                </div>
+								
+                                <div class="col-sm-3">
+                                    <div id="mgs_theme_fonts_menu_view">HOME</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion4" href="#collapseFive"><?php echo $this->__('Extensions') ?></a>
+                        </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="megamenu" class="col-sm-5 control-label"><?php echo $this->__('Enable Megamenu') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="extension[megamenu][enabled]" class="form-control" id="megamenu">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['megamenu'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ajaxcart" class="col-sm-5 control-label"><?php echo $this->__('Enable Ajax Add to Cart') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="extension[ajaxcart][active]" class="form-control" id="ajaxcart">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['ajaxcart'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="quickview" class="col-sm-5 control-label"><?php echo $this->__('Enable Quick View') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="extension[quickview][active]" class="form-control" id="quickview">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['quickview'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deals" class="col-sm-5 control-label"><?php echo $this->__('Enable Daily Deals') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="extension[deals][enabled]" class="form-control" id="deals">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['deals'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="oscheckout" class="col-sm-5 control-label"><?php echo $this->__('Enable One Step Checkout') ?></label>
+                                <div class="col-sm-5">
+                                    <select name="extension[oscheckout][enabled]" class="form-control" id="oscheckout">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['oscheckout'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion5" href="#collapseSix"><?php echo $this->__('Catalog') ?></a>
+                        </h4>
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <?php
+                            $layout = Mage::getSingleton('page/source_layout')->toOptionArray();
+                            array_unshift($layout, array('value' => '', 'label' => Mage::helper('catalog')->__('No layout updates')));
+                            ?>
+                            <div class="form-group">
+                                <label for="catalog_layout" class="col-sm-6 control-label"><?php echo $this->__('Default Layout for Category Page') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[layout]" class="form-control" id="catalog_layout">
+                                        <?php foreach ($layout as $_layout): ?>
+                                            <option value="<?php echo $_layout['value'] ?>"<?php if ($settings['catalog_layout'] == $_layout['value']): ?> selected="selected"<?php endif ?>><?php echo $_layout['label'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product_layout" class="col-sm-6 control-label"><?php echo $this->__('Default Layout for Product Page') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[product_layout]" class="form-control" id="product_layout">
+                                        <?php foreach ($layout as $_layout): ?>
+                                            <option value="<?php echo $_layout['value'] ?>"<?php if ($settings['product_layout'] == $_layout['value']): ?> selected="selected"<?php endif ?>><?php echo $_layout['label'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="product_per_row" class="col-sm-6 control-label"><?php echo $this->__('Number Of Product Per Row') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[product_per_row]" class="form-control" id="product_per_row">
+										<option value="2"<?php if ($settings['product_per_row'] == 2): ?> selected="selected"<?php endif ?>>2</option>
+										<option value="3"<?php if ($settings['product_per_row'] == 3): ?> selected="selected"<?php endif ?>>3</option>
+										<option value="4"<?php if ($settings['product_per_row'] == 4): ?> selected="selected"<?php endif ?>>4</option>
+										<option value="5"<?php if ($settings['product_per_row'] == 5): ?> selected="selected"<?php endif ?>>5</option>
+										<option value="6"<?php if ($settings['product_per_row'] == 6): ?> selected="selected"<?php endif ?>>6</option>
+										<option value="7"<?php if ($settings['product_per_row'] == 7): ?> selected="selected"<?php endif ?>>7</option>
+										<option value="8"<?php if ($settings['product_per_row'] == 8): ?> selected="selected"<?php endif ?>>8</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="featured" class="col-sm-6 control-label"><?php echo $this->__('Featured Product Attribute') ?></label>
+                                <div class="col-sm-6">
+                                    <?php
+                                    $arrAttribute = array(array('value' => '', 'label' => ''));
+                                    $productAttrs = Mage::getResourceModel('catalog/product_attribute_collection')
+                                            ->addFieldToFilter('backend_type', 'int')
+                                            ->addFieldToFilter('frontend_input', 'boolean')
+                                            ->addFieldToFilter('source_model', 'eav/entity_attribute_source_boolean');
+                                    if (count($productAttrs) > 0) {
+                                        foreach ($productAttrs as $productAttr) {
+                                            $arrAttribute[] = array(
+                                                'value' => $productAttr->getAttributeCode(),
+                                                'label' => $productAttr->getFrontendLabel()
+                                            );
+                                        }
+                                    }
+                                    ?>
+                                    <select name="catalog_config[featured]" class="form-control" id="featured">
+                                        <?php foreach ($arrAttribute as $_attribute): ?>
+                                            <option value="<?php echo $_attribute['value'] ?>"<?php if ($settings['catalog_featured'] == $_attribute['value']): ?> selected="selected"<?php endif ?>><?php echo $_attribute['label'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="hot" class="col-sm-6 control-label"><?php echo $this->__('Best Selling Product Attribute') ?></label>
+                                <div class="col-sm-6">
+                                    <?php
+                                    $arrAttribute = array(array('value' => '', 'label' => ''));
+                                    $productAttrs = Mage::getResourceModel('catalog/product_attribute_collection')
+                                            ->addFieldToFilter('backend_type', 'int')
+                                            ->addFieldToFilter('frontend_input', 'boolean')
+                                            ->addFieldToFilter('source_model', 'eav/entity_attribute_source_boolean');
+                                    if (count($productAttrs) > 0) {
+                                        foreach ($productAttrs as $productAttr) {
+                                            $arrAttribute[] = array(
+                                                'value' => $productAttr->getAttributeCode(),
+                                                'label' => $productAttr->getFrontendLabel()
+                                            );
+                                        }
+                                    }
+                                    ?>
+                                    <select name="catalog_config[hot]" class="form-control" id="hot">
+                                        <?php foreach ($arrAttribute as $_attribute): ?>
+                                            <option value="<?php echo $_attribute['value'] ?>"<?php if ($settings['catalog_hot'] == $_attribute['value']): ?> selected="selected"<?php endif ?>><?php echo $_attribute['label'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="form-group">
+                                <label for="picture_ratio" class="col-sm-6 control-label"><?php echo $this->__('Product Picture ratio') ?></label>
+                                <div class="col-sm-6">
+                                    <?php
+                                    $ratio = array(
+                                        array('value' => '1', 'label' => Mage::helper('mpanel')->__('1/1 Square')),
+                                        array('value' => '2', 'label' => Mage::helper('mpanel')->__('1/2 Portrait')),
+                                        array('value' => '3', 'label' => Mage::helper('mpanel')->__('2/3 Portrait')),
+                                        array('value' => '4', 'label' => Mage::helper('mpanel')->__('3/4 Portrait')),
+                                        array('value' => '5', 'label' => Mage::helper('mpanel')->__('2/1 Landscape')),
+                                        array('value' => '6', 'label' => Mage::helper('mpanel')->__('3/2 Landscape')),
+                                        array('value' => '7', 'label' => Mage::helper('mpanel')->__('4/3 Landscape'))
+                                    );
+                                    ?>
+                                    <select name="catalog_config[picture_ratio]" class="form-control" id="picture_ratio">
+                                        <?php foreach ($ratio as $_ratio): ?>
+                                            <option value="<?php echo $_ratio['value'] ?>"<?php if ($settings['picture_ratio'] == $_ratio['value']): ?> selected="selected"<?php endif ?>><?php echo $_ratio['label'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="new_label" class="col-sm-6 control-label"><?php echo $this->__('New Label') ?></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="input-text" name="catalog_config[new_label]" id="new_label" value="<?php echo $settings['new_label'] ?>"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sale_label" class="col-sm-6 control-label"><?php echo $this->__('Sale Label') ?></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="input-text" name="catalog_config[sale_label]" id="sale_label" value="<?php echo $settings['sale_label'] ?>"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price_slider" class="col-sm-6 control-label"><?php echo $this->__('Active Price Slider') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[price_slider]" class="form-control" id="price_slider">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['price_slider'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="more_view" class="col-sm-6 control-label"><?php echo $this->__('Active Ajax Load More Products') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[more_view]" class="form-control" id="more_view">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['more_view'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preload" class="col-sm-6 control-label"><?php echo $this->__('Active Products Load Animation') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[preload]" class="form-control" id="preload">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['preload'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="hide_add_to_cart_button" class="col-sm-6 control-label"><?php echo $this->__('Hide Add to Cart button') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[hide_add_to_cart_button]" class="form-control" id="hide_add_to_cart_button">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['hide_add_to_cart_button'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="wishlist_button" class="col-sm-6 control-label"><?php echo $this->__('Hide Add to Wishlist button') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[wishlist_button]" class="form-control" id="wishlist_button">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['wishlist_button'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="compare_button" class="col-sm-6 control-label"><?php echo $this->__('Hide Add to Compare button') ?></label>
+                                <div class="col-sm-6">
+                                    <select name="catalog_config[compare_button]" class="form-control" id="compare_button">
+                                        <option value="1"><?php echo $this->__('Yes') ?></option>
+                                        <option value="0"<?php if ($settings['compare_button'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion7" href="#collapseSeven"><?php echo $this->__('Socials') ?></a>
+                        </h4>
+                    </div>
+                    <div id="collapseSeven" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<div class="setting-section">
+								<div class="col-sm-10"><h4><?php echo $this->__('General') ?></h4></div>
+								<div class="form-group">
+									<label for="social_active" class="col-sm-5 control-label"><?php echo $this->__('Active') ?></label>
+									<div class="col-sm-5">
+										<select name="social[general][active]" class="form-control" id="social_active">
+											<option value="0"><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if (Mage::getStoreConfig('social/general/active') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+											
+										</select>
+									</div>
+							   </div>
+
+							   <div class="form-group">
+									<label for="social_show_on_header" class="col-sm-5 control-label"><?php echo $this->__('Show Social Login On Header') ?></label>
+									<div class="col-sm-5">
+										<select name="social[general][show_on_header]" class="form-control" id="social_show_on_header">
+											<option value="0"><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if (Mage::getStoreConfig('social/general/show_on_header') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+											
+										</select>
+									</div>
+								</div>
+                           </div>
+						   <div class="setting-section">
+								<div class="col-sm-10"><h4><?php echo $this->__('Facebook Setting') ?></h4></div>
+								<div class="form-group">
+									<label for="facebook_active" class="col-sm-5 control-label"><?php echo $this->__('Active') ?></label>
+									<div class="col-sm-5">
+										<select name="social[facebook][active]" class="form-control" id="facebook_active">
+											<option value="0"><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if (Mage::getStoreConfig('social/facebook/active') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+										</select>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="facebook_client_id" class="col-sm-5 control-label"><?php echo $this->__('App ID') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[facebook][client_id]" value="<?php echo Mage::getStoreConfig('social/facebook/client_id') ?>" id="facebook_client_id"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="facebook_client_secret" class="col-sm-5 control-label"><?php echo $this->__('App Secret') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[facebook][client_secret]" value="<?php echo Mage::getStoreConfig('social/facebook/client_secret') ?>" id="facebook_client_secret"/>
+									</div>
+							   </div>
+						   </div>
+						   
+						   <div class="setting-section">
+								<div class="col-sm-10"><h4><?php echo $this->__('Google Setting') ?></h4></div>
+								<div class="form-group">
+									<label for="google_active" class="col-sm-5 control-label"><?php echo $this->__('Active') ?></label>
+									<div class="col-sm-5">
+										<select name="social[google][active]" class="form-control" id="google_active">
+											<option value="0"><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if (Mage::getStoreConfig('social/google/active') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+										</select>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="google_client_id" class="col-sm-5 control-label"><?php echo $this->__('API Client ID') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[google][client_id]" value="<?php echo Mage::getStoreConfig('social/google/client_id') ?>" id="google_client_id"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="google_client_secret" class="col-sm-5 control-label"><?php echo $this->__('API Client Secret') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[google][client_secret]" value="<?php echo Mage::getStoreConfig('social/google/client_secret') ?>" id="google_client_secret"/>
+									</div>
+							   </div>
+						   </div>
+						   
+						   <div class="setting-section">
+								<div class="col-sm-10"><h4><?php echo $this->__('Twitter Setting') ?></h4></div>
+								<div class="form-group">
+									<label for="twitter_active" class="col-sm-5 control-label"><?php echo $this->__('Active') ?></label>
+									<div class="col-sm-5">
+										<select name="social[twitter][active]" class="form-control" id="twitter_active">
+											<option value="0"><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if (Mage::getStoreConfig('social/twitter/active') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+										</select>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_token" class="col-sm-5 control-label"><?php echo $this->__('Token') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][token]" value="<?php echo Mage::getStoreConfig('social/twitter/token') ?>" id="twitter_token"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_token_secret" class="col-sm-5 control-label"><?php echo $this->__('Token Secret') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][token_secret]" value="<?php echo Mage::getStoreConfig('social/twitter/token_secret') ?>" id="twitter_token_secret"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_client_id" class="col-sm-5 control-label"><?php echo $this->__('Consumer Key') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][client_id]" value="<?php echo Mage::getStoreConfig('social/twitter/client_id') ?>" id="twitter_client_id"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_client_secret" class="col-sm-5 control-label"><?php echo $this->__('Consumer Secret') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][client_secret]" value="<?php echo Mage::getStoreConfig('social/twitter/client_secret') ?>" id="twitter_client_secret"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_title" class="col-sm-5 control-label"><?php echo $this->__('Title') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][twitter_title]" value="<?php echo Mage::getStoreConfig('social/twitter/twitter_title') ?>" id="twitter_title"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_user" class="col-sm-5 control-label"><?php echo $this->__('Twitter User') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][twitter_user]" value="<?php echo Mage::getStoreConfig('social/twitter/twitter_user') ?>" id="twitter_user"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_count" class="col-sm-5 control-label"><?php echo $this->__('Count display') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][twitter_count]" value="<?php echo Mage::getStoreConfig('social/twitter/twitter_count') ?>" id="twitter_count"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="twitter_truncate" class="col-sm-5 control-label"><?php echo $this->__('Character Count') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[twitter][truncate]" value="<?php echo Mage::getStoreConfig('social/twitter/truncate') ?>" id="twitter_truncate"/>
+									</div>
+							   </div>
+						   </div>
+						   
+						   <div class="setting-section">
+								<div class="col-sm-10"><h4><?php echo $this->__('Flickr Setting') ?></h4></div>
+								<div class="form-group">
+									<label for="flickr_active" class="col-sm-5 control-label"><?php echo $this->__('Active') ?></label>
+									<div class="col-sm-5">
+										<select name="social[flickr][active]" class="form-control" id="flickr_active">
+											<option value="0"><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if (Mage::getStoreConfig('social/flickr/active') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+										</select>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="flickr_key" class="col-sm-5 control-label"><?php echo $this->__('API Key') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[flickr][key]" value="<?php echo Mage::getStoreConfig('social/flickr/client_id') ?>" id="flickr_key"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="flickr_user_id" class="col-sm-5 control-label"><?php echo $this->__('User ID') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[google][user_id]" value="<?php echo Mage::getStoreConfig('social/flickr/user_id') ?>" id="flickr_user_id"/>
+									</div>
+							   </div>
+						   </div>
+						   
+						   <div class="setting-section">
+								<div class="col-sm-10"><h4><?php echo $this->__('Instagram Setting') ?></h4></div>
+								<div class="form-group">
+									<label for="instagram_active" class="col-sm-5 control-label"><?php echo $this->__('Active') ?></label>
+									<div class="col-sm-5">
+										<select name="social[instagram][active]" class="form-control" id="instagram_active">
+											<option value="0"><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if (Mage::getStoreConfig('social/instagram/active') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+										</select>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="instagram_user_name" class="col-sm-5 control-label"><?php echo $this->__('User Name') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[instagram][user_name]" value="<?php echo Mage::getStoreConfig('social/instagram/user_name') ?>" id="instagram_user_name"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="instagram_user_id" class="col-sm-5 control-label"><?php echo $this->__('Client Id') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[instagram][client_id]" value="<?php echo Mage::getStoreConfig('social/instagram/client_id') ?>" id="instagram_client_id"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="instagram_quantity" class="col-sm-5 control-label"><?php echo $this->__('Count') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[instagram][quantity]" value="<?php echo Mage::getStoreConfig('social/instagram/quantity') ?>" id="instagram_quantity"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="instagram_resolution" class="col-sm-5 control-label"><?php echo $this->__('Resolution') ?></label>
+									<div class="col-sm-5">
+										<select name="social[instagram][resolution]" class="form-control" id="instagram_resolution">
+											<option value="low_resolution"<?php if (Mage::getStoreConfig('social/instagram/resolution') == 'low_resolution'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Low Resolution') ?></option>
+											<option value="thumbnail"<?php if (Mage::getStoreConfig('social/instagram/resolution') == 'thumbnail'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Thumbnail') ?></option>
+											<option value="standard_resolution"<?php if (Mage::getStoreConfig('social/instagram/resolution') == 'standard_resolution'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Standard Resolution') ?></option>
+										</select>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="instagram_width" class="col-sm-5 control-label"><?php echo $this->__('Width') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[instagram][width]" value="<?php echo Mage::getStoreConfig('social/instagram/width') ?>" id="instagram_width"/>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="instagram_height" class="col-sm-5 control-label"><?php echo $this->__('Height') ?></label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="social[instagram][height]" value="<?php echo Mage::getStoreConfig('social/instagram/height') ?>" id="instagram_height"/>
+									</div>
+							   </div>
+						   </div>
+						   
+						   <div class="setting-section">
+								<div class="col-sm-10"><h4><?php echo $this->__('Share this') ?></h4></div>
+								<div class="form-group">
+									<label for="span_tags" class="col-sm-5 control-label"><?php echo $this->__('Span Tags') ?></label>
+									<div class="col-sm-5">
+										<textarea name="share_this[share_this][span_tags]" class="form-control" id="span_tags" style="height:120px"><?php echo Mage::getStoreConfig('mpanel/share_this/span_tags')?></textarea>
+									</div>
+							   </div>
+							   
+							   <div class="form-group">
+									<label for="script_tags" class="col-sm-5 control-label"><?php echo $this->__('Script Tags') ?></label>
+									<div class="col-sm-5">
+										<textarea name="share_this[share_this][script_tags]" class="form-control" id="script_tags" style="height:120px"><?php echo Mage::getStoreConfig('mpanel/share_this/script_tags')?></textarea>
+									</div>
+							   </div>
+						   </div>
+                        </div>
+                    </div>
+                </div>
+			
+				<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/copy-homepage.phtml')->toHtml() ?>
+				
+			</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+        <span class="button-fixed"><button class="btn btn-primary deactive" type="button" onclick="javascript:if(confirm('<?php echo $this->__('Are you sure you would like to restore theme configuration ?\n(This action just apply to default store config!)') ?>')) { setLocation('<?php echo $this->getUrl('mpanel/index/restore') ?>'); }"><span><span><?php echo $this->__('Restore Configuration') ?></span></span></button></span>
+    </div>
+</div>
+
+<script type="text/javascript">
+	mgsjQuery(function(){
+		 mgsjQuery(".color-picker-input").attr("data-hex", true).mColorPicker();
+	})
+
+    mgsjQuery('#mgs_theme_background_bg_upload').change( function(event) {
+        if($('wrapper')){
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            mgsjQuery("body").css('background-image','url('+tmppath+')');
+            changeBackgroundMain();
+        }
+    });
+	
+    function changeBackgroundMain(){
+        bgPosition = mgsjQuery('#bg_position_x').val() + " " + mgsjQuery('#bg_position_y').val();
+        mgsjQuery("body").css('background-repeat',mgsjQuery('#bg_repeat').val());
+        mgsjQuery("body").css('background-position',bgPosition);
+    }
+	
+	function changeFontsize(val, el){
+		mgsjQuery('#'+el).css({ fontSize: val});
+	}
+	
+	mgsjQuery('.font-size').each(function(){
+		val = mgsjQuery(this).val();
+		el = mgsjQuery(this).attr('id') + '_view';
+		changeFontsize(val, el);
+	});
+	
+    function changeBackgroundPattern(pattern){
+        if(pattern!=''){
+            mgsjQuery('#pattern_temp').attr('src','<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/<?php echo Mage::getStoreConfig('mpanel/general/themepack') ?>/default/images/patterns/'+pattern+'.png');
+            mgsjQuery('#pattern_temp').show();
+            if($('wrapper')){
+                mgsjQuery("body").css('background-image','url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/<?php echo Mage::getStoreConfig('mpanel/general/themepack') ?>/default/images/patterns/'+pattern+'.png)');
+                changeBackgroundMain();
+            }
+        }
+        else{
+            mgsjQuery('#pattern_temp').hide();
+            if($('wrapper')){
+                mgsjQuery("body").css('background-image','none');
+            }
+        }
+    }
+</script>

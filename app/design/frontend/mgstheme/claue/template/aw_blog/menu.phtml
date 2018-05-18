@@ -1,0 +1,39 @@
+<?php if ($this->getCategories()->count() && Mage::getStoreConfig('blog/menu/category')): ?>
+<div class="block blog-categories">
+	 <div class="block-title">
+        <h4><?php echo Mage::helper('blog')->__('Categories') ?></h4>
+    </div>
+	<div class="block-content">
+		<ul>
+                    <?php $cats = $this->getCategories(); ?>
+                    <?php foreach ($cats as $cat): ?>
+                        <li><a href="<?php echo $cat->getAddress(); ?>" ><?php echo $cat->getTitle(); ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+	</div>
+</div>
+<?php endif; ?>
+ <?php if ($posts = $this->getRecent()): ?>
+<div class="block recent-post">
+    <div class="block-title">
+        <h4><?php echo Mage::helper('blog')->__('Lastest Posts') ?></h4>
+    </div>
+	<div class="block-content">
+		<ul>
+                    <?php foreach ($posts as $post): ?>
+                        <li><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+							<p><?php echo date("F d, Y",strtotime($post->getCreatedTime())); ?></p>
+						</li>
+                    <?php endforeach; ?>
+                </ul>
+	</div>
+</div>
+<?php endif;?>
+<div class="block blog-tags">
+	<div class="block-title">
+        <h4><?php echo Mage::helper('blog')->__('Blog Tags') ?></h4>
+    </div>
+	<div class="block-content">
+		 <?php echo $this->getChildHtml('blog_tags'); ?>
+	</div>
+</div>

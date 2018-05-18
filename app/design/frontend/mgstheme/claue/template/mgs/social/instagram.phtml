@@ -1,0 +1,23 @@
+<?php if(Mage::getStoreConfig('social/instagram/active') == 1 && Mage::getStoreConfig('social/instagram/access_token') && Mage::getStoreConfig('social/instagram/quantity')): ?>
+<?php $access_token = Mage::getStoreConfig('social/instagram/access_token'); ?>
+<?php $socialHelper = $this->helper('mpanel/social'); ?>
+<?php $client_id = Mage::getStoreConfig('social/instagram/client_id'); ?>
+<?php $quantity = Mage::getStoreConfig('social/instagram/quantity'); ?>
+<?php $width = Mage::getStoreConfig('social/instagram/width'); ?>
+<?php $height = Mage::getStoreConfig('social/instagram/height'); ?>
+<?php $resolution = Mage::getStoreConfig('social/instagram/resolution'); ?>
+<?php $images = $socialHelper->getWidgetInstagramData($access_token, $quantity, $resolution );?>
+<div class="instagram">
+	<ul class="row">
+	<?php $i=0; for($j=0; $j < 6; $j++): ?>
+		<li class="item <?php if($i % 3 == 0):?> first-row <?php endif;?> col-md-4 col-sm-4 col-xs-4">
+		<a href="<?php echo $images[$j]['url'] ?>" target="_blank"><img class="img-responsive" src="<?php echo $images[$j]['imgUrl'] ?>" alt="image"/></a>
+		</li>
+	<?php $i++; endfor;?>
+	</ul>
+</div>
+<?php else: ?>
+<div class="alert alert-warning">
+	<?php echo $this->__('Please update your instagram settings first.') ?>
+</div>
+<?php endif; ?>

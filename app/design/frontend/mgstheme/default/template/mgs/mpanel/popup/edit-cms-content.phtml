@@ -1,0 +1,60 @@
+<?php $helper = $this->helper('mpanel'); ?>
+<div class="edit-static-form">
+    <div class="row">
+        <div class="col-md-12 builder-title">
+            <h2><?php echo $this->__('Cms Content') ?></h2>
+        </div>
+    </div>
+    <?php
+    $form = new Varien_Data_Form(
+            array('id' => 'edit_form', 'action' => $this->getUrl('mpanel/post/editCmsContent'), 'method' => 'post')
+    );
+
+    $form->setHtmlIdPrefix('block_');
+
+    $fieldset = $form->addFieldset('base_fieldset', array('legend' => '', 'class' => 'fieldset-wide'));
+
+    if ($this->getRequest()->getParam('id')) {
+
+        $fieldset->addField('id', 'hidden', array(
+            'name' => 'id'
+        ));
+    }
+
+    $fieldset->addField('content', 'editor', array(
+        'name' => 'content',
+        'label' => $this->__('Content'),
+        'title' => '',
+        'class' => 'input-text',
+        'style' => 'height:22em',
+        'config' => $helper->getConfig(),
+        'required' => true,
+    ));
+
+    $form->setUseContainer(true);
+
+
+
+    if ($this->getRequest()->getParam('id')) {   
+        $values['id'] = $this->getRequest()->getParam('id');
+        $values['content'] = Mage::getModel('cms/page')->load($this->getRequest()->getParam('id'))->getContent();
+        $form->setValues($values);
+    }
+    echo $form->toHtml();
+    ?>
+</div>
+<script type="text/javascript">
+    mgsjQuery("#block_base_fieldset").append('<div class="builder-action"><div class="buttons"><button type="button" class="btn btn-primary" onclick="updateForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div>');
+    var updateForm = new VarienForm('edit_form');
+</script>
+<?php if ($this->getRequest()->getPost()): ?>
+    <script type="text/javascript">
+    <?php if (Mage::getSingleton('core/session')->getSaved() == 1): ?>
+        <?php Mage::getSingleton('core/session')->setSaved(false); ?>
+            window.parent.jQuery.magnificPopup.close();
+            if (window.parent == window.top) {
+                window.top.location.reload();
+            }
+    <?php endif ?>
+    </script>
+<?php endif; ?>

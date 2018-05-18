@@ -1,0 +1,48 @@
+<?php
+
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<div class="content-header">
+    <h3 class="icon-head head-adminhtml-import"><?php echo $this->__('Import Brands'); ?></h3>
+
+    <p class="form-buttons">
+        <button onclick="importForm.submit();" class="scalable save" type="button"
+                title="<?php echo $this->__('Import'); ?>"
+                id="import_button"><span><span><span><?php echo $this->__('Import'); ?></span></span></span></button>
+    </p>
+</div>
+<div class="entry-edit">
+    <form id="import_form" enctype="multipart/form-data" method="post"
+          action="<?php echo $this->getUrl('*/*/importData') ?>">
+        <?php echo $this->getBlockHtml('formkey'); ?>
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Import Settings'); ?></h4>
+
+            <div class="form-buttons"></div>
+        </div>
+        <div id="base_fieldset" class="fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                    <tr>
+                        <td class="label"><label for="import_file"><?php echo $this->__('Select CSV File to Import'); ?>
+                                <span class="required">*</span></label>
+                        </td>
+                        <td class="value">
+                            <input type="file" class=" required-entry"
+                                   title="<?php echo $this->__('Select CSV File to Import'); ?>" value=""
+                                   name="import_file" id="import_file"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var importForm = new varienForm('import_form');
+</script>

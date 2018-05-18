@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+	<default translate="label" module="page">
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.min.js</name>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery-ui.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/bootstrap.min.js</name>
+			</action>
+			
+			<!--Right to left js-->
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
+			<action method="addItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_js</type><name>js/bootstrap-arabic.min.js</name></action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.parallax-1.1.3.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/html5shiv.js</name>
+				<params/><if>lt IE 9</if>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/respond.min.js</name>
+				<params/><if>lt IE 9</if>
+			</action>
+
+			<action method="removeItem">
+				<type>skin_css</type><name>css/styles.css</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/bootstrap.min.css</stylesheet>
+			</action>
+			
+			<!--Right to left css-->
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_css</type><name>css/bootstrap.css</name></action>
+			<action method="addCss" ifconfig="mgs_theme/general/right_to_left"><stylesheet>css/bootstrap-arabic.min.css</stylesheet></action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/margin-padding.css</stylesheet>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/font-awesome.css</stylesheet>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/styles.css</stylesheet>
+			</action>
+			
+			<!--Right to left css-->
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_css</type><name>css/styles.css</name></action>
+			<action method="addCss" ifconfig="mgs_theme/general/right_to_left"><stylesheet>css/styles-rtl.css</stylesheet></action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/owl-carousel.css</stylesheet>
+			</action>
+
+			<action method="addCss"><stylesheet>css/magnific-popup.css</stylesheet></action>
+			
+			<!--action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.fittext.js</name>
+			</action-->
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/theme.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.appear.js</name>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/masonry.pkgd.min.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/custom.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/animate.css</stylesheet>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/responsive.css</stylesheet>
+			</action>
+
+		</reference>
+		
+		<reference name="header">
+            <block type="directory/currency" name="top.currency" template="directory/currency.phtml"/>
+			<block type="checkout/cart_sidebar" name="cart_header" template="checkout/cart/topcart.phtml"/>
+        </reference>
+		
+		<reference name="top.menu">
+			<action method="unsetChild" ifconfig="megamenu/general/enabled">
+                <name>catalog.topnav</name>
+            </action>
+            <block type="megamenu/megamenu" name="megamenu"/>
+        </reference>
+		<reference name="megamenu">
+			<action method="setTemplate" ifconfig="megamenu/general/enabled">
+                <template>megamenu/navigation.phtml</template>
+            </action>
+		</reference>
+		
+		<reference name="footer">
+			<action method="setTemplate" ifconfig="mpanel/general/enabled">
+                <template>mgs/mpanel/footer.phtml</template>
+            </action>
+		</reference>
+		
+		<reference name="root">
+			<block type="core/text_list" name="theme_popup" as="theme_popup" translate="label"/>
+		</reference>
+		
+		<reference name="theme_popup">
+			<block type="core/template" name="popup.html" as="popup.html" template="mgs/mpanel/overlay.phtml"/>
+		</reference>
+	</default>
+	
+	<mpanel_loadmore_new>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/product_new" name="ajax.new" template="mgs/mpanel/products/grid/new_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_new>
+	
+	<mpanel_loadmore_featured>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/products" name="ajax.featured" template="mgs/mpanel/products/grid/featured_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_featured>
+	
+	<mpanel_loadmore_hot>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/products" name="ajax.hot" template="mgs/mpanel/products/grid/hot_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_hot>
+	
+	<contacts_index_index>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="breadcrumbs">
+			<block type="mpanel/contacts" name="additional_info"/>
+		</reference>
+	</contacts_index_index>
+	
+	<catalog_category_default>
+		<remove name="catalog.leftnav"/>
+	</catalog_category_default>
+	
+	<catalog_category_layered>
+		<remove name="catalog.leftnav"/>
+	</catalog_category_layered>
+	
+	<catalog_product_view>		
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/prettyPhoto.css</stylesheet>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.prettyPhoto.js</name>
+			</action>
+		</reference>
+		<reference name="product.info">
+			<block type="catalog/product_view_additional" name="product.info.additional" as="product_additional_data" />
+			<block type="catalog/product_view_description" name="product.description" as="description" template="catalog/product/view/description.phtml">
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_description"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Description</value></action>
+			</block>
+			
+			<block type="catalog/product_view_attributes" name="product.attributes" as="additional" template="catalog/product/view/attributes.phtml">
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_additional"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Aditional Information</value></action>
+			</block>
+			
+			<block type="review/product_view_list" name="reviews" as="reviews" template="review/product/view/list.phtml">
+				<block type="review/form" name="product.review.form" as="review_form">
+					<block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+						<label>Review Form Fields Before</label>
+						<action method="setMayBeInvisible"><value>1</value></action>
+					</block>
+				</block>
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_reviews"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Reviews</value></action>
+			</block>
+			
+			<block type="tag/product_list" name="product_tag_list" template="tag/list.phtml">
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_product_tag_list"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Product Tags</value></action>
+				<block type="page/html_wrapper" name="product.tag.list.list.before" as="list_before" translate="label">
+                    <label>Tags List Before</label>
+                    <action method="setMayBeInvisible"><value>1</value></action>
+                </block>
+			</block>
+		</reference>
+		
+		<reference name="product.info">
+			<block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
+				<action method="setColumnCount"><columns>4</columns></action>
+				<action method="setItemLimit"><type>upsell</type><limit>10</limit></action>
+			</block>
+		</reference>
+		
+	</catalog_product_view>
+	
+	<portfolio_category_list>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/isotope.pkgd.min.js</name>
+			</action>
+		</reference>
+	</portfolio_category_list>
+	
+	<mpanel_empty_column>
+		<reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>
+	</mpanel_empty_column>
+	
+	<mpanel_one_column>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+	</mpanel_one_column>
+	
+	<mpanel_twocolumn_left>
+		<reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+	</mpanel_twocolumn_left>
+	
+	<mpanel_twocolumn_right>
+		<reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+	</mpanel_twocolumn_right>
+	
+	<mpanel_three_column>
+		<reference name="root">
+            <action method="setTemplate"><template>page/3columns.phtml</template></action>
+        </reference>
+	</mpanel_three_column>
+	
+	<customer_account translate="label">
+		<reference name="my.account.wrapper">
+			<action method="setElementClass"><value>col-md-12</value></action>
+        </reference>
+	</customer_account>
+	
+	<cms_index_index>
+		<reference name="theme_popup">
+			<block type="newsletter/subscribe" name="popup.newsletter" template="mgs/mpanel/newsletter_popup.phtml"/>
+		</reference>
+	</cms_index_index>
+</layout>

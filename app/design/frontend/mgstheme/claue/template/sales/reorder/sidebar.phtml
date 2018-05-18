@@ -1,0 +1,108 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Last order sidebar
+ *
+ * @see Mage_Sale_Block_Reorder_Sidebar
+ */
+?>
+<?php
+if ($this->getTitle() != '') {
+    $title = $this->getTitle();
+} else {
+    $title = 'My Orders';
+}
+?>
+<?php $_items = $this->getItems() ?>
+<?php if ($_items): ?>
+    <div class="block re-order">
+        <div class="block-title">
+            <h4><?php echo $this->__($title) ?></h4>
+        </div>
+		<div class="block-content">
+        <p class="block-subtitle"><?php echo $this->__('Last Ordered Items') ?></p>
+        <form method="post" action="<?php echo $this->getFormActionUrl() ?>" id="reorder-validate-detail">
+            <?php echo $this->getBlockHtml('formkey'); ?>
+            <ul class="recent_posts_widget">
+                <?php foreach ($_items as $_item): ?>
+                    <?php $_product = Mage::getModel('catalog/product')->load($_item->getProduct()->getId()) ?>
+                    <li>
+                        <a href="<?php echo $_product->getProductUrl() ?>" class="product-image">
+                            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(60,80); ?>" class="img-responsive" alt="">                           
+                        </a>
+                        <div class="post-info">	
+							  <a href="<?php echo $_product->getProductUrl() ?>" class="product-name"><?php echo $this->escapeHtml($_item->getName()) ?></a>
+                            <div class="post-meta">
+                                <?php if ($this->isItemAvailableForReorder($_item)): ?>
+                                    <div class="check-related">
+                                        <?php $_showAddButtonFlag = true ?>
+                                        <input type="checkbox" name="order_items[]" id="reorder-item-<?php echo $_item->getId() ?>" value="<?php echo $_item->getId() ?>" title="<?php echo $this->__('Add to Cart') ?>" class="checkbox validate-one-required-by-name" />
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            $('reorder-item-<?php echo $_item->getId() ?>').advaiceContainer = 'cart-sidebar-reorder-advice-container';
+                                            //]]>
+                                        </script>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
+            <p style="clear:both"></p>
+            <div id="cart-sidebar-reorder-advice-container"></div>
+            <div class="actions compare-action">
+                <div class="actions">
+                    <a class="btn btn-xs btn-default" href="<?php echo $this->getUrl('customer/account') ?>"><?php echo $this->__('View All'); ?></a>
+					<?php if ($_showAddButtonFlag): ?>
+                        <button title="<?php echo $this->__('Add to Cart') ?>" type="submit" class="btn btn-xs btn-cart btn-primary pull-right"><?php echo $this->__('Add to Cart') ?></button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </form>
+        <?php echo $this->getPagerHtml(); ?>
+        <script type="text/javascript">
+            //<![CDATA[
+            var reorderFormDetail = new VarienForm('reorder-validate-detail');
+            //]]>
+        </script>
+		</div>
+    </div>
+    <hr />
+<?php else: ?>
+    <?php if (Mage::helper('mpanel')->acceptToUsePanel()): ?>
+        <div class="re-order">
+            <div class="block-title">
+                <h4><?php echo $this->__($title) ?></h4>
+            </div>
+            <p><?php echo $this->__('Have no ordered items.'); ?></p>   	
+        </div>
+        <hr />
+    <?php endif ?>
+<?php endif ?>

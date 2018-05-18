@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+*******************************************************/
+-->
+<layout version="0.1.0">
+    <adminhtml_system_config_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="setCanLoadTinyMce">
+                <load>1</load>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
+    <adminhtml_brand_index>
+        <reference name="content">
+            <block type="brand/adminhtml_brand" name="brand"/>
+        </reference>
+    </adminhtml_brand_index>
+    <adminhtml_brand_product>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="brand/adminhtml_brand_edit_tab_product" name="brand.edit.tab.product"/>
+            <block type="adminhtml/widget_grid_serializer" name="product_grid_serializer">
+                <reference name="product_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>brand.edit.tab.product</grid_block_name>
+                        <data_callback>getSelectedProducts</data_callback>
+                        <hidden_input_name>brand[product_ids]</hidden_input_name>
+                        <reload_param_name>product_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_brand_product>
+    <adminhtml_brand_productgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="brand/adminhtml_brand_edit_tab_product" name="brand.edit.tab.product"/>
+        </block>
+    </adminhtml_brand_productgrid>
+    <adminhtml_brand_import>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="adminhtml/template" name="brand.import" template="mgs/brand/import.phtml"/>
+        </reference>
+    </adminhtml_brand_import>
+</layout>

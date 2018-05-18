@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MGS_Testimonial>
+            <version>0.1.0</version>
+        </MGS_Testimonial>
+    </modules>
+    <frontend>
+        <routers>
+            <testimonial>
+                <use>standard</use>
+                <args>
+                    <module>MGS_Testimonial</module>
+                    <frontName>testimonial</frontName>
+                </args>
+            </testimonial>
+        </routers>
+        <layout>
+            <updates>
+                <testimonial>
+                    <file>testimonial.xml</file>
+                </testimonial>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<MGS_Testimonial after="Mage_Adminhtml">MGS_Testimonial_Adminhtml</MGS_Testimonial>
+					</modules> 
+				</args>
+			</adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			
+			
+			<mgscore module="mgscore"> 
+				<children>
+					<testimonial module="testimonial">
+						<title>Testimonial</title>
+						<sort_order>1100</sort_order>               
+						<children>
+							<items module="testimonial">
+								<title>Manage Items</title>
+								<sort_order>0</sort_order>
+								<action>adminhtml/testimonial</action>
+							</items>
+						</children>
+					</testimonial>
+				</children>
+			</mgscore>
+		</menu>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<mgscore module="mgscore"> 
+							<children>
+								<testimonial module="testimonial">
+									<title>Testimonial</title>
+									<sort_order>1100</sort_order>               
+									<children>
+										<items module="testimonial">
+											<title>Manage Items</title>
+											<sort_order>0</sort_order>
+										</items>
+									</children>
+								</testimonial>
+							</children>
+						</mgscore>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<!--layout>
+			<updates>
+				<testimonial>
+					<file>testimonial.xml</file>
+				</testimonial>
+			</updates>
+		</layout-->
+    </adminhtml>   
+    <global>
+        <models>
+            <testimonial>
+                <class>MGS_Testimonial_Model</class>
+                <resourceModel>testimonial_mysql4</resourceModel>
+            </testimonial>
+            <testimonial_mysql4>
+                <class>MGS_Testimonial_Model_Mysql4</class>
+                <entities>
+                    <testimonial>
+                        <table>testimonial</table>
+                    </testimonial>
+                </entities>
+            </testimonial_mysql4>
+        </models>
+        <resources>
+            <testimonial_setup>
+                <setup>
+                    <module>MGS_Testimonial</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </testimonial_setup>
+            <testimonial_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </testimonial_write>
+            <testimonial_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </testimonial_read>
+        </resources>
+        <blocks>
+            <testimonial>
+                <class>MGS_Testimonial_Block</class>
+            </testimonial>
+        </blocks>
+        <helpers>
+            <testimonial>
+                <class>MGS_Testimonial_Helper</class>
+            </testimonial>
+        </helpers>
+    </global>
+</config>

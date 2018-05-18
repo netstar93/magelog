@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : QuickView
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_QuickView>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MGS_QuickView>
+    </modules>
+</config> 

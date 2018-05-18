@@ -1,0 +1,331 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header5</header>
+	<footer>footer</footer>
+	<block>
+		<name>block68</name>
+		<block_cols><![CDATA[]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block69</name>
+		<block_cols><![CDATA[3,6,3]]></block_cols>
+		<block_class><![CDATA[["col-sm-12 col-xs-12 ","col-sm-12 col-xs-12 ","col-sm-12 col-xs-12 "]]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>65</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block70</name>
+		<block_cols><![CDATA[3,3,3,3]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12","col-sm-6 col-xs-12","col-sm-6 col-xs-12","col-sm-6 col-xs-12"]]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>3</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block71</name>
+		<block_cols><![CDATA[6,3,3]]></block_cols>
+		<block_class><![CDATA[["col-sm-12 col-xs-12","col-sm-6 col-xs-12","col-sm-6 col-xs-12"]]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	<block>
+		<name>block72</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>50</padding_top>
+		<padding_bottom>84</padding_bottom>
+		<block_position>5</block_position>
+	</block>
+	<block>
+		<name>block73</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>6</block_position>
+	</block>
+	<block>
+		<name>block74</name>
+		<block_cols><![CDATA[3,3,3,3]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>45</padding_top>
+		<padding_bottom>2</padding_bottom>
+		<block_position>7</block_position>
+	</block>
+	<!--  -->
+	
+	<child>
+		<block_name>block74-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 1]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_1]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-car">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">FREE SHIPPING</h6>
+<p class="no-margin">Free shipping on all US order or order above $200</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block74-1</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 2]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_2]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-help2">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">SUPPORT 24/7</h6>
+<p class="no-margin">Contact us 24 hours a day, 7 days a week</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block74-2</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 3]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_3]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-refresh">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">30 DAYS RETURN</h6>
+<p class="no-margin">Simply return it within 30 days for an exchange.</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block74-3</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 4]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_4]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-door-lock">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">100% PAYMENT SECURE</h6>
+<p class="no-margin">We ensure secure payment with PEV</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<!--  -->
+	<child>
+		<block_name>block69-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="CONFIG_02" product_ratio="" show_name="1" show_price="1" show_rating="0" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"col-sm-6  col-xs-12","animation":"","animation_delay":"","sku":"CONFIG_02","product_ratio":"","show_name":"1","show_price":"1","show_rating":"0","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block69-1</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="NEW_02" product_ratio="" show_name="1" show_price="1" show_rating="0" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"big-item col-xs-12","animation":"","animation_delay":"","sku":"NEW_02","product_ratio":"","show_name":"1","show_price":"1","show_rating":"0","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block69-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="BESTSELLER_06" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>2</position>
+		<setting><![CDATA[{"title":"","custom_class":"col-sm-6  col-xs-12","animation":"","animation_delay":"","sku":"BESTSELLER_06","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block69-2</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="NEW_03" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"col-sm-6  col-xs-12","animation":"","animation_delay":"","sku":"NEW_03","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block69-2</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="NEW_06" product_ratio="" show_name="1" show_price="1" show_rating="0" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>2</position>
+		<setting><![CDATA[{"title":"","custom_class":"col-sm-6  col-xs-12","animation":"","animation_delay":"","sku":"NEW_06","product_ratio":"","show_name":"1","show_price":"1","show_rating":"0","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block70-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="CONFIG_05" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"CONFIG_05","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block70-1</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="NEW_08" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"NEW_08","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block70-2</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="BESTSELLER_04" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"BESTSELLER_04","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block70-3</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="SAMPLE_SIMPLE_03" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"SAMPLE_SIMPLE_03","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block71-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="SALE_07" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"big-item col-xs-12","animation":"","animation_delay":"","sku":"SALE_07","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block71-1</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="FEATURED_08" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"FEATURED_08","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block71-1</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="FEATURED_03" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>2</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"FEATURED_03","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block71-2</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="SALE_02" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"SALE_02","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block71-2</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_special" title="" sku="DEALS_01" product_ratio="" show_name="1" show_price="1" show_rating="1" show_addcart="1" show_quickview="1" show_wishlist="1" show_compare="1" template="mgs/mpanel/products/special_product.phtml"}}]]></block_content>
+		<type>special_product</type>
+		<position>2</position>
+		<setting><![CDATA[{"title":"","custom_class":"","animation":"","animation_delay":"","sku":"DEALS_01","product_ratio":"","show_name":"1","show_price":"1","show_rating":"1","show_addcart":"1","show_quickview":"1","show_wishlist":"1","show_compare":"1","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block68-0</block_name>
+		<block_content><![CDATA[{{widget type="revslider/slider_preview" id="1"}}]]></block_content>
+		<type>revolution</type>
+		<position>1</position>
+		<setting><![CDATA[1]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block73-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" title="@ FOLLOW US ON INSTAGRAM" number="12" number_item_row="6" resolution="low_resolution" image_details="1" slider="1"  auto_play="false" stop_hover="false" navigation="true" pagination="false" number_row="1"template="mgs/mpanel/instagram_widget.phtml" }}]]></block_content>
+		<type>instagram</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"@ FOLLOW US ON INSTAGRAM","custom_class":"","animation":"","animation_delay":"","count":"12","number_item_row":"6","resolution":"low_resolution","image_details":"1","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"}}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block72-0</block_name>
+		<block_content><![CDATA[{{widget type="blog/last" blog_count="3" categories="1" column="3" view_mode="grid" slider="1" title="LATEST FROM BLOG" sub_title="The freshest and most exciting news" character_count="120" auto_play="false" stop_hover="false" navigation="false" pagination="false"}}]]></block_content>
+		<type>latest_posts</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"LATEST FROM BLOG","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","categories":["1"],"product_count":"3","character_count":"120","view_mode":"grid","count_per_row":"3","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

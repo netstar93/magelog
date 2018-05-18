@@ -1,0 +1,155 @@
+<?php $headerSetting = $this->helper('mpanel')->getFrontendHeaderColorSettings() ?>
+<?php $mainSetting = $this->helper('mpanel')->getFrontendMainColorSettings() ?>
+<?php $footerSetting = $this->helper('mpanel')->getFrontendFooterColorSettings() ?>
+
+<div id="builder-color" style="display:block">
+    <div class="col-md-12">
+        <div class="form-horizontal row">
+            <div id="color-accordion" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion-color1" href="#colorCollapseOne"><?php echo $this->__('Header') ?></a>
+                        </h4>
+                    </div>
+                    <div id="colorCollapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<div class="form-group">
+								<label for="use_header_custom" class="col-sm-3 control-label"><?php echo $this->__('Use Custom') ?></label>
+								<div class="col-sm-8">
+									<select name="theme_color[header][use_custom]" class="form-control" id="use_header_custom" onchange="setUseCustom(this.value,'custom-header')">
+                                        <option value="0"><?php echo $this->__("No") ?></option>
+                                        <option value="1"<?php if($this->helper('mpanel')->useHeaderCustomColor()): ?> selected="selected"<?php endif ?>><?php echo $this->__("Yes") ?></option>
+                                    </select>
+								</div>
+							</div>
+							
+							<div id="custom-header">
+								<?php foreach($headerSetting as $section): ?>
+									<div class="setting-section">
+										<?php foreach($section as $field=>$data): ?>
+											<?php if($field=='heading'): ?>
+												<div class="col-sm-11"><h4><?php echo $data ?></h4></div>
+											<?php else: ?>
+												<div class="form-group">
+													<label for="header_<?php echo $field ?>" class="col-sm-6 control-label"><?php echo $data['label'] ?></label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control color-picker-input" id="header_<?php echo $field ?>" name="theme_color[header][<?php echo $field ?>]" value="<?php echo $data['value'] ?>"/>
+													</div>
+												</div>
+											<?php endif ?>
+										<?php endforeach ?>
+									</div>
+								<?php endforeach ?>
+							</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion-color-2" href="#colorCollapseTwo"><?php echo $this->__('Main Content') ?></a>
+                        </h4>
+                    </div>
+                    <div id="colorCollapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+							<div class="form-group">
+								<label for="use_footer_custom" class="col-sm-3 control-label"><?php echo $this->__('Use Custom') ?></label>
+								<div class="col-sm-8">
+									<select name="theme_color[main][use_custom]" class="form-control" id="use_main_custom" onchange="setUseCustom(this.value,'custom-main')">
+                                        <option value="0"><?php echo $this->__("No") ?></option>
+                                        <option value="1"<?php if($this->helper('mpanel')->useMainCustomColor()): ?> selected="selected"<?php endif ?>><?php echo $this->__("Yes") ?></option>
+                                    </select>
+								</div>
+							</div>
+							
+							<div id="custom-main">
+								<?php foreach($mainSetting as $section): ?>
+									<div class="setting-section">
+										<?php foreach($section as $field=>$data): ?>
+											<?php if($field=='heading'): ?>
+												<div class="col-sm-11"><h4><?php echo $data ?></h4></div>
+											<?php else: ?>
+												<div class="form-group">
+													<label for="main_<?php echo $field ?>" class="col-sm-6 control-label"><?php echo $data['label'] ?></label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control color-picker-input" id="main_<?php echo $field ?>" name="theme_color[main][<?php echo $field ?>]" value="<?php echo $data['value'] ?>"/>
+													</div>
+												</div>
+											<?php endif ?>
+										<?php endforeach ?>
+									</div>
+								<?php endforeach ?>
+							</div>
+
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion-color-3" href="#colorCollapseThree"><?php echo $this->__('Footer') ?></a>
+                        </h4>
+                    </div>
+                    <div id="colorCollapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+							<div class="form-group">
+								<label for="use_footer_custom" class="col-sm-3 control-label"><?php echo $this->__('Use Custom') ?></label>
+								<div class="col-sm-8">
+									<select name="theme_color[footer][use_custom]" class="form-control" id="use_footer_custom" onchange="setUseCustom(this.value,'custom-footer')">
+                                        <option value="0"><?php echo $this->__("No") ?></option>
+                                        <option value="1"<?php if($this->helper('mpanel')->useFooterCustomColor()): ?> selected="selected"<?php endif ?>><?php echo $this->__("Yes") ?></option>
+                                    </select>
+								</div>
+							</div>
+							
+							<div id="custom-footer">
+								<?php foreach($footerSetting as $section): ?>
+									<div class="setting-section">
+										<?php foreach($section as $field=>$data): ?>
+											<?php if($field=='heading'): ?>
+												<div class="col-sm-11"><h4><?php echo $data ?></h4></div>
+											<?php else: ?>
+												<div class="form-group">
+													<label for="footer_<?php echo $field ?>" class="col-sm-6 control-label"><?php echo $data['label'] ?></label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control color-picker-input" id="footer_<?php echo $field ?>" name="theme_color[footer][<?php echo $field ?>]" value="<?php echo $data['value'] ?>"/>
+													</div>
+												</div>
+											<?php endif ?>
+										<?php endforeach ?>
+									</div>
+								<?php endforeach ?>
+							</div>
+
+                        </div>
+                    </div>
+                </div>
+				
+			</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+    </div>
+</div>
+
+<script type="text/javascript">
+	function setUseCustom(val,el){
+		if(val==1){
+			mgsjQuery('#'+el).slideDown();
+		}
+		else{
+			mgsjQuery('#'+el).slideUp();
+		}
+	}
+	
+	mgsjQuery(window).load(function() {
+		setUseCustom(mgsjQuery('#use_header_custom').val(), 'custom-header');
+		setUseCustom(mgsjQuery('#use_main_custom').val(), 'custom-main');
+		setUseCustom(mgsjQuery('#use_footer_custom').val(), 'custom-footer');
+	});
+</script>

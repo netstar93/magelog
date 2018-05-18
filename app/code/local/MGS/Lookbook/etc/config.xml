@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ */
+-->
+<config>
+    <modules>
+        <MGS_Lookbook>
+            <version>1.0.2</version>
+        </MGS_Lookbook>
+    </modules>
+    <frontend>
+        <routers>
+            <lookbook>
+                <use>standard</use>
+                <args>
+                    <module>MGS_Lookbook</module>
+                    <frontName>lookbook</frontName>
+                </args>
+            </lookbook>
+        </routers>
+        <layout>
+            <updates>
+                <lookbook>
+                    <file>mgs_lookbook.xml</file>
+                </lookbook>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <lookbook before="Mage_Adminhtml">MGS_Lookbook_Adminhtml</lookbook>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+			<mgscore module="mgscore"> 
+				<children>
+					<lookbook translate="title" module="lookbook">
+                        <title>Lookbook</title>
+						<sort_order>1000</sort_order>
+						<children>
+							<manage translate="title" module="lookbook">
+								<title>Manage Lookbook</title>
+								<sort_order>10</sort_order>
+								<action>adminhtml/lookbook</action>
+							</manage>
+							
+							<slide translate="title" module="lookbook">
+								<title>Manage Slider</title>
+								<sort_order>20</sort_order>
+								<action>adminhtml/lookbook_slide</action>
+							</slide>
+							
+							<setting translate="title" module="lookbook">
+								<title>Configuration</title>
+								<sort_order>30</sort_order>
+								<action>adminhtml/system_config/edit/section/lookbook</action>
+							</setting>
+						</children>
+                    </lookbook>
+				</children>
+			</mgscore>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <mgscore module="mgscore"> 
+							<children>
+								<lookbook translate="title" module="lookbook">
+									<title>Lookbook</title>
+									<sort_order>1000</sort_order>
+									<children>
+										<manage translate="title" module="lookbook">
+											<title>Manage Lookbook</title>
+											<sort_order>10</sort_order>
+										</manage>
+										
+										<slide translate="title" module="lookbook">
+											<title>Manage Slider</title>
+											<sort_order>20</sort_order>
+										</slide>
+										
+										<setting translate="title" module="lookbook">
+											<title>Configuration</title>
+											<sort_order>30</sort_order>
+										</setting>
+									</children>
+								</lookbook>
+							</children>
+						</mgscore>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <lookbook>
+                                            <title>LookBook</title>
+                                        </lookbook>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <lookbook>
+                    <file>mgs_lookbook.xml</file>
+                </lookbook>
+            </updates>
+        </layout>
+    </adminhtml>
+    
+    <global>
+        <models>
+            <lookbook>
+                <class>MGS_Lookbook_Model</class>
+                <resourceModel>lookbook_mysql4</resourceModel>
+            </lookbook>
+            <lookbook_mysql4>
+                <class>MGS_Lookbook_Model_Mysql4</class>
+                <entities>
+                    <lookbook>
+                        <table>mgs_lookbook</table>
+                    </lookbook>
+					
+					<slide>
+                        <table>mgs_lookbook_slide</table>
+                    </slide>
+					
+					<item>
+                        <table>mgs_lookbook_slide_items</table>
+                    </item>
+                </entities>
+            </lookbook_mysql4>
+        </models>
+        <resources>
+            <lookbook_setup>
+                <setup>
+                    <module>MGS_Lookbook</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </lookbook_setup>
+            <lookbook_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </lookbook_write>
+            <lookbook_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </lookbook_read>
+        </resources>
+        <blocks>
+            <lookbook>
+                <class>MGS_Lookbook_Block</class>
+            </lookbook>
+        </blocks>
+        <helpers>
+            <lookbook>
+                <class>MGS_Lookbook_Helper</class>
+            </lookbook>
+        </helpers>
+    </global>
+	
+	<default>
+        <lookbook>
+			<active>
+				<enabled>1</enabled>
+			</active>
+            <general>
+                <min_image_width>300</min_image_width>
+                <min_image_height>400</min_image_height>
+                <max_image_width>1920</max_image_width>
+                <max_image_height>1920</max_image_height>
+                <max_upload_filesize>2097152</max_upload_filesize>
+                <allowed_extensions>jpg,jpeg,png,gif</allowed_extensions>      
+                <pin_width>40</pin_width>      
+                <pin_height>40</pin_height>      
+                <pin_default>+</pin_default>      
+                <pin_price>1</pin_price>      
+                <pin_background>65affa</pin_background>      
+                <pin_text>ffffff</pin_text>      
+                <popup_image_width>230</popup_image_width>      
+                <popup_image_height>290</popup_image_height>      
+            </general>
+			<slider>
+                <navigation>1</navigation>   
+                <auto_play>1</auto_play>   
+                <auto_play_timeout>5000</auto_play_timeout>   
+                <stop_auto>1</stop_auto>   
+                <loop>1</loop>   
+                <next_image><![CDATA[<i class="pe-7s-angle-right"></i>]]></next_image>   
+                <prev_image><![CDATA[<i class="pe-7s-angle-left"></i>]]></prev_image>   
+            </slider>
+        </lookbook>
+    </default>    
+</config>

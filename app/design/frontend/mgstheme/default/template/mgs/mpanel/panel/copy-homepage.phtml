@@ -1,0 +1,17 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->isHomepage()): ?>
+	<?php $otherHomepage = $helper->getOtherHomepage(); ?>
+	<?php if(count($otherHomepage)>0): ?>
+		<div class="copy-homepage">
+			<h2><?php echo $this->__('Copy Homepage Content From:') ?></h2>
+			<div class="store-buttons">
+				<?php foreach($otherHomepage as $home): ?>
+					<?php $store = Mage::getModel('core/store')->load($home->getStoreId()) ?>
+					<?php if($store->getId()): ?>
+						<button type="button" class="btn btn-primary" onclick="if(confirm('<?php echo $this->__('Are you sure you would like to copy content from store view %s?', $helper->getStoreView($home->getStoreId()))?>')) setLocation('<?php echo $this->getUrl('mpanel/index/duplicate', array('store_id'=>$home->getStoreId())) ?>')"><span><?php echo $helper->getStoreView($home->getStoreId()) ?></span></button>
+					<?php endif ?>
+				<?php endforeach ?>
+			</div>
+		</div>
+	<?php endif ?>
+<?php endif ?>

@@ -1,0 +1,44 @@
+<?php $profile = $this->getProfile(); ?>
+<div class="detail-profile">
+	<div class="row">
+		<div class="col-md-3 col-sm-4 col-xs-12">
+			<div class="user-wrapper">
+				<div class="profile-image">
+					<img alt="<?php echo $profile->getName(); ?>" class="img-responsive" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$profile->getPhoto() ?>">
+				</div>
+				<div class="desc">
+					<h4><?php echo $profile->getName(); ?></h4>
+					<p><strong><?php echo $profile->getPosition(); ?></strong></p>
+					<p>Email: <?php echo $profile->getEmail(); ?></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9 col-sm-8 col-xs-12">
+			<div class="description">
+				<h3>Information:</h3>
+				<hr>
+				<p><?php echo $profile->getDetail(); ?></p>
+				<?php if($profile->getAddress()): ?>
+					<p><strong>Address: </strong><?php echo $profile->getAddress(); ?></p>
+				<?php endif; ?>
+				<hr>
+				<h3>Social:</h3>
+				<?php if($profile->getFacebook()): ?>
+					<a class="btn btn-profile btn-facebook" href="<?php echo $profile->getFacebook(); ?>"><i class="fa fa-facebook"></i>&nbsp; Facebook </a>
+				<?php endif ?>
+				<?php if($profile->getGooglePlus()): ?>
+					<a class="btn btn-profile btn-google" href="<?php echo $profile->getGooglePlus(); ?>"><i class="fa fa-google-plus"></i>&nbsp; Google</a>
+				<?php endif ?>
+				<?php if($profile->getTwitter()): ?>
+					<a class="btn btn-profile btn-twitter" href="<?php echo $profile->getTwitter(); ?>"><i class="fa fa-twitter"></i>&nbsp; Twitter </a>
+				<?php endif ?>
+				<?php if($profile->getLinkedin()): ?>
+					<a class="btn btn-profile btn-linkedin" href="<?php echo $profile->getLinkedin(); ?>"><i class="fa fa-linkedin"></i>&nbsp; Linkedin </a>
+				<?php endif ?>
+				<?php if($profile->getInstagram()): ?>
+					<a class="btn btn-profile btn-instagram" href="<?php echo $profile->getInstagram(); ?>"><i class="fa fa-instagram"></i>&nbsp; Instagram </a>
+				<?php endif ?>
+			</div>
+		</div>
+	</div>
+</div>

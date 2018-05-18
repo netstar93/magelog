@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Social
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_Social>
+            <version>0.1.2</version>
+        </MGS_Social>
+    </modules>
+    <frontend>
+        <routers>
+            <social>
+                <use>standard</use>
+                <args>
+                    <module>MGS_Social</module>
+                    <frontName>social</frontName>
+                </args>
+            </social>
+        </routers>
+        <layout>
+            <updates>
+                <social>
+                    <file>social.xml</file>
+                </social>
+            </updates>
+        </layout>
+    </frontend>       
+    <global>
+        <models>
+            <social>
+                <class>MGS_Social_Model</class>                
+            </social>            
+        </models>
+        <resources>
+            <social_setup>
+                <setup>
+                    <module>MGS_Social</module>
+                </setup>                
+            </social_setup>            
+        </resources>        
+        <blocks>
+            <social>
+                <class>MGS_Social_Block</class>
+            </social>
+        </blocks>
+        <helpers>
+            <social>
+                <class>MGS_Social_Helper</class>
+            </social>
+        </helpers>
+    </global>
+	<adminhtml>
+		<menu>
+			<mgscore module="mgscore"> 
+				<children>
+					<social module="social">
+						<title>Social</title>
+						<sort_order>78</sort_order>   
+						<action>adminhtml/system_config/edit/section/social</action>
+					</social>
+				</children>
+			</mgscore>
+		</menu>
+	</adminhtml>
+    <default>
+        <social>
+            <general>
+                <active>0</active>
+            </general>
+            <facebook>
+                <active_sdk>0</active_sdk>
+                <active>0</active>
+            </facebook>
+            <google>
+                <active>0</active>
+            </google>
+            <twitter>
+                <active>0</active>
+            </twitter>
+            <facebook_like_box>
+                <active>0</active>
+            </facebook_like_box>
+        </social>
+    </default>
+</config>

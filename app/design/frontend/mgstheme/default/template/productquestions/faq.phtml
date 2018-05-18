@@ -1,0 +1,23 @@
+<?php
+/* * ****************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php //if (Mage::helper('productquestions')->toToplink()): ?>
+<div class="faq"> 
+    <div class="page-title">
+        <h1><?php echo Mage::helper('productquestions')->faqsPageTitle(); ?></h1>
+    </div>
+    <div class="search">
+        <?php echo $this->getChildHtml('productquestions.faq.search') ?>
+    </div>
+    <div class="content">
+        <?php echo $this->getChildHtml('productquestions.faq.topic') ?>
+    </div>
+</div>
+<?php
+/* else: ?>
+  <p><?php echo $this->__('This page was disabled.') ?></p>
+  <?php endif; */?>

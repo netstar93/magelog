@@ -1,0 +1,65 @@
+<?php $collection = $this->getTestimonials() ?>
+<?php 
+	if($this->getViewMode()){
+		$viewMode = $this->getViewMode();
+	}
+	else{
+		$viewMode = 'grid';
+	}
+?>
+<?php if(count($collection)>0): ?>
+	<div class="testimonial-container">
+		<?php if($this->getTitle()!=''): ?>
+			<div class="carousel_wrapper">
+				<div class="title">
+					<h2><?php echo $this->getTitle() ?></h2>
+				</div>
+			</div>
+		<?php endif ?>
+		<?php if($viewMode=='grid'): ?>
+			<div class="owl-carousel testimonials-carousel" data-plugin-options="{'items': 1, 'autoHeight': true, 'controlNav': true }" id="testimonials-carousel">
+				<?php foreach($collection as $_item): ?>
+					<div class="testimonial-item">
+						<div class="testimonial-author">
+							<?php if($_item->getAvatar()): ?>
+								<div class="img-thumbnail img-thumbnail-small">							
+									<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>testimonial/<?php echo $_item->getAvatar() ?>" alt="">							
+								</div>
+							<?php endif;?>
+							<p><strong><?php echo '- '.$_item->getName() ?></strong><span><?php echo $_item->getInformation().' -' ?></span></p>
+						</div>
+						<div class="testimonial-content">
+							<p><?php echo $_item->getContent() ?></p>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		
+		<script type="text/javascript">
+			initSlider('testimonials-carousel', 1, false, false, false, true);
+		</script>
+		<?php else: ?>
+			<div class="testimonials-list">
+				<?php foreach($collection as $_item): ?>
+					<div class="testimonial-item">
+						<div class="testimonial-author">
+						<?php if($_item->getAvatar()): ?>
+							<div class="img-thumbnail img-thumbnail-small">							
+								<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>testimonial/<?php echo $_item->getAvatar() ?>" alt="">							
+							</div>
+						<?php endif;?>
+							<p><strong><?php echo '- '.$_item->getName() ?></strong><span><?php echo $_item->getInformation().' -' ?></span></p>
+						</div>
+						<div class="testimonial-content">
+							<p><?php echo $_item->getContent() ?></p>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		<?php endif ?>
+	</div>
+<?php else: ?>
+<div class="alert alert-danger">
+	<p><?php echo $this->__('There are no testimonials matching the selection.') ?></p>
+</div>
+<?php endif ?>

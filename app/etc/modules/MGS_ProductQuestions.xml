@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_ProductQuestions>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MGS_ProductQuestions>
+    </modules>
+</config> 

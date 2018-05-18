@@ -1,0 +1,341 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header4</header>
+	<footer>footer</footer>
+
+	<block>
+		<name>block60</name>
+		<block_cols><![CDATA[]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block61</name>
+		<block_cols><![CDATA[4,4,4]]></block_cols>
+		<block_class><![CDATA[["col-sm-4 col-xs-12 margin-bottom30","col-sm-4 col-xs-12 margin-bottom30","col-sm-4 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>35</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block62</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>20</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block63</name>
+		<block_cols><![CDATA[4,4,4]]></block_cols>
+		<block_class><![CDATA[[" col-md-4 col-sm-6 col-xs-12 margin-bottom30"," col-md-4 col-sm-6 col-xs-12 margin-bottom30 pull-right"," col-md-4 col-sm-12 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>80</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	<block>
+		<name>block64</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>51</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>5</block_position>
+	</block>
+	<block>
+		<name>block65</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>52</padding_top>
+		<padding_bottom>34</padding_bottom>
+		<block_position>6</block_position>
+	</block>
+	<block>
+		<name>block66</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>51</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>7</block_position>
+	</block>
+	<block>
+		<name>block67</name>
+		<block_cols><![CDATA[3,3,3,3]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>45</padding_top>
+		<padding_bottom>2</padding_bottom>
+		<block_position>8</block_position>
+	</block>
+	<!--  -->
+	<child>
+		<block_name>block61-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Home 5 Promo banner Shop women</banner_title>
+		<banner_filename>shop-women.jpg</banner_filename>
+		<banner_url>women.html</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block61-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Home 5 Promo banner Shop men</banner_title>
+		<banner_filename>shopmen.jpg</banner_filename>
+		<banner_url>men.html</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block61-2</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Home 5 Promo banner Shop Girl</banner_title>
+		<banner_filename>shop-girl.jpg</banner_filename>
+		<banner_url>couple/shoes.html</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block63-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Home 7 Banner Lookbook</banner_title>
+		<banner_filename>lookbook-collection.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div style="text-align: left;"><h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:14px; color:#222222;">VIEW COLLECTIONS</h3>
+<h4 class="margin-bottom10" style="font-size:35px; line-height:36px; color:#222222;">LOOKBOOK</h4>
+<p class="no-margin" style="font-size:14px; color: #878787;">your world of fashion in numbers</p></div>]]></banner_content>
+		<banner_text_align>bottom-left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block63-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Home 7 Banner Summer Sale</banner_title>
+		<banner_filename>summer-sale2.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:18px; color:#222222;">SUMMER SALE</h3>
+<h4 class="margin-bottom10 nowrap" style="font-size:50px; line-height:50px; color:#222222;">UP TO 70%</h4>
+<div><button class="btn btn-default" onclick="setLocation('#')" style="font-size:14px;">Shop Now</button></div>]]></banner_content>
+		<banner_text_align>center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<!--  -->
+	<child>
+		<block_name>block64-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Title Tab Product Home Lookbook]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_title_tab_product]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="content-heading">
+<h3 class="title">OUR PRODUCTS</h3>
+<div class="block-note">Top sale in this week</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block67-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 1]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_1]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-car">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">FREE SHIPPING</h6>
+<p class="no-margin">Free shipping on all US order or order above $200</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block67-1</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 2]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_2]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-help2">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">SUPPORT 24/7</h6>
+<p class="no-margin">Contact us 24 hours a day, 7 days a week</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block67-2</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 3]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_3]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-refresh">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">30 DAYS RETURN</h6>
+<p class="no-margin">Simply return it within 30 days for an exchange.</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block67-3</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 4]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_4]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-door-lock">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">100% PAYMENT SECURE</h6>
+<p class="no-margin">We ensure secure payment with PEV</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<!--  -->
+	<child>
+		<block_name>block62-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_new" display_type="new_products" slider="1" products_count="18" sub_title="New product of our store" title="NEW ARRIVAL" product_ratio="" auto_play="false" stop_hover="false" navigation="true" pagination="false" count_per_row="6"  template="mgs/mpanel/products/panel_products.phtml" number_row="1"}}]]></block_content>
+		<type>new_products</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"NEW ARRIVAL","sub_title":"New product of our store","custom_class":"","animation":"","animation_delay":"","product_count":"18","view_mode":"grid","count_per_row":"6","number_col":"","count_per_col":"1","product_ratio":"","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block60-0</block_name>
+		<block_content><![CDATA[{{widget type="revslider/slider_preview" id="2"}}]]></block_content>
+		<type>revolution</type>
+		<position>2</position>
+		<setting><![CDATA[1]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block63-2</block_name>
+		<block_content><![CDATA[{{widget type="deals/widget" product_ratio="" column="1" real_deal="17" sub_title="" title="" use_slider="0" template="mgs/deals/widget/grid.phtml"}}]]></block_content>
+		<type>deals</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","sub_title":"","custom_class":"","animation":"","animation_delay":"","deal":["17"],"count_per_row":"1","product_ratio":"","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block64-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" products_count="8" slider="0" count_per_row="4" tabs="new_products,hot_products,sale_products,rate_products" product_ratio="" new_label="New" featured_label="" hot_label="Best seller" sale_label="Sale" rate_label="Top Rate" category_id="" template="mgs/mpanel/tabs.phtml"}}]]></block_content>
+		<type>tabs</type>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","product_tab":["new_products","hot_products","sale_products","rate_products"],"new_label":"New","featured_label":"","hot_label":"Best seller","sale_label":"Sale","rate_label":"Top Rate","product_count":"8","count_per_row":"4","product_ratio":"","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block66-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" title="@ FOLLOW US ON INSTAGRAM" number="12" number_item_row="6" resolution="low_resolution" image_details="1" slider="1"  auto_play="false" stop_hover="false" navigation="true" pagination="false" number_row="1"template="mgs/mpanel/instagram_widget.phtml" }}]]></block_content>
+		<type>instagram</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"@ FOLLOW US ON INSTAGRAM","custom_class":"","animation":"","animation_delay":"","count":"12","number_item_row":"6","resolution":"low_resolution","image_details":"1","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"}}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block65-0</block_name>
+		<block_content><![CDATA[{{widget type="blog/last" blog_count="3" categories="1" column="3" view_mode="grid" slider="1" title="LATEST FROM BLOG" sub_title="The freshest and most exciting news" character_count="120" auto_play="false" stop_hover="false" navigation="false" pagination="false"}}]]></block_content>
+		<type>latest_posts</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"LATEST FROM BLOG","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","categories":["1"],"product_count":"3","character_count":"120","view_mode":"grid","count_per_row":"3","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

@@ -1,0 +1,19 @@
+<?php $child = $this->getBlockData() ?>
+<?php $settings = json_decode($child->getSetting(), true); ?>
+<div class="separator separator-<?php echo $settings['separator_type'] ?><?php if($settings['separator_type']=='border'): ?> <?php echo $settings['border_style'] ?><?php endif ?>">
+	<div class="separator-margin" style="margin-top:<?php echo $settings['margin_top'] ?>px; margin-bottom:<?php echo $settings['margin_bottom'] ?>px;">
+		<?php if($settings['separator_type']=='border'): ?>
+			<div class="<?php echo $settings['border_type'] ?>">
+				<?php if(isset($settings['text_content']) && $settings['text_content']!=''): ?>
+					<span class="text"><?php echo $settings['text_content'] ?></span>
+				<?php else: ?>
+					<?php if($settings['border_icon']!=''): ?>
+						<span class="icon"><em class="fa fa-<?php echo $settings['border_icon'] ?>"></em></span>
+					<?php endif ?>
+				<?php endif ?>
+			</div>
+		<?php else: ?>
+                        <span><i></i></span>
+                <?php endif; ?>
+	</div>
+</div>

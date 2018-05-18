@@ -1,0 +1,10 @@
+<?php
+$url = Mage::getSingleton('core/session')->getUrlRedirect();
+Mage::getSingleton('core/session')->unsUrlRedirect();
+?>
+<script type="text/javascript">
+    mgsjQuery(document).ready(function () {
+        window.parent.jQuery.magnificPopup.close();
+        parent.window.location.href = '<?php echo $url; ?>';        
+    });
+</script>

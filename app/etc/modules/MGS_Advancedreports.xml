@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Advancedreports
+ * Author    : http://www.magesolution.com
+ * Copyright : (c) 2013 - Mage Solution
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_Advancedreports>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MGS_Advancedreports>
+    </modules>
+</config> 

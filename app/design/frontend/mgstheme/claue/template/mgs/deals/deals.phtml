@@ -1,0 +1,157 @@
+<?php if (Mage::getStoreConfig('deals/general/enabled')): ?>
+    <?php
+    $layout = Mage::getSingleton('core/layout');
+    $productCollection = $this->getProductCollection();
+    $toolbar = $this->getToolbarBlock();
+    $pager = $layout->createBlock('page/html_pager');
+    $toolbar->setChild('product_list_toolbar_pager', $pager);
+    $toolbar->setCollection($productCollection);
+    
+    $toolbar->setMode($this->getMode());
+	$toolbar->setTemplate('mgs/deals/toolbar.phtml');
+	
+	$panelHelper = $this->helper('mpanel');
+	$size = $panelHelper->convertRatioToSize();
+    ?> 
+    <?php if (count($productCollection) > 0): ?>
+	<div class="show-top margin-bottom15"><?php echo $toolbar->toHtml();?></div>
+	<div class="category-products">
+        <?php if ($this->getMode() == 'list'): ?>
+            <ul class="deals-container products-list">
+                <?php foreach ($productCollection as $product): ?>
+                    <?php $_product = Mage::getModel('catalog/product')->load($product->getId()) ?>
+                    <li class="deal-item item row">
+						<div class="col-md-3 col-sm-4 col-xs-12">
+							<div class="product-left">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="product-image">
+									<?php if(basename($_product->getData('thumbnail')) == basename($_product->getData('small_image'))): ?>
+										<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive"/>
+									<?php else: ?>
+										<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive img-small"/>
+										<img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive img-hover"/>
+									<?php endif;?>
+								</a>
+								<div class="discount-save">
+									<div class="save-content">
+										<div class="percent">
+											<?php $save = $_product->getPrice() - $_product->getFinalPrice() ?>
+											<?php $percent = round(($save * 100) / $_product->getPrice(), 1) ?>
+											-<?php echo $percent ?>%
+										</div>
+									</div>
+								</div>
+								<?php if($this->helper('core')->isModuleEnabled('MGS_QuickView') && Mage::getStoreConfig('quickview/general/active')): ?>
+									<button type="button" title="<?php echo $this->__('Quickview') ?>" class="btn-quickview quick-view hidden-sm hidden-xs" onclick="quickView('<?php echo $_product->getProductUrl() ?>'); return false;"><em class="pe-7s-search"></em></button>
+								<?php endif ?>
+							</div>
+						</div>
+                        <div class="col-md-9 col-sm-8 col-xs-12">
+							<div class="product-info margin-bottom20">
+								<h5 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image'), null, true) ?>">
+									<?php echo $_product->getName() ?>
+								</a></h5>
+								<?php if (Mage::getStoreConfig('mpanel/product_details/reviews_summary')): ?>
+									<?php echo $this->getReviewsSummaryHtml($_product, false, true) ?>
+								<?php endif; ?>
+								<div class="product-price-container">
+									<?php echo $this->getPriceHtml($_product, true) ?>
+								</div>
+								<div class="product-description">
+									<?php echo Mage::helper('core/string')->truncate($_product->getDescription(), 220); ?>
+								</div>
+							</div>
+                            <div class="time-left">
+                                <?php echo $this->getLayout()->createBlock('deals/deals')->setTemplate('mgs/deals/list.phtml')->setProductId($_product->getId())->toHtml(); ?>
+                            </div>
+                            <div class="actions margin-top15">
+								<?php if ($_product->isSaleable()): ?>
+									<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-cart btn-primary margin-right10" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>');"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+								<?php else: ?>
+									<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+								<?php endif; ?>
+								<ul class="add-to-links">
+									<?php if ($this->helper('wishlist')->isAllow()) : ?>
+										<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><em class="pe-7s-like"></em></a></li>
+									<?php endif; ?>
+									<?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+										<li><a href="<?php echo $_compareUrl ?>" class="link-compare"><em class="pe-7s-graph3"></em></a></li>
+									<?php endif; ?>
+								</ul>
+							</div>
+                            <script type="text/javascript">
+                                    var productAddToCartForm_<?php echo $_product->getId(); ?> = new VarienForm('product_addtocart_form_<?php echo $_product->getId(); ?>');
+                                    productAddToCartForm_<?php echo $_product->getId(); ?>.submit = function() {
+                                        if (this.validator.validate()) {
+                                            this.form.submit();
+                                        }
+                                    }.bind(productAddToCartForm_<?php echo $_product->getId(); ?>);
+                            </script>
+                        </div>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        <?php else: ?>
+            <?php $_collectionSize = $productCollection->count() ?>
+            <?php $_columnCount = $this->getColumnCount(); ?>
+			<ul class="products-grid deal-products-grid row">
+				<?php $i = 0; foreach ($productCollection as $product): $i++; ?>
+				<?php $_product = Mage::getModel('catalog/product')->load($product->getId()); ?>
+					<li class="col-md-4 col-sm-6 col-xs-6 col-xxs-full item<?php if($i % 3 == 1): ?> first-row-item<?php endif ?><?php if($i % 2 == 1): ?> row-2-first<?php endif ?>">
+						<div class="product-item-info">
+							<div class="product-top">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="product-image">
+									<?php if(basename($_product->getData('thumbnail')) == basename($_product->getData('small_image'))): ?>
+										<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive"/>
+									<?php else: ?>
+										<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive img-small"/>
+										<img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive img-hover"/>
+									<?php endif;?>
+								</a>
+								<div class="discount-save">
+									<div class="save-content">
+										<div class="percent">
+											<?php $save = $_product->getPrice() - $_product->getFinalPrice() ?>
+											<?php $percent = round(($save * 100) / $_product->getPrice(), 1) ?>
+											-<?php echo $percent ?>%
+										</div>
+									</div>
+								</div>
+								<ul class="icon-links">
+									<?php if($this->helper('core')->isModuleEnabled('MGS_QuickView') && Mage::getStoreConfig('quickview/general/active')): ?>
+										<li class="hidden-sm hidden-xs"><button type="button" title="<?php echo $this->__('Quickview') ?>" class="action mgs-quickview" onclick="quickView('<?php echo $_product->getProductUrl() ?>'); return false;"><em class="pe-7s-search"></em></button></li>
+									<?php endif ?>
+									<?php if ($this->helper('wishlist')->isAllow() && !Mage::getStoreConfig('mpanel/catalog/wishlist_button')) : ?>
+										<li><button class="action" type="button" title="<?php echo $this->__('Add to Wishlist') ?>" onclick="setLocation('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>')"><em class="pe-7s-like"></em></button></li>
+									<?php endif; ?>
+									<?php $_compareUrl = $this->getAddToCompareUrl($_product); ?>
+									<?php if ($_compareUrl && $panelHelper->isShowCompare()): ?>
+										<li><button class="action" type="button" title="<?php echo $this->__('Add to Compare') ?>" onclick="setLocation('<?php echo $_compareUrl ?>')"><em class="pe-7s-graph3"></em></button></li>
+									<?php endif; ?>
+								</ul>
+								<div class="add-to-cart">
+									<?php if ($_product->isSaleable()): ?>
+										<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart btn-primary btn-default tocart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>');"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+									<?php else: ?>
+										<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+									<?php endif; ?>
+									
+								</div>
+							<div class="product details product-item-details">
+								<div class="time-left margin-bottom10">
+									<?php echo $this->getLayout()->createBlock('deals/deals')->setTemplate('mgs/deals/list.phtml')->setProductId($_product->getId())->toHtml(); ?>
+								</div>
+								<h5 class="product-name"><a class="product-item-link" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_product->getName(); ?></a></h5>
+								<?php echo $this->getPriceHtml($_product, true) ?>
+							</div>
+						</div>
+						</div>
+					</li>
+				<?php endforeach ?>
+			</ul>
+            <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd', 'even', 'first', 'last']);</script>
+        <?php endif; ?>
+    <?php endif; ?>
+	</div>
+    <div class="show-bottom margin-top15"><?php echo $toolbar->toHtml();?></div>
+	
+<?php endif; ?>

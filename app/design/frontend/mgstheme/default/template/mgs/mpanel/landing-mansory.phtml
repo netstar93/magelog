@@ -1,0 +1,43 @@
+<?php if (!Mage::registry('current_category')) return ?>
+<?php $_categories = $this->getCurrentChildCategories() ?>
+<?php $_count = is_array($_categories)?count($_categories):$_categories->count(); ?>
+<?php if($_count): ?>
+<div class="collection-grid mansory-collection">
+<div class="row">
+	<ul id="grid" class="grid">
+	<?php foreach ($_categories as $_category): ?>
+		<?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+		<?php if($_category->getIsActive()): ?>
+		<li class="col-md-3 col-sm-6 col-xs-12 grid-col-item">
+			<div class="grid-item appear-animation animated appear-animation-visible" data-appear-animation="fadeInUp">
+				<div class="grid-img">
+					<?php if($_category->getThumbnail()!=''): ?>
+						<a href="<?php echo $this->getCategoryUrl($_category) ?>">
+							<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>catalog/category/<?php echo $_category->getThumbnail() ?>" alt="<?php echo $this->escapeHtml($_category->getName()) ?>" class="img-responsive"/>
+						</a>
+					<?php endif ?>
+					<span class="total-products"><?php echo $this->__('%s products',$_category->getProductCount()) ?></span>
+				</div>
+				<div class="grid-content">
+					<p><a class="grid-name" href="<?php echo $this->getCategoryUrl($_category) ?>"><?php echo $this->escapeHtml($_category->getName()) ?></a></p>
+					<p><?php echo $_category->getDescription(); ?></p>
+					<div class="view-more">
+						<a href="<?php echo $this->getCategoryUrl($_category) ?>" class="btn btn-default btn-xs">Shop Now</a>
+					</div>
+				</div>
+			</div>
+		</li>
+		<?php endif; ?>
+	<?php endforeach ?>
+	</ul>
+</div>
+</div>
+<?php endif; ?>
+<script>
+mgsjQuery(document).ready( function(){
+	mgsjQuery('.grid').masonry({
+		// set itemSelector so .grid-sizer is not used in layout
+		itemSelector: '.grid-col-item',
+	});
+});
+</script>

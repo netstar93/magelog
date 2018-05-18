@@ -1,0 +1,57 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php $setting = $helper->getThemeSettings() ?>
+<?php if($setting['preloader']): ?>
+	<div class="preloader">
+		<div class="status">&nbsp;</div>
+	</div>
+	<script type="text/javascript">
+		mgsjQuery(window).load(function() {
+			mgsjQuery(".status").fadeOut();
+			mgsjQuery(".preloader").delay(500).fadeOut("slow");
+		})
+	</script>
+<?php endif ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	<?php $store = Mage::app()->getStore(); ?>
+		<div class="top-panel hidden-xs hidden-sm">
+			<div class="container">
+				<div class="row">
+					<?php if($helper->isCmsPage() || $helper->isCatalogPage()): ?>
+						<?php if($helper->isCmsPage()): ?>
+							<?php if($helper->isHomepage()): ?>
+								<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/home.phtml')->toHtml() ?>
+							<?php else: ?>
+								<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/cmspage.phtml')->toHtml() ?>
+							<?php endif ?>
+						<?php else: ?>
+							<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/catalog.phtml')->toHtml() ?>
+						<?php endif ?>
+					<?php else: ?>
+						<?php if($this->helper('core')->isModuleEnabled('AW_Blog') && Mage::app()->getRequest()->getModuleName()=='blog'): ?>
+							<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/blog.phtml')->toHtml() ?>
+						<?php else: ?>
+							<?php $actionToAddHandle = Mage::helper('mpanel')->getMyAccountActionName(); ?>
+							<?php $currentAction = Mage::app()->getFrontController()->getAction()->getFullActionName();?>
+							<?php if(in_array($currentAction, $actionToAddHandle)): ?>
+								<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/my_account.phtml')->toHtml() ?>
+							<?php else: ?>
+								<?php if(Mage::app()->getRequest()->getModuleName()=='oscheckout'): ?>
+									<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/oscheckout.phtml')->toHtml() ?>
+								<?php else: ?>
+									<?php if(Mage::app()->getRequest()->getModuleName()=='productquestions'): ?>
+										<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/productquestions.phtml')->toHtml() ?>
+									<?php else: ?>
+										<?php if(Mage::app()->getRequest()->getModuleName()=='catalogsearch'): ?>
+											<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/catalogsearch.phtml')->toHtml() ?>
+										<?php else: ?>
+											<?php echo $this->getLayout()->createBlock('mpanel/mpanel')->setTemplate('mgs/mpanel/panel/other.phtml')->toHtml() ?>
+										<?php endif ?>
+									<?php endif ?>
+								<?php endif ?>
+							<?php endif ?>
+						<?php endif ?>
+					<?php endif ?>
+				</div>
+			</div>
+		</div>
+<?php endif ?>

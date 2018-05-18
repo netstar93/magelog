@@ -1,0 +1,66 @@
+<?php $currentFooter = Mage::getStoreConfig('mgs_theme/general/footer') ?>
+<div class="edit-static-form">
+	<div class="row">
+		<div class="col-md-12 builder-title">
+			<h2><?php echo $this->__('Change Footer Version') ?></h2>
+		</div>
+	</div>
+	<form action="" method="post" id="change-footer-form">
+		<div class="row headers" id="footers">
+			<?php $footers = Mage::helper('mpanel')->getFooterVersion(); ?>
+			<?php foreach($footers as $footer): ?>
+				<div class="col-sm-6">
+					<div class="margin-top15">
+						<?php $footerPath = 'asset/footers/'.$footer['value'].'.jpg'?>
+						<a href="#" onclick="setFooterActive('<?php echo $footer['value'] ?>'); return false" id="<?php echo $footer['value'] ?>"<?php if($currentFooter == $footer['value']):?> class="active"<?php endif ?>>
+							<img src="<?php echo $this->getSkinUrl($footerPath) ?>" alt="" class="img-responsive"/>
+						</a>
+					</div>
+				</div>
+			<?php endforeach ?>
+			<input type="hidden" name="footer" id="footer_version" value="<?php echo $currentFooter ?>"/>
+			
+			<div class="col-md-12 builder-action">
+				<div class="buttons">
+					<button type="submit" class="btn btn-primary"><span><?php echo $this->__('Submit') ?></span></button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<?php if($this->getRequest()->getPost()):?>
+
+	<script type="text/javascript">
+		<?php if(Mage::getSingleton('core/session')->getSaved()==1): ?>
+		<?php Mage::getSingleton('core/session')->setSaved(false); ?>
+
+			if (window.parent == window.top) {
+				window.top.location.reload();
+			}
+
+		<?php endif ?>
+	</script>
+
+<?php else: ?>
+	
+	
+	<script type="text/javascript">
+		// set footer to view
+		function setFooterActive(footer){
+			if(mgsjQuery('#'+footer).hasClass('active')){
+				mgsjQuery('#'+footer).removeClass('active');
+				mgsjQuery('#footer_version').val('');
+			}
+			else{
+				mgsjQuery('#footers a').removeClass('active');
+				mgsjQuery('#'+footer).addClass('active');
+				mgsjQuery('#footer_version').val(footer);
+			}
+		}
+	</script>
+<?php endif ?>
+
+
+
+

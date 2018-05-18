@@ -1,0 +1,128 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header4</header>
+	<footer>footer</footer>
+
+	<block>
+		<name>block76</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[lookbook_banner]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[look-book-slider.jpg]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>1</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block77</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[lookbook_banner]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[slideshow_image_1_2x.jpg]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>1</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block78</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[lookbook_banner]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[banner1.jpg]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>1</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block79</name>
+		<block_cols><![CDATA[]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[lookbook_banner]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[Zara-October-Lookbook.jpg]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>1</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	
+	
+	<child>
+		<block_name>block76-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Lookbook 1]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_lookbook_1]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="text-center">
+<h5 class="lh__1 sub-title"><em class="text-colour-white">SS 2017 New Arrival</em></h5>
+<h2 class="big-title lh__1 margin-top20 margin-bottom20"><strong class="text-colour-white">SALE OFF TO 70%</strong></h2>
+<div><button class="btn btn-default2" onclick="setLocation('#')">Shop Now</button></div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block77-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Lookbook 2]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_lookbook_2]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="text-center">
+<h2 class="big-title lh__1 margin-bottom20"><strong class="text-colour-white">WOMENS 2017 LOOKBOOK</strong></h2>
+<h5 class="lh__1 sub-title margin-bottom30"><em class="text-colour-white">Discover for latest collection</em></h5>
+<div><button class="btn btn-default2" onclick="setLocation('#')" target="_blank">Explore Now</button></div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block78-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue lookbook 3]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_lookbook_3]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="text-center">
+<h5 class="lh__1 sub-title"><em class="text-colour-white">Hot Trending</em></h5>
+<h2 class="big-title lh__1 margin-top20 margin-bottom20"><strong class="text-colour-white">MENS COLLECTION</strong></h2>
+<div><button class="btn btn-default2" onclick="setLocation('#')" target="_blank">Shop Now</button></div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block79-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue lookbook 4]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_lookbook_4]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="text-center">
+<h2 class="big-title lh__1 margin-bottom20"><strong class="text-colour-white">FALL 2017 COLLECTIONS</strong></h2>
+<h5 class="lh__1 sub-title margin-bottom30"><em class="text-colour-white">Enjoy this Fall Trends</em></h5>
+<div><button class="btn btn-default2" onclick="setLocation('#')" target="_blank">Explore Now</button></div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

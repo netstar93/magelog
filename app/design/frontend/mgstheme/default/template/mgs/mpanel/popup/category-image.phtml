@@ -1,0 +1,49 @@
+<?php
+$category = Mage::getModel('catalog/category')->load($this->getRequest()->getParam('id'));
+?>
+<div class="edit-static-form">
+    <div class="row">
+        <div class="col-md-12 builder-title">
+            <h2><?php echo $this->__('Upload Image') ?></h2>
+        </div>
+    </div>
+    <form action="<?php echo $this->getUrl('mpanel/post/categoryImage') ?>" method="POST" enctype="multipart/form-data">
+        <div class="form-horizontal row margin-top15">
+            <input type="hidden" name="id" value="<?php echo $this->getRequest()->getParam('id') ?>"/>
+            <div class="form-group">
+                <label for="filename" class="col-sm-3 control-label"><?php echo $this->__('Upload Image') ?></label>
+                <div class="col-sm-4 image-input">
+                    <?php if($category->getImage() != ''): ?>
+                    <a onclick="window.open('<?php echo Mage::getBaseUrl() ?>media/catalog/category/<?php echo $category->getImage() ?>', 'popup-image', 'toolbar=0,menubar=0,location=0'); return false;" href="<?php echo Mage::getBaseUrl() ?>media/catalog/category/<?php echo $category->getImage() ?>">
+                        <img width="22" height="22" alt="<?php echo $category->getImage() ?>" title="<?php echo $category->getImage() ?>" src="<?php echo Mage::getBaseUrl() ?>media/catalog/category/<?php echo $category->getImage() ?>">
+                    </a>
+                    <input type="file" name="filename"/>
+                    <span class="delete-image">
+                        <input class="checkbox" type="checkbox" value="1" name="delete">
+                        <label for="delete"> Delete Image</label>
+                        <input type="hidden" value="<?php echo $category->getImage() ?>" name="value">
+                    </span>
+                    <?php else: ?>
+                    <input type="file" name="filename"/>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="form-group builder-action">
+                <div class="buttons">
+                    <button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<?php if ($this->getRequest()->getPost()): ?>
+    <script type="text/javascript">
+    <?php if (Mage::getSingleton('core/session')->getSaved() == 1): ?>
+        <?php Mage::getSingleton('core/session')->setSaved(false); ?>
+            window.parent.jQuery.magnificPopup.close();
+            if (window.parent == window.top) {
+                window.top.location.reload();
+            }
+    <?php endif ?>
+    </script>
+<?php endif; ?>

@@ -1,0 +1,136 @@
+<?php $template = $this->getRequest()->getParam('template') ?>
+<?php $block = $this->getRequest()->getParam('block') ?>
+
+<?php
+	$exist = 0;
+	if($id = $this->getRequest()->getParam('id')){
+		$child =  Mage::getModel('mpanel/childs')->load($id);
+		$exist = 1;
+		$settings = json_decode($child->getSetting(), true);
+		
+		if(!isset($settings['view_mode'])){
+			$settings['view_mode'] = 'grid';
+		}
+		if(!isset($settings['item_count'])){
+			$settings['item_count'] = '';
+		}
+	}
+?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	
+		<div class="edit-static-form">
+			
+			<form id="edit_form" method="post" action="<?php echo $this->getUrl('mpanel/post/child') ?>">
+				<div class="row">
+					<div class="col-md-12 builder-title">
+						<h2><?php echo $this->__('Testimonials Block');  ?></h2>
+					</div>
+				</div>
+				
+				<div class="form-horizontal">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="col"><?php echo $this->__('Block col (12 to full)') ?></label>
+							<div class="col-sm-8">
+								<select name="col" class="required-entry input-text" id="col">
+									<?php for($i=12; $i>=1; $i--): ?>
+										<option value="<?php echo $i ?>"<?php if($exist && ($child->getCol()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+									<?php endfor ?>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="custom_class"><?php echo $this->__('Custom Class') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[custom_class]" class="input-text" id="custom_class"<?php if($exist): ?> value="<?php echo $settings['custom_class'] ?>"<?php endif ?> />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="animation"><?php echo $this->__('Block Animation') ?></label>
+							<div class="col-sm-4">
+								<select name="setting[animation]" class="input-text" id="animation" onchange="changeAnimationClass(this.value)">
+									<?php $animation = $helper->getAnimationClass() ?>
+									<?php foreach($animation as $_animate): ?>
+										<option value="<?php echo $_animate['value'] ?>"<?php if($exist && ($settings['animation']==$_animate['value'])): ?> selected="selected"<?php endif ?>><?php echo $_animate['label'] ?></option>
+									<?php endforeach ?>
+								</select>
+							</div>
+							<div class="col-sm-4 text-center animated<?php if($exist && ($settings['animation']!='')): ?> <?php echo $settings['animation'] ?><?php endif ?>" id="animation-test"><h1>Animation Preview</h1></div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="animation_delay"><?php echo $this->__('Animation Delay') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[animation_delay]" class="input-text validate-number" id="animation_delay" placeholder="ms" <?php if($exist && isset($settings['animation_delay'])): ?> value="<?php echo $settings['animation_delay'] ?>"<?php endif ?>/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<input type="hidden" value="testimonials" name="type" id="block_type"/>
+							<input type="hidden" value="<?php echo $template ?>" name="home_name" id="block_home_name"/>
+							<input type="hidden" value="<?php echo $block ?>" name="block_name" id="block_block_name"/>
+							<?php if($exist): ?>
+								<input type="hidden" value="<?php echo $child->getId() ?>" name="child_id" />
+							<?php endif ?>
+							
+							<label class="col-sm-4 control-label" for="title"><?php echo $this->__('Title') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[title]" class="input-text" id="title"<?php if($exist): ?> value="<?php echo $settings['title'] ?>"<?php endif ?>/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="item_count"><?php echo $this->__('Number of Testimonial') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[item_count]" class="input-text validate-number validate-greater-than-zero" id="item_count"<?php if($exist): ?> value="<?php echo $settings['item_count'] ?>"<?php endif ?>/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="view_mode"><?php echo $this->__('View mode') ?></label>
+							<div class="col-sm-8">
+								<select name="setting[view_mode]" class="required-entry input-text" id="view_mode" onchange="toggleViewmode(this.value)">
+									<option value="grid"<?php if($exist && ($settings['view_mode']=='grid')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Slider') ?></option>
+									<option value="list"<?php if($exist && ($settings['view_mode']=='list')): ?> selected="selected"<?php endif ?>><?php echo $this->__('List') ?></option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group builder-action">
+							<div class="col-md-12">
+								<div class="buttons">
+									<?php if(!$exist): ?>
+										<button onclick="history.go(-1)" class="btn btn-back" type="button">
+											<span><span><?php echo $this->__('Back') ?></span></span>
+										</button>
+									<?php endif ?>
+									<button id="submit-button" onclick="updateForm.submit(this)" class="btn btn-primary" type="button">
+										<span><span><?php echo $this->__('Submit') ?></span></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/form/script_action.phtml')->toHtml() ?>
+	<script type="text/javascript">
+		var currentAnimate = '';
+		<?php if($exist): ?>
+			currentAnimate = '<?php echo $settings['animation'] ?>';
+		<?php endif ?>
+		
+		function changeAnimationClass(animate){
+			if(currentAnimate!=''){
+				mgsjQuery('#animation-test').removeClass(currentAnimate);
+			}
+			mgsjQuery('#animation-test').addClass(animate);
+			currentAnimate = animate;
+		}
+	</script>
+<?php endif ?>

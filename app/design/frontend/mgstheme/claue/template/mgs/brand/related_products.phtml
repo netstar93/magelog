@@ -1,0 +1,133 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$_productStoreConfig = Mage::getStoreConfig('brand/product');
+$_showRelatedProducts = $_productStoreConfig['show_related_products'];
+?>
+<?php if ($_showRelatedProducts): ?>
+    <?php
+    $_product = Mage::registry('product');
+    $_brand = $this->getBrand($_product->getId());
+
+    $_relatedProductsLimit = intval($_productStoreConfig['related_products_limit']) ? $_productStoreConfig['related_products_limit'] : 8;
+    $_relatedProductsSortBy = $_productStoreConfig['related_products_sort_by'] ? $_productStoreConfig['related_products_sort_by'] : null;
+    $_relatedProductsSortDir = $_productStoreConfig['related_products_sort_dir'] ? $_productStoreConfig['related_products_sort_dir'] : null;
+
+    $_collection = $this->getRelatedProducts($_brand->getId(), $_relatedProductsLimit, 1, $_relatedProductsSortBy, $_relatedProductsSortDir,$_product->getId());
+    $_helper = $this->helper('catalog/output');
+
+    $_listLayout = ($this->getData('list_layout')) ? $this->getData('list_layout') : "grid";
+    if ($_listLayout == "grid") {
+        $_columnsCount = ($this->getData('columns_count')) ? $this->getData('columns_count') : 4;
+        $_ulClass = "products-related-grid products-related-grid-" . $_columnsCount . "cols";
+    } else {
+        $_ulClass = "products-list";
+    }
+    $_showProductImage = ($this->getData('show_product_image') == "0") ? $this->getData('show_product_image') : 1;
+    if ($_showProductImage) {
+        $_imgWidth = ($this->getData('image_width')) ? $this->getData('image_width') : 300;
+        $_imgHeight = ($this->getData('image_height')) ? $this->getData('image_height') : 300;
+    }
+    $_showProductTitle = ($this->getData('show_product_title') == "0") ? $this->getData('show_product_title') : 1;
+    $_showProductPrice = ($this->getData('show_product_price') == "0") ? $this->getData('show_product_price') : 1;
+    $_showProductRating = ($this->getData('show_product_rating') == "0") ? $this->getData('show_product_rating') : 1;
+    $_showProductShortDescription = ($this->getData('show_product_short_description') == "0") ? $this->getData('show_product_short_description') : 1;
+    $_showAddToCart = ($this->getData('show_add_to_cart') == "0") ? $this->getData('show_add_to_cart') : 1;
+    $_showAddToWishlist = ($this->getData('show_add_to_wishlist') == "0") ? $this->getData('show_add_to_wishlist') : 1;
+    $_showAddToCompare = ($this->getData('show_add_to_compare') == "0") ? $this->getData('show_add_to_compare') : 1;
+    ?>
+<?php
+	$panelHelper = $this->helper('mpanel');
+	$size = $panelHelper->convertRatioToSize();
+?>
+    <?php if (count($_collection)): ?>
+        <div class="block-brand-related">
+			<div class="content-heading">
+				<h3 class="title text-uppercase"><?php echo $this->__('Related Products By Brand') ?></h3>
+			</div>
+			<div class="row">
+				<div id="related_brands" class="owl-carousel products-carousel products-grid owl-theme products-carousel-1-row">
+					<?php foreach ($_collection as $_item): ?>
+						<div class="item">
+							<div class="product-item-info metro_template <?php if(Mage::getStoreConfig('mpanel/catalog/disable_hover_effect') == 1): ?> <?php echo "disable_hover_effect" ?><?php endif ?>">
+								<div class="product-content">
+									<div class="product-top">
+									<?php if ($_showProductImage): ?>
+										<a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>" class="product-image">
+											<img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_item->getName(), null, true) ?>" class="img-responsive img-small"/>
+											<?php if(basename($_item->getData('small_image')) != basename($_item->getData('thumbnail'))): ?>
+												<img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize($size['width'], $size['height']) ?>" 
+												alt="<?php echo $this->stripTags($_item->getName(), null, true) ?>" class="img-responsive img-hover"/>
+											<?php endif ?>
+										</a>
+										<?php endif;?>
+										<?php echo $panelHelper->getProductLabel($_item) ?>
+										<ul class="icon-links">
+											<?php if($this->helper('core')->isModuleEnabled('MGS_QuickView') && Mage::getStoreConfig('quickview/general/active')): ?>
+												<li class="li-quickview"><button type="button" title="<?php echo $this->__('Quickview') ?>" class="btn-quickview action quick-view" onclick="quickView('<?php echo $_item->getProductUrl() ?>'); return false;"><em class="pe-7s-search"></em></button></li>
+											<?php endif ?>
+											<?php if ($this->helper('wishlist')->isAllow() && $panelHelper->isShowWishList()) : ?>
+												<li><button class="action action-wishlist" type="button" title="<?php echo $this->__('Add to Wishlist') ?>" onclick="setLocation('<?php echo $this->helper('wishlist')->getAddUrl($_item) ?>')"><em class="pe-7s-like"></em></button></li>
+											<?php endif; ?>
+											<?php $_compareUrl=$this->getAddToCompareUrl($_item); ?>
+											<?php if($_compareUrl && $panelHelper->isShowCompare()): ?>
+												<li><button type="button" class="action action-compare" title="<?php echo $this->__('Add to Compare') ?>" onclick="setLocation('<?php echo $_compareUrl ?>')"><em class="pe-7s-graph3"></em></button></li>
+											<?php endif; ?>
+										</ul>
+										<?php if($panelHelper->isShowAddtoCart() && $_item->isSaleable()): ?>
+											<div class="add-to-cart">
+												<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')"><span class="icon pe-7s-shopbag"></span><span class="text"><?php echo $this->__('Add to Cart'); ?></span></button>
+											</div>
+										<?php endif ?>
+									</div>
+									<div class="product-desc">
+										<h5 class="product-name product-item-name">
+											<a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>)"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></a>
+										</h5>
+										<?php if ($_showProductPrice): ?>
+										<?php echo $this->getPriceHtml($_item, true, '-brand-related') ?>
+										<?php endif; ?>
+
+										<?php if($panelHelper->isShowAddtoCart() && $_item->isSaleable()): ?>
+											<div class="add-to-cart hover_effect">
+												<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')"><span class="icon pe-7s-shopbag"></span><span class="text"><?php echo $this->__('Add to Cart'); ?></span></button>
+											</div>
+										<?php endif ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endforeach ?>
+				</div>
+			</div>
+        </div>
+		<script type="text/javascript">
+			<?php $item_perrow = Mage::getStoreConfig('mpanel/product_details/item_per_row'); ?>
+			mgsjQuery("#related_brands").owlCarousel({
+				items : <?php if( $item_perrow != ""): ?><?php echo $item_perrow ?><?php else: ?>4<?php endif ?>,
+				nav : true,
+                rtl: <?php echo Mage::getStoreConfig('mgs_theme/general/right_to_left') ? 'true' : 'false' ?>,
+				dots : true,
+				autoplay: false,
+				autoplayHoverPause: false,
+				navText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    768:{
+                        items:2
+                    },
+                    991:{
+                        items:3
+                    }
+                }
+			});
+		</script>
+    <?php endif ?>
+<?php endif; ?>

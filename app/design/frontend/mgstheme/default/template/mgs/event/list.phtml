@@ -1,0 +1,40 @@
+<?php
+/* * ****************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php
+$urlKey = Mage::helper('event')->getGeneralConfig('router', Mage::app()->getStore()->getStoreId());
+$collection = $this->getCollection();
+?>
+<div class="page-title event-title">
+    <h1><?php echo $this->__('Events'); ?></h1>
+</div>
+<?php if (count($collection)): ?>
+    <div class="events">
+        <?php foreach ($collection as $event): ?>
+            <div class="item">
+                <div class="event-image">
+                    <a href="<?php echo $this->getUrl() . $urlKey . '/' . $event->getUrlKey(); ?>" title="<?php echo $this->stripTags($event->getTitle(), null, true); ?>">
+                        <?php if ($event->getImage() != ''): ?>
+                            <img width="300" height="170" alt="<?php echo $this->stripTags($event->getTitle(), null, true); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $event->getImage(); ?>">
+                        <?php else: ?>
+                            <?php echo $this->stripTags($event->getTitle(), null, true); ?>
+                        <?php endif; ?>
+                    </a>
+                </div>
+                <div class="event-time">
+                    <p><?php echo $this->__('Time From: %s', date('F j, Y g:i A', strtotime($event->getTimeFrom()))); ?></p>
+                    <p><?php echo $this->__('Time To: %s', date('F j, Y g:i A', strtotime($event->getTimeTo()))); ?></p>
+                </div>
+                <div class="event-location">
+                    <p><?php echo $this->__('Location: %s', $event->getLocation()); ?></p>                    
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p class="note-msg"><?php echo $this->__('There are no events.') ?></p>
+<?php endif; ?>

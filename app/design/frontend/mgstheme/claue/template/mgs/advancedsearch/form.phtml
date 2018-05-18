@@ -1,0 +1,72 @@
+<?php
+/* * ****************************************************
+ * Package   : AdvancedSearch
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?> 
+<div class="search-form">
+<div class="actions-search">
+	<a class="action-search" href="javascript:void(0);">
+		<span class="pe-7s-search"></span>
+	</a>
+</div>
+<div class="form-search">
+<a class="close-search" href="javascript:void(0);">
+		<span class="pe-7s-close"></span>
+	</a>
+<form id="advancedsearch_mini_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">    
+        <?php $categorySearchHelper = $this->helper('advancedsearch'); ?>
+        <?php if ($categorySearchHelper->isEnabled()): ?>
+        <div class="search-select">
+			
+			<input type="hidden" name="<?php echo $categorySearchHelper->getCategoryParamName() ?>" id="cat-select-input" value="<?php echo $this->getRequest()->getParam('cat') ?>"/>
+			<?php if ($this->helper('advancedsearch')->isCategoryPage() || $this->helper('advancedsearch')->isSearchResultsPage()) : ?>
+				<?php $catId = $this->getCurrentlySelectedCategoryId() ?>
+				<?php $cat = Mage::getModel('catalog/category')->load($catId) ?>
+				<span class="search-cat-active" onclick="toggleCatSearch()" id="cat-active-name"><?php echo $cat->getName() ?></span>
+			<?php else: ?>
+				<span class="search-cat-active" onclick="toggleCatSearch()" id="cat-active-name"><?php echo $this->__('All Categories') ?></span>
+			<?php endif ?>
+			<ul id="select-cat-dropdown" style="display:none">
+				<li><span onclick="setSearchCatValue('', '<?php echo $this->__('All Categories') ?>')"><?php echo $this->__('All Categories') ?></span></li>
+				<?php foreach ($this->getSearchableCategories() as $mainCategory): ?>
+					<li>
+						<span onclick="setSearchCatValue(<?php echo $mainCategory->getEntityId() ?>, '<?php echo $mainCategory->getName() ?>')"><?php echo $mainCategory->getName() ?></span>
+						<?php if ($categorySearchHelper->showSubCategories()) : ?>
+							<ul>
+								<?php foreach ($this->getSearchableSubCategories($mainCategory) as $category) : ?>
+									<li>
+										<span onclick="setSearchCatValue(<?php echo $category->getEntityId() ?>, '<?php echo $category->getName() ?>')"><?php echo $categorySearchHelper->getIndentationText() . $category->getName() ?></span>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif ?>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		
+        <?php endif ?>
+		</div>
+		<input id="advancedsearch" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->getRequest()->getParam('q') ?>" class="input-text" placeholder="<?php echo $this->__('Search for...')?>" />
+        <button type="submit" title="<?php echo $this->__('Search') ?>" class="button"><i class="fa fa-search"></i></button>
+        <div id="advancedsearch_autocomplete" class="search-autocomplete"></div>
+    
+</form>
+</div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    var advancedSearchForm = new Varien.searchForm('advancedsearch_mini_form', 'advancedsearch', '');
+    advancedSearchForm.initAutocomplete('<?php echo $this->helper('catalogsearch')->getSuggestUrl() ?>', 'advancedsearch_autocomplete');
+//]]>
+	function toggleCatSearch(){
+		mgsjQuery('#select-cat-dropdown').slideToggle();
+	}
+	function setSearchCatValue(catId, catName){
+		mgsjQuery('#cat-select-input').val(catId);
+		mgsjQuery('#cat-active-name').html(catName);
+		mgsjQuery('#select-cat-dropdown').hide();
+	}
+</script>

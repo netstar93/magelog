@@ -1,0 +1,335 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header9</header>
+	<footer>footer2</footer>
+	
+	<block>
+		<name>block248</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block249</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block250</name>
+		<block_cols><![CDATA[6,6]]></block_cols>
+		<block_class><![CDATA[["col-sm-12 col-xs-12 margin-bottom30","col-sm-12 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>60</padding_top>
+		<padding_bottom>50</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block251</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	<block>
+		<name>block252</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>50</padding_top>
+		<padding_bottom>70</padding_bottom>
+		<block_position>5</block_position>
+	</block>
+	<block>
+		<name>block253</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>40</padding_bottom>
+		<block_position>6</block_position>
+	</block>
+	<block>
+		<name>block254</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[xs-no-padding]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[bg_testimo.jpg]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>1</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>96</padding_top>
+		<padding_bottom>88</padding_bottom>
+		<block_position>7</block_position>
+	</block>
+	<block>
+		<name>block255</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[parallax]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>75</padding_top>
+		<padding_bottom>35</padding_bottom>
+		<block_position>8</block_position>
+	</block>
+	
+	<child>
+		<block_name>block251-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_rate" display_type="product_rate" slider="1" products_count="6" sub_title="Top seller in the week" title="HOT PRODUCTS" product_ratio="" auto_play="false" stop_hover="false" navigation="true" pagination="false" count_per_row="4"  template="mgs/mpanel/products/panel_products.phtml" number_row="1"}}]]></block_content>
+		<type>rate</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"HOT PRODUCTS","sub_title":"Top seller in the week","custom_class":"","animation":"","animation_delay":"","product_count":"6","view_mode":"grid","count_per_row":"4","number_col":"","count_per_col":"1","product_ratio":"","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block253-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" products_count="8" slider="0" count_per_row="4" tabs="new_products,hot_products,sale_products" product_ratio="" product_template="grid" new_label="New Arrivals" featured_label="" hot_label="Best Seller" sale_label="Hot Sale" rate_label="" category_id="" template="mgs/mpanel/tabs.phtml"}}]]></block_content>
+		<type>tabs</type>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","product_tab":["new_products","hot_products","sale_products"],"new_label":"New Arrivals","featured_label":"","hot_label":"Best Seller","sale_label":"Hot Sale","rate_label":"","product_template":"grid","product_count":"8","count_per_row":"4","product_ratio":"","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block250-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Jewelry Banner 1</banner_title>
+		<banner_filename>banner_ring_1_1.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Necklace]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"5s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block250-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Jewelry Banner 2</banner_title>
+		<banner_filename>banner_ring_2.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Earrings]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":" col-sm-6 col-xs-6 col-xxs-full margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block250-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Jewelry Banner 3</banner_title>
+		<banner_filename>banner_ring_4.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Earrings]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":" col-sm-6 col-xs-6 col-xxs-full margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block250-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Jewelry Banner 4</banner_title>
+		<banner_filename>banner_ring_3.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Earrings]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>3</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block252-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Jewelry Banner 5</banner_title>
+		<banner_filename>bg_wedding.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div>
+<h2 style="font-size: 50px;"><em class="sub-title lh__1 ls__1 text-colour-white">Wedding Rings</em></h2>
+<h5 class="margin-bottom30"><em class="sub-title text-colour-white fwm">A beautiful selection of exquisite rings</em></h5>
+<a class="btn btn-default2" href="#">Shop Now</a></div>]]></banner_content>
+		<banner_text_align>center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"xs-text-small","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[xs-text-small]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block255-0</block_name>
+		<block_content><![CDATA[{{widget type="blog/last" blog_count="5" categories="1,2,3,4,5,6" column="3" view_mode="grid" slider="1" title="LATEST FROM BLOG" sub_title="The freshest and most exciting news" character_count="115" auto_play="false" stop_hover="false" navigation="false" pagination="false"}}]]></block_content>
+		<type>latest_posts</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"LATEST FROM BLOG","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","categories":["1","2","3","4","5","6"],"product_count":"5","character_count":"115","view_mode":"grid","count_per_row":"3","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block248-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Jewelry Slider]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_jewelry_slider]]></static_block_identifier>
+		<static_block_content><![CDATA[<div id="slider_jewelry" class="slider_jewelry owl-carousel">
+	<div class="slider_item"><img src="{{media url="wysiwyg/claue_jewelry_slider_1.jpg"}}" alt="" />
+		<div class="text-slider text-center">
+		<h5 class="sub-title"><em class="text-colour-white">Spring - Summer 2016</em></h5>
+		<h2><span class="text-colour-white">BEST OF COLLECTION</span></h2>
+		<a class="btn btn-default2" href="#">Shop Now</a>
+	</div>
+	</div>
+	<div class="slider_item"><img src="{{media url="wysiwyg/claue_jewelry_slider_2.jpg"}}" alt="" />
+		<div class="text-slider text-center">
+		<h5 class="sub-title"><em class="text-colour-white">Spring - Summer 2016</em></h5>
+		<h2><span class="text-colour-white">FLASH SALE OF 70%</span></h2>
+		<p class="text-colour-white hidden-sm hidden-xs">Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident</p>
+		<a class="btn btn-default2" href="#">Shop Now</a>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+	mgsjQuery("#slider_jewelry").owlCarousel({
+		items : 2,
+		lazyLoad : true,
+		navigation : false,
+		pagination : true,
+		autoPlay: true,
+		stopOnHover: true,
+		navigationText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+		itemsDesktop: [1199,2],
+		itemsTabletSmall: [991,1],
+		itemsCustom: false
+	});
+</script>	]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block249-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue service 2]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_service_2]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="service-boxed row">
+	<div class="icon-service col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-help2">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">SUPPORT 24/7</span></h6>
+			<p class="no-margin text-colour-white">We support 24 hours a day </p>
+		</div>
+	</div>
+	<div class="icon-service  col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-car">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">FREE SHIPPING</span></h6>
+			<p class="no-margin text-colour-white">Free shipping for all US order </p>
+		</div>
+	</div>
+	<div class="icon-service first-sm-item  col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-refresh">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">30 DAYS RETURN</span></h6>
+			<p class="no-margin text-colour-white">You have 30 days to return </p>
+		</div>
+	</div>
+	<div class="icon-service  col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-door-lock">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">100% PAYMENT SECURE</span></h6>
+			<p class="no-margin text-colour-white">Payment 100% secure</p>
+		</div>
+	</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block253-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Title Our]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_title_our]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="content-heading">
+							<h3 class="title">OUR PRODUCTS</h3>
+										<div class="block-note">Top seller in the week</div>
+					</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block254-0</block_name>
+		<block_content><![CDATA[{{block type="testimonial/testimonial" template="mgs/testimonial/view.phtml" view_mode="grid" title="TESTIMONIALS" sub_title="More than 40000 of happy customers" item_count="3"}}]]></block_content>
+		<type>testimonials</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"text-center text-colour-white","animation":"","animation_delay":"","title":"TESTIMONIALS","sub_title":"More than 40000 of happy customers","item_count":"3","view_mode":"grid"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

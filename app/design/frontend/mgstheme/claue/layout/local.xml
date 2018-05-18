@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+	<default translate="label" module="page">
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.min.js</name>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery-ui.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/bootstrap.min.js</name>
+			</action>
+			
+			<!--Lazyload js -->
+			<action method="addItem" ifconfig="mgs_theme/general/lazy_load_img"><type>skin_js</type><name>js/jquery.lazyload.js</name></action>
+			
+			<!--Right to left js-->
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
+			<action method="addItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_js</type><name>js/bootstrap-arabic.min.js</name></action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.parallax-1.1.3.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/html5shiv.js</name>
+				<params/><if>lt IE 9</if>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/respond.min.js</name>
+				<params/><if>lt IE 9</if>
+			</action>
+
+			<action method="removeItem">
+				<type>skin_css</type><name>css/styles.css</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/bootstrap.min.css</stylesheet>
+			</action>
+			
+			<!--Right to left css-->
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_css</type><name>css/bootstrap.css</name></action>
+			<action method="addCss" ifconfig="mgs_theme/general/right_to_left"><stylesheet>css/bootstrap-arabic.min.css</stylesheet></action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/margin-padding.css</stylesheet>
+			</action>
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_css</type><name>css/margin-padding.css</name></action>
+			<action method="addCss" ifconfig="mgs_theme/general/right_to_left"><stylesheet>css/margin-padding-rtl.css</stylesheet></action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/font-awesome.css</stylesheet>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/styles.css</stylesheet>
+			</action>
+			
+			<!--Right to left css-->
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_css</type><name>css/styles.css</name></action>
+			<action method="addCss" ifconfig="mgs_theme/general/right_to_left"><stylesheet>css/styles-rtl.css</stylesheet></action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/owl-carousel.css</stylesheet>
+			</action>
+
+			<action method="addCss"><stylesheet>css/magnific-popup.css</stylesheet></action>
+			
+			<!--action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.fittext.js</name>
+			</action-->
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/theme.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.appear.js</name>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/masonry.pkgd.min.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.zoom.min.js</name>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.mb.YTPlayer.src.js</name>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/YouTubePopUp.jquery.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/custom.js</name>
+			</action>
+
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/animate.css</stylesheet>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/responsive.css</stylesheet>
+			</action>
+			<!--Right to left css-->
+			<action method="removeItem" ifconfig="mgs_theme/general/right_to_left"><type>skin_css</type><name>css/responsive.css</name></action>
+			<action method="addCss" ifconfig="mgs_theme/general/right_to_left"><stylesheet>css/responsive-rtl.css</stylesheet></action>
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/effect.css</stylesheet>
+			</action>
+			<action method="addItem">
+				<type>skin_css</type>
+				<stylesheet>css/pe-icon-7-stroke.css</stylesheet>
+			</action>
+			
+			<!-- For 1.9.1 -->
+			<action method="addItem"><type>skin_js</type><name>js/app.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
+
+		</reference>
+		 <reference name="left">
+			 <remove name="left.permanent.callout"></remove>
+		 </reference>
+		<reference name="header">
+            <block type="directory/currency" name="top.currency" template="directory/currency.phtml"/>
+			<block type="checkout/cart_sidebar" name="cart_header" template="checkout/cart/topcart.phtml"/>
+			<block type="core/template" name="cart_icon" template="page/template/topcarticon.phtml"/>
+        </reference>
+		
+		<reference name="top.menu">
+			<action method="unsetChild" ifconfig="megamenu/general/enabled">
+                <name>catalog.topnav</name>
+            </action>
+            <block type="megamenu/megamenu" name="megamenu"/>
+        </reference>
+		<reference name="megamenu">
+			<action method="setTemplate" ifconfig="megamenu/general/enabled">
+                <template>megamenu/navigation.phtml</template>
+            </action>
+		</reference>
+		
+		<reference name="footer">
+			<action method="setTemplate" ifconfig="mpanel/general/enabled">
+                <template>mgs/mpanel/footer.phtml</template>
+            </action>
+		</reference>
+		
+		<reference name="root">
+			<block type="core/text_list" name="theme_popup" as="theme_popup" translate="label"/>
+		</reference>
+		
+		<reference name="theme_popup">
+			<block type="core/template" name="popup.html" as="popup.html" template="mgs/mpanel/overlay.phtml"/>
+		</reference>
+		 <reference name="top.links">                            		
+		   <remove name="wishlist_link"/>
+		   <remove name="checkout_cart_link"/>
+		</reference>
+	</default>
+	
+	<mpanel_loadmore_new>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/product_new" name="ajax.new" template="mgs/mpanel/products/grid/grid_panel_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_new>
+	
+	<mpanel_loadmore_featured>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/products" name="ajax.featured" template="mgs/mpanel/products/grid/grid_panel_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_featured>
+	
+	<mpanel_loadmore_hot>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/products" name="ajax.hot" template="mgs/mpanel/products/grid/grid_panel_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_hot>
+	
+	<mpanel_loadmore_sale>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/product_sale" name="ajax.sale" template="mgs/mpanel/products/grid/grid_panel_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_sale>
+	
+	<mpanel_loadmore_rate>
+		<reference name="root">
+            <action method="setTemplate"><template>mgs/mpanel/ajax.phtml</template></action>
+        </reference>
+		<reference name="content">
+			<block type="mpanel/product_rate" name="ajax.rate" template="mgs/mpanel/products/grid/grid_panel_products.phtml"/>
+		</reference>
+	</mpanel_loadmore_rate>
+	
+	<contacts_index_index>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="breadcrumbs">
+			<block type="mpanel/contacts" name="additional_info"/>
+		</reference>
+	</contacts_index_index>
+	
+	<wishlist_index_share>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link helper="core/url/getHomeUrl" /></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Wishlist Sharing</crumbName>
+				<crumbInfo><label>Wishlist Sharing</label><title>Wishlist Sharing</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</wishlist_index_share>
+	<sales_order_view>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link helper="core/url/getHomeUrl" /></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Order Item</crumbName>
+				<crumbInfo><label>Order Item</label><title>Order Item</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</sales_order_view>
+	
+	<catalog_category_default>
+		<remove name="catalog.leftnav"/>
+	</catalog_category_default>
+	
+	<catalog_category_layered>
+		<remove name="catalog.leftnav"/>
+	</catalog_category_layered>
+	
+	<catalog_product_view>
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<stylesheet>js/slick.min.js</stylesheet>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/sticky.element.min.js</name>
+			</action>
+		</reference>
+		<reference name="product.info">
+			<block type="catalog/product_view_additional" name="product.info.additional" as="product_additional_data" />
+			<block type="catalog/product_view_description" name="product.description" as="description" template="catalog/product/view/description.phtml">
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_description"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Description</value></action>
+			</block>
+			
+			<block type="catalog/product_view_attributes" name="product.attributes" as="additional" template="catalog/product/view/attributes.phtml">
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_additional"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Aditional Information</value></action>
+			</block>
+			
+			<block type="review/product_view_list" name="reviews" as="reviews" template="review/product/view/list.phtml">
+				<block type="review/form" name="product.review.form" as="review_form">
+					<block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+						<label>Review Form Fields Before</label>
+						<action method="setMayBeInvisible"><value>1</value></action>
+					</block>
+				</block>
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_reviews"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Reviews</value></action>
+			</block>
+			
+			<block type="tag/product_list" name="product_tag_list" template="tag/list.phtml">
+				<action method="addToParentGroup" ifconfig="mpanel/product_tabs/show_product_tag_list"><group>tabs</group></action>
+				<action method="setTitle" translate="value"><value>Product Tags</value></action>
+				<block type="page/html_wrapper" name="product.tag.list.list.before" as="list_before" translate="label">
+                    <label>Tags List Before</label>
+                    <action method="setMayBeInvisible"><value>1</value></action>
+                </block>
+			</block>
+		</reference>
+		
+		<reference name="product.info">
+			<block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
+				<action method="setColumnCount"><columns>4</columns></action>
+				<action method="setItemLimit"><type>upsell</type><limit>10</limit></action>
+			</block>
+		</reference>
+		
+	</catalog_product_view>
+	
+	<portfolio_category_list>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/isotope.pkgd.min.js</name>
+			</action>
+		</reference>
+	</portfolio_category_list>
+	
+	<mpanel_empty_column>
+		<reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>
+	</mpanel_empty_column>
+	
+	<mpanel_one_column>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+	</mpanel_one_column>
+	
+	<mpanel_twocolumn_left>
+		<reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+	</mpanel_twocolumn_left>
+	
+	<mpanel_twocolumn_right>
+		<reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+	</mpanel_twocolumn_right>
+	
+	<mpanel_three_column>
+		<reference name="root">
+            <action method="setTemplate"><template>page/3columns.phtml</template></action>
+        </reference>
+	</mpanel_three_column>
+	<!-- 
+	<customer_account translate="label">
+		<reference name="my.account.wrapper">
+			<action method="setElementClass"><value>col-md-12</value></action>
+        </reference>
+	</customer_account> -->
+	
+	<cms_index_index>
+		<reference name="theme_popup">
+			<block type="newsletter/subscribe" name="popup.newsletter" template="mgs/mpanel/newsletter_popup.phtml"/>
+		</reference>
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.mb.YTPlayer.src.js</name>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/YouTubePopUp.jquery.js</name>
+			</action>
+		</reference>
+	</cms_index_index>
+	
+	<contacts_index_index>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="contactForm">
+			<block type="mpanel/contacts" name="additional_info"/>
+		</reference>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Contact Us</crumbName>
+				<crumbInfo><label>Contact Us</label><title>Contact Us</title></crumbInfo>
+			</action>
+		</reference>
+	</contacts_index_index>
+        <sendfriend_product_send>
+            <reference name="breadcrumbs">
+                <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                    <crumbName>Home</crumbName>
+                    <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+                </action>
+                <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                    <crumbName>Send Friend</crumbName>
+                    <crumbInfo><label>Send Friend</label><title>Send Friend</title><link></link></crumbInfo>
+                </action>
+                		</reference>
+
+        </sendfriend_product_send>
+	<checkout_cart_index>
+	   <reference name="breadcrumbs">
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Home</crumbName>
+            <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+        </action>
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Shopping Cart</crumbName>
+            <crumbInfo><label>Shopping Cart</label><title>Shopping Cart</title><link></link></crumbInfo>
+        </action>
+		</reference>
+	</checkout_cart_index>
+	
+	<checkout_onepage_index>
+	   <reference name="breadcrumbs">
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Home</crumbName>
+            <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+        </action>
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Checkout</crumbName>
+            <crumbInfo><label>Checkout</label><title>Checkout</title><link></link></crumbInfo>
+        </action>
+		</reference>
+	</checkout_onepage_index>
+	
+	<checkout_onepage_success>
+	   <reference name="breadcrumbs">
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Home</crumbName>
+            <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+        </action>
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Order Success</crumbName>
+            <crumbInfo><label>Order Success</label><title>Order Success</title><link></link></crumbInfo>
+        </action>
+		</reference>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+	</checkout_onepage_success>
+	
+	<checkout_multishipping_success>
+	   <reference name="breadcrumbs">
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Home</crumbName>
+            <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+        </action>
+        <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+            <crumbName>Order Success</crumbName>
+            <crumbInfo><label>Order Success</label><title>Order Success</title><link></link></crumbInfo>
+        </action>
+		</reference>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+	</checkout_multishipping_success>
+	
+	<checkout_multishipping_addresses>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Ship to Multiple Address</crumbName>
+				<crumbInfo><label>Ship to Multiple Address</label><title>Ship to Multiple Address</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</checkout_multishipping_addresses>
+	<checkout_multishipping_address_newshipping>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Create Shipping Address</crumbName>
+				<crumbInfo><label>Create Shipping Address</label><title>Create Shipping Address</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</checkout_multishipping_address_newshipping>
+	<checkout_multishipping_address_editshipping>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Change Shipping Address</crumbName>
+				<crumbInfo><label>Change Shipping Address</label><title>Change Shipping Address</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</checkout_multishipping_address_editshipping>
+	<checkout_multishipping_billing>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Billing Information</crumbName>
+				<crumbInfo><label>Billing Information</label><title>Billing Information</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</checkout_multishipping_billing>
+	<checkout_multishipping_overview>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Review Order</crumbName>
+				<crumbInfo><label>Review Order</label><title>Review Order</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</checkout_multishipping_overview>
+	<checkout_multishipping_shipping>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Select Shipping Method</crumbName>
+				<crumbInfo><label>Select Shipping Method</label><title>Select Shipping Method</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</checkout_multishipping_shipping>
+	<customer_account_logoutsuccess>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Log Out Success</crumbName>
+				<crumbInfo><label>Log Out Success</label><title>Log Out Success</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</customer_account_logoutsuccess>
+	
+	<customer_account_login>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Login or Create Account</crumbName>
+                <crumbInfo><label>Login or Create Account</label><title>Login or Create Account</title><link></link></crumbInfo>
+            </action>
+        </reference>
+		<reference name="customer_form_login">     
+			<block type="social/login" name="social_login" template="mgs/social/login.phtml">
+				<block type="social/facebook" name="social_facebook" />
+				<block type="social/google" name="social_google" />
+				<block type="social/twitter" name="social_twitter" />                
+			</block> 
+        </reference>
+	</customer_account_login>
+	<customer_account_create translate="label">
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Create an Account</crumbName>
+				<crumbInfo><label>Create an Account</label><title>Create an Account</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</customer_account_create>
+	<customer_account_index translate="label">
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Account</crumbName>
+				<crumbInfo><label>My Account</label><title>My Account</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</customer_account_index>
+	<customer_account_edit translate="label">
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Edit Account Information</crumbName>
+				<crumbInfo><label>Edit Account Information</label><title>Edit Account Information</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</customer_account_edit>
+	<customer_address_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Address Book</crumbName>
+                <crumbInfo><label>Address Book</label><title>Address Book</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</customer_address_index>
+	<tag_product_list>
+		<remove name="left.permanent.callout" />
+		<reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Tags</crumbName>
+				<crumbInfo><label>Tags</label><title>Tags</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</tag_product_list>
+	<customer_account_forgotpassword>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Forgot Your Password</crumbName>
+                <crumbInfo><label>Forgot Your Password</label><title>Forgot Your Password</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</customer_account_forgotpassword>
+	<customer_address_form>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Add New Address</crumbName>
+                <crumbInfo><label>Add New Address</label><title>Add New Address</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</customer_address_form>
+	<sales_order_history>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Orders</crumbName>
+                <crumbInfo><label>My Orders</label><title>My Orders</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</sales_order_history>
+	<tag_customer_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Tags</crumbName>
+                <crumbInfo><label>My Tags</label><title>My Tags</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</tag_customer_index>
+	<review_customer_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Product Review</crumbName>
+                <crumbInfo><label>My Product Review</label><title>My Product Review</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</review_customer_index>
+	<review_customer_view>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Review Detail</crumbName>
+                <crumbInfo><label>Review Detail</label><title>Review Detail</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</review_customer_view>
+	<sales_billing_agreement_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Billing Agreements</crumbName>
+                <crumbInfo><label>Billing Agreements</label><title>Billing Agreements</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</sales_billing_agreement_index>
+	<sales_recurring_profile_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Recurring Profiles</crumbName>
+                <crumbInfo><label>Recurring Profiles</label><title>Recurring Profiles</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</sales_recurring_profile_index>
+	<oauth_customer_token_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Applications</crumbName>
+                <crumbInfo><label>My Applications</label><title>My Applications</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</oauth_customer_token_index>
+	<newsletter_manage_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>Newsletter Subscription</crumbName>
+                <crumbInfo><label>Newsletter Subscription</label><title>Newsletter Subscription</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</newsletter_manage_index>
+	<wishlist_index_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Wishlist</crumbName>
+                <crumbInfo><label>My Wishlist</label><title>My Wishlist</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</wishlist_index_index>
+	<productquestions_index_index>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Product Question</crumbName>
+                <crumbInfo><label>My Product Question</label><title>My Product Question</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</productquestions_index_index>
+	<downloadable_customer_products>
+		<reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+                <crumbName>Home</crumbName>
+                <crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+            </action>
+            <action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+			<crumbName>My Downloadable Products</crumbName>
+                <crumbInfo><label>My Downloadable Products</label><title>My Downloadable Products</title><link></link></crumbInfo>
+            </action>
+        </reference>
+	</downloadable_customer_products>
+	
+	<mgs_storelocator_index_search>
+		<reference name="breadcrumbs">
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Home</crumbName>
+				<crumbInfo><label>Home</label><title>Home</title><link>{{baseUrl}}</link></crumbInfo>
+			</action>
+			<action method="addCrumb" translate="crumbInfo.label crumbInfo.title">
+				<crumbName>Storelocator</crumbName>
+				<crumbInfo><label>Store Locator</label><title>Store Locator</title><link></link></crumbInfo>
+			</action>
+		</reference>
+	</mgs_storelocator_index_search>
+</layout>

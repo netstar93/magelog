@@ -1,0 +1,116 @@
+<?php
+$helper = $this->helper('mpanel');
+$params = $this->getRequest()->getParams();
+$pageId = $params['page_id'];
+$place = $params['place'];
+?>
+<?php if ($helper->acceptToUsePanel()): ?>    
+    <div class="edit-static-form">
+        <div class="row">
+            <div class="col-md-12 builder-title">
+                <h2><?php echo $this->__('Select Block'); ?></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bs-glyphicons">
+                    <ul class="bs-glyphicons-list" id="list-item">
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addStaticBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'static_block', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-text-width"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Static Block') ?></span>
+                        </li>                                                
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCategoryNavigationBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'category_navigation', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Category Navigation') ?></span>
+                        </li>                          
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'sub_categories', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-list"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Sub Categories') ?></span>
+                        </li> 
+                        <?php if (Mage::app()->getFrontController()->getAction()->getFullActionName() == 'brand_index_view'): ?>
+                            <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'layered_navigation', 'place' => $place)) ?>')">
+                                <span class="glyphicon glyphicon-th"></span>
+                                <span class="glyphicon-class"><?php echo $this->__('Layered Navigation') ?></span>
+                            </li>       
+                        <?php endif; ?>
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'cart_sidebar', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Cart Sidebar') ?></span>
+                        </li>                        
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'compare_sidebar', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-retweet"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Compare Sidebar') ?></span>
+                        </li>                        
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'reorder_sidebar', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Reorder Sidebar') ?></span>
+                        </li>                        
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addPollBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'poll', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-align-left"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Poll') ?></span>
+                        </li>                        
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'product_viewed', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Product Viewed') ?></span>
+                        </li>                         
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'wishlist_sidebar', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Wishlist Sidebar') ?></span>
+                        </li>                         
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'tags_popular', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-tags"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Tags Popular') ?></span>
+                        </li>                        
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addCoreBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'newsletter', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Newsletter') ?></span>
+                        </li>
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Promobanners')): ?>
+							<li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addPromoBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'promo_banner', 'place' => $place)) ?>')">
+								<span class="glyphicon glyphicon-gift"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Promo Banner') ?></span>
+							</li>
+						<?php endif ?>
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addMenuBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'menu', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-list"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Menu') ?></span>
+                        </li>                         
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addProductBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'featured_products', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Featured Products') ?></span>
+                        </li>                        
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addProductBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'bestseller_products', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Bestseller Products') ?></span>
+                        </li>                         
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addProductBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'new_products', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('New Products') ?></span>
+                        </li>                        
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addProductBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'top_rate_products', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Top Rate Products') ?></span>
+                        </li>                         
+                        <li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addProductBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'sale_products', 'place' => $place)) ?>')">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="glyphicon-class"><?php echo $this->__('Sale Products') ?></span>
+                        </li>
+						<?php if($this->helper('mpanel/social')->checkBlockAccept('facebook')): ?>
+							<li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addFacebookLikeBoxBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'facebook_like_box', 'place' => $place)) ?>')">
+								<span class="glyphicon glyphicon-share"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Facebook Like Box') ?></span>
+							</li>
+						<?php endif ?>
+						<?php if($this->helper('mpanel/social')->checkBlockAccept('twitter')): ?>
+							<li onclick="setLocation('<?php echo $this->getUrl('mpanel/brand/addTwitterFeedBlock', array('page_type' => 'brand', 'page_id' => $pageId, 'type' => 'twitter_feed', 'place' => $place)) ?>')">
+								<span class="glyphicon glyphicon-share"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Twitter Feed') ?></span>
+							</li>
+						<?php endif ?>
+                    </ul>
+                </div>                
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+

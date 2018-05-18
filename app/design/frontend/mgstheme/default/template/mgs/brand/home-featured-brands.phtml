@@ -1,0 +1,78 @@
+<?php
+$collection = $this->getCollection();
+$countPerRow = $this->getCountPerRow();
+$numberRow = $this->getNumberRow();
+$urlKey = $this->getUrlKey();
+$helper = $this->helper('mpanel');
+$col = $this->getCountPerRow();
+$col = $helper->convertColRowCustom($col);
+?>
+
+<div class="featured-brands">
+	<?php if($this->getTitle()): ?>
+		<div class="block-title"><h2><?php echo $this->getTitle() ?></h2></div>
+	<?php endif ?>
+	<?php if (count($collection)): ?>
+		<div class="content brands-content">
+			<?php if($this->getSlider()==1): ?>
+				<?php $_collectionSize = count($collection) ?>
+				<div class="brands-grid<?php if($col == 'custom-5' || $col == 'custom-7' || $col == 'custom-8'): ?> col-md-<?php echo $col; ?><?php endif; ?>  owl-carousel owl-theme owl-carousel-init" id="owl-brands">
+					<?php $_columnCount = 1; ?>
+					<?php if($this->getNumberRow()!=''): ?>
+						<?php $_columnCount = $this->getNumberRow()*$this->getCountPerRow(); ?>
+					<?php endif ?>
+					<?php $i=0; foreach ($collection as $brand): ?>
+							<?php if($this->getNumberRow()>1): ?>
+								<?php if ($i++%$_columnCount==0): ?>
+									<div class="brands">
+								<?php endif ?>
+							<?php endif ?>
+							<?php if($this->getNumberRow()>1): ?>
+								<div class="<?php if($col !=''): ?>col-md-<?php echo $col; ?> col-sm-6 col-xs-12<?php endif; ?>">
+							<?php else: ?>
+								<div class="brands">
+							<?php endif ?>
+						
+								<a class="brand" title="<?php echo $brand->getTitle(); ?>" href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+									<?php if ($brand->getIcon() != ''): ?>
+										<img alt="<?php echo $brand->getTitle(); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getIcon(); ?>">
+									<?php else: ?>
+										<img alt="<?php echo $brand->getTitle(); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+									<?php endif; ?>
+								</a>
+							</div>
+						<?php if($this->getNumberRow()>1): ?>
+							<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+								</div>
+							<?php endif ?>
+						<?php endif ?>
+				
+					 <?php endforeach ?>
+				</div>
+				<script type="text/javascript">
+					initSlider('owl-brands', <?php if($this->getNumberRow()>1): ?>1<?php else: ?><?php echo $this->getCountPerRow() ?><?php endif ?>, <?php echo $this->getAutoPlay()?>, <?php echo $this->getStopHover()?>, <?php echo $this->getNavigation()?>, <?php echo $this->getPagination()?>);
+				</script>
+			<?php else: ?>
+				<ul class="brands-grid<?php if($col == 'custom-5' || $col == 'custom-7' || $col == 'custom-8'): ?> col-md-<?php echo $col; ?><?php endif; ?>">
+					<?php foreach ($collection as $brand): ?>
+						<li class="<?php if($col !=''): ?>col-md-<?php echo $col; ?> col-sm-6 col-xs-12<?php endif; ?>">
+							<div class="brands">
+								<a class="brand" title="<?php echo $brand->getTitle(); ?>" href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+									<?php if ($brand->getIcon() != ''): ?>
+										<img alt="<?php echo $brand->getTitle(); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getIcon(); ?>">
+									<?php else: ?>
+										<img alt="<?php echo $brand->getTitle(); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+									<?php endif; ?>
+								</a>
+							</div>
+						</li>
+					<?php endforeach ?>
+				</ul>
+			<?php endif ?>
+		</div>
+	<?php else: ?>
+		<div class="alert alert-danger">
+			<p><?php echo $this->__('There are no brands matching the selection.') ?></p>
+		</div>
+	<?php endif ?>
+</div>

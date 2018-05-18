@@ -1,0 +1,220 @@
+<?php
+$helper = $this->helper('mpanel');
+$params = $this->getRequest()->getParams();
+$pageType = $params['page_type'];
+$pageId = $params['page_id'];
+$place = $params['place'];
+$type = $params['type'];
+$staticBlocks = $helper->getAllStatic();
+?>
+<?php if ($helper->acceptToUsePanel()): ?>
+    <p id="error-msg" class="error-msg" style="display: none;"></p>
+    <div class="edit-static-form">
+        <div class="row">
+            <div class="col-md-12 builder-title">
+                <h2><?php echo $this->__('Add Static Block'); ?></h2>
+            </div>
+        </div>
+        <div class="row">  
+            <fieldset class="fieldset-wide-custom">
+                <span class="field-row">
+                    <label class="control-label" for="chooser"><?php echo $this->__('Select') ?></label>                    
+                    <select name="chooser" class="input-text" id="chooser">
+                        <option value="exist_static_block"><?php echo $this->__('Choose Exist Static Block') ?></option>
+                        <option selected="selected" value="new_static_block"><?php echo $this->__('Create New Static Block') ?></option>
+                    </select>                    
+                </span>
+            </fieldset>
+        </div>
+        <div id="exist_static_form" style="display: none;">
+            <form id="exist_form" method="post" action="<?php echo $this->getUrl('mpanel/' . $pageType . '/saveStaticBlock'); ?>">
+                <div>
+                    <fieldset id="block_base_fieldset_exist" class="fieldset-wide-custom">
+                        <span class="field-row">
+                            <label for="static_block_id"><?php echo $this->__('Static Block'); ?></label>
+                            <select name="static_block_id" class="input-text" id="static_block_id">
+                                <?php foreach ($staticBlocks as $staticBlock): ?>
+                                    <option value="<?php echo $staticBlock->getId() ?>"><?php echo $staticBlock->getTitle() ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </span>
+                        <span class="field-row">
+                            <label for="block_sort_order"><?php echo $this->__('Sort Order'); ?></label>
+                            <input id="block_sort_order" class="input-text col-sm-8 input-text" type="text" value="" name="sort_order">
+                        </span>                        
+                    </fieldset>
+                </div>
+                <input type="hidden" value="exist" name="block_type"/>
+                <input type="hidden" value="<?php echo $pageType; ?>" name="page_type"/>
+                <input type="hidden" value="<?php echo $pageId; ?>" name="page_id"/>
+                <input type="hidden" value="<?php echo $place; ?>" name="place"/>
+                <input type="hidden" value="<?php echo $type; ?>" name="type"/>                
+            </form>
+        </div>
+        <div id="new_static_form">
+            <?php
+            $form = new Varien_Data_Form(
+                    array('id' => 'edit_form', 'action' => $this->getUrl('mpanel/' . $pageType . '/saveStaticBlock'), 'method' => 'post')
+            );
+            $form->setHtmlIdPrefix('block_');
+            $fieldset = $form->addFieldset('base_fieldset', array('legend' => $this->__(''), 'class' => 'fieldset-wide-custom'));
+            $fieldset->addField('page_type', 'hidden', array(
+                'name' => 'page_type',
+                'value' => $pageType
+            ));
+            $fieldset->addField('page_id', 'hidden', array(
+                'name' => 'page_id',
+                'value' => $pageId
+            ));
+            $fieldset->addField('place', 'hidden', array(
+                'name' => 'place',
+                'value' => $place
+            ));
+            $fieldset->addField('type', 'hidden', array(
+                'name' => 'type',
+                'value' => $type
+            ));
+            $fieldset->addField('block_type', 'hidden', array(
+                'name' => 'block_type',
+                'value' => 'new'
+            ));
+            $fieldset->addField('title', 'text', array(
+                'name' => 'title',
+                'label' => $this->__('Block Title'),
+                'title' => $this->__('Block Title'),
+                'required' => true,
+            ));
+
+            $fieldset->addField('identifier', 'text', array(
+                'name' => 'identifier',
+                'label' => $this->__('Identifier'),
+                'title' => $this->__('Identifier'),
+                'required' => true,
+                'class' => 'validate-xml-identifier',
+            ));
+
+            $fieldset->addField('content', 'editor', array(
+                'name' => 'content',
+                'label' => $this->__('Content'),
+                'title' => $this->__('Content'),
+                'style' => 'height:22em',
+                'required' => true,
+                'config' => $helper->getConfig(),
+                'class' => 'input-text'
+            ));
+            $fieldset->addField('sort_order', 'text', array(
+                'label' => $this->__('Sort Order'),
+                'name' => 'sort_order',
+                'required' => false,
+                'class' => 'input-text col-sm-8'
+            ));
+            $form->setUseContainer(true);
+            echo $form->toHtml();
+            ?>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('chooser').observe('change', function (event) {
+            if ($(this).value == 'exist_static_block') {
+                $('exist_static_form').show();
+                $('new_static_form').hide();
+            } else {
+                $('new_static_form').show();
+                $('exist_static_form').hide();
+            }
+        });
+        mgsjQuery("#block_base_fieldset").append('<div class="form-group builder-action"><div class="col-md-12"><div class="buttons"><button type="button" class="btn btn-back" onclick="history.go(-1)"><span><span><?php echo $this->__('Back') ?></span></span></button><button type="button" class="btn btn-primary" onclick="updateForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div></div>');
+        var updateForm = new VarienForm('edit_form');
+        updateForm.submit = function (button, url) {
+            if (this.validator.validate()) {
+                mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+                mgsjQuery('#toggleblock_content').click();
+                button.disabled = true;
+                var form = this.form;
+                var oldUrl = form.action;
+                if (url) {
+                    form.action = url;
+                }
+                var e = null;
+                try {
+                    mgsjQuery.ajax({
+                        type: 'POST',
+                        url: form.action,
+                        dataType: 'json',
+                        data: mgsjQuery('#edit_form').serialize(),
+                        success: function (data, textStatus, xhr) {
+                            button.disabled = false;
+                            mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');
+                            if (data.status == 'success') {
+                                $('error-msg').update('');
+                                $('error-msg').hide();
+                                if (window.parent == window.top) {
+                                    window.parent.jQuery.magnificPopup.close();
+                                    window.top.location.reload();
+                                }
+                            } else {
+                                $('error-msg').update(data.message);
+                                $('error-msg').show();
+                            }
+                        }
+                    });
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(updateForm);
+
+        mgsjQuery("#block_base_fieldset_exist").append('<div class="form-group builder-action"><div class="col-md-12"><div class="buttons"><button type="button" class="btn btn-back" onclick="history.go(-1)"><span><span><?php echo $this->__('Back') ?></span></span></button><button type="button" class="btn btn-primary" onclick="existForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div></div>');
+        var existForm = new VarienForm('exist_form');
+        existForm.submit = function (button, url) {
+            if (this.validator.validate()) {
+                mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+                mgsjQuery('#toggleblock_content').click();
+                button.disabled = true;
+                var form = this.form;
+                var oldUrl = form.action;
+                if (url) {
+                    form.action = url;
+                }
+                var e = null;
+                try {
+                    mgsjQuery.ajax({
+                        type: 'POST',
+                        url: form.action,
+                        dataType: 'json',
+                        data: mgsjQuery('#exist_form').serialize(),
+                        success: function (data, textStatus, xhr) {
+                            button.disabled = false;
+                            mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');
+                            if (data.status == 'success') {
+                                $('error-msg').update('');
+                                $('error-msg').hide();
+                                if (window.parent == window.top) {
+                                    window.parent.jQuery.magnificPopup.close();
+                                    window.top.location.reload();
+                                }
+                            } else {
+                                $('error-msg').update(data.message);
+                                $('error-msg').show();
+                            }
+                        }
+                    });
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(existForm);
+    </script>
+<?php endif; ?>

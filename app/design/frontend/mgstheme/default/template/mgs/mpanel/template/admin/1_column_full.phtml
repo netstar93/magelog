@@ -1,0 +1,51 @@
+<?php $helper = $this->helper('mpanel') ?>
+<div class="home-1column-full">
+	<?php $block = $this->getBlocks() ?>
+	<?php if(count($block)>0): ?>
+		<div class="sort-block" id="sortable_home">
+			<?php foreach($block as $_block): ?>
+				<section<?php echo $this->getBlockSetting($_block, 'builder-container section-builder sort-item') ?> id="block_<?php echo $_block->getId() ?>">
+					<div class="<?php echo $this->getContainerSetting($_block) ?>">
+						<?php 
+							$cols = $this->getBlockCols($_block);
+							$class = $_block->getBlockClass();
+							if($class!=''){
+								$class = json_decode($class, true);
+							}
+						?>
+						<?php echo $helper->getEditPanel($_block->getId()) ?>
+						<?php if(count($cols)>1): ?>
+							<div class="row">
+								<?php foreach($cols as $key=>$col): ?>
+									<div class="col-md-<?php echo $col ?> col-builder<?php if(is_array($class) && isset($class[$key])): ?> <?php echo $class[$key] ?><?php endif ?>">
+										<?php echo $this->getLayout()->createBlock('mpanel/template_child')->setTemplateLayout('1_column_full')->setBlockName($_block->getName().'-'.$key)->setTemplate('mgs/mpanel/template/admin/child.phtml')->toHtml() ?>
+									</div>
+								<?php endforeach ?>
+							</div>
+						<?php else: ?>
+							
+							<?php echo $this->getLayout()->createBlock('mpanel/template_child')->setTemplateLayout('1_column_full')->setBlockName($_block->getName().'-0')->setTemplate('mgs/mpanel/template/admin/child.phtml')->toHtml() ?>
+						<?php endif ?>
+					</div>
+				</section>
+			<?php endforeach ?>
+		</div>
+		
+		
+		<script type="text/javascript">
+			mgsjQuery(document).ready(function() {
+				initSortable("sortable_home", "<?php echo $this->getUrl('mpanel/index/sortsection') ?>");
+			});
+		</script>
+	<?php endif ?>
+	
+	
+	
+	<section>
+		<div class="container-fluid">
+			<div class="add-new-section col-md-12">
+				<button class="btn btn-primary btn-lg" type="button" onclick="addNewSection()"><em class="fa fa-plus-circle"></em>&nbsp;<?php echo $this->__('Add New Section') ?></button>
+			</div>
+		</div>
+	</section>
+</div>

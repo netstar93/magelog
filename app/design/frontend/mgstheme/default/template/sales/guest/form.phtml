@@ -1,0 +1,90 @@
+<form id="oar_widget_orders_and_returns_form" action="<?php echo $this->getActionUrl() ?>" method="post" class="search-form" name="guest_post">
+
+	<div class="row">
+		<div class="form-group">
+			<div class="col-md-6">
+				<label for="oar_order_id"><?php echo Mage::helper('sales')->__('Order ID') ?> *</label>
+				<input type="text" class="form-control required-entry" id="oar_order_id" name="oar_order_id" />
+			</div>
+		</div>
+	</div>
+	
+	<div class="row push-top">
+		<div class="form-group">
+			<div class="col-md-12">
+				<h5 style="margin:0"><label><?php echo Mage::helper('sales')->__('Enter the billing last name and email/ZIP as in the order billing address') ?>.</label></h5>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="form-group">
+			<div class="col-md-6">
+				<label><?php echo Mage::helper('sales')->__('Billing Last Name') ?> *</label>
+				<input type="text" class="form-control required-entry" id="oar_billing_lastname" name="oar_billing_lastname"/>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="form-group">
+			<div class="col-md-6">
+				<label><?php echo Mage::helper('sales')->__('Find Order By:') ?></label>
+				<select name="oar_type" id="quick_search_type_id" class="form-control guest-select" title="" onchange="showIdentifyBlock(this.value);">
+					<option value="email">Email Address</option>
+					<option value="zip">ZIP Code</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row" id="oar-email">
+		<div class="form-group">
+			<div class="col-md-6">
+				<label for="oar_email"><?php echo Mage::helper('sales')->__('Email Address') ?> *</label>
+				<input type="text" class="form-control validate-email required-entry" id="oar_email" name="oar_email"/>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row" id="oar-zip" style="display:none;">
+		<div class="form-group">
+			<div class="col-md-6">
+				<label for="oar_zip"><?php echo Mage::helper('sales')->__('Billing ZIP Code') ?> *</label>
+				<input type="text" class="form-control required-entry" id="oar_zip" name="oar_zip"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="row push-bottom">
+		<div class="col-md-12">
+			<input type="submit" data-loading-text="<?php echo Mage::helper('contacts')->__('Loading...') ?>" class="btn btn-primary btn-lg" value="<?php echo Mage::helper('sales')->__('Continue') ?>">
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+    if ($('quick_search_type_id').value == 'zip') {
+        $('oar-zip').show();
+        $('oar-email').hide();
+    } else {
+       $('oar-zip').hide();
+       $('oar-email').show();
+    }
+
+   var dataForm = new VarienForm('oar_widget_orders_and_returns_form', true);
+
+   function showIdentifyBlock(id)
+   {
+       if (id == 'zip') {
+           $('oar-zip').show();
+           $('oar-email').hide();
+       } else if (id == 'email') {
+           $('oar-zip').hide();
+           $('oar-email').show();
+       }
+       return false;
+   }
+//]]>
+</script>

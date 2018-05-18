@@ -1,0 +1,31 @@
+<?php if (!Mage::registry('current_category')) return ?>
+<?php $_categories = $this->getCurrentChildCategories() ?>
+<?php $_count = is_array($_categories)?count($_categories):$_categories->count(); ?>
+<?php if($_count): ?>
+<div class="collection-lookbook">
+<div class="row">
+	<?php foreach ($_categories as $_category): ?>
+		<?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+		<?php if($_category->getIsActive()): ?>
+		<div class="col-md-12 col-sm-12 col-xs-12 fashion-content">
+			<div class="bg-olayver"></div>
+			<div class="fashion-img">
+				<?php if($_category->getThumbnail()!=''): ?>
+					<a href="<?php echo $this->getCategoryUrl($_category) ?>">
+						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>catalog/category/<?php echo $_category->getThumbnail() ?>" alt="<?php echo $this->escapeHtml($_category->getName()) ?>" class="img-responsive"/>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="text-center">
+				<h5><?php echo $_category->getDescription(); ?><!--span class="category-product-count">(<?php echo $this->__('%s products',$_category->getProductCount()) ?>)</span--></h5>
+				<h2><a class="grid-name" href="<?php echo $this->getCategoryUrl($_category) ?>"><?php echo $this->escapeHtml($_category->getName()) ?></a></h2>
+				<div class="view-more">
+					<a href="<?php echo $this->getCategoryUrl($_category) ?>" class="btn btn-default btn-xs">Shop Now</a>
+				</div>
+			</div>
+		</div>
+		<?php endif; ?>
+	<?php endforeach ?>
+</div>
+</div>
+<?php endif; ?>

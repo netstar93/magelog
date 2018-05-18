@@ -1,0 +1,35 @@
+<?php
+/* * ****************************************************
+ * Package   : Social
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php
+$helper = Mage::helper('social/facebook');
+$storeId = Mage::app()->getStore()->getStoreId();
+?>
+<?php if ($helper->getFacebookConfig('active_sdk', $storeId) && $helper->isActived($storeId)): ?>
+    <?php
+    require_once(Mage::getBaseDir('lib') . '/mgs/social/facebook/src/facebook.php');
+    $appId = $helper->getFacebookConfig('client_id', $storeId);
+    $appSecret = $helper->getFacebookConfig('client_secret', $storeId);
+    $returnUrl = $this->getUrl('social/facebook/connect', array('_secure' => true));
+    $fbPermissions = 'email';
+    $facebook = new Facebook(array(
+        'appId' => $appId,
+        'secret' => $appSecret
+
+    ));
+    $fbUser = $facebook->getUser();
+    ?>
+    <?php if (!$fbUser): ?>
+        <?php
+        $fbUser = null;
+        $loginUrl = $facebook->getLoginUrl(array('redirect_uri' => $returnUrl, 'scope' => $fbPermissions));
+        ?>
+        <div class="social-facebook">
+            <a class="facebook" title="<?php echo $this->__('Facebook Login'); ?>" href="<?php echo htmlspecialchars($loginUrl); ?>"></a>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <portfolio_category_list>
+		<reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+		<reference name="right">
+			<block type="portfolio/portfolio" name="portfolio.right" template="mgs/portfolio/menu.phtml" before="-"/>
+			<remove name="catalog.compare.sidebar"/>
+			<remove name="cart_sidebar"/>
+			<remove name="wishlist_sidebar"/>
+			<remove name="right.reports.product.viewed"/>
+			<remove name="right.reports.product.compared"/>
+			<remove name="right.permanent.callout"/>
+			<remove name="sale.reorder.sidebar"/>
+		</reference>
+        <reference name="content">
+            <block type="portfolio/category" name="portfolio.category" template="mgs/portfolio/list.phtml" />
+        </reference>
+    </portfolio_category_list>
+	
+	<portfolio_view_index>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		
+        <reference name="content">
+            <block type="portfolio/portfolio" name="portfolio.details" template="mgs/portfolio/view.phtml" />
+        </reference>
+    </portfolio_view_index>
+	
+	<!--portfolio_category_list>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		
+        <reference name="content">
+            <block type="portfolio/Category" name="portfolio.category" template="mgs/portfolio/category.phtml" />
+        </reference>
+    </portfolio_category_list-->
+</layout>

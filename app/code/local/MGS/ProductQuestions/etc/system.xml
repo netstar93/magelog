@@ -1,0 +1,351 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+*******************************************************/
+-->
+<config>    
+    <sections>
+        <productquestions translate="label" module="productquestions">
+            <label>Product Questions</label>
+            <tab>mgscore</tab>
+            <sort_order>130</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="productquestions">
+                    <label>General Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </active>
+                        <who_ask translate="label">
+                            <label>Who Can Ask Question</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_customer_type</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </who_ask>
+                        <who_answer translate="label">
+                            <label>Who Can Answer Question</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_customer_type</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </who_answer>
+                        <automatic translate="label">
+                            <label>Automatic Approval Of Questions</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </automatic>
+                        <rate translate="label">
+                            <label>Rating</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </rate>
+                        <who_rate translate="label">
+                            <label>Who Can Rate Question</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_customer_type</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </who_rate>
+                        <visibility translate="label">
+                            <label>Customer Can Set Question Visibility</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If it is set Yes when the form add question at frontend will have select Visibility for customer to choose.]]></comment>							
+                        </visibility>	
+                    </fields>
+                </general>
+                <question_email translate="label" module="productquestions">
+                    <label>Question Email</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </active>
+                        <notification translate="label">
+                            <label>Send Email Notification To Admin</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </notification>
+                        <admin_email translate="label">
+                            <label>Send Email For Admin To Address</label>
+                            <frontend_type>text</frontend_type>                            
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-email</validate>							
+                        </admin_email>
+                        <email_sender translate="label">
+                            <label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_email_addresses</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </email_sender>
+                        <admin_question_template translate="label">
+                            <label>Question Email Template For Admin</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_email_template</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </admin_question_template>
+                        <admin_answer_template translate="label">
+                            <label>Answer Email Template For Admin</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_email_template</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </admin_answer_template>
+                        <question_template translate="label">
+                            <label>Email Template For Question</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_email_template</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </question_template>
+                        <answer_template translate="label">
+                            <label>Email Template For Answer</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_email_template</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </answer_template>	
+                    </fields>
+                </question_email>
+                <faqs_page translate="label" module="productquestions">
+                    <label>FAQs Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>                            
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </title>
+                        <url_key translate="label">
+                            <label>Url Key</label>
+                            <frontend_type>text</frontend_type>                           
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </url_key>
+                        <faqs_link_to_toplink translate="label">
+                            <label>Add Faqs Link To Toplink</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                           
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </faqs_link_to_toplink>
+                        <meta_keywords translate="label">
+                            <label>Meta Keywords</label>
+                            <frontend_type>text</frontend_type>                            
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </meta_keywords>
+                        <meta_description translate="label">
+                            <label>Meta Description</label>
+                            <frontend_type>textarea</frontend_type>                            
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </meta_description>                        
+<!--                        <number_of_questions_per_page translate="label">
+                            <label>Number Of Questions Per Page</label>
+                            <frontend_type>text</frontend_type>                            
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-greater-than-zero</validate>
+                        </number_of_questions_per_page>	-->
+                        <accordition translate="label">
+                            <label>Enable Accordition</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                           
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </accordition>
+                        <sort_by translate="label">
+                            <label>Sort By (Latest, Score, Order)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_sortby</source_model>                         
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </sort_by>
+                    </fields>
+                </faqs_page>
+                <faqs_block translate="label" module="productquestions">
+                    <label>FAQs Block On Right Sidebar</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </active>
+                        <block_title translate="label">
+                            <label>Block Title</label>
+                            <frontend_type>text</frontend_type>                           
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </block_title>                        
+                        <number_of_topics translate="label">
+                            <label>Number Of Topics</label>
+                            <frontend_type>text</frontend_type>                            
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-greater-than-zero</validate>							
+                        </number_of_topics>                        
+                    </fields>
+                </faqs_block>
+                <recaptcha translate="label" module="productquestions">
+                    <label>reCAPTCHA</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>                        
+                        <enabled translate="label">
+                            <label>Enable reCAPTCHA</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <public_key translate="label">
+                            <label>Public Key</label>
+                            <comment>You got this from the signup page: https://www.google.com/recaptcha/admin</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+<!--                            <validate>required-entry</validate>-->
+                        </public_key>
+                        <private_key translate="label">
+                            <label>Private Key</label>
+                            <comment>You got this from the signup page: https://www.google.com/recaptcha/admin</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+<!--                            <validate>required-entry</validate>-->
+                        </private_key>
+                        <theme translate="label">
+                            <label>reCaptcha Theme</label>
+                            <comment>Customizing the look of reCAPTCHA</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_dropdown_theme</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </theme>
+                        <lang translate="label">
+                            <label>reCaptcha Language</label>
+                            <comment>Which language is used in the reCaptcha interface</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>productquestions/system_config_source_dropdown_lang</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </lang>
+                    </fields>
+                </recaptcha>                
+            </groups>
+        </productquestions>
+    </sections>
+</config>

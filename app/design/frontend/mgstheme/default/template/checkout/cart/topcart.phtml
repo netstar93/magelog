@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+
+?>
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+<?php $_cartQty = $this->getSummaryCount() ?>
+<div class="block-cart-header" id="top-cart-dropdown">
+	<div class="dropdown-toggle" data-toggle="dropdown" >
+		<span class="text-uppercase"><?php echo $this->__('Shopping Cart');?></span>
+		<i class="fa fa-shopping-cart"></i>
+		<?php if($_cartQty !=''):?>
+		<span class="count"><?php echo $_cartQty;?></span>
+		<?php else: ?>
+		<span class="count"><?php echo $this->__('0');?></span>
+		<?php endif;?>
+	</div>
+	<div class="block-content dropdown-menu">
+	<?php $_items = $this->getRecentItems() ?>
+	<?php if(count($_items)): ?>
+		<ol id="cart-sidebar" class="mini-products-list">
+		<?php foreach($_items as $_item): ?>
+			<?php echo $this->getItemHtml($_item) ?>	
+		<?php endforeach; ?>
+		</ol>
+		<script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+		<p class="subtotal">
+			<?php if ($this->canApplyMsrp()): ?>
+				<span class="map-cart-sidebar-total"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></span>
+			<?php else: ?>
+				<span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+				<?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+					<br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+				<?php endif; ?>
+			<?php endif; ?>
+		</p>
+		<div class="clear"></div>
+		<?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+		<div class="actions">
+			<?php echo $this->getChildHtml('extra_actions') ?>
+			<button type="button" style="margin-left: 10px; margin-bottom: 10px;" onclick="setLocation('<?php echo $this->getUrl('checkout/cart'); ?>')" class="btn btn-default pull-right btn-lg"><?php echo $this->__('View Cart') ?></button>
+			<button type="button" title="<?php echo $this->__('Checkout') ?>" class="btn btn-primary pull-right btn-lg" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><?php echo $this->__('Checkout') ?></button>
+			<div class="clear"></div>
+		</div>
+		<?php endif ?>
+	<?php else: ?>
+		<p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+	<?php endif ?>
+	</div>
+</div>
+<?php endif;?>

@@ -1,0 +1,71 @@
+<div class="widget-latest">
+	<?php if($this->getTitle() && $this->getTitle()!=''): ?>
+		<div class="block-title">
+			<h2><?php echo $this->getTitle(); ?></h2>
+		</div>
+	<?php endif ?>
+	<?php $categories = $this->getCategoryTabs() ?>
+	<?php if(count($categories)>0): ?>
+		<?php $id = str_replace(',','_',$this->getCategories()) ?>
+		<div id="post_tabs_<?php echo $id ?>" class="tabbable tabs tabs-style-flip">
+			<nav class="tab-menu"> 
+				<ul>
+					<?php $i=0; foreach($categories as $_categoryId): $i++?>
+						<li<?php if($i==1): ?> class="tab-current"<?php endif ?>>
+							<a href="#box-<?php echo $_categoryId ?>-<?php echo $id ?>">
+								<span><?php echo $this->getCategoryName($_categoryId) ?></span>
+							</a>
+						</li>
+					<?php endforeach ?>
+				</ul>
+			</nav>
+			<div class="content-wrap products row">
+				<?php $i=0; foreach($categories as $_categoryId): $i++;?>
+					<section class="<?php if($i==1): ?> content-current<?php endif ?> " id="box-<?php echo $_categoryId ?>-<?php echo $id ?>">
+						<div class="latest-post-container row">
+							<?php $posts = $this->getRecent($_categoryId) ?>
+							<?php if(count($posts)>0): ?>
+								<?php $i = 0; foreach ($posts as $post): ?>
+								<div class="col-md-<?php echo $this->helper('mpanel')->convertColRow($this->getColumn()) ?> col-sm-6 col-xs-12">
+									<div class="item social-blog">
+										<div class="img-bg col-md-4 col-sm-4 col-xs-12 img-hover">
+											<?php if ($post->getFeaturedImage() != ''): ?>
+												<a href="<?php echo $post->getAddress(); ?>" >
+													<img class="img-responsive" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'blog/' . $post->getFeaturedImage(); ?>"/>
+												</a>
+											<?php endif ?>
+										</div>
+										<div class="blog-container col-md-8 col-sm-8 col-xs-12">
+											<h4><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h4>
+											<p class="date"><?php echo date('d', strtotime($post->getCreatedTime())) ?> <?php echo date('F', strtotime($post->getCreatedTime())) ?>, <?php echo date('o', strtotime($post->getCreatedTime())) ?></p>
+
+
+												<?php if ($post->getShortContent()): ?>
+												<p>
+													<?php if($this->getCharacterCount()!=''): ?>
+														<?php echo Mage::helper('core/string')->truncate(strip_tags($post->getShortContent()), $this->getCharacterCount()); ?>
+													<?php else: ?>
+														<?php echo strip_tags($post->getShortContent()); ?>
+													<?php endif ?>
+												</p>
+									<?php endif ?>
+										</div>
+									</div>
+								</div>
+							<?php endforeach; ?>
+							<?php else: ?>
+								<div class="alert alert-danger">
+									<p><?php echo $this->__('There are no posts matching the selection.') ?></p>
+								</div>
+							<?php endif ?>
+						</div>
+					</section>
+				<?php endforeach ?>
+			</div>
+		</div>
+	<?php else:?>
+	<div class="alert alert-danger">
+		<p><?php echo $this->__('There are no categories matching the selection.') ?></p>
+	</div>
+	<?php endif ?>
+</div>

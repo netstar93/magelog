@@ -1,0 +1,7 @@
+<?php if(Mage::getStoreConfig('mgs_theme/general/back_to_top')): ?>
+	<a class="scroll-to-top"><i class="fa fa-arrow-up"></i></a>
+<?php endif ?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	<script src="<?php echo $this->getSkinUrl('js/admin.js') ?>"></script>
+<?php endif ?>

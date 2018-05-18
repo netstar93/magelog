@@ -1,0 +1,15 @@
+.dialog table.table_window .data td, .dialog table.table_window .data th {
+	padding: 2px 4px;
+}
+.fieldset-wide .form-list td.value table.actions input.input-text {
+	width: 20px !important;
+}
+.fieldset-wide .form-list td.value table.data input.input-text {
+	width: 50px !important;
+}
+.form-list td.value table.data select {
+	width: 100px;
+}
+.fieldset-wide .form-list td.value table.actions td.pager  select{
+	display: inline-block;
+}

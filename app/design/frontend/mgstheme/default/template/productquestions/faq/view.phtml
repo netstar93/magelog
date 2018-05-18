@@ -1,0 +1,55 @@
+<?php
+/* * ****************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php $topic = $this->getTopic(); ?>
+<?php if ($topic->getId()): ?>
+    <?php $questions = $this->getQuestions(); ?>
+    <div class="topic">
+        <div class="page-title">
+            <h1><?php echo $topic->getTitle(); ?></h1>
+        </div>
+        <?php if (count($questions)): ?>
+            <ul id="accordion" class="question-list">
+                <?php foreach ($questions as $question): ?>
+                    <li class="item">
+                        <a href="#" class="title"><?php echo $question->getContent(); ?></a>                        
+                        <div class="toggle">
+                            <div class="faq-question-by"><?php echo $this->__('Question by: ') . $question->getCustomerName() . ' on ' . Mage::helper('core')->formatDate($question->getCreatedAt(), 'medium', true); ?></div>
+                            <?php if ($question->haveAnswers()): ?>
+                                <?php $answers = $this->getAnswersByQuestionId($question->getId()); ?>
+                                <ul class="answer-list">
+                                    <?php foreach ($answers as $answer): ?>
+                                        <li class="item">
+                                            <div><?php echo $answer->getAContent(); ?></div>
+                                            <div class="answer-by"><?php echo $this->__('Answer by: ') . $answer->getACustomerName() . ' on ' . Mage::helper('core')->formatDate($answer->getACreatedAt(), 'medium', true); ?></div>                                                            
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                <p><?php echo $this->__('Have no answers.') ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <script type="text/javascript">
+                mgsjQuery(document).ready(function() {
+                    mgsjQuery('#accordion').accordion({
+                        collapsible: true
+                    });
+                });
+            </script>
+        <?php else: ?>
+            <p><?php echo $this->__('Have no questions.') ?></p>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <div class="topic">
+        <p class="note-msg"><?php echo $this->__('Topic does not exist.') ?></p>
+    </div>
+<?php endif; ?>
+

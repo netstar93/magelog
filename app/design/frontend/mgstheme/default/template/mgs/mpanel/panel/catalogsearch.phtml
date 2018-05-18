@@ -1,0 +1,110 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php //$settings = $helper->getCheckoutSettings() ?>
+<form action="<?php echo $this->getUrl('mpanel/post/layout') ?>" method="POST" id="panel-form" enctype="multipart/form-data">
+    <input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+    <div class="col-md-7 col-sm-4 col-xs-4">
+        <div class="row">
+
+            <div id="settings" class="panel-group">
+                <div class="panel">
+                    <div class="general-setting">
+                        <a data-toggle="collapse" data-parent="#settings" href="#general-setting" class="collapsed general-setting-icon" title="<?php echo $this->__('General Setting') ?>"><em class="fa fa-gear"></em></a>
+                        <a data-toggle="collapse" data-parent="#settings" href="#color-setting" class="collapsed color-setting-icon" title="<?php echo $this->__('Color Setting') ?>"><em class="fa fa-paint-brush"></em></a>
+                        <h2 class="title">
+                            <?php echo $this->__('MGS Panel') ?>
+                        </h2>
+                    </div>
+
+                    <div class="layout-button" id="layout-button">
+						<?php 
+							$layout = Mage::getSingleton('page/source_layout')->toOptionArray();
+							array_unshift($layout, array('value' => '', 'label' => Mage::helper('catalog')->__('No layout updates')));
+						?>
+						<select name="catalogsearch_setting[catalogsearch][layout]" class="page-layout" onchange="this.form.submit();">
+							<?php foreach ($layout as $_layout): ?>
+								<option value="<?php echo $_layout['value'] ?>"<?php if(Mage::getStoreConfig('mpanel/catalogsearch/layout') == $_layout['value']): ?> selected="selected"<?php endif ?>><?php echo $_layout['label'] ?></option>
+							<?php endforeach ?>
+						</select>
+                        <a title="<?php echo $this->__('Page Settings') ?>" class="template-button collapsed" href="#layout-setting" data-parent="#settings" data-toggle="collapse"><em class="fa fa-gears"></em>&nbsp;<?php echo $this->__('Page Settings') ?></a>
+                    </div>
+
+                </div>
+
+                <div class="panel col-md-12">
+                    <div id="general-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/general.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+					<div id="color-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/color.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+
+                    <div id="layout-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div id="search-settings" style="display:block">
+								<div class="form-horizontal">
+									<div class="form-group">
+										<label for="product_per_row" class="col-sm-5 control-label"><?php echo $this->__('Number Of Product Per Row') ?></label>
+										<div class="col-sm-5">
+											<select name="catalogsearch_setting[catalogsearch][product_per_row]" class="form-control" id="product_per_row">
+												<option value=""><?php echo $this->__('Use general setting') ?></option>
+												<?php for($i=2; $i<=8; $i++): ?>
+													<option value="<?php echo $i ?>"<?php if(Mage::getStoreConfig('mpanel/catalogsearch/product_per_row') == $i): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+												<?php endfor ?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="picture_ratio" class="col-sm-5 control-label"><?php echo $this->__('Product Picture ratio') ?></label>
+										<div class="col-sm-5">
+											<?php
+											$ratio = array(
+												array('value' => '1', 'label' => Mage::helper('mpanel')->__('1/1 Square')),
+												array('value' => '2', 'label' => Mage::helper('mpanel')->__('1/2 Portrait')),
+												array('value' => '3', 'label' => Mage::helper('mpanel')->__('2/3 Portrait')),
+												array('value' => '4', 'label' => Mage::helper('mpanel')->__('3/4 Portrait')),
+												array('value' => '5', 'label' => Mage::helper('mpanel')->__('2/1 Landscape')),
+												array('value' => '6', 'label' => Mage::helper('mpanel')->__('3/2 Landscape')),
+												array('value' => '7', 'label' => Mage::helper('mpanel')->__('4/3 Landscape'))
+											);
+											?>
+											<select name="catalogsearch_setting[catalogsearch][picture_ratio]" class="form-control" id="picture_ratio">
+												<option value=""><?php echo $this->__('Use general setting') ?></option>
+												<?php foreach ($ratio as $_ratio): ?>
+													<option value="<?php echo $_ratio['value'] ?>"<?php if(Mage::getStoreConfig('mpanel/catalogsearch/picture_ratio') == $_ratio['value']): ?> selected="selected"<?php endif ?>><?php echo $_ratio['label'] ?></option>
+												<?php endforeach ?>
+											</select>
+										</div>
+									</div>
+								</div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-4 col-xs-4">
+        <a href="<?php echo $this->getUrl('adminhtml') ?>" class="backend-link" title="<?php echo $this->__('Go to backend') ?>" target="_blank">
+            <?php echo $this->__('Admin') ?><em class="fa fa-user"></em>
+        </a>
+        <?php echo $this->getLayout()->createBlock('page/switch')->setTemplate('mgs/mpanel/languages.phtml')->toHtml() ?>
+        <span class="translate-inline-check">
+			<span><?php echo $this->__('Translate Inline') ?></span>
+			<?php if (Mage::getStoreConfig('dev/translate_inline/active')): ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" checked="checked" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 0, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php else: ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 1, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php endif ?>
+		</span>
+    </div>
+</form>
+

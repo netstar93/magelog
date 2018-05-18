@@ -1,0 +1,114 @@
+<?php $storeId = Mage::app()->getStore()->getStoreId(); ?>
+<html>    
+    <head>  
+        <title>
+            <?php
+            if (Mage::getStoreConfig('maintanance/general/page_title', $storeId) != '') {
+                echo strip_tags(Mage::getStoreConfig('maintanance/general/page_title', $storeId), NULL);
+            } else {
+                echo $this->__('Store Maintenance');
+            }
+            ?>  
+        </title>
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl("mgs/maintanance/css/maintanance.css") ?>">
+        <link rel="icon" href="<?php echo $this->getSkinUrl('favicon.ico'); ?>" type="image/x-icon" />     
+        <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>prototype/prototype.js" type="text/javascript"></script>
+    </head>
+    <?php if (Mage::getStoreConfig('maintanance/timer/timer_enabled', $storeId) == 1): ?>
+        <body onLoad="countdown(year, month, day, hour, minute)">
+        <?php else: ?>
+        <body>
+        <?php endif; ?>
+        <div class="main-container">                                                 
+            <?php
+            $date = Mage::getStoreConfig('maintanance/timer/timer_date', $storeId);
+            $formatedDate = date('m/d/Y', strtotime($date));
+            $date = explode('/', $formatedDate);
+            $year = $date[2];
+            $month = $date[0];
+            $day = $date[1];
+            $hour = Mage::getStoreConfig('maintanance/timer/timer_hour', $storeId);
+            $min1 = Mage::getStoreConfig('maintanance/timer/timer_min', $storeId);
+
+            $day = floor($min1 / 1440);
+            $hour1 = floor(($min1 - $day * 1440) / 60);
+            $min = $min1 - ($day * 1440) - ($hour1 * 60);
+
+            $finaldate = date('m/d/Y', strtotime($formatedDate . ' + ' . $day . ' days'));
+            $date = explode('/', $finaldate);
+            $year = $date[2];
+            $month = $date[0];
+            $day = $date[1];
+            $hour += $hour1;
+            ?>
+            <?php
+            $helper = Mage::helper('cms');
+            $processor = $helper->getPageTemplateProcessor();
+            $maintenancePage = $processor->filter(trim(Mage::getStoreConfig('maintanance/general/maintenanceHtml', $storeId)));
+            echo $maintenancePage;
+            ?>    
+            <?php if (Mage::getStoreConfig('maintanance/timer/timer_enabled', $storeId) == 1): ?>   
+                <div class="message clearfix" id="timer-text">
+                    <?php $text = Mage::getStoreConfig('maintanance/timer/timer_text', $storeId); ?>
+                    <h2 id="launch-text"><?php echo $text; ?></h2>
+                </div>
+                <script type="text/javascript">
+                    var current = "Time is over!";
+                    var year = '<?php echo $year; ?>';
+                    var month = '<?php echo $month; ?>';
+                    var day = '<?php echo $day; ?>';
+                    var hour = '<?php echo $hour; ?>';
+                    var minute = '<?php echo $min; ?>';
+                    //    DO NOT CHANGE THE CODE BELOW!
+                    var montharray = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+                    function countdown(yr, m, d, hr, min) {
+                        theyear = yr;
+                        themonth = m;
+                        theday = d;
+                        thehour = hr;
+                        theminute = min;
+                        var today = new Date();
+                        var todayy = today.getYear();
+                        if (todayy < 1000)
+                            todayy += 1900;
+                        var todaym = today.getMonth();
+                        var todayd = today.getDate();
+                        var todayh = today.getHours();
+                        var todaymin = today.getMinutes();
+                        var todaysec = today.getSeconds();
+                        var todaystring = montharray[todaym] + " " + todayd + ", " + todayy + " " + todayh + ":" + todaymin + ":" + todaysec;
+                        var futurestring = montharray[m - 1] + " " + d + ", " + yr + " " + hr + ":" + min + ":" + "00";
+                        var dd = Date.parse(futurestring) - Date.parse(todaystring);
+                        var dday = Math.floor(dd / (60 * 60 * 1000 * 24) * 1);
+                        var dhour = Math.floor((dd % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1);
+                        var dmin = Math.floor(((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) / (60 * 1000) * 1);
+                        var dsec = Math.floor((((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) % (60 * 1000)) / 1000 * 1);
+                        if (dday <= 0 && dhour <= 0 && dmin <= 0 && dsec <= 0) {
+                            document.getElementById('timer-text').style.display = "none";
+                            document.getElementById('timer-table').style.display = "none";
+                        }
+                        if (dday == 0 && dhour == 0 && dmin == 0 && dsec == 0) {
+                            
+                        } else {
+                            document.getElementById('count2').style.display = "none";
+                            document.getElementById('dday').innerHTML = dday;
+                            document.getElementById('dhour').innerHTML = dhour;
+                            document.getElementById('dmin').innerHTML = dmin;
+                            document.getElementById('dsec').innerHTML = dsec;
+                            setTimeout("countdown(theyear,themonth,theday,thehour,theminute)", 1000);
+                        }
+                    }
+                </script>
+                <div class="countdown" >
+                    <div class="timer" id="timer-table">
+                        <div class="numbers" id="count2" style="padding: 5px 0 0 0; "></div>
+                        <div><strong id="dday"></strong>Days</div>
+                        <div><strong id="dhour"></strong>Hours</div>
+                        <div><strong id="dmin"></strong>Minutes</div>
+                        <div class="last"><strong id="dsec"></strong>Seconds</div>
+                    </div>
+                </div>
+            <?php endif; ?> 
+        </div>
+    </body>
+</html>

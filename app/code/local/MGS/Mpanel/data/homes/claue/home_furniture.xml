@@ -1,0 +1,401 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header3</header>
+	<footer>footer</footer>
+	
+	<block>
+		<name>block121</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block122</name>
+		<block_cols><![CDATA[6,6]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12","col-sm-6 col-xs-12"]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>30</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block123</name>
+		<block_cols><![CDATA[4,4,4]]></block_cols>
+		<block_class><![CDATA[["col-sm-4 col-xs-12 margin-bottom30","col-sm-4 col-xs-12","col-sm-4 col-xs-12 margin-bottom30"]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block124</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>48</padding_top>
+		<padding_bottom>50</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	<block>
+		<name>block125</name>
+		<block_cols><![CDATA[6,6]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12 margin-bottom20","col-sm-6 col-xs-12 margin-bottom20"]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>5</block_position>
+	</block>
+	<block>
+		<name>block126</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>48</padding_top>
+		<padding_bottom>30</padding_bottom>
+		<block_position>6</block_position>
+	</block>
+	<block>
+		<name>block127</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>34</padding_bottom>
+		<block_position>7</block_position>
+	</block>
+	<block>
+		<name>block128</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>8</block_position>
+	</block>
+	<block>
+		<name>block129</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[#f6f6f8]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>35</padding_top>
+		<padding_bottom>2</padding_bottom>
+		<block_position>9</block_position>
+	</block>
+	
+	
+	<child>
+		<block_name>block121-0</block_name>
+		<block_content><![CDATA[{{widget type="revslider/slider_preview" id="4"}}]]></block_content>
+		<type>revolution</type>
+		<position>1</position>
+		<setting><![CDATA[4]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block123-1</block_name>
+		<block_content><![CDATA[{{widget type="deals/widget" product_ratio="" column="1" real_deal="24" sub_title="" title="" use_slider="0" template="mgs/deals/widget/grid.phtml"}}]]></block_content>
+		<type>deals</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","sub_title":"","custom_class":"","animation":"","animation_delay":"","deal":["24"],"count_per_row":"1","product_ratio":"","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block122-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Office Banner</banner_title>
+		<banner_filename>office_banner.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Office]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"col-sm-12 col-xs-12 margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block122-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Living Room Banner</banner_title>
+		<banner_filename>living_banner.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Living Room]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"col-sm-12 col-xs-12 margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block122-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Bedroom Banner</banner_title>
+		<banner_filename>bedroom_banner.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Bedroom]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":"col-sm-6 col-xs-6 col-xxs-full margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block122-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Dining Room Banner</banner_title>
+		<banner_filename>dining_banner.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Dining Room]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>3</position>
+		<setting><![CDATA[{"custom_class":"col-sm-6 col-xs-6 col-xxs-full margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block123-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Lookbook Banner</banner_title>
+		<banner_filename>banner_lookbook_fnt.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div class="padding-left15 padding-bottom30 text-left"><h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:14px; color:#222222;">GET UP TO 50% OFF</h3>
+			<h4 class="margin-bottom10" style="font-size:35px; line-height:36px; color:#222222;">LOOKBOOK 2016</h4>
+		<p>your world of fashion in numbers</p></div>]]></banner_content>
+		<banner_text_align>bottom-left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block123-2</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Sale Banner</banner_title>
+		<banner_filename>banner_sale_fnt.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div><h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:18px; color:#222222;">LAMP COLLECTIONS</h3>
+			<h4 class="margin-bottom10 nowrap" style="font-size:50px; line-height:50px; color:#222222;">UP TO 70%</h4>
+		<div><button class="btn btn-default" onclick="setLocation('http://magesolution.com/claue/index.php/women.html')" style="font-size:14px;">Shop Now</button></div></div>]]></banner_content>
+		<banner_text_align>center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block125-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Sale 1 Banner</banner_title>
+		<banner_filename>banner_sale_fnt_2_1.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div><h3 style="font-size:24px; line-height:24px; color:#ffffff;">LOOKBOOK 2016</h3>
+		<div class="sub-title" style="font-size:14px; line-height:24px; color:#ffffff;"><em>Make love this look</em></div></div>]]></banner_content>
+		<banner_text_align>center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block125-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Furniture Lookbook 1 Banner</banner_title>
+		<banner_filename>banner_lookbook_fnt_2.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div><h3 style="font-size:18px; line-height:24px; color:#ffffff;">SUMMER SALE</h3>
+		<h4 class="nowrap" style="font-size:50px; line-height:50px; color:#ffffff;">UP TO 70%</h4></div>]]></banner_content>
+		<banner_text_align>center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block126-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" products_count="8" slider="0" count_per_row="4" tabs="new_products,hot_products,sale_products" product_ratio="" product_template="grid" new_label="New Arrivals" featured_label="" hot_label="Best Seller" sale_label="On Sale" rate_label="" category_id="" template="mgs/mpanel/tabs.phtml"}}]]></block_content>
+		<type>tabs</type>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","product_tab":["new_products","hot_products","sale_products"],"new_label":"New Arrivals","featured_label":"","hot_label":"Best Seller","sale_label":"On Sale","rate_label":"","product_template":"grid","product_count":"8","count_per_row":"4","product_ratio":"","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block124-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_rate" display_type="product_rate" slider="1" products_count="8" sub_title="Top view in the week" title="TRENDING PRODUCTS" product_ratio="" auto_play="false" stop_hover="false" navigation="true" pagination="false" count_per_row="4"  template="mgs/mpanel/products/panel_products.phtml" number_row="1"}}]]></block_content>
+		<type>rate</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"TRENDING PRODUCTS","sub_title":"Top view in the week","custom_class":"","animation":"","animation_delay":"","product_count":"8","view_mode":"grid","count_per_row":"4","number_col":"","count_per_col":"1","product_ratio":"","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block128-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" title="@ FOLLOW US ON INSTAGRAM" number="12" number_item_row="6" resolution="low_resolution" image_details="1" slider="1"  auto_play="false" stop_hover="false" navigation="true" pagination="false" number_row="1"template="mgs/mpanel/instagram_widget.phtml" }}]]></block_content>
+		<type>instagram</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"@ FOLLOW US ON INSTAGRAM","custom_class":"","animation":"","animation_delay":"","count":"12","number_item_row":"6","resolution":"low_resolution","image_details":"1","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"}}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block127-0</block_name>
+		<block_content><![CDATA[{{widget type="blog/last" blog_count="5" categories="1" column="3" view_mode="grid" slider="1" title="LATEST FROM BLOG" sub_title="The freshest and most exciting news" character_count="115" auto_play="false" stop_hover="false" navigation="false" pagination="false"}}]]></block_content>
+		<type>latest_posts</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"LATEST FROM BLOG","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","categories":["1"],"product_count":"5","character_count":"115","view_mode":"grid","count_per_row":"3","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block126-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Furniture Title Tabs]]></static_block_title>
+		<static_block_identifier><![CDATA[claue-Furniture-title-tabs]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="content-heading">
+			<h3 class="title">HOT PRODUCTS</h3>
+			<div class="block-note">Top view in the week</div>
+		</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block129-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Bottom Services]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_bottom_services]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 margin-bottom30">
+			<div class="row">
+			<div class="panel-block-row col-md-12 col-xs-12">
+			<div class="icon-service">
+			<div class="icon"><i class="pe-7s-car">&nbsp;</i></div>
+			<div class="text">
+			<h6 class="margin-bottom5">FREE SHIPPING</h6>
+			<p class="no-margin">Free shipping on all US order or order above $200</p>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 margin-bottom30">
+			<div class="row">
+			<div class="panel-block-row col-md-12 col-xs-12">
+			<div class="icon-service">
+			<div class="icon"><i class="pe-7s-help2">&nbsp;</i></div>
+			<div class="text">
+			<h6 class="margin-bottom5">SUPPORT 24/7</h6>
+			<p class="no-margin">Contact us 24 hours a day, 7 days a week</p>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 margin-bottom30">
+			<div class="row">
+			<div class="panel-block-row col-md-12 col-xs-12">
+			<div class="icon-service">
+			<div class="icon"><i class="pe-7s-refresh">&nbsp;</i></div>
+			<div class="text">
+			<h6 class="margin-bottom5">30 DAYS RETURN</h6>
+			<p class="no-margin">Simply return it within 30 days for an exchange.</p>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 margin-bottom30">
+			<div class="row">
+			<div class="panel-block-row col-md-12 col-xs-12">
+			<div class="icon-service">
+			<div class="icon"><i class="pe-7s-door-lock">&nbsp;</i></div>
+			<div class="text">
+			<h6 class="margin-bottom5">100% PAYMENT SECURE</h6>
+			<p class="no-margin">We ensure secure payment with PEV</p>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+		]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

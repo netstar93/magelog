@@ -1,0 +1,102 @@
+<?php
+$categories = $this->getCategoryCollection();
+$panelHelper = $this->helper('mpanel');
+$size = $panelHelper->convertRatioToSize();
+if ($this->getColumn()) {
+    $col = $this->getColumn();
+} else {
+    $col = 3;
+}
+
+$col = $panelHelper->convertColRow($col);
+?>
+<?php //if (Mage::getStoreConfig('mpanel/catalog/featured') != ''): ?>
+<?php if (count($categories) > 0): ?>
+	<div class="featured-category-products featured-category-products-tabs">
+
+		<div class="row category-product-item">
+			<div class="col-md-12" id="tab-background">
+				<div class="row">
+					<div id="category_product_tabs" class="tabbable">
+						<div class="col-md-3 col-sm-12 col-xs-12">
+							<?php if ($this->getTitle() != ''): ?>
+								<div class="carousel_wrapper">
+									<div class="title">
+										<h2><?php echo $this->getTitle() ?></h2>
+									</div>
+								</div>
+							<?php endif ?>
+							<ul class="nav nav-tabs">
+								<?php $i = 0;
+								foreach ($categories as $_category): $i++; ?>
+									<?php if (($i == 1) && ($_imgUrl = $_category->getImageUrl())): ?>
+										<script type="text/javascript">
+											setTabBackground('<?php echo $_imgUrl ?>');
+										</script>
+									<?php endif ?>
+									<li<?php if ($i == 1): ?> class="active"<?php endif ?>>
+										<a href="#boxtab-<?php echo $i ?>" data-toggle="tab"<?php if ($_imgUrl = $_category->getImageUrl()): ?> onclick="setTabBackground('<?php echo $_imgUrl ?>')"<?php endif ?>>
+											<?php echo $_category->getName() ?> <span>(<?php echo $_category->getProductCount() ?>)</span>
+										</a>
+									</li>
+								<?php endforeach ?>
+							</ul>
+						</div>
+						<div class="col-md-9 col-sm-12 col-xs-12">
+							<div class="row">
+								<div class="tab-content">
+									<?php $i = 0;
+									foreach ($categories as $_category): $i++; ?>
+										<?php $products = $this->getProductByCategory($_category) ?>
+		<?php if (count($products) > 0): ?>
+											<div class="tab-pane<?php if ($i == 1): ?> active<?php endif ?>" id="<?php echo "boxtab-" . $i ?>">
+												<ul class="products-grid" >
+													<?php foreach ($products as $_product): ?>
+				<?php //$_product = Mage::getModel('catalog/product')->load($_product)  ?>
+														<li class="item col-md-<?php echo $col ?> col-sm-<?php echo $col ?> col-xs-12">
+															<div class="wrapper-item">
+																<div class="product-info-box product-hover">
+																	<div class="image-container">
+																		<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="product-image">
+																			<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']) ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive"/>
+																			<span class="hover-display">&nbsp;</span>
+																		</a>
+																		<div class="actions">
+																			<div class="buttons">
+																					<?php if ($this->helper('core')->isModuleEnabled('MGS_QuickView') && Mage::getStoreConfig('quickview/general/active')): ?>
+																					<button class="btn btn-quickview quick-view hidden-xs hidden-sm" onclick="quickView('<?php echo $_product->getProductUrl() ?>');
+																																																	return false;" title="<?php echo $this->__('Quick View') ?>"><i class="fa fa-search"></i></button>
+				<?php endif ?>
+
+																				<ul class="add-to-links tooltip-links">
+																					<?php if ($this->helper('wishlist')->isAllow() && !Mage::getStoreConfig('mpanel/catalog/wishlist_button')) : ?>
+																						<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist btn" title="<?php echo $this->__('Add to Wishlist') ?>"><i class="fa fa-heart"></i></a></li>
+																					<?php endif; ?>
+																					<?php if ($_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product) && !Mage::getStoreConfig('mpanel/catalog/compare_button')): ?>
+																						<li><a href="<?php echo $_compareUrl ?>" class="link-compare btn" title="<?php echo $this->__('Add to Compare') ?>"><i class="fa fa-retweet"></i></a></li>
+				<?php endif; ?>
+																				</ul>
+																			</div>
+																		</div>
+				<?php //echo $panelHelper->getProductLabel($_product)  ?>
+																	</div>
+																</div>
+
+																<h4><?php echo $this->stripTags($_product->getName(), null, true) ?></h4>
+															</div>
+														</li>
+			<?php endforeach ?>
+												</ul>
+											</div>
+										<?php endif ?>
+	<?php endforeach ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+<?php endif ?>

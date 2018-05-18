@@ -1,0 +1,56 @@
+<?php if(Mage::getStoreConfig('deals/general/enabled')): ?>
+<?php
+    $_productCollection=$this->getProductCollection();
+    $_helper = $this->helper('catalog/output');
+	$helper = $this->helper('mpanel');
+	$widgetId = $this->getWidgetId();
+?>
+<?php $size = $helper->convertRatioToSize($this->getProductRatio()) ?>
+<?php if(count($_productCollection)>0): ?>
+	<?php if($this->getTitle()!=''): ?>
+		<div class="carousel_wrapper">
+			<div class="title">
+				<h2><?php echo $this->getTitle() ?></h2>
+			</div>
+		</div>
+	<?php endif ?>
+	<?php $_columnCount = $this->getColumn(); ?>
+	<div class="row deal-container">
+		<?php foreach ($_productCollection as $product): ?>
+			<?php $_product = Mage::getModel('catalog/product')->load($product->getId()) ?>
+			<div class="item col-md-<?php echo $helper->convertColRow($_columnCount) ?>">
+				<div class="product-content">
+				<div class="product-top">
+					<a href="<?php echo $_product->getProductUrl() ?>" title="" class="product-image" >
+						<img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']); ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+					</a>
+					<div class="discount-save">
+						<div class="save-content">
+							<?php echo $this->__('Save') ?>
+							<div class="percent">
+								<?php $save = $_product->getPrice() - $_product->getFinalPrice() ?>
+								<?php $percent = round(($save*100)/$_product->getPrice(), 1) ?>
+								<?php echo $percent ?>%
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product-desc">
+				<h4 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h4>
+				   
+				<?php echo $this->getLayout()->createBlock('deals/deals')->setTemplate('mgs/deals/price.phtml')->setProductId($_product->getId())->setData("widgetId",$widgetId)->toHtml(); ?>
+							
+				<div class="actions">
+					<?php if($_product->isSaleable()): ?>
+						<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn-cart btn btn-default btn-lg btn-full" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+					<?php else: ?>
+						<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+					<?php endif; ?>
+				</div>
+				</div>
+				</div>
+			</div>
+		<?php endforeach ?>
+	</div>
+<?php endif ?>
+<?php endif ?>

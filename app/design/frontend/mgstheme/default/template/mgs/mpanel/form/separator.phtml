@@ -1,0 +1,381 @@
+<?php $template = $this->getRequest()->getParam('template') ?>
+<?php $block = $this->getRequest()->getParam('block') ?>
+
+<?php 
+	$exist = 0;
+	if($id = $this->getRequest()->getParam('id')){
+		$child =  Mage::getModel('mpanel/childs')->load($id);
+		$exist = 1;
+		$settings = json_decode($child->getSetting(), true);
+		
+		if(!isset($settings['custom_class'])){
+			$settings['custom_class'] = '';
+		}
+	}
+?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	
+		<div class="edit-static-form">
+		
+			
+			<form id="edit_form" method="post" action="<?php echo $this->getUrl('mpanel/post/child') ?>">
+			
+				<div class="row">
+					<div class="col-md-12 builder-title">
+						<h2><?php echo $this->__('Separator Block') ?></h2>
+					</div>
+				</div>
+				
+				<div class="form-horizontal">
+					<div class="row">
+						<input type="hidden" value="separator" name="type" id="block_type"/>
+						<input type="hidden" value="<?php echo $template ?>" name="home_name" id="block_home_name"/>
+						<input type="hidden" value="<?php echo $block ?>" name="block_name" id="block_block_name"/>
+						<?php if($exist): ?>
+							<input type="hidden" value="<?php echo $child->getId() ?>" name="child_id" />
+						<?php endif ?>
+						
+						
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="custom_class"><?php echo $this->__('Custom Class') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[custom_class]" class="input-text" id="custom_class"<?php if($exist): ?> value="<?php echo $settings['custom_class'] ?>"<?php endif ?> />
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<label for="separator_type" class="col-sm-4 control-label"><?php echo $this->__('Separator Type') ?></label>
+							<div class="col-sm-8">
+								<select name="setting[separator_type]" class="form-control" id="separator_type" onchange="mgsjQuery('#border-setting').slideToggle('fast');">
+									<option value="border"><?php echo $this->__('Border') ?></option>
+									<option value="white-space"<?php if($exist && ($settings['separator_type']=='white-space')): ?> selected="selected"<?php endif ?>><?php echo $this->__('White space') ?></option>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row" id="border-setting"<?php if($exist && ($settings['separator_type']=='white-space')): ?> style="display:none"<?php endif ?>>
+						<div class="form-group">
+							<label for="border_type" class="col-sm-4 control-label"><?php echo $this->__('Border type') ?></label>
+							<div class="col-sm-8">
+								<select name="setting[border_type]" class="form-control" id="border_type">
+									<option value="full"><?php echo $this->__('Full') ?></option>
+									<option value="medium"<?php if($exist && ($settings['border_type']=='medium')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Medium') ?></option>
+									<option value="small"<?php if($exist && ($settings['border_type']=='small')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Small') ?></option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="border_style" class="col-sm-4 control-label"><?php echo $this->__('Border style') ?></label>
+							<div class="col-sm-8">
+								<select name="setting[border_style]" class="form-control" id="border_style" onchange="changeBorderStyle(this.value)">
+									<option value="style1"><?php echo $this->__('Style 1') ?></option>
+									<option value="style2"<?php if($exist && ($settings['border_style']=='style2')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Style 2') ?></option>
+									<option value="style3"<?php if($exist && ($settings['border_style']=='style3')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Style 3') ?></option>
+									<option value="style4"<?php if($exist && ($settings['border_style']=='style4')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Style 4') ?></option>
+								</select>
+								
+								<?php if($exist): ?>
+									<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>mpanel/border/<?php echo $settings['border_style'] ?>.jpg" alt="" id="img-border-style"/>
+								<?php else: ?>
+									<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>mpanel/border/style1.jpg" alt="" id="img-border-style"/>
+								<?php endif ?>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="border_icon" class="col-sm-4 control-label"><?php echo $this->__('Icon') ?></label>
+							<div class="col-sm-8">
+								<div class="vc-icon-option icon-prefix">
+									<ul id="icons">
+										<li id="adjust"><em class="fa fa-adjust"></em></li>
+										<li id="anchor"><em class="fa fa-anchor"></em></li>
+										
+										<li id="arrows"><em class="fa fa-arrows"></em></li>
+										<li id="bars"><em class="fa fa-bars"></em></li>
+										<li id="bell"><em class="fa fa-bell"></em></li>
+										<li id="bell-o"><em class="fa fa-bell-o"></em></li>
+										<li id="bolt"><em class="fa fa-bolt"></em></li>
+										<li id="bookmark"><em class="fa fa-bookmark"></em></li>
+										<li id="bookmark-o"><em class="fa fa-bookmark-o"></em></li>
+										<li id="briefcase"><em class="fa fa-briefcase"></em></li>
+										<li id="bug"><em class="fa fa-bug"></em></li>
+										<li id="bullhorn"><em class="fa fa-bullhorn"></em></li>
+										<li id="bullseye"><em class="fa fa-bullseye"></em></li>
+										<li id="calendar"><em class="fa fa-calendar"></em></li>
+										<li id="calendar-o"><em class="fa fa-calendar-o"></em></li>
+										<li id="camera"><em class="fa fa-camera"></em></li>
+										<li id="camera-retro"><em class="fa fa-camera-retro"></em></li>
+										<li id="certificate"><em class="fa fa-certificate"></em></li>
+										<li id="circle"><em class="fa fa-circle"></em></li>
+										<li id="circle-o"><em class="fa fa-circle-o"></em></li>
+										<li id="clock-o"><em class="fa fa-clock-o"></em></li>
+										<li id="cloud"><em class="fa fa-cloud"></em></li>
+										<li id="cloud-download"><em class="fa fa-cloud-download"></em></li>
+										<li id="cloud-upload"><em class="fa fa-cloud-upload"></em></li>
+										<li id="coffee"><em class="fa fa-coffee"></em></li>
+										<li id="cog"><em class="fa fa-cog"></em></li>
+										<li id="cogs"><em class="fa fa-cogs"></em></li>
+										<li id="comment"><em class="fa fa-comment"></em></li>
+										<li id="comment-o"><em class="fa fa-comment-o"></em></li>
+										<li id="comments"><em class="fa fa-comments"></em></li>
+										<li id="comments-o"><em class="fa fa-comments-o"></em></li>
+										<li id="compass"><em class="fa fa-compass"></em></li>
+										<li id="credit-card"><em class="fa fa-credit-card"></em></li>
+										<li id="crop"><em class="fa fa-crop"></em></li>
+										<li id="crosshairs"><em class="fa fa-crosshairs"></em></li>
+										<li id="cutlery"><em class="fa fa-cutlery"></em></li>
+										<li id="dashboard"><em class="fa fa-dashboard"></em></li>
+										<li id="desktop"><em class="fa fa-desktop"></em></li>
+										<li id="dot-circle-o"><em class="fa fa-dot-circle-o"></em></li>
+										<li id="circle-o"><em class="fa fa-circle-o"></em></li>
+										<li id="download"><em class="fa fa-download"></em></li>
+										<li id="envelope"><em class="fa fa-envelope"></em></li>
+										<li id="envelope-o"><em class="fa fa-envelope-o"></em></li>
+										<li id="exchange"><em class="fa fa-exchange"></em></li>
+										<li id="exclamation"><em class="fa fa-exclamation"></em></li>
+										<li id="exclamation-circle"><em class="fa fa-exclamation-circle"></em></li>
+										<li id="exclamation-triangle"><em class="fa fa-exclamation-triangle"></em></li>
+										<li id="eye"><em class="fa fa-eye"></em></li>
+										<li id="eye-slash"><em class="fa fa-eye-slash"></em></li>
+										<li id="female"><em class="fa fa-female"></em></li>
+										<li id="fighter-jet"><em class="fa fa-fighter-jet"></em></li>
+										<li id="film"><em class="fa fa-film"></em></li>
+										<li id="filter"><em class="fa fa-filter"></em></li>
+										<li id="fire"><em class="fa fa-fire"></em></li>
+										<li id="flag"><em class="fa fa-flag"></em></li>
+										<li id="flag-checkered"><em class="fa fa-flag-checkered"></em></li>
+										<li id="flag-o"><em class="fa fa-flag-o"></em></li>
+										<li id="flask"><em class="fa fa-folder"></em></li>
+										<li id="folder-o"><em class="fa fa-folder-o"></em></li>
+										<li id="gamepad"><em class="fa fa-gamepad"></em></li>
+										<li id="gavel"><em class="fa fa-gavel"></em></li>
+										<li id="gift"><em class="fa fa-gift"></em></li>
+										<li id="glass"><em class="fa fa-glass"></em></li>
+										<li id="globe"><em class="fa fa-globe"></em></li>
+										<li id="group"><em class="fa fa-group"></em></li>
+										<li id="hdd-o"><em class="fa fa-hdd-o"></em></li>
+										<li id="headphones"><em class="fa fa-headphones"></em></li>
+										<li id="heart"><em class="fa fa-heart"></em></li>
+										<li id="heart-o"><em class="fa fa-heart-o"></em></li>
+										<li id="home"><em class="fa fa-home"></em></li>
+										<li id="inbox"><em class="fa fa-inbox"></em></li>
+										<li id="info"><em class="fa fa-info"></em></li>
+										<li id="info-circle"><em class="fa fa-info-circle"></em></li>
+										<li id="key"><em class="fa fa-key"></em></li>
+										<li id="keyboard-o"><em class="fa fa-keyboard-o"></em></li>
+										<li id="laptop"><em class="fa fa-laptop"></em></li>
+										<li id="leaf"><em class="fa fa-leaf"></em></li>
+										<li id="legal"><em class="fa fa-legal"></em></li>
+										<li id="lemon-o"><em class="fa fa-lemon-o"></em></li>
+										<li id="lightbulb-o"><em class="fa fa-lightbulb-o"></em></li>
+										<li id="lock"><em class="fa fa-lock"></em></li>
+										<li id="magnet"><em class="fa fa-magnet"></em></li>
+										<li id="male"><em class="fa fa-male"></em></li>
+										<li id="map-marker"><em class="fa fa-map-marker"></em></li>
+										<li id="meh-o"><em class="fa fa-meh-o"></em></li>
+										<li id="smile-o"><em class="fa fa-smile-o"></em></li>
+										<li id="microphone"><em class="fa fa-microphone"></em></li>
+										<li id="microphone-slash"><em class="fa fa-microphone-slash"></em></li>
+										<li id="minus-circle"><em class="fa fa-minus-circle"></em></li>
+										<li id="minus-square"><em class="fa fa-minus-square"></em></li>
+										<li id="mobile"><em class="fa fa-mobile"></em></li>
+										<li id="moon-o"><em class="fa fa-moon-o"></em></li>
+										<li id="music"><em class="fa fa-music"></em></li>
+										<li id="phone"><em class="fa fa-phone"></em></li>
+										<li id="tablet"><em class="fa fa-tablet"></em></li>
+										<li id="picture-o"><em class="fa fa-picture-o"></em></li>
+										<li id="plane"><em class="fa fa-plane"></em></li>
+										<li id="plus"><em class="fa fa-plus"></em></li>
+										<li id="plus-circle"><em class="fa fa-plus-circle"></em></li>
+										<li id="plus-square"><em class="fa fa-plus-square"></em></li>
+										<li id="power-off"><em class="fa fa-power-off"></em></li>
+										<li id="print"><em class="fa fa-print"></em></li>
+										<li id="question"><em class="fa fa-question"></em></li>
+										<li id="question-circle"><em class="fa fa-question-circle"></em></li>
+										<li id="quote-left"><em class="fa fa-quote-left"></em></li>
+										<li id="quote-right"><em class="fa fa-quote-right"></em></li>
+										<li id="random"><em class="fa fa-random"></em></li>
+										<li id="refresh"><em class="fa fa-refresh"></em></li>
+										<li id="retweet"><em class="fa fa-retweet"></em></li>
+										<li id="road"><em class="fa fa-road"></em></li>
+										<li id="rocket"><em class="fa fa-rocket"></em></li>
+										<li id="rss"><em class="fa fa-rss"></em></li>
+										<li id="rss-square"><em class="fa fa-rss-square"></em></li>
+										<li id="search"><em class="fa fa-search"></em></li>
+										<li id="search-minus"><em class="fa fa-search-minus"></em></li>
+										<li id="search-plus"><em class="fa fa-search-plus"></em></li>
+										<li id="shield"><em class="fa fa-shield"></em></li>
+										<li id="shopping-cart"><em class="fa fa-shopping-cart"></em></li>
+										<li id="sign-in"><em class="fa fa-sign-in"></em></li>
+										<li id="sign-out"><em class="fa fa-sign-out"></em></li>
+										<li id="signal"><em class="fa fa-signal"></em></li>
+										<li id="sitemap"><em class="fa fa-sitemap"></em></li>
+										<li id="sort"><em class="fa fa-sort"></em></li>
+										<li id="spinner"><em class="fa fa-spinner"></em></li>
+										<li id="star"><em class="fa fa-star"></em></li>
+										<li id="star-o"><em class="fa fa-star-o"></em></li>
+										<li id="suitcase"><em class="fa fa-suitcase"></em></li>
+										<li id="sun-o"><em class="fa fa-sun-o"></em></li>
+										<li id="tag"><em class="fa fa-tag"></em></li>
+										<li id="tags"><em class="fa fa-tags"></em></li>
+										<li id="tasks"><em class="fa fa-tasks"></em></li>
+										<li id="thumb-tack"><em class="fa fa-thumb-tack"></em></li>
+										<li id="thumbs-down"><em class="fa fa-thumbs-down"></em></li>
+										<li id="thumbs-o-down"><em class="fa fa-thumbs-o-down"></em></li>
+										<li id="thumbs-o-up"><em class="fa fa-thumbs-o-up"></em></li>
+										<li id="thumbs-up"><em class="fa fa-thumbs-up"></em></li>
+										<li id="ticket"><em class="fa fa-ticket"></em></li>
+										<li id="times"><em class="fa fa-times"></em></li>
+										<li id="times-circle"><em class="fa fa-times-circle"></em></li>
+										<li id="tint"><em class="fa fa-tint"></em></li>
+										<li id="trash-o"><em class="fa fa-trash-o"></em></li>
+										<li id="trophy"><em class="fa fa-trophy"></em></li>
+										<li id="truck"><em class="fa fa-truck"></em></li>
+										<li id="umbrella"><em class="fa fa-umbrella"></em></li>
+										<li id="upload"><em class="fa fa-upload"></em></li>
+										<li id="user"><em class="fa fa-user"></em></li>
+										<li id="users"><em class="fa fa-users"></em></li>
+										<li id="video-camera"><em class="fa fa-video-camera"></em></li>
+										<li id="volume-down"><em class="fa fa-volume-down"></em></li>
+										<li id="volume-off"><em class="fa fa-volume-off"></em></li>
+										<li id="volume-up"><em class="fa fa-volume-up"></em></li>
+										<li id="warning"><em class="fa fa-warning"></em></li>
+										<li id="wheelchair"><em class="fa fa-wheelchair"></em></li>
+										<li id="wrench"><em class="fa fa-wrench"></em></li>
+										<li id="money"><em class="fa fa-money"></em></li>
+										<li id="bitcoin"><em class="fa fa-bitcoin"></em></li>
+										<li id="btc"><em class="fa fa-btc"></em></li>
+										<li id="cny"><em class="fa fa-cny"></em></li>
+										<li id="dollar"><em class="fa fa-dollar"></em></li>
+										<li id="eur"><em class="fa fa-eur"></em></li>
+										<li id="gbp"><em class="fa fa-gbp"></em></li>
+										<li id="inr"><em class="fa fa-inr"></em></li>
+										<li id="krw"><em class="fa fa-krw"></em></li>
+										<li id="rmb"><em class="fa fa-rmb"></em></li>
+										<li id="rouble"><em class="fa fa-rouble"></em></li>
+										<li id="rupee"><em class="fa fa-rupee"></em></li>
+										<li id="try"><em class="fa fa-try"></em></li>
+										<li id="won"><em class="fa fa-won"></em></li>
+										
+										<li id="android"><em class="fa fa-android"></em></li>
+										<li id="apple"><em class="fa fa-apple"></em></li>
+										<li id="bitbucket"><em class="fa fa-bitbucket"></em></li>
+										<li id="css3"><em class="fa fa-css3"></em></li>
+										<li id="html5"><em class="fa fa-html5"></em></li>
+										<li id="dribbble"><em class="fa fa-dribbble"></em></li>
+										<li id="dropbox"><em class="fa fa-dropbox"></em></li>
+										<li id="facebook"><em class="fa fa-facebook"></em></li>
+										<li id="facebook-square"><em class="fa fa-facebook-square"></em></li>
+										<li id="flickr"><em class="fa fa-flickr"></em></li>
+										<li id="foursquare"><em class="fa fa-foursquare"></em></li>
+										<li id="github"><em class="fa fa-github"></em></li>
+										<li id="github-alt"><em class="fa fa-github-alt"></em></li>
+										<li id="gittip"><em class="fa fa-gittip"></em></li>
+										<li id="google-plus"><em class="fa fa-google-plus"></em></li>
+										<li id="google-plus-square"><em class="fa fa-google-plus-square"></em></li>
+										<li id="instagram"><em class="fa fa-instagram"></em></li>
+										<li id="linkedin"><em class="fa fa-linkedin"></em></li>
+										<li id="linkedin-square"><em class="fa fa-linkedin-square"></em></li>
+										<li id="linux"><em class="fa fa-linux"></em></li>
+										<li id="maxcdn"><em class="fa fa-maxcdn"></em></li>
+										<li id="pagelines"><em class="fa fa-pagelines"></em></li>
+										<li id="pinterest"><em class="fa fa-pinterest"></em></li>
+										<li id="pinterest-square"><em class="fa fa-pinterest-square"></em></li>
+										<li id="renren"><em class="fa fa-renren"></em></li>
+										<li id="skype"><em class="fa fa-skype"></em></li>
+										<li id="stack-exchange"><em class="fa fa-stack-exchange"></em></li>
+										<li id="stack-overflow"><em class="fa fa-stack-overflow"></em></li>
+										<li id="trello"><em class="fa fa-trello"></em></li>
+										<li id="tumblr"><em class="fa fa-tumblr"></em></li>
+										<li id="tumblr-square"><em class="fa fa-tumblr-square"></em></li>
+										<li id="twitter"><em class="fa fa-twitter"></em></li>
+										<li id="twitter-square"><em class="fa fa-twitter-square"></em></li>
+										<li id="vimeo-square"><em class="fa fa-vimeo-square"></em></li>
+										<li id="vk"><em class="fa fa-vk"></em></li>
+										<li id="weibo"><em class="fa fa-weibo"></em></li>
+										<li id="windows"><em class="fa fa-windows"></em></li>
+										<li id="xing"><em class="fa fa-xing"></em></li>
+										<li id="xing-square"><em class="fa fa-xing-square"></em></li>
+										<li id="youtube"><em class="fa fa-youtube"></em></li>
+										<li id="youtube-play"><em class="fa fa-youtube-play"></em></li>
+										<li id="youtube-square"><em class="fa fa-youtube-square"></em></li>
+									</ul>
+									<input type="hidden" id="border_icon" name="setting[border_icon]" value="<?php if($exist): ?><?php echo $settings['border_icon'] ?><?php endif ?>"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="text_content" class="col-sm-4 control-label"><?php echo $this->__('Text Content') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[text_content]" class="form-control" id="text_content" value="<?php if($exist): ?><?php echo $settings['text_content'] ?><?php endif ?>"/>
+								
+								<span class="note"><em class="icon-caret-up"></em><?php echo $this->__('Empty to use icon') ?></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group">
+							<label for="margin_top" class="col-sm-4 control-label"><?php echo $this->__('Margin top') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[margin_top]" class="form-control validate-number" id="margin_top" value="<?php if($exist): ?><?php echo $settings['margin_top'] ?><?php endif ?>"/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="margin_bottom" class="col-sm-4 control-label"><?php echo $this->__('Margin bottom') ?></label>
+							<div class="col-sm-8">
+								<input type="text" name="setting[margin_bottom]" class="form-control validate-number" id="margin_bottom" value="<?php if($exist): ?><?php echo $settings['margin_bottom'] ?><?php endif ?>"/>
+							</div>
+						</div>
+						
+						<div class="form-group builder-action">
+							<div class="col-md-12">
+								<div class="buttons">
+									<?php if(!$exist): ?>
+										<button onclick="history.go(-1)" class="btn btn-back" type="button">
+											<span><span><?php echo $this->__('Back') ?></span></span>
+										</button>
+									<?php endif ?>
+									<button id="submit-button" onclick="updateForm.submit(this)" class="btn btn-primary" type="button">
+										<span><span><?php echo $this->__('Submit') ?></span></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/form/script_action.phtml')->toHtml() ?>
+	
+	<script type="text/javascript">
+		mgsjQuery('#icons li').click(function(){
+			el = mgsjQuery(this).attr('id');
+			
+			if(mgsjQuery(this).hasClass('active')){
+				mgsjQuery(this).removeClass('active');
+				mgsjQuery('#border_icon').val('');
+			}
+			else{
+				mgsjQuery('#icons li').removeClass('active');
+				mgsjQuery(this).addClass('active');
+				mgsjQuery('#border_icon').val(el)
+			}
+		});
+		
+		function changeBorderStyle(style){
+			mgsjQuery('#img-border-style').attr('src', '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>mpanel/border/'+style+'.jpg');
+		}
+		
+		<?php if($exist && ($settings['border_icon']!='')): ?>
+			mgsjQuery('#<?php echo $settings['border_icon'] ?>').addClass('active');
+		<?php endif ?>
+	</script>
+<?php endif ?>

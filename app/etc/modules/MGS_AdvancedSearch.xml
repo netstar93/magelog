@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : AdvancedSearch
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_AdvancedSearch>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_CatalogSearch/>
+            </depends>
+        </MGS_AdvancedSearch>
+    </modules>
+</config> 

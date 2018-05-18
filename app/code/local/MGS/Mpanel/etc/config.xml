@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MGS_Mpanel>
+            <version>0.2.3</version>
+        </MGS_Mpanel>
+    </modules>
+    <frontend>
+        <routers>
+            <mpanel>
+                <use>standard</use>
+                <args>
+                    <module>MGS_Mpanel</module>
+                    <frontName>mpanel</frontName>
+                </args>
+            </mpanel>
+        </routers>
+        <layout>
+            <updates>
+                <mpanel>
+                    <file>mpanel.xml</file>
+                </mpanel>
+            </updates>
+        </layout>
+
+        <routers>
+            <catalog>
+                <args>
+                    <modules>
+                        <MGS_Mpanel before="Mage_Catalog">MGS_Mpanel_Catalog</MGS_Mpanel>
+                    </modules>
+                </args>
+            </catalog>
+			
+            <catalogsearch>
+                <args>
+                    <modules>
+                        <MGS_Mpanel before="Mage_CatalogSearch">MGS_Mpanel_CatalogSearch</MGS_Mpanel>
+                    </modules>
+                </args>
+            </catalogsearch>
+        </routers>
+        <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <mpanel_observer>
+                        <class>mpanel/observer</class>
+                        <method>addHandles</method>
+                    </mpanel_observer>
+                </observers>
+            </controller_action_layout_load_before>
+			<controller_action_postdispatch>
+				<observers>
+					<mpanel_deferjs>
+						<class>mpanel/observer</class>
+						<method>deferJs</method>
+					</mpanel_deferjs>
+				</observers>   
+			</controller_action_postdispatch>
+        </events>
+    </frontend>
+    <admin>
+        <routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<MGS_Mpanel after="Mage_Adminhtml">MGS_Mpanel_Adminhtml</MGS_Mpanel>
+					</modules> 
+				</args>
+			</adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <mgscore module="mgscore"> 
+                <children>
+                    <theme_color module="mpanel">
+                        <title>Theme Color</title>
+                        <sort_order>1</sort_order>               
+                        <action>adminhtml/system_config/edit/section/theme_color</action>
+                    </theme_color>
+					
+                    <mgstheme module="mpanel">
+                        <title>Theme Settings</title>
+                        <sort_order>1</sort_order>               
+                        <action>adminhtml/system_config/edit/section/mgs_theme</action>
+                    </mgstheme>
+					
+                    <mpanel module="mpanel">
+                        <title>MGS Panel</title>
+                        <sort_order>1</sort_order>               
+                        <action>adminhtml/system_config/edit/section/mpanel</action>
+                    </mpanel>
+                </children>
+            </mgscore>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <mpanel translate="title">
+                                            <title>MGS Panel</title>
+                                            <sort_order>888</sort_order>
+                                        </mpanel>
+										
+                                        <mgs_theme translate="title">
+                                            <title>MGS Theme</title>
+                                            <sort_order>889</sort_order>
+                                        </mgs_theme>
+										
+                                        <theme_color translate="title">
+                                            <title>Theme Color</title>
+                                            <sort_order>890</sort_order>
+                                        </theme_color>
+										
+										<defer_js translate="title">
+                                            <title>Defer Javascript</title>
+                                            <sort_order>9999</sort_order>
+                                        </defer_js>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <mpanel>
+                    <file>mpanel.xml</file>
+                </mpanel>
+            </updates>
+        </layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <mpanel>
+                <class>MGS_Mpanel_Model</class>
+                <resourceModel>mpanel_mysql4</resourceModel>
+            </mpanel>
+            <mpanel_mysql4>
+                <class>MGS_Mpanel_Model_Mysql4</class>
+                <entities>
+                    <home>
+                        <table>mgs_theme_home</table>
+                    </home>
+					
+                    <store>
+                        <table>mgs_theme_home_store</table>
+                    </store>
+					
+                    <blocks>
+                        <table>mgs_theme_home_blocks</table>
+                    </blocks>
+					
+                    <childs>
+                        <table>mgs_theme_home_block_childs</table>
+                    </childs>
+					
+                    <layout>
+                        <table>mgs_theme_layout</table>
+                    </layout>
+					
+                    <setting>
+                        <table>mgs_theme_catagory_setting</table>
+                    </setting>
+                    
+                    <block>
+                        <table>mgs_theme_layout_blocks</table>
+                    </block>
+                </entities>
+            </mpanel_mysql4>
+			
+            <catalog>
+                <rewrite>
+                    <layer>MGS_Mpanel_Model_Catalog_Layer</layer>
+                </rewrite>
+            </catalog>
+            <catalogsearch>
+                <rewrite>
+                    <layer>MGS_Mpanel_Model_Catalogsearch_Layer</layer>
+                </rewrite>
+            </catalogsearch>
+        </models>
+        <resources>
+            <mpanel_setup>
+                <setup>
+                    <module>MGS_Mpanel</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mpanel_setup>
+            <mpanel_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mpanel_write>
+            <mpanel_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mpanel_read>
+        </resources>
+        <blocks>
+            <mpanel>
+                <class>MGS_Mpanel_Block</class>
+            </mpanel>
+			
+            <cms>
+                <rewrite>
+                    <block>MGS_Mpanel_Block_Cms_Block</block>
+                </rewrite>
+            </cms>
+			
+            <checkout>
+                <rewrite>
+                    <cart_crosssell>MGS_Mpanel_Block_Checkout_Cart_Crosssell</cart_crosssell>
+                </rewrite>
+            </checkout>
+			
+            <page>
+                <rewrite>
+                    <html>MGS_Mpanel_Block_Page_Html</html>
+                    <html_head>MGS_Mpanel_Block_Page_Html_Head</html_head>
+                    <html_header>MGS_Mpanel_Block_Page_Html_Header</html_header>
+                    <html_footer>MGS_Mpanel_Block_Page_Html_Footer</html_footer>
+                </rewrite>
+            </page>
+			
+            <catalog>
+                <rewrite>
+                    <layer_filter_price>MGS_Mpanel_Block_Catalog_Layer_Filter_Price</layer_filter_price>
+					<layer_filter_attribute>MGS_Mpanel_Block_Catalog_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalog>
+			
+            <core>
+                <rewrite>
+                    <messages>MGS_Mpanel_Block_Messages</messages>
+                </rewrite>
+            </core>
+
+        </blocks>
+        <helpers>
+            <mpanel>
+                <class>MGS_Mpanel_Helper</class>
+            </mpanel>
+			
+            <catalog>
+                <rewrite>
+                    <product_view>MGS_Mpanel_Helper_Catalog_Product_View</product_view>
+                </rewrite>
+            </catalog>
+			
+			<configurableswatches>
+				<rewrite>
+					<mediafallback>MGS_Mpanel_Helper_Mediafallback</mediafallback>
+				</rewrite>
+			</configurableswatches>
+        </helpers>
+    </global>
+    <default>
+        <mpanel>
+			<general>
+				<themepack>mgstheme</themepack>
+			</general>
+            <catalog>
+                <product_per_row>3</product_per_row>
+                <max_width_image>600</max_width_image>
+                <max_width_image_detail>600</max_width_image_detail>
+                <picture_ratio>4</picture_ratio>
+                <new_label>New</new_label>
+                <sale_label>Sale</sale_label>
+                <price_slider>1</price_slider>
+                <more_view>1</more_view>
+            </catalog>
+            <twitter>
+                <twitter_title>Latest Tweet</twitter_title>
+                <twitter_count>2</twitter_count>
+            </twitter>
+            <product_details>
+                <email_friend>1</email_friend>
+                <reviews_summary>1</reviews_summary>
+                <alert_urls>1</alert_urls>
+                <wishlist_compare>1</wishlist_compare>
+                <short_description>1</short_description>
+                <upsell_products>1</upsell_products>
+            </product_details>
+            <product_tabs>
+                <show_description>1</show_description>
+                <position_description>0</position_description>
+                <show_additional>1</show_additional>
+                <position_additional>1</position_additional>
+                <show_reviews>1</show_reviews>
+                <position_reviews>2</position_reviews>
+                <show_product_tag_list>1</show_product_tag_list>
+                <position_product_tag_list>3</position_product_tag_list>
+            </product_tabs>
+        </mpanel>
+        <mgs_theme>
+            <general>
+                <page_width>width1200</page_width>
+                <layout>wide</layout>
+                <layout_style>light</layout_style>
+                <header>header</header>
+                <footer>footer</footer>
+                <back_to_top>1</back_to_top>
+            </general>
+			<breadcrumbs>
+				<enabled>1</enabled>
+				<type>1</type>
+			</breadcrumbs>
+			<portfolio_config>
+				<layout>1</layout>
+				<column>3</column>
+			</portfolio_config>
+        </mgs_theme>
+    </default>
+</config>

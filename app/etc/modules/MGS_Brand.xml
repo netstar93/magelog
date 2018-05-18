@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_Brand>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MGS_Brand>
+    </modules>
+</config> 

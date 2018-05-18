@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : AdvancedSearch
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_AdvancedSearch>
+            <version>0.1.0</version>
+        </MGS_AdvancedSearch>
+    </modules>
+    <frontend>        
+        <layout>
+            <updates>
+                <advancedsearch>
+                    <file>advancedsearch.xml</file>
+                </advancedsearch>
+            </updates>
+        </layout>
+    </frontend>    
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <advancedsearch translate="title">
+                                            <title>Advanced Search</title>
+                                            <sort_order>10</sort_order>
+                                        </advancedsearch>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>                    
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <global>        
+        <blocks>
+            <advancedsearch>
+                <class>MGS_AdvancedSearch_Block</class>
+            </advancedsearch>
+        </blocks>
+        <helpers>
+            <advancedsearch>
+                <class>MGS_AdvancedSearch_Helper</class>
+            </advancedsearch>
+        </helpers>
+    </global>
+    <default>
+        <advancedsearch>
+            <general>
+                <enabled>1</enabled>
+                <select_category_on_category_pages>1</select_category_on_category_pages>
+                <show_subcategories>1</show_subcategories>
+                <indentation_text><![CDATA[- ]]></indentation_text>
+            </general>
+        </advancedsearch>
+    </default>
+</config>

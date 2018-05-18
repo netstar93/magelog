@@ -1,0 +1,61 @@
+<?php $profiles = $this->getProfiles(); 
+?>
+<div class="profile-contents">
+	<?php if($this->getTitle()): ?>
+		<div class="title-center title-center-left block-title">
+			<h2><?php echo $this->getTitle() ?>
+		</div>
+	<?php endif ?>
+	<?php if(count($profiles) > 0): ?>
+		<?php 
+			$helper = $this->helper('mpanel');
+			$col = $this->getCountPerRow();
+			$perrow = $col;
+ 			$col = $helper->convertColRowCustom($col);
+		?>
+		<div class="row">
+			<div class="profile-grid">
+				<div class="carousel-container profiles">
+					<?php $i=0; foreach ($profiles as $profile): $i++; ?>
+						<div class="item col-md-<?php echo $col; ?> col-sm-6 col-xs-12 <?php if($i% $perrow ==1): ?> first-row-item <?php endif ?> <?php if($i% 2 ==1): ?> row-2sm-first <?php endif ?>">												
+							<div class="profile-content">
+								<div class="profile-top">
+									<a href="<?php echo $profile->getAddress(); ?>" class="profile-image"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .$profile->getPhoto() ?>" class="img-responsive"/></a>
+									<div class="social-links">
+										<ul>
+											<?php if($profile->getFacebook()!=''): ?>
+												<li><a href="<?php echo $profile->getFacebook() ?>"><i class="fa fa-facebook"></i></a></li>
+											<?php endif ?>
+											<?php if($profile->getGooglePlus()): ?>
+												<li><a href="<?php echo $profile->getFacebook() ?>"><i class="fa fa-google-plus"></i></a></li>
+											<?php endif ?>
+											<?php if($profile->getInstagram()): ?>
+												<li><a href="<?php echo $profile->getFacebook() ?>"><i class="fa fa-instagram"></i></a></li>
+											<?php endif ?>
+											<?php if($profile->getTwitter()!=''): ?>
+												<li><a href="<?php echo $profile->getTwitter() ?>"><i class="fa fa-twitter"></i></a></li>
+											<?php endif ?>
+											<?php if($profile->getLinkedin()!=''): ?>
+												<li><a href="<?php echo $profile->getLinkedin() ?>"><i class="fa fa-linkedin"></i></a></li>
+											<?php endif ?>
+										</ul>
+									</div>
+								</div>
+								<div class="profile-desc">													
+									<a class="profile-name" href="<?php echo $profile->getAddress(); ?>"><?php echo $profile->getName() ?></a>
+									<p class="job-design">
+										<?php echo $profile->getPosition(); ?>
+									</p> 												
+								</div>
+							</div>
+						</div>
+					<?php endforeach ?>
+				</div>
+			</div>
+		<div>
+	<?php else: ?>
+		<div class="alert alert-warning no-product-display">
+			<?php echo $this->__('There are no profiles.') ?>
+		</div>
+	<?php endif ?>
+</div>

@@ -1,0 +1,47 @@
+<?php $posts = $this->getPosts(); ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div>
+<div class="blog-list">
+<?php foreach ($posts as $post): ?>
+    <div class="postWrapper">
+		<?php if ($post->getImage() != ''): ?>
+			<div class="post-img">
+				<a href="<?php echo $post->getAddress(); ?>">
+					<img class="img-responsive" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'blog/images/' . $post->getImage(); ?>"/>
+				</a>
+				<div class="post-info">
+					<div class="post-meta">
+						<span><?php echo $this->__("By"); ?> <span class="text-white"><?php echo $post->getUser(); ?></span></span>
+						<span><?php echo $this->getTagsHtml($post) ?></span>
+						<span>
+							<?php $num = $post->getCommentCount();?>
+								<?php 	if($num > 1){ 
+									$many_string = "s";
+									}elseif($num == 1){ 
+									$many_string = "";
+									}else {
+									$many_string = "";
+									$num = 0;
+								} ?>
+								<?php $fomart_string =  "%s Comment%s";?>
+								<a class="tip" href="<?php echo $post->getAddress(); ?>#commentBox" >&nbsp;<?php echo sprintf($fomart_string, $num, $many_string); ?></a>
+						</span>
+					</div>
+					<h2 class="post-title"><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+					<div class="create-post-time"><?php echo date("F d, Y",strtotime($post->getCreatedTime())); ?></div>
+				</div>
+			</div>
+		<?php endif ?>
+		   <?php if(Mage::getStoreConfig('mpanel/share_this/blog_list')): ?>
+			<?php echo Mage::getStoreConfig('mpanel/share_this/span_tags') ?>
+	<?php endif; ?>	
+        <div class="postContent"><?php echo $post->getPostContent(); ?></div>
+     
+
+        <?php echo $this->getBookmarkHtml($post) ?>
+    </div>
+<?php endforeach; ?>
+</div>
+<?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>

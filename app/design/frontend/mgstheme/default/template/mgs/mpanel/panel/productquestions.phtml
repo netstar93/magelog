@@ -1,0 +1,432 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php $settings = $helper->getFaqsSettings() ?>
+<form action="<?php echo $this->getUrl('mpanel/post/layout') ?>" method="POST" id="panel-form" enctype="multipart/form-data">
+    <input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+    <div class="col-md-7 col-sm-4 col-xs-4">
+        <div class="row">
+
+            <div id="settings" class="panel-group">
+                <div class="panel">
+                    <div class="general-setting">
+                        <a data-toggle="collapse" data-parent="#settings" href="#general-setting" class="collapsed general-setting-icon" title="<?php echo $this->__('General Setting') ?>"><em class="fa fa-gear"></em></a>
+                        <a data-toggle="collapse" data-parent="#settings" href="#color-setting" class="collapsed color-setting-icon" title="<?php echo $this->__('Color Setting') ?>"><em class="fa fa-paint-brush"></em></a>
+                        <h2 class="title">
+                            <?php echo $this->__('MGS Panel') ?>
+                        </h2>
+                    </div>
+
+                    <div class="layout-button" id="layout-button">
+                        <a title="<?php echo $this->__('Page Settings') ?>" class="template-button collapsed" href="#layout-setting" data-parent="#settings" data-toggle="collapse"><em class="fa fa-gears"></em>&nbsp;<?php echo $this->__('Page Settings') ?></a>
+                    </div>
+
+                </div>
+
+                <div class="panel col-md-12">
+                    <div id="general-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/general.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+					<div id="color-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/color.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+
+                    <div id="layout-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div id="checkout-settings" style="display:block">
+                                <div class="col-md-12">
+                                    <div class="form-horizontal row">
+                                        <div id="checkout-accordion" class="panel-group">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion1" href="#checkoutcollapseOne"><?php echo $this->__('General') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseOne" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="who_ask" class="col-sm-4 control-label"><?php echo $this->__('Who Can Ask Question') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[general][who_ask]" class="form-control" id="who_ask">
+                                                                    <option value="1"><?php echo $this->__('Anyone Customer') ?></option>
+                                                                    <option value="0"<?php if ($settings['who_ask'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('Registered Customer') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="who_answer" class="col-sm-4 control-label"><?php echo $this->__('Who Can Answer Question') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[general][who_answer]" class="form-control" id="who_answer">
+                                                                    <option value="1"><?php echo $this->__('Anyone Customer') ?></option>
+                                                                    <option value="0"<?php if ($settings['who_answer'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('Registered Customer') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="automatic" class="col-sm-4 control-label"><?php echo $this->__('Automatic Approval Of Questions') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[general][automatic]" class="form-control" id="automatic">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['automatic'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="rate" class="col-sm-4 control-label"><?php echo $this->__('Rating') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[general][rate]" class="form-control" id="rate">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['rate'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="who_rate" class="col-sm-4 control-label"><?php echo $this->__('Who Can Rate Question') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[general][who_rate]" class="form-control" id="who_rate">
+                                                                    <option value="1"><?php echo $this->__('Anyone Customer') ?></option>
+                                                                    <option value="0"<?php if ($settings['who_rate'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('Registered Customer') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="visibility" class="col-sm-4 control-label"><?php echo $this->__('Customer Can Set Question Visibility') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[general][visibility]" class="form-control" id="visibility">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['visibility'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion2" href="#checkoutcollapseTwo"><?php echo $this->__('Question Email') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseTwo" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="active" class="col-sm-4 control-label"><?php echo $this->__('Enable') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[question_email][active]" class="form-control" id="active">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['active'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="notification" class="col-sm-4 control-label"><?php echo $this->__('Send Email Notification To Admin') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[question_email][notification]" class="form-control" id="notification">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['notification'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="admin_email" class="col-sm-4 control-label"><?php echo $this->__('Send Email For Admin To Address') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[question_email][admin_email]" class="form-control" id="terms_label" value="<?php echo $settings['admin_email'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="email_sender" class="col-sm-4 control-label"><?php echo $this->__('Email Sender') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <?php
+                                                                $options = array();
+                                                                $config = Mage::getSingleton('adminhtml/config')->getSection('trans_email')->groups->children();
+                                                                foreach ($config as $node) {
+                                                                    $nodeName = $node->getName();
+                                                                    $label = (string) $node->label;
+                                                                    $sortOrder = (int) $node->sort_order;
+                                                                    $options[$sortOrder] = array(
+                                                                        'value' => preg_replace('#^ident_(.*)$#', '$1', $nodeName),
+                                                                        'label' => $this->__($label)
+                                                                    );
+                                                                }
+                                                                ksort($options);
+                                                                ?>
+                                                                <select name="productquestions[question_email][email_sender]" class="form-control" id="email_sender">
+                                                                    <?php if (count($options) > 0): ?>
+                                                                        <?php foreach ($options as $_option): ?>
+                                                                            <option value="<?php echo $_option['value'] ?>"<?php if ($settings['email_sender'] == $_option['value']): ?> selected="selected"<?php endif ?>><?php echo $_option['label'] ?></option>
+                                                                        <?php endforeach ?>
+                                                                    <?php endif ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="admin_question_template" class="col-sm-4 control-label"><?php echo $this->__('Question Email Template For Admin') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <?php
+                                                                $collection = Mage::getResourceModel('core/email_template_collection')->load();
+                                                                $options = $collection->toOptionArray();
+                                                                ?>
+                                                                <select name="productquestions[question_email][admin_question_template]" class="form-control" id="admin_question_template">
+                                                                    <?php if (count($options) > 0): ?>
+                                                                        <?php foreach ($options as $_option): ?>
+                                                                            <option value="<?php echo $_option['value'] ?>"<?php if ($settings['admin_question_template'] == $_option['value']): ?> selected="selected"<?php endif ?>><?php echo $_option['label'] ?></option>
+                                                                        <?php endforeach ?>
+                                                                    <?php endif ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="admin_answer_template" class="col-sm-4 control-label"><?php echo $this->__('Answer Email Template For Admin') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[question_email][admin_answer_template]" class="form-control" id="admin_answer_template">
+                                                                    <?php if (count($options) > 0): ?>
+                                                                        <?php foreach ($options as $_option): ?>
+                                                                            <option value="<?php echo $_option['value'] ?>"<?php if ($settings['admin_answer_template'] == $_option['value']): ?> selected="selected"<?php endif ?>><?php echo $_option['label'] ?></option>
+                                                                        <?php endforeach ?>
+                                                                    <?php endif ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="question_template" class="col-sm-4 control-label"><?php echo $this->__('Email Template For Question') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[question_email][question_template]" class="form-control" id="question_template">
+                                                                    <?php if (count($options) > 0): ?>
+                                                                        <?php foreach ($options as $_option): ?>
+                                                                            <option value="<?php echo $_option['value'] ?>"<?php if ($settings['question_template'] == $_option['value']): ?> selected="selected"<?php endif ?>><?php echo $_option['label'] ?></option>
+                                                                        <?php endforeach ?>
+                                                                    <?php endif ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="answer_template" class="col-sm-4 control-label"><?php echo $this->__('Email Template For Answer') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[question_email][answer_template]" class="form-control" id="answer_template">
+                                                                    <?php if (count($options) > 0): ?>
+                                                                        <?php foreach ($options as $_option): ?>
+                                                                            <option value="<?php echo $_option['value'] ?>"<?php if ($settings['answer_template'] == $_option['value']): ?> selected="selected"<?php endif ?>><?php echo $_option['label'] ?></option>
+                                                                        <?php endforeach ?>
+                                                                    <?php endif ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion3" href="#checkoutcollapseThree"><?php echo $this->__('FAQs Page') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseThree" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+
+                                                        <div class="form-group">
+                                                            <label for="title" class="col-sm-4 control-label"><?php echo $this->__('Title') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[faqs_page][title]" class="form-control" id="title" value="<?php echo $settings['title'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="url_key" class="col-sm-4 control-label"><?php echo $this->__('Url Key') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[faqs_page][url_key]" class="form-control" id="url_key" value="<?php echo $settings['url_key'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="faqs_link_to_toplink" class="col-sm-4 control-label"><?php echo $this->__('Add Faqs Link To Toplink') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[faqs_page][faqs_link_to_toplink]" class="form-control" id="faqs_link_to_toplink">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['faqs_link_to_toplink'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="meta_keywords" class="col-sm-4 control-label"><?php echo $this->__('Meta Keywords') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[faqs_page][meta_keywords]" class="form-control" id="meta_keywords" value="<?php echo $settings['meta_keywords'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="meta_description" class="col-sm-4 control-label"><?php echo $this->__('Meta Description') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <textarea name="productquestions[faqs_page][meta_description]" class="form-control" id="meta_description"><?php echo $settings['meta_description'] ?></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="accordition" class="col-sm-4 control-label"><?php echo $this->__('Enable Accordition') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[faqs_page][accordition]" class="form-control" id="accordition">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['accordition'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="sort_by" class="col-sm-4 control-label"><?php echo $this->__('Sort By') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[faqs_page][sort_by]" class="form-control" id="sort_by">
+                                                                    <option value="latest"><?php echo $this->__('Latest') ?></option>
+                                                                    <option value="score"<?php if ($settings['sort_by'] == 'score'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Score') ?></option>
+                                                                    <option value="order"<?php if ($settings['sort_by'] == 'order'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Order') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion4" href="#checkoutcollapseFour"><?php echo $this->__('FAQs Block On Right Sidebar') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseFour" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="block_active" class="col-sm-4 control-label"><?php echo $this->__('Enable') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[faqs_block][active]" class="form-control" id="block_active">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['block_active'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="block_title" class="col-sm-4 control-label"><?php echo $this->__('Block Title') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[faqs_block][block_title]" class="form-control" id="block_title" value="<?php echo $settings['block_title'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="number_of_topics" class="col-sm-4 control-label"><?php echo $this->__('Number Of Topics') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[faqs_block][number_of_topics]" class="form-control" id="number_of_topics" value="<?php echo $settings['number_of_topics'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion5" href="#checkoutcollapseFive"><?php echo $this->__('reCAPTCHA') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseFive" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="enabled" class="col-sm-4 control-label"><?php echo $this->__('Enable reCAPTCHA') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[recaptcha][enabled]" class="form-control" id="enabled">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['enabled'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="public_key" class="col-sm-4 control-label"><?php echo $this->__('Public Key') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[recaptcha][public_key]" class="form-control" id="public_key" value="<?php echo $settings['public_key'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="private_key" class="col-sm-4 control-label"><?php echo $this->__('Private Key') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="productquestions[recaptcha][private_key]" class="form-control" id="private_key" value="<?php echo $settings['private_key'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="theme" class="col-sm-4 control-label"><?php echo $this->__('reCaptcha Theme') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[recaptcha][theme]" class="form-control" id="theme">
+                                                                    <option value="red"><?php echo $this->__('Red (default)') ?></option>
+                                                                    <option value="white"<?php if ($settings['theme'] == 'white'): ?> selected="selected"<?php endif ?>><?php echo $this->__('White') ?></option>
+                                                                    <option value="blackglass"<?php if ($settings['theme'] == 'blackglass'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Blackglass') ?></option>
+                                                                    <option value="clean"<?php if ($settings['theme'] == 'clean'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Clean') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="lang" class="col-sm-4 control-label"><?php echo $this->__('reCaptcha Language') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="productquestions[recaptcha][lang]" class="form-control" id="lang">
+                                                                    <option value="en"><?php echo $this->__('English (default)') ?></option>
+                                                                    <option value="nl"<?php if ($settings['lang'] == 'nl'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Dutch') ?></option>
+                                                                    <option value="fr"<?php if ($settings['lang'] == 'fr'): ?> selected="selected"<?php endif ?>><?php echo $this->__('French') ?></option>
+                                                                    <option value="de"<?php if ($settings['lang'] == 'de'): ?> selected="selected"<?php endif ?>><?php echo $this->__('German') ?></option>
+                                                                    <option value="pt"<?php if ($settings['lang'] == 'pt'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Portuguese') ?></option>
+                                                                    <option value="ru"<?php if ($settings['lang'] == 'ru'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Russian') ?></option>
+                                                                    <option value="es"<?php if ($settings['lang'] == 'es'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Spanish') ?></option>
+                                                                    <option value="tr"<?php if ($settings['lang'] == 'tr'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Turkish') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-4 col-xs-4">
+        <a href="<?php echo $this->getUrl('adminhtml') ?>" class="backend-link" title="<?php echo $this->__('Go to backend') ?>" target="_blank">
+            <?php echo $this->__('Admin') ?><em class="fa fa-user"></em>
+        </a>
+        <?php echo $this->getLayout()->createBlock('page/switch')->setTemplate('mgs/mpanel/languages.phtml')->toHtml() ?>
+
+        <span class="translate-inline-check">
+			<?php if (Mage::getStoreConfig('dev/translate_inline/active')): ?>
+				<input type="checkbox" name="translate-inline-check" id="translate_inline_check" checked="checked" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 0, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php else: ?>
+				<input type="checkbox" name="translate-inline-check" id="translate_inline_check" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 1, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php endif ?>
+			<label for="translate_inline_check"><?php echo $this->__('Translate Inline') ?></label>
+		</span>
+    </div>
+</form>
+

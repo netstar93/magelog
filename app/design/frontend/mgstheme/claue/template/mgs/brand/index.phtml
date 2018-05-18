@@ -1,0 +1,253 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$collection = $this->getBrandCollection();
+$featuredCollection = $this->getFeaturedBrandCollection();
+$params = $this->getRequest()->getParams();
+$urlKey = $this->getUrlKey();
+$query = '';
+foreach ($params as $key => $value) {
+    if ($key != 'order' && $key != 'dir') {
+        $query .= $key . '=' . $value;
+    }
+}
+$helper = Mage::helper('brand');
+if ($helper->iconWidth() != '') {
+    $iconWidth = $helper->iconWidth();
+} else {
+    $iconWidth = 135;
+}
+if ($helper->iconHeight() != '') {
+    $iconHeight = $helper->iconHeight();
+} else {
+    $iconHeight = 135;
+}
+?>
+<?php if ($this->getDescription() != ''): ?>
+    <div class="brand-description">
+        <?php echo $this->getDescription(); ?>
+    </div>
+<?php endif; ?>
+<?php if (count($featuredCollection)): ?>
+    <div class="featured-brand-container">
+        <div class="content-heading">
+            <h3 class="title text-uppercase"><?php echo $this->__('Featured Brands'); ?></h3>
+        </div>
+        <ul class="feature-brands-list" id="featured-list">
+            <?php foreach ($featuredCollection as $brand): ?>
+                <li class="item text-center">
+                    <div class="feature-brand-image">
+                        <a title="<?php echo $brand->getTitle(); ?>"
+                           href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+                               <?php if ($brand->getIcon() != ''): ?>
+                                <img class="brand-img img-responsive"
+                                     alt="<?php echo $brand->getTitle(); ?>"
+                                     src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getIcon(); ?>">
+                                 <?php else: ?>
+                                <img class="brand-img img-responsive"
+                                     alt="<?php echo $brand->getTitle(); ?>"
+                                     src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+                                 <?php endif; ?>
+                        </a>
+                    </div>
+                    <h4 class="brand-title">
+                        <a title="<?php echo $brand->getTitle(); ?>" href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>"><?php echo $brand->getTitle(); ?></a>
+                    </h4>
+					<div class="count">
+						<span>
+							<?php echo $this->__('%s', $this->getProductCount($brand->getId())) ?>
+							<?php if($this->getProductCount($brand->getId())>1){echo __('Products');}else{echo __('Product');} ?>
+						</span>
+					</div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+<div class="brands-container">
+    <?php echo $this->getChildHtml('brand.search'); ?>
+    <?php if (count($collection)): ?>
+        <div class="brands-toolbar toolbar margin-bottom10">
+            <div class="sorter">
+                <div class="sort-by">
+                    <?php if ($query != ''): ?>
+                        <?php if (!isset($params['dir'])): ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'priority'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=asc' . '&order=priority'; ?>">
+                                        <?php echo $this->__('Priority'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'title'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=asc' . '&order=title'; ?>">
+                                        <?php echo $this->__('Title'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'number_of_products'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=asc' . '&order=number_of_products'; ?>">
+                                        <?php echo $this->__('Number of Products'); ?>
+                                </option>
+                            </select>
+                        <?php else: ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'priority'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=' . $params['dir'] . '&order=priority'; ?>">
+                                        <?php echo $this->__('Priority'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'title'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=' . $params['dir'] . '&order=title'; ?>">
+                                        <?php echo $this->__('Title'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'number_of_products'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=' . $params['dir'] . '&order=number_of_products'; ?>">
+                                        <?php echo $this->__('Number of Products'); ?>
+                                </option>
+                            </select>
+                        <?php endif; ?>
+                        <?php if (!isset($params['order'])): ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'asc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=asc&order=priority'; ?>">
+                                        <?php echo $this->__('Ascending'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'desc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=desc&order=priority'; ?>">
+                                        <?php echo $this->__('Descending'); ?>
+                                </option>
+                            </select>
+                        <?php else: ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'asc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=asc&order=' . $params['order']; ?>">
+                                        <?php echo $this->__('Ascending'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'desc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . $query . '&dir=desc&order=' . $params['order']; ?>">
+                                        <?php echo $this->__('Descending'); ?>
+                                </option>
+                            </select>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <?php if (!isset($params['dir'])): ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'priority'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=asc' . '&order=priority'; ?>">
+                                        <?php echo $this->__('Priority'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'title'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=asc' . '&order=title'; ?>">
+                                        <?php echo $this->__('Title'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'number_of_products'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=asc' . '&order=number_of_products'; ?>">
+                                        <?php echo $this->__('Number of Products'); ?>
+                                </option>
+                            </select>
+                        <?php else: ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'priority'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=' . $params['dir'] . '&order=priority'; ?>">
+                                        <?php echo $this->__('Priority'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'title'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=' . $params['dir'] . '&order=title'; ?>">
+                                        <?php echo $this->__('Title'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['order']) && $params['order'] == 'number_of_products'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=' . $params['dir'] . '&order=number_of_products'; ?>">
+                                        <?php echo $this->__('Number of Products'); ?>
+                                </option>
+                            </select>
+                        <?php endif; ?>
+                        <?php if (!isset($params['order'])): ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'asc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=asc&order=priority'; ?>">
+                                        <?php echo $this->__('Ascending'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'desc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=desc&order=priority'; ?>">
+                                        <?php echo $this->__('Descending'); ?>
+                                </option>
+                            </select>
+                        <?php else: ?>
+                            <select onchange="setLocation(this.value)">
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'asc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=asc&order=' . $params['order']; ?>">
+                                        <?php echo $this->__('Ascending'); ?>
+                                </option>
+                                <option
+                                    <?php if (isset($params['dir']) && $params['dir'] == 'desc'): ?>selected="selected"<?php endif; ?>
+                                    value="<?php echo $this->getUrl() . $urlKey . '?' . 'dir=desc&order=' . $params['order']; ?>">
+                                        <?php echo $this->__('Descending'); ?>
+                                </option>
+                            </select>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <ul class="brands-list row">
+            <?php $class=''; $i=0; foreach ($collection as $brand): $i++; ?>
+			<?php if($i>5 && $i % 5 == 1) $class='first-md-item';
+				  if($i>4 && $i % 4 == 1) $class='first-sm-item';
+				  if($i>3 && $i % 3 == 1) $class='first-xs-item';
+				  if($i>2 && $i % 4 == 1 && $i % 2 == 1) $class='first-sm-item first-xxs-item';
+				  if($i>2 && $i % 4 != 1 && $i % 2 == 1) $class='first-xxs-item';
+				?>
+                <li class="brand-item col-md-custom-5 col-sm-3 col-xs-4 col-xxs-6 <?php echo $class;?>">
+                    <div class="brand-image">
+                        <a title="<?php echo $brand->getTitle(); ?>"
+                           href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+                               <?php if ($brand->getIcon() != ''): ?>
+                                <img class="brand-img" alt="<?php echo $brand->getTitle(); ?>"
+                                     src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getIcon(); ?>">
+                                 <?php else: ?>
+                                <img class="brand-img" alt="<?php echo $brand->getTitle(); ?>"
+                                     src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+                                 <?php endif; ?>
+                        </a>
+                    </div>
+                    <h4 class="brand-title">
+                        <a title="<?php echo $brand->getTitle(); ?>" href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>"><?php echo $brand->getTitle(); ?></a>
+                    </h4>
+					<div class="count">
+						<span>
+							<?php echo $this->__('%s', $this->getProductCount($brand->getId())) ?>
+							<?php if($this->getProductCount($brand->getId())>1){echo __('Products');}else{echo __('Product');} ?>
+						</span>
+					</div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <div class="brand-mgs">
+            <p class="note-msg"><?php echo $this->__('There are no brands matching the selection.'); ?></p>
+        </div>
+    <?php endif; ?>
+</div> 
+<script type="text/javascript">
+	initSlider('featured-list', 5, false, true, true, false, 15);
+</script>

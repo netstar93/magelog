@@ -1,0 +1,520 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header8</header>
+	<footer>footer2</footer>
+
+	<block>
+		<name>block91</name>
+		<block_cols><![CDATA[]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block92</name>
+		<block_cols><![CDATA[3,3,3,3]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>36</padding_top>
+		<padding_bottom>2</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block93</name>
+		<block_cols><![CDATA[6,6]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12","col-sm-6 col-xs-12"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>48</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block94</name>
+		<block_cols><![CDATA[]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	<block>
+		<name>block95</name>
+		<block_cols><![CDATA[3,9]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>5</block_position>
+	</block>
+	<block>
+		<name>block96</name>
+		<block_cols><![CDATA[4,4,4]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30 pull-right","col-sm-12 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>50</padding_top>
+		<padding_bottom>20</padding_bottom>
+		<block_position>6</block_position>
+	</block>
+	<block>
+		<name>block97</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>7</block_position>
+	</block>
+	<block>
+		<name>block98</name>
+		<block_cols><![CDATA[9,3]]></block_cols>
+		<block_class><![CDATA[]["col-sm-12 col-xs-12 ","hidden-sm hidden-xs"]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>8</block_position>
+	</block>
+	<block>
+		<name>block99</name>
+		<block_cols><![CDATA[6,6]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30"]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>42</padding_top>
+		<padding_bottom>48</padding_bottom>
+		<block_position>9</block_position>
+	</block>
+	
+	<block>
+		<name>block100</name>
+		<block_cols><![CDATA[4,4,4]]></block_cols>
+		<block_class><![CDATA[["col-sm-12 col-xs-12 margin-bottom50","col-sm-12 col-xs-12 margin-bottom50","col-sm-12 col-xs-12 margin-bottom50"]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>10</block_position>
+	</block>
+	
+	<block>
+		<name>block101</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>37</padding_bottom>
+		<block_position>11</block_position>
+	</block>
+	<!--  -->
+
+	<child>
+		<block_name>block93-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promobanner Digital laptop</banner_title>
+		<banner_filename>digital_laptop.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Laptop]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"margin-bottom30 col-xs-12","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block93-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promo Digital Accessories</banner_title>
+		<banner_filename>digital_accessories.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Accessories]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"col-sm-6 col-xs-12 margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block93-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promobanner Digital iWatch</banner_title>
+		<banner_filename>digital_watch.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[iWatch]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":"col-sm-6 col-xs-12 margin-bottom30 xs-btn-small","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block93-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promobanner Digital Camera</banner_title>
+		<banner_filename>digital_camera.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Camera]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>3</position>
+		<setting><![CDATA[{"custom_class":"col-xs-12 margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block95-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promo Smart Tab</banner_title>
+		<banner_filename>banner_smart_tab.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div class="padding-bottom40 margin-bottom40 banner-smart-tab"><h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:18px; color:#222222;">SMART PHONE</h3>
+<h4 class="margin-bottom10 nowrap" style="font-size:40px; line-height:50px; color:#222222;">UP TO 50%</h4>
+<div><button class="btn btn-default" onclick="setLocation('#')" style="font-size:14px;">Shop Now</button></div></div>]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"hidden-sm hidden-xs","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block96-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promo Macbook</banner_title>
+		<banner_filename>macbook.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div style="text-align: left;"><h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:14px; color:#222222;">GET UP TO 50% OFF</h3>
+<h4 class="margin-bottom10" style="font-size:35px; line-height:36px; color:#222222;">MACBOOK AIR</h4></div>]]></banner_content>
+		<banner_text_align>top-left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block96-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promo Banner SmartPhone</banner_title>
+		<banner_filename>smart_phont.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div class="text-center"><h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:18px; color:#222222;">SMART PHONE</h3>
+<h4 class="margin-bottom10 nowrap" style="font-size:50px; line-height:50px; color:#222222;">UP TO 50%</h4>
+<div><button class="btn btn-default" onclick="setLocation('http://m3.magesolution.com/claue/women.html')" style="font-size:14px;">Shop Now</button></div></div>]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block98-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue PromoBanner Laptop</banner_title>
+		<banner_filename>banner_computer.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div class="padding-bottom40 margin-bottom40 banner-computer-tab"><h3 class="fwm margin-bottom10 ls__1 lh__1" style="font-size:18px; color:#222222;">THE NEW LAPTOP</h3>
+<h4 class="margin-bottom10 nowrap" style="font-size:40px; line-height:50px; color:#222222;">NEW VISION</h4>
+<div><button class="btn btn-default" onclick="setLocation('#')" style="font-size:14px;">Shop Now</button></div></div>]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block99-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Promobanner Watch</banner_title>
+		<banner_filename>lookbook_digital.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div class="banner-watch">
+<h3 style="font-size:18px; line-height:24px; color:#ffffff;">THE ULTIMATE</h3>
+<h4 class="nowrap" style="font-size:45px; line-height:50px; color:#ffffff;">FITNESS WATCH</h4>
+</div>]]></banner_content>
+		<banner_text_align>left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block99-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue PromoBanner Up to</banner_title>
+		<banner_filename>sale_head_phone.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div class="banner-head-phone"><h3 style="font-size:18px; line-height:24px; color:#282828;">SUMMER SALE</h3>
+<h4 class="nowrap" style="font-size:50px; line-height:50px; color:#282828;">UP TO 70%</h4></div>]]></banner_content>
+		<banner_text_align>left</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<!--  -->
+	<child>
+		<block_name>block92-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 1]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_1]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-car">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">FREE SHIPPING</h6>
+<p class="no-margin">Free shipping on all US order or order above $200</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block92-1</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 2]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_2]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-help2">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">SUPPORT 24/7</h6>
+<p class="no-margin">Contact us 24 hours a day, 7 days a week</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block92-2</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 3]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_3]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-refresh">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">30 DAYS RETURN</h6>
+<p class="no-margin">Simply return it within 30 days for an exchange.</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block92-3</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Home 1 Service Block 4]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_home_1_service_block_4]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="icon-service">
+<div class="icon"><em class="pe-7s-door-lock">&nbsp;</em></div>
+<div class="text">
+<h6 class="margin-bottom5">100% PAYMENT SECURE</h6>
+<p class="no-margin">We ensure secure payment with PEV</p>
+</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block94-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Block Product Tab Title Smart Phone]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_block_product_tab_title_smart_phone]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="content-heading">
+<h3 class="title">SMART PHONE</h3>
+<div class="block-note">Top view in the week</div>
+</div>
+<div id="placeholder-menu-smartphone" class="product-tab"> </div>
+<script type="text/javascript" xml="space">
+			mgsjQuery(document).ready(function(){
+mgsjQuery("#placeholder-menu-smartphone").empty();
+				mgsjQuery(".smartphone-tab .menu-product-tabs").detach().prependTo('#placeholder-menu-smartphone');
+			});</script>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block97-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Block Computer Tab]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_block_computer_tab]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="content-heading">
+<h3 class="title">COMPUTERS &amp; TABLETS</h3>
+<div class="block-note">Top view in the week</div>
+</div>
+<div id="placeholder-menu-computer" class="product-tab">&amp;nbsp</div>
+<script type="text/javascript">
+			mgsjQuery(document).ready(function(){
+mgsjQuery("#placeholder-menu-computer").empty();
+				mgsjQuery(".computer-tab .menu-product-tabs").detach().prependTo('#placeholder-menu-computer');
+			});</script>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<!--  -->
+	<child>
+		<block_name>block100-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_new" display_type="new_products" slider="1" products_count="6" sub_title="Top trending in the week" title="Top trending" product_ratio="" auto_play="false" stop_hover="false" navigation="false" pagination="false" number_col="1" count_per_col="3"  template="mgs/mpanel/products/list/list_panel_products.phtml"}}]]></block_content>
+		<type>new_products</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"Top trending","sub_title":"Top trending in the week","custom_class":"title-v2","animation":"","animation_delay":"","product_count":"6","view_mode":"list","count_per_row":"1","number_col":"1","count_per_col":"3","product_ratio":"","slider":{"active":"1","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block100-1</block_name>
+		<block_content><![CDATA[{{block type="mpanel/product_sale" display_type="product_sale" slider="1" products_count="6" sub_title="Top seller in the week" title="TOP SELLING" product_ratio="" auto_play="false" stop_hover="false" navigation="false" pagination="false" number_col="1" count_per_col="3"  template="mgs/mpanel/products/list/list_panel_products.phtml"}}]]></block_content>
+		<type>sale</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"TOP SELLING","sub_title":"Top seller in the week","custom_class":"title-v2","animation":"","animation_delay":"","product_count":"6","view_mode":"list","count_per_row":"1","number_col":"1","count_per_col":"3","product_ratio":"","slider":{"active":"1","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block100-2</block_name>
+		<block_content><![CDATA[{{block type="mpanel/products" display_type="hot_products" slider="1" products_count="6" sub_title="Top seller in the week" title="ON-SALE ITEMS" product_ratio="" auto_play="false" stop_hover="false" navigation="false" pagination="false" number_col="1" count_per_col="3"  template="mgs/mpanel/products/list/list_panel_products.phtml"}}]]></block_content>
+		<type>hot</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"ON-SALE ITEMS","sub_title":"Top seller in the week","custom_class":"title-v2","animation":"","animation_delay":"","product_count":"6","view_mode":"list","count_per_row":"1","number_col":"1","count_per_col":"3","product_ratio":"","slider":{"active":"1","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block91-0</block_name>
+		<block_content><![CDATA[{{widget type="revslider/slider_preview" id="3"}}]]></block_content>
+		<type>revolution</type>
+		<position>1</position>
+		<setting><![CDATA[3]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block95-1</block_name>
+		<block_content><![CDATA[{{block type="core/template" products_count="6" slider="0" count_per_row="3" tabs="featured_products,hot_products,rate_products" product_ratio="1" product_template="grid" new_label="" featured_label="Featured" hot_label="Best Seller" sale_label="" rate_label="Top Rate" category_id="" template="mgs/mpanel/tabs.phtml"}}]]></block_content>
+		<type>tabs</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"smartphone-tab","animation":"","animation_delay":"","product_tab":["featured_products","hot_products","rate_products"],"new_label":"","featured_label":"Featured","hot_label":"Best Seller","sale_label":"","rate_label":"Top Rate","product_template":"grid","product_count":"6","count_per_row":"3","product_ratio":"1","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block98-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" products_count="6" slider="0" count_per_row="3" tabs="featured_products,hot_products,rate_products" product_ratio="1" product_template="grid" new_label="" featured_label="Featured" hot_label="Best Seller" sale_label="" rate_label="Top Rate" category_id="" template="mgs/mpanel/tabs.phtml"}}]]></block_content>
+		<type>tabs</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"computer-tab","animation":"","animation_delay":"","product_tab":["featured_products","hot_products","rate_products"],"new_label":"","featured_label":"Featured","hot_label":"Best Seller","sale_label":"","rate_label":"Top Rate","product_template":"grid","product_count":"6","count_per_row":"3","product_ratio":"1","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block96-2</block_name>
+		<block_content><![CDATA[{{widget type="deals/widget" product_ratio="" column="1" real_deal="17" sub_title="" title="" use_slider="0" template="mgs/deals/widget/grid.phtml"}}]]></block_content>
+		<type>deals</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"","sub_title":"","custom_class":"","animation":"","animation_delay":"","deal":["17"],"count_per_row":"1","product_ratio":"","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block101-0</block_name>
+		<block_content><![CDATA[{{widget type="blog/last" blog_count="3" categories="1" column="3" view_mode="grid" slider="1" title="LATEST FROM BLOG" sub_title="The freshest and most exciting news" character_count="120" auto_play="false" stop_hover="false" navigation="false" pagination="false"}}]]></block_content>
+		<type>latest_posts</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"LATEST FROM BLOG","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","categories":["1"],"product_count":"3","character_count":"120","view_mode":"grid","count_per_row":"3","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

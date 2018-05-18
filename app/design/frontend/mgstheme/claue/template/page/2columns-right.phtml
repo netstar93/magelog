@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="<?php echo $this->getLang(); ?>">
+    <head>
+        <?php echo $this->getChildHtml('head') ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body <?php echo $this->getBodyClass() ? ' class="' . $this->getBodyClass() . '"' : '' ?>>
+        <?php echo $this->getChildHtml('after_body_start') ?>
+
+        <?php
+        $helper = Mage::helper('mpanel');
+        $setting = $helper->getThemeSettings();
+        ?>
+		<?php if(Mage::getStoreConfig('mgs_theme/general/header') == 'header5'): ?> <div class="content-left"><?php endif;?>
+        <?php if ($setting['layout'] == 'boxed'): ?>
+            <div id="wrapper">
+            <?php endif ?>
+
+            <?php echo $this->getChildHtml('global_notices') ?>
+            <header>
+                <?php echo $this->getChildHtml('header') ?>
+            </header>
+            <section id="after-header">
+                <div class="container">
+                    <?php echo $this->getChildHtml('slider') ?>
+                </div>
+            </section>
+            <?php $helper = $this->helper('mpanel') ?>
+            <?php if ($helper->isHomepage()): ?>
+                <section id="maincontent">
+                    <div class="container">
+                        <div class="row">
+                            <?php echo $this->getChildHtml('global_messages') ?>
+                        </div>
+                    </div>
+                    <?php if ($helper->useHomepageBuilder()): ?>
+                        <div id="homepage-content-container">
+                            <?php echo $helper->getLayoutConfig() ?>
+                        </div>
+                    <?php else: ?>
+						<button class="visible-sm visible-xs sidebar-reponsive-btn" onclick="enableRightSide();" type="button"><span class="icon pe-7s-edit"></span></button>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-main col-md-9 col-sm-12 col-xs-12">
+                                    <?php echo $this->getChildHtml('global_messages') ?>
+                                    <?php echo $this->getChildHtml('content') ?>
+                                </div>
+                                <aside class="col-right sidebar col-md-3 col-sm-12 col-xs-12">
+									<h3 class="title-topabs visible-sm visible-xs"><?php echo $this->__('Right Sidebar'); ?> <i class="pe-7s-close nav-close" onclick="disableRightSide();"></i></h3>
+                                    <div class="leftcate right-content-container">
+                                        <?php echo $this->getChildHtml('right') ?>
+                                    </div>						
+                                </aside>
+                            </div>
+                        </div>
+                    <?php endif ?>
+                </section>
+            <?php else: ?>
+                <section id="maincontent">
+                    <?php echo $this->getChildHtml('breadcrumbs') ?> 
+					<button class="visible-sm visible-xs sidebar-reponsive-btn" onclick="enableRightSide();" type="button"><span class="icon pe-7s-edit"></span></button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-main col-md-9 col-sm-12 col-xs-12">
+                                <?php echo $this->getChildHtml('global_messages') ?>
+                                <?php echo $this->getChildHtml('content') ?>
+                            </div>
+                            <aside class="col-right sidebar col-md-3 col-sm-12 col-xs-12">      
+								<h3 class="title-topabs visible-sm visible-xs"><?php echo $this->__('Right Sidebar'); ?> <i class="pe-7s-close nav-close" onclick="disableRightSide();"></i></h3>
+								<div class="right-content-container">
+									<?php // New code ?>
+									<?php if ($helper->checkCategoryPage()): ?>
+										<div id="right-content-container">
+											<?php echo $helper->getCategoryRight() ?>
+										</div>
+									<?php elseif ($helper->checkProductPage()): ?>
+										<div id="right-content-container">
+											<?php echo $helper->getProductRight() ?>
+										</div>
+									<?php elseif ($helper->checkSearchPage()): ?>
+										<div id="right-content-container">
+											<?php echo $helper->getSearchRight() ?>
+										</div>
+									<?php elseif ($helper->checkCmsPage()): ?>
+										<div id="right-content-container">
+											<?php echo $helper->getPageRight() ?>
+										</div>
+									<?php elseif ($helper->checkAccountPage()): ?>
+										<div id="right-content-container">
+											<?php echo $helper->getAccountRight() ?>
+										</div>
+									<?php elseif ($helper->checkBrandPage()): ?>
+										<div id="right-content-container">
+											<?php echo $helper->getBrandRight() ?>
+										</div>
+									<?php elseif ($helper->checkBlogPage()): ?>
+										<div id="right-content-container">
+											<?php echo $this->getLayout()->getBlock('right.blog.menu')->toHtml(); ?>
+											<?php echo $helper->getBlogRight() ?>
+										</div>
+									<?php else: ?>
+										<?php echo $this->getChildHtml('right') ?>
+									<?php endif; ?>
+								</div>
+                            </aside>
+                        </div>
+                    </div>
+                </section>
+            <?php endif ?>
+            <footer id="footer">
+                <?php echo $this->getChildHtml('footer') ?>
+            </footer>
+
+            <?php if ($setting['layout'] == 'boxed'): ?>
+            </div>
+        <?php endif ?>
+		<?php if(Mage::getStoreConfig('mgs_theme/general/header') == 'header5'): ?> </div><?php endif;?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
+        <?php echo $this->getChildHtml('theme_popup') ?>
+    </body>
+</html>

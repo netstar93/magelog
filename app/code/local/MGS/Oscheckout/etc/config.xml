@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MGS_Oscheckout>
+            <version>0.1.0</version>
+        </MGS_Oscheckout>
+    </modules>
+    <frontend>
+        <routers>
+            <oscheckout>
+                <use>standard</use>
+                <args>
+                    <module>MGS_Oscheckout</module>
+                    <frontName>oscheckout</frontName>
+                </args>
+            </oscheckout>
+        </routers>
+		<translate>
+            <modules>
+                <oscheckout>
+                    <files>
+                        <default>MGS_Oscheckout.csv</default>
+                    </files>
+                </oscheckout>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <oscheckout>
+                    <file>oscheckout.xml</file>
+                </oscheckout>
+            </updates>
+        </layout>
+        <events>
+             <checkout_type_onepage_save_order>
+                <observers>
+                    <oscheckout>
+                        <type>model</type>
+                        <class>oscheckout/observer</class>
+                        <method>saveAdditionalInfo</method>
+                    </oscheckout>
+                </observers>
+            </checkout_type_onepage_save_order>
+			<!--sales_order_place_after>
+				<observers>
+					<update_ads_url>
+						<type>model</type>
+						<class>oscheckout/observer</class>
+						<method>saveOrderComment</method>
+					</update_ads_url>
+				</observers>
+			</sales_order_place_after-->
+        </events>
+    </frontend>
+    <adminhtml>
+		<menu>
+			<mgscore module="mgscore"> 
+				<children>
+					<oscheckout module="oscheckout">
+						<title>One Step Checkout</title>
+						<sort_order>72</sort_order>               
+						<action>adminhtml/system_config/edit/section/oscheckout</action>
+					</oscheckout>
+				</children>
+			</mgscore>
+		</menu>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<mgscore module="mgscore"> 
+							<children>
+								<oscheckout module="oscheckout">
+									<title>One Step Checkout</title>
+									<sort_order>72</sort_order>
+								</oscheckout>
+							</children>
+						</mgscore>
+						<system>
+							<children>
+								<config>
+									<children>
+										<oscheckout translate="title">
+											<title>One Step Checkout</title>
+											<sort_order>100</sort_order>
+										</oscheckout>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<oscheckout>
+					<file>mgs_oscheckout.xml</file>
+				</oscheckout>
+			</updates>
+		</layout>
+    </adminhtml>
+    <global>
+        <models>
+            <oscheckout>
+                <class>MGS_Oscheckout_Model</class>
+            </oscheckout>
+        </models>
+		
+		<resources>
+            <oscheckout_setup>
+                <setup>
+                    <module>MGS_Oscheckout</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </oscheckout_setup>
+            <oscheckout_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </oscheckout_write>
+            <oscheckout_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </oscheckout_read>
+        </resources>
+        
+        <blocks>
+            <oscheckout>
+                <class>MGS_Oscheckout_Block</class>
+            </oscheckout>
+            <checkout>
+                <rewrite>
+                    <onepage_link>MGS_Oscheckout_Block_Checkout_Onepage_Link</onepage_link>
+                </rewrite>              
+            </checkout>
+            <checkout>
+                <rewrite>
+                    <links>MGS_Oscheckout_Block_Checkout_Links</links>
+                </rewrite>
+            </checkout>
+             <checkout>
+                <rewrite>
+                  <cart_sidebar>MGS_Oscheckout_Block_Checkout_Cart_Sidebar</cart_sidebar>
+                </rewrite>
+            </checkout>
+			
+			<adminhtml>
+                <rewrite>
+                    <sales_order_grid>MGS_Oscheckout_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
+					<sales_order_view_info>MGS_Oscheckout_Block_Adminhtml_Sales_Order_View_Info</sales_order_view_info>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <oscheckout>
+                <class>MGS_Oscheckout_Helper</class>
+            </oscheckout>
+        </helpers>
+        
+    </global>
+	<default>
+		<oscheckout>
+			<general>
+				<enabled>1</enabled>
+				<checkout_title>Onestep Checkout</checkout_title>
+				<checkout_link>Checkout</checkout_link>
+			</general>
+			<registration>
+				<guest_checkout>1</guest_checkout>
+			</registration>
+			<terms>
+				<enabled>1</enabled>
+				<title>Terms and Conditions</title>
+				<label>I agree</label>
+				<contents>Terms and conditions content</contents>
+			</terms>
+			
+			<comment>
+				<enabled>1</enabled>
+				<title>Order Comment</title>
+			</comment>
+		</oscheckout>
+	</default>
+</config>

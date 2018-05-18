@@ -1,0 +1,47 @@
+<?php
+/* * ****************************************************
+ * Package   : QuickView
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <?php if (!$_product->isGrouped()): ?>
+			<div class="form-inline form-group">
+				<span onclick="minusQty('qty')" class="qty minus">-</span>
+				<input type="text" class="form-control input-qty-product" title="Qty" value="<?php echo $this->getProductDefaultQty() * 1 ?>" name="qty" id="qty"/>
+				<span onclick="plusQty('qty')" class="qty plus">+</span>
+			</div>
+        <?php endif; ?>
+            <div class="btn-shop">
+                <button type="button" title="<?php echo $buttonTitle ?>" class="btn btn-secondary" onclick="ajaxSubmitForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>        
+                <div id="ajax_cart_loader" style="display:none;"><img src="<?php echo $this->getSkinUrl('images/loader.svg') ?>"/></div>
+            </div>
+        <?php echo $this->getChildHtml('', true, true) ?>
+        <script type="text/javascript">
+            function plusQty(qtyInput){
+                if(jQuery('#'+qtyInput).attr('disabled')!='disabled'){
+                    qty = $(qtyInput).value;
+                    qty = parseInt(qty);
+                    qty++;
+                    $(qtyInput).value = qty;
+                }
+            }
+    		
+            function minusQty(qtyInput){
+                if(jQuery('#'+qtyInput).attr('disabled')!='disabled'){
+                    qty = $(qtyInput).value;
+                    qty = parseInt(qty);
+    				
+                    if(qty>1){
+                        qty--;
+                        $(qtyInput).value = qty;
+                    }
+                }
+            }
+        </script>
+    </div>
+<?php endif; ?>

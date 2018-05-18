@@ -1,0 +1,202 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php $storeId = Mage::app()->getStore()->getStoreId(); ?>
+<?php $attributes = $this->getAttributes(); ?>
+<?php $staticBlocks = $this->getStaticBlocks($storeId); ?>
+<?php
+$count = 0;
+if (Mage::getStoreConfig('mpanel/product_tabs/custom_tab_one')) {
+    $count++;
+}
+if (Mage::getStoreConfig('mpanel/product_tabs/custom_tab_two')) {
+    $count++;
+}
+if (Mage::getStoreConfig('mpanel/product_tabs/custom_tab_three')) {
+    $count++;
+}
+?>
+<?php if ($helper->acceptToUsePanel()): ?>    
+    <div class="edit-static-form">
+        <div class="row">
+            <div class="col-sm-12 builder-title">
+                <h2><?php echo $this->__('Select Or Create a Product Tab'); ?></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="bs-glyphicons">
+                    <ul class="bs-glyphicons-list" id="list-item">                        
+                        <?php if (!Mage::getStoreConfig('mpanel/product_tabs/description')): ?>
+                            <li id="static-item" onclick="createProductTab('<?php echo $this->getUrl('mpanel/post/createProductTab', array('alias' => 'description')); ?>');">
+                                <span class="glyphicon glyphicon-th"></span>
+                                <span class="glyphicon-class"><?php echo $this->__('Description Tab') ?></span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (!Mage::getStoreConfig('mpanel/product_tabs/aditional')): ?>
+                            <li id="static-item" onclick="createProductTab('<?php echo $this->getUrl('mpanel/post/createProductTab', array('alias' => 'additional')); ?>');">
+                                <span class="glyphicon glyphicon-list"></span>
+                                <span class="glyphicon-class"><?php echo $this->__('Aditional Tab') ?></span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (!Mage::getStoreConfig('mpanel/product_tabs/reviews')): ?>
+                            <li id="static-item" onclick="createProductTab('<?php echo $this->getUrl('mpanel/post/createProductTab', array('alias' => 'reviews')); ?>');">
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                <span class="glyphicon-class"><?php echo $this->__('Reviews Tab') ?></span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (!Mage::getStoreConfig('mpanel/product_tabs/tags')): ?>
+                            <li id="static-item" onclick="createProductTab('<?php echo $this->getUrl('mpanel/post/createProductTab', array('alias' => 'product_tag_list')); ?>');">
+                                <span class="glyphicon glyphicon-tag"></span>
+                                <span class="glyphicon-class"><?php echo $this->__('Product Tags Tab') ?></span>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>            
+            </div>
+        </div>
+        <?php if($count < 3): ?>
+        <div class="row">
+            <h2><?php echo $this->__('Create Custom Tab'); ?></h2>
+            <form id="edit_form" action="<?php echo $this->getUrl('mpanel/post/saveProductTab') ?>" method="POST" enctype="multipart/form-data">
+				<fieldset id="block_base_fieldset" class="fieldset-wide-custom">
+					<div class="form-horizontal">    
+						<div class="form-group">
+							<label for="block_type" class="col-sm-4 control-label"><?php echo $this->__('Type'); ?> <span class="required">*</span></label>                        
+							<div class="col-sm-8">
+								<select id="block_type" class="input-text select required-entry" name="type">
+									<option value=""></option>
+									<option value="static"><?php echo $this->__('Static Block'); ?></option>
+									<option value="attribute"><?php echo $this->__('Product Attribute'); ?></option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="block_title" class="col-sm-4 control-label"><?php echo $this->__('Title'); ?> <span class="required">*</span></label>
+							<div class="col-sm-8">
+								<input type="text" class=" input-text required-entry" title="Title" name="title" id="block_title">
+							</div>
+						</div>
+						<div id="static-select" class="form-group" style="display: none;">
+							<label for="block_static" class="col-sm-4 control-label"><?php echo $this->__('Specific Static Block'); ?></label>
+							<div class="col-sm-8">
+								<select id="block_static" class="input-text select" name="block_static">
+									<?php foreach($staticBlocks as $block): ?>
+										<option value="<?php echo $block['value']; ?>"><?php echo $block['label']; ?></option>
+									<?php endforeach; ?>
+								</select>
+								<?php if($count < 3): ?><span class="note"><em class="fa fa-caret-up"></em><a href="<?php echo $this->getUrl('mpanel/index/createStaticBlock'); ?>" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/createStaticBlock') ?>')"><?php echo $this->__('Create New Static Block'); ?></a></span><?php endif; ?>
+							</div>
+						</div>
+						<div id="attribute-select" class="form-group" style="display: none;">
+							<label for="block_attribute" class="col-sm-4 control-label"><?php echo $this->__('Specific Attribute'); ?> </label>                        
+							<div class="col-sm-8">
+								<select id="block_attribute" class="input-text select" name="block_attribute">
+									<?php foreach($attributes as $attribute): ?>
+										<option value="<?php echo $attribute['value']; ?>"><?php echo $attribute['label']; ?></option>
+									<?php endforeach; ?>                            
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="block_value" class="col-sm-4 control-label"><?php echo $this->__('Value'); ?></label>
+							<div class="col-sm-8"><input type="text" class=" input-text" readonly title="Value" name="value" id="block_value"></div>
+						</div>    
+					</div>
+				</fieldset>
+            </form>            
+        </div>
+        <script type="text/javascript">
+            <?php if($this->getRequest()->getParam('type') != '' && $this->getRequest()->getParam('value') != ''): ?>
+            mgsjQuery(document).ready(function() {
+                mgsjQuery('#block_type').val('<?php echo $this->getRequest()->getParam('type'); ?>');
+                mgsjQuery('#static-select').show();
+                mgsjQuery('#block_static').val('<?php echo $this->getRequest()->getParam('value'); ?>');
+                mgsjQuery('#block_value').val('<?php echo $this->getRequest()->getParam('value'); ?>');
+            });
+            <?php endif; ?>
+            mgsjQuery("#block_base_fieldset").append('<div class="builder-action"><div class="buttons"><button type="button" class="btn btn-primary" onclick="updateForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div>');
+            var updateForm = new VarienForm('edit_form');
+
+            updateForm.submit = function (button, url) {
+                if (this.validator.validate()) {
+                    mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+                    mgsjQuery('#toggleblock_content').click();
+                    button.disabled = true;
+                    var form = this.form;
+                    var oldUrl = form.action;
+
+                    if (url) {
+                        form.action = url;
+                    }
+                    var e = null;
+                    try {
+                        mgsjQuery.ajax({
+                            type: 'POST',
+                            url: form.action,
+                            dataType: 'json',
+                            data: mgsjQuery('#edit_form').serialize(),
+                            success: function (data, textStatus, xhr) {
+                                if (data.result == 'success') {
+                                    button.disabled = false;
+                                    mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');                                    
+                                    if (window.parent == window.top) {
+                                        window.parent.mgsjQuery.magnificPopup.close();
+                                        window.top.location.reload();
+                                    }
+                                }
+                            }
+                        });
+                    } catch (e) {
+                    }
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+
+                    if (button && button != 'undefined') {
+                        button.disabled = true;
+                    }
+                }
+            }.bind(updateForm);                        
+            mgsjQuery('#block_type').change(function() {
+                if(this.value == 'static') {
+                    mgsjQuery('#static-select').show();
+                    mgsjQuery('#attribute-select').hide();
+                    mgsjQuery('#block_value').val(mgsjQuery('#block_static').val());
+                } else if(this.value == 'attribute') {
+                    mgsjQuery('#static-select').hide();
+                    mgsjQuery('#attribute-select').show();
+                    mgsjQuery('#block_value').val(mgsjQuery('#block_attribute').val());
+                } else {
+                    mgsjQuery('#static-select').hide();
+                    mgsjQuery('#attribute-select').hide();
+                    mgsjQuery('#block_value').val('');
+                }
+            });
+            mgsjQuery('#block_static').change(function() {
+                mgsjQuery('#block_value').val(this.value);                
+            });
+            mgsjQuery('#block_attribute').change(function() {
+                mgsjQuery('#block_value').val(this.value);                
+            });
+        </script>
+        <?php endif; ?>
+        <script type="text/javascript">
+            function createProductTab(url) {
+                mgsjQuery.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    success: function (data, textStatus, xhr) {
+                        if (data.result == 'success') {
+                            window.parent.mgsjQuery.magnificPopup.close();
+                            if (window.parent == window.top) {
+                                window.top.location.reload();
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+    </div>
+<?php endif; ?>
+

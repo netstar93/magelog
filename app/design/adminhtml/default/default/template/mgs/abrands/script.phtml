@@ -1,0 +1,25 @@
+<script type="text/javascript">
+	function showOptions(){
+		var val = $('name_attr').value;
+		var url = '<?php echo Mage::helper("adminhtml")->getUrl("abrands/adminhtml_abrands/value/")?>'+val;
+		<?php if($id=$this->getRequest()->getParam('id')): ?>
+			url+='?id=<?php echo $id ?>';
+		<?php endif ?>
+		new Ajax.Request(url, {
+			onSuccess: function(response){
+				$('option_id').innerHTML = response.responseText;
+				getOptionText();
+			}
+		});
+	}
+	
+	function getOptionText(){
+		var sel = $('option_id');
+		text= sel.options[sel.selectedIndex].text;
+		$('title').value = text;
+	}
+	
+	document.observe("dom:loaded", function() {
+		showOptions();
+	});
+</script>

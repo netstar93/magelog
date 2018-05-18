@@ -1,0 +1,26 @@
+<?php $banner = Mage::getModel('promobanners/promobanners')->load($this->getBannerId()); ?>
+<?php $baseImg = $this->getSkinUrl('images/blank.png'); ?>
+<?php $lazyLoad = Mage::getStoreConfig('mgs_theme/general/lazy_load_img'); ?>
+<div class="promo-banner">
+    <a href="<?php if($banner->getUrl() == ""): ?>#<?php else: ?><?php echo $banner->getUrl() ?><?php endif ?>">
+	
+		<?php $imgUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promobanners/' . $banner->getFilename(); ?>
+		<?php if(!$lazyLoad): ?><?php $baseImg = $imgUrl; ?><?php endif ?>
+		
+			<img alt="<?php echo $banner->getTitle() ?>" 
+				 src="<?php echo $baseImg ?>" data-original="<?php echo $imgUrl ?>" 
+				 class="img-responsive<?php if($lazyLoad): ?> lazy<?php endif ?>"/>
+	</a>
+    <div class="text-container <?php if ($banner->getTextAlign() != ''): ?>text-<?php echo $banner->getTextAlign() ?><?php endif ?>">
+		<?php if($banner->getContent() != ""): ?>
+			<div class="text-hover">
+				<?php echo $banner->getContent() ?>
+			</div>
+		<?php endif ?>
+        <?php if ($banner->getButton()): ?>
+			<div class="view-more">
+            	<button class="btn btn-promo-banner" onclick="setLocation('<?php echo $banner->getUrl() ?>')"><span><?php echo $banner->getButton() ?></span></button>
+			</div>
+        <?php endif ?>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<?php if(Mage::getStoreConfig('deals/general/enabled')): ?>
+	<?php $deal = $this->getDeals(); ?>
+	<?php if($deal->getId()): ?>
+		<?php
+			$timezone = Mage::app()->getStore()->getConfig('general/locale/timezone');
+			$currentTimezone = @date_default_timezone_get();
+			@date_default_timezone_set($timezone);
+			$now = date('m/d/y h:i:s A');
+			$endTime = str_replace('23:59:59','00:00:00', $deal->getEndTime());
+		?>
+		<div class="deal-timer">
+			<div id="slide-deal-timer-<?php echo $this->getProductId(); ?>" class="countdown"></div>
+			<div class="time-note">
+				<span class="days"><?php echo $this->__('Days') ?></span>
+				<span class="hours"><?php echo $this->__('Hours') ?></span>
+				<span class="mins"><?php echo $this->__('Mins') ?></span>
+				<span class='secs'><?php echo $this->__('Secs') ?></span>
+			</div>
+			<div class="item-left">
+				<?php $itemLeft = $deal->getMaxDealQty(); ?>
+				<?php if($itemLeft!=''): ?>
+					<?php if($itemLeft>1): ?>
+						<?php echo $this->__('Items left:') ?> <span><?php echo $itemLeft ?></span>
+					<?php else: ?>
+						<?php echo $this->__('Item left:') ?> <span><?php echo $itemLeft ?></span>
+					<?php endif ?>
+				<?php else: ?>
+					<?php echo $this->__('Items left:') ?> <span><?php echo $this->__('Unlimited') ?></span>
+				<?php endif ?>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var dthen<?php echo $this->getProductId(); ?> = new Date("<?php echo Date("m/d/y", strtotime($endTime)).' 11:59:59 PM'; ?>");
+			start = "<?php echo $now; ?>";
+			start_date = Date.parse(start);
+			var dnow<?php echo $this->getProductId(); ?> = new Date(start_date);
+			ddiff = new Date((dthen<?php echo $this->getProductId(); ?>)-(dnow<?php echo $this->getProductId(); ?>));
+			gsecs<?php echo $this->getProductId(); ?> = Math.floor(ddiff.valueOf()/1000);
+
+			var iid<?php echo $this->getProductId(); ?> = "slide-deal-timer-<?php echo $this->getProductId(); ?>";
+			CountBack(gsecs<?php echo $this->getProductId(); ?>,"slide-deal-timer-<?php echo $this->getProductId(); ?>", <?php echo $this->getProductId(); ?>);
+		</script>
+	<?php endif ?>
+<?php endif ?>

@@ -1,0 +1,77 @@
+<?php $collection = $this->getTestimonials() ?>
+<?php 
+	if($this->getViewMode()){
+		$viewMode = $this->getViewMode();
+	}
+	else{
+		$viewMode = 'grid';
+	}
+
+	if ($this->getCountPerRow()) {
+        $col = $this->getCountPerRow();
+    } else {
+        $col = 1;
+    }
+	$class = '';
+	if( $col == 1 ){$class = 'alone';}
+?>
+<?php if(count($collection)>0): ?>
+	<div class="testimonial-container <?php echo $class; ?>">
+		<?php if ($this->getTitle() != '' || $this->getSubTitle() != ''): ?>
+			<div class="content-heading">
+				<?php if ($this->getTitle() != ''): ?>
+					<h3 class="title"><?php echo $this->getTitle(); ?></h3>
+				<?php endif ?>
+				<?php if ($this->getSubTitle() != ''): ?>
+					<div class="block-note"><?php echo $this->getSubTitle(); ?></div>
+				<?php endif ?>
+			</div>
+		<?php endif ?>
+		<?php if($viewMode=='grid'): ?>
+			<div class="owl-carousel testimonials-carousel" data-plugin-options="{'items': 1, 'autoHeight': true, 'controlNav': true }" id="testimonials-carousel">
+				<?php foreach($collection as $_item): ?>
+					<div class="testimonial-item">
+						<div class="testimonial-author">
+							<?php if($_item->getAvatar()): ?>
+								<div class="img-thumbnail img-thumbnail-small">							
+									<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>testimonial/<?php echo $_item->getAvatar() ?>" alt="">							
+								</div>
+							<?php endif;?>
+						</div>
+						<div class="testimonial-content">
+							<p class="content"><?php echo $_item->getContent() ?></p>
+							<strong><?php echo $_item->getName() ?></strong><br/>
+							<p><span><?php echo $_item->getInformation() ?></span></p>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		
+		<script type="text/javascript">
+			sliderTesmonial('testimonials-carousel', <?php echo $col;?>, false, false, false, true);
+		</script>
+		<?php else: ?>
+			<div class="testimonials-list">
+				<?php foreach($collection as $_item): ?>
+					<div class="testimonial-item">
+						<div class="testimonial-author">
+						<?php if($_item->getAvatar()): ?>
+							<div class="img-thumbnail img-thumbnail-small">							
+								<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>testimonial/<?php echo $_item->getAvatar() ?>" alt="">							
+							</div>
+						<?php endif;?>
+							<p><strong><?php echo '- '.$_item->getName() ?></strong><span><?php echo $_item->getInformation().' -' ?></span></p>
+						</div>
+						<div class="testimonial-content">
+							<p><?php echo $_item->getContent() ?></p>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		<?php endif ?>
+	</div>
+<?php else: ?>
+<div class="alert alert-danger">
+	<p><?php echo $this->__('There are no testimonials matching the selection.') ?></p>
+</div>
+<?php endif ?>

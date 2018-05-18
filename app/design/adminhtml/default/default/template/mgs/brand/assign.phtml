@@ -1,0 +1,48 @@
+<?php
+
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<div class="content-header">
+    <h3 class="icon-head head-adminhtml-import"><?php echo $this->__('Assign Product(s) to Brand(s)'); ?></h3>
+
+    <p class="form-buttons">
+        <button onclick="assignForm.submit();" class="scalable save" type="button"
+                title="<?php echo $this->__('Assign'); ?>"
+                id="assign_button"><span><span><span><?php echo $this->__('Assign'); ?></span></span></span></button>
+    </p>
+</div>
+<div class="entry-edit">
+    <form id="assign_form" enctype="multipart/form-data" method="post"
+          action="<?php echo $this->getUrl('*/*/assignData') ?>">
+        <?php echo $this->getBlockHtml('formkey'); ?>
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Settings'); ?></h4>
+
+            <div class="form-buttons"></div>
+        </div>
+        <div id="base_fieldset" class="fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                    <tr>
+                        <td class="label"><label for="assign_file"><?php echo $this->__('Select CSV File to Assign'); ?>
+                                <span class="required">*</span></label>
+                        </td>
+                        <td class="value">
+                            <input type="file" class=" required-entry"
+                                   title="<?php echo $this->__('Select CSV File to Assign'); ?>" value=""
+                                   name="assign_file" id="assign_file"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var assignForm = new varienForm('assign_form');
+</script>

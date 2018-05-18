@@ -1,0 +1,108 @@
+<?php
+/**
+ * Storelocator template for store view
+ *
+ * @author Magento
+ */
+
+/**
+ * @var $this MGS_Storelocator_Block_View
+ * @see MGS_Storelocator_Block_View
+ */
+?>
+<?php $_storeView = $this->helper('mgs_storelocator')->getStoreViewInstance(); ?>
+<div class="storelocator-details">
+	<div class="row">
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="box-store margin-bottom40">
+				<div class="block-title">
+					<h3><?php echo $this->__('Store Information')?></h3>
+				</div>
+				<div class="box-store-content">
+				<?php if ($imageUrl = $_storeView->getStoreLogo()): ?>
+					<div class="store-image">
+						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'mgs_storelocator/'.$_storeView->getStoreLogo() ?>" alt="<?php echo $this->escapeHtml($_storeView->getName()) ?>" title="<?php echo $this->escapeHtml($_storeView->getName()) ?>" class="img-responsive"/>
+					</div>
+				<?php endif ?>
+				<div class="store-info-detail">
+					<table class="table table-bordered table-hover">
+						<tbody>
+							<tr>
+								<th><?php echo $this->__('Address:') ?></th>
+								<td><?php echo $this->escapeHtml($_storeView->getStreetAddress()).' '.$this->escapeHtml(ucfirst($_storeView->getCity())).' '.$this->escapeHtml(ucfirst($_storeView->getState())).' '.$this->escapeHtml($_storeView->getZipcode()).' '.$_storeView->getCountry() ?></td>
+							</tr>
+							<?php if($_storeView->getPhone()): ?>
+							<tr>
+								<th><?php echo $this->__('Phone:') ?></th>
+								<td><a href="tel:<?php echo $this->escapeHtml($_storeView->getPhone()) ?>"><?php echo $this->escapeHtml($_storeView->getPhone()) ?></td>
+							</tr>
+							<?php endif;?>
+							<?php if($_storeView->getEmail()): ?>
+							<tr>
+								<th><?php echo $this->__('Email:') ?></th>
+								<td><a href="mailto:<?php echo $this->escapeHtml($_storeView->getEmail()) ?>"><?php echo $this->escapeHtml($_storeView->getEmail()) ?></a></td>
+							</tr>
+							<?php endif;?>
+							<?php if($_storeView->getFax()): ?>
+							<tr>
+								<th><?php echo $this->__('Fax:') ?></th>
+								<td><?php echo $this->escapeHtml($_storeView->getFax()) ?></td>
+							</tr>
+							<?php endif;?>
+							<?php if($_storeView->getUrl()): ?>
+							<tr>
+								<th><?php echo $this->__('Website:') ?></th>
+								<td><a href="<?php echo $_storeView->getUrl() ?>"><?php echo $_storeView->getUrl() ?></a></td>
+							</tr>
+							<?php endif;?>
+						</tbody>
+					</table>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="box-store margin-bottom40">
+				<div class="block-title"><h3><?php echo $this->__('Store Overview')?></h3></div>
+				<div class="store-description">
+					<?php echo $_storeView->getDescription(); ?>
+				</div>
+			</div>
+			<div class="box-store margin-bottom40">
+				<div class="block-title"><h3><?php echo $this->__('Opening Hours') ?></h3></div>
+				<div class="opening-hours">
+					<?php echo $_storeView->getTradingHours(); ?>
+				</div>
+			</div>
+		</div>
+		<div class="back col-md-12 text-center margin-bottom40">
+			<button onclick="setLocation('<?php echo $this->getBackUrl() ?>');" class="btn btn-primary btn-lg" title="<?php echo $this->__('Back') ?>" type="button">
+				<span><span><?php echo $this->__('View all store') ?></span></span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<div id="map-detail"></div>
+	
+</div>
+<?php 
+//Get store google map related information
+$storeName = $_storeView->getName();
+$storeLat = $_storeView->getLatitude();
+$storeLong = $_storeView->getLongitude();
+$storeRadius = $this->getRadius($_storeView);
+?>
+<?php if($storeLat && $storeLong): ?>
+<script>
+    //<![CDATA[
+    var storeLat = <?php echo $storeLat ;?>;
+    var storeLong = <?php echo $storeLong ;?>;
+    var storeRadius = <?php echo $storeRadius ;?>;
+    var storeInfoText = '<div class="map-short-info"><h3><?php echo $storeName ; ?></h3><p><?php echo $_storeView->getStreetAddress() ?> <?php echo $_storeView->getCity() ?> <?php echo $_storeView->getState() ?> <?php echo $_storeView->getZipcode() ?> <?php echo $_storeView->getCountry() ?></p>';
+    var googleMapDivId = 'map-detail';
+    google.maps.event.addDomListener(window, 'load', initialize(storeLat, storeLong, storeRadius, storeInfoText, googleMapDivId));
+      //]]>
+</script>
+<?php endif ?>

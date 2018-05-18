@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="<?php echo $this->getLang(); ?>">
+	<head>
+		<?php echo $this->getChildHtml('head') ?>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body <?php echo $this->getBodyClass() ? ' class="' . $this->getBodyClass() . '"' : '' ?>>
+		<?php echo $this->getChildHtml('after_body_start') ?>
+		
+		<?php  $helper = Mage::helper('mpanel'); $setting = $helper->getThemeSettings(); ?>
+		<?php if(Mage::getStoreConfig('mgs_theme/general/header') == 'header5'): ?> <div class="content-left"><?php endif;?>
+		<?php if($setting['layout']=='boxed'): ?>
+			<div id="wrapper">
+		<?php endif ?>
+		
+		<?php echo $this->getChildHtml('global_notices') ?>
+		<header>
+			<?php echo $this->getChildHtml('header') ?>
+		</header>
+		<section id="after-header">
+			<div class="container">
+				<?php echo $this->getChildHtml('slider') ?>
+			</div>
+		</section>
+		<?php $helper = $this->helper('mpanel') ?>
+		<?php if($helper->isHomepage() && $helper->useHomepageBuilder()): ?>
+			<section id="maincontent">
+				<div class="container">
+					<div class="row">
+						<?php echo $this->getChildHtml('global_messages') ?>
+					</div>
+				</div>
+				
+				<div id="homepage-content-container">
+					<?php echo $helper->getLayoutConfig() ?>
+				</div>
+			</section>
+			
+		<?php else: ?>
+			<section id="maincontent">
+				<?php echo $this->getChildHtml('breadcrumbs') ?> 
+				<div class="container">
+						
+					<div class="row">
+						<div class="col-main col-md-12">
+							<?php echo $this->getChildHtml('global_messages') ?>
+							<?php echo $this->getChildHtml('content') ?>
+						</div>
+					</div>
+
+
+				</div>
+			</section>
+		<?php endif ?>
+		<footer id="footer">
+			<?php echo $this->getChildHtml('footer') ?>
+		</footer>
+		
+		<?php if($setting['layout']=='boxed'): ?>
+			</div>
+		<?php endif ?>
+		<?php if(Mage::getStoreConfig('mgs_theme/general/header') == 'header5'): ?> </div><?php endif;?>
+		
+		<?php echo $this->getChildHtml('before_body_end') ?>
+		<?php echo $this->getAbsoluteFooter() ?>
+		<?php echo $this->getChildHtml('theme_popup') ?>
+	</body>
+</html>

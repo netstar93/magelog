@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MGS_Portfolio>
+            <version>0.1.4</version>
+        </MGS_Portfolio>
+    </modules>
+    <frontend>
+        <routers>
+            <portfolio>
+                <use>standard</use>
+                <args>
+                    <module>MGS_Portfolio</module>
+                    <frontName>portfolio</frontName>
+                </args>
+            </portfolio>
+        </routers>
+        <layout>
+            <updates>
+                <portfolio>
+                    <file>mgs_portfolio.xml</file>
+                </portfolio>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<MGS_Portfolio after="Mage_Adminhtml">MGS_Portfolio_Adminhtml</MGS_Portfolio>
+					</modules> 
+				</args>
+			</adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<mgscore module="mgscore"> 
+				<children>
+					<portfolio module="portfolio">
+						<title>Portfolio</title>
+						<sort_order>200</sort_order>               
+						<children>
+							<category module="portfolio">
+								<title>Portfolio Categories</title>
+								<sort_order>0</sort_order>
+								<action>adminhtml/category</action>
+							</category>
+							<items module="portfolio">
+								<title>Portfolio Items</title>
+								<sort_order>1</sort_order>
+								<action>adminhtml/portfolio</action>
+							</items>
+						</children>
+					</portfolio>
+				</children>
+			</mgscore>
+		</menu>
+    </adminhtml>   
+    <global>
+		<events>
+			<controller_front_init_routers>
+				<observers>
+					<portfolio_custom_router>
+						<class>MGS_Portfolio_Controller_Router</class>
+						<method>initControllerRouters</method>
+					</portfolio_custom_router>
+				</observers>
+			</controller_front_init_routers>
+		</events>
+        <models>
+            <portfolio>
+                <class>MGS_Portfolio_Model</class>
+                <resourceModel>portfolio_mysql4</resourceModel>
+            </portfolio>
+            <portfolio_mysql4>
+                <class>MGS_Portfolio_Model_Mysql4</class>
+                <entities>
+                    <portfolio>
+                        <table>mgs_portfolio_items</table>
+                    </portfolio>
+					
+					<category>
+                        <table>mgs_portfolio_category</table>
+                    </category>
+					
+					<stores>
+                        <table>mgs_portfolio_category_items</table>
+                    </stores>
+                </entities>
+            </portfolio_mysql4>
+        </models>
+        <resources>
+            <portfolio_setup>
+                <setup>
+                    <module>MGS_Portfolio</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </portfolio_setup>
+            <portfolio_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </portfolio_write>
+            <portfolio_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </portfolio_read>
+        </resources>
+        <blocks>
+            <portfolio>
+                <class>MGS_Portfolio_Block</class>
+            </portfolio>
+        </blocks>
+        <helpers>
+            <portfolio>
+                <class>MGS_Portfolio_Helper</class>
+            </portfolio>
+        </helpers>
+    </global>
+</config>

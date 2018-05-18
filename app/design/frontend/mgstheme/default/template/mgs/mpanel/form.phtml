@@ -1,0 +1,5 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	<?php $type = $this->getRequest()->getParam('type') ?>
+	<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/form/'.$type.'.phtml')->toHtml() ?>
+<?php endif ?>

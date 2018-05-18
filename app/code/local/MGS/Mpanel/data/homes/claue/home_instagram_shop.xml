@@ -1,0 +1,62 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header2</header>
+	<footer>footer</footer>
+
+	<block>
+		<name>block26</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[instagram-section]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>60</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block28</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<class><![CDATA[container-full]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>60</padding_bottom>
+		<block_position>0</block_position>
+	</block>
+	
+	<child>
+		<block_name>block28-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Title Page Instagram Shop]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_title_page_instagram_shop]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="page-title-wrapper">
+<h1>HOME INSTAGRAM SHOP</h1>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block26-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Snapppt Shop]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_snapppt_shop]]></static_block_identifier>
+		<static_block_content><![CDATA[<script type="text/javascript" src="https://snapppt.com/widgets/widget_loader/e84943fa-2f0a-44b8-a10d-776fa5cf410f/grid.js"></script>
+<div class="snapppt-widget'">&nbsp;</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

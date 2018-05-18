@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html lang="<?php echo $this->getLang(); ?>">
+    <head>
+        <?php echo $this->getChildHtml('head') ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body <?php echo $this->getBodyClass() ? ' class="' . $this->getBodyClass() . '"' : '' ?>>
+        <?php echo $this->getChildHtml('after_body_start') ?>
+
+        <?php
+        $helper = Mage::helper('mpanel');
+        $setting = $helper->getThemeSettings();
+        ?>
+        <?php if ($setting['layout'] == 'boxed'): ?>
+            <div id="wrapper">
+            <?php endif ?>
+
+            <?php echo $this->getChildHtml('global_notices') ?>
+            <header>
+                <?php echo $this->getChildHtml('header') ?>
+            </header>
+            <section id="after-header">
+                <div class="container">
+                    <?php echo $this->getChildHtml('slider') ?>
+                </div>
+            </section>
+            <?php $helper = $this->helper('mpanel') ?>
+            <?php if ($helper->isHomepage()): ?>
+                <section id="maincontent">
+                    <div class="container">
+                        <div class="row">
+                            <?php echo $this->getChildHtml('global_messages') ?>
+                        </div>
+                    </div>
+                    <?php if ($helper->useHomepageBuilder()): ?>
+                        <div id="homepage-content-container">
+                            <?php echo $helper->getLayoutConfig() ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="container">
+                            <aside class="col-left sidebar col-md-3 leftcate">
+                                <?php echo $this->getChildHtml('left') ?>
+                            </aside>
+                            <div class="col-main col-md-6 three_columns">
+                                <?php echo $this->getChildHtml('global_messages') ?>
+                                <?php echo $this->getChildHtml('content') ?>
+                            </div>
+                            <aside class="col-left sidebar col-md-3 leftcate">
+                                <?php echo $this->getChildHtml('right') ?>
+                            </aside>
+                        </div>
+                    <?php endif ?>
+                </section>
+            <?php else: ?>
+                <section id="maincontent">
+                    <?php echo $this->getChildHtml('breadcrumbs') ?> 
+                    <div class="container">
+                        <aside class="col-left sidebar col-md-3 leftcate">                            
+                            <?php // New code ?>
+                            <?php if ($helper->checkCategoryPage()): ?>
+                                <div id="left-content-container">
+                                    <?php echo $helper->getCategoryLeft() ?>
+                                </div>
+                            <?php elseif ($helper->checkProductPage()): ?>
+                                <div id="left-content-container">
+                                    <?php echo $helper->getProductLeft() ?>
+                                </div>
+                            <?php elseif ($helper->checkSearchPage()): ?>
+                                <div id="left-content-container">
+                                    <?php echo $helper->getSearchLeft() ?>
+                                </div>
+                            <?php elseif ($helper->checkCmsPage()): ?>
+                                <div id="left-content-container">
+                                    <?php echo $helper->getPageLeft() ?>
+                                </div>
+                            <?php elseif ($helper->checkAccountPage()): ?>
+                                <div id="left-content-container">
+                                    <?php echo $this->getLayout()->getBlock('customer_account_navigation')->toHtml(); ?>
+                                    <?php echo $helper->getAccountLeft() ?>
+                                </div>
+                            <?php elseif ($helper->checkBrandPage()): ?>
+                                <div id="left-content-container">
+                                    <?php echo $helper->getBrandLeft() ?>
+                                </div>
+                            <?php elseif ($helper->checkBlogPage()): ?>
+                                <div id="left-content-container">
+                                    <?php echo $this->getLayout()->getBlock('left.blog.menu')->toHtml(); ?>
+                                    <?php echo $helper->getBlogLeft() ?>
+                                </div>
+                            <?php else: ?>
+                                <?php echo $this->getChildHtml('left') ?>
+                            <?php endif; ?>
+                        </aside>
+                        <div class="col-main col-md-6 three_columns">
+                            <?php echo $this->getChildHtml('global_messages') ?>
+                            <?php echo $this->getChildHtml('content') ?>
+                        </div>
+                        <aside class="col-left sidebar col-md-3 leftcate">                            
+                            <?php // New code ?>
+                            <?php if ($helper->checkCategoryPage()): ?>
+                                <div id="right-content-container">
+                                    <?php echo $helper->getCategoryRight() ?>
+                                </div>
+                            <?php elseif ($helper->checkProductPage()): ?>
+                                <div id="right-content-container">
+                                    <?php echo $helper->getProductRight() ?>
+                                </div>
+                            <?php elseif ($helper->checkSearchPage()): ?>
+                                <div id="right-content-container">
+                                    <?php echo $helper->getSearchRight() ?>
+                                </div>
+                            <?php elseif ($helper->checkCmsPage()): ?>
+                                <div id="right-content-container">
+                                    <?php echo $helper->getPageRight() ?>
+                                </div>
+                            <?php elseif ($helper->checkAccountPage()): ?>
+                                <div id="right-content-container">
+                                    <?php echo $helper->getAccountRight() ?>
+                                </div>
+                            <?php elseif ($helper->checkBrandPage()): ?>
+                                <div id="right-content-container">
+                                    <?php echo $helper->getBrandRight() ?>
+                                </div>
+                            <?php elseif ($helper->checkBlogPage()): ?>
+                                <div id="right-content-container">
+                                    <?php echo $this->getLayout()->getBlock('right.blog.menu')->toHtml(); ?>
+                                    <?php echo $helper->getBlogRight() ?>
+                                </div>
+                            <?php else: ?>
+                                <?php echo $this->getChildHtml('right') ?>
+                            <?php endif; ?>
+                        </aside>
+
+                    </div>
+                </section>
+            <?php endif ?>
+            <footer id="footer">
+                <?php echo $this->getChildHtml('footer') ?>
+            </footer>
+
+            <?php if ($setting['layout'] == 'boxed'): ?>
+            </div>
+        <?php endif ?>
+
+        <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
+        <?php echo $this->getChildHtml('theme_popup') ?>
+    </body>
+</html>

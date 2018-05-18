@@ -1,0 +1,61 @@
+<?php if ($this->helper('mpanel')->showButton()): ?>
+    <?php $referrer = Mage::helper('core/url')->getCurrentBase64Url(); ?>
+    <div class="button-fixed hidden-xs hidden-sm">
+        <div class="button">
+            <?php if ($this->helper('mpanel')->enabledButtonForLeftRight() && $this->helper('mpanel')->acceptToUsePanel()): ?>
+                <?php if ($this->helper('mpanel')->checkCategoryPage()): ?>
+                    <?php
+                    if (Mage::registry('current_category') != null) {
+                        $pageId = Mage::registry('current_category')->getId();
+                    } else {
+                        $pageId = 0;
+                    }
+                    ?>
+                    <a href="<?php echo $this->getUrl('mpanel/category/resetLayout', array('page_id' => $pageId)) ?>" class="btn btn-primary deactive reset-layout"><em class="fa fa-close"></em><?php echo $this->__(' Reset Left and Right') ?></a>                    
+                <?php elseif ($this->helper('mpanel')->checkProductPage()): ?>
+                    <?php
+                    $pageId = Mage::registry('current_product')->getId();
+                    ?>
+                    <a href="<?php echo $this->getUrl('mpanel/product/resetLayout', array('page_id' => $pageId)) ?>" class="btn btn-primary deactive reset-layout"><em class="fa fa-close"></em><?php echo $this->__(' Reset Left and Right') ?></a>                
+                <?php elseif ($this->helper('mpanel')->checkCmsPage() && $this->helper('mpanel')->enabledButtonForLeftRight() && !$this->helper('mpanel')->isHomepage()): ?>
+                    <?php $pageId = Mage::getBlockSingleton('cms/page')->getPage()->getId(); ?>
+                    <a href="<?php echo $this->getUrl('mpanel/page/resetLayout', array('page_id' => $pageId)) ?>" class="btn btn-primary deactive reset-layout"><em class="fa fa-close"></em><?php echo $this->__(' Reset Left and Right') ?></a>                
+                <?php endif; ?>                
+            <?php endif ?>
+            <?php if (Mage::getSingleton('core/session')->getUsePanel() == 1): ?>
+                <?php // New code ?>
+                <?php if ($this->helper('mpanel')->enabledButtonForLeftRight()): ?>
+                    <?php if ($this->helper('mpanel')->checkCategoryPage()): ?>
+                        <?php
+                        if (Mage::registry('current_category') != null) {
+                            $pageId = Mage::registry('current_category')->getId();
+                        } else {
+                            $pageId = 0;
+                        }
+                        ?>
+                        <a class="btn btn-primary apply-to-all" href="<?php echo $this->getUrl('mpanel/category/applyToAll', array('page_id' => $pageId)) ?>"><em class="fa fa-check"></em><?php echo $this->__(' Apply To All') ?></a>
+                    <?php elseif ($this->helper('mpanel')->checkProductPage()): ?>
+                        <?php
+                        $pageId = Mage::registry('current_product')->getId();
+                        ?>
+                        <a class="btn btn-primary apply-to-all" href="<?php echo $this->getUrl('mpanel/product/applyToAll', array('page_id' => $pageId)) ?>"><em class="fa fa-check"></em><?php echo $this->__(' Apply To All') ?></a>
+                    <?php elseif ($this->helper('mpanel')->checkSearchPage()): ?>
+                        <a href="<?php echo $this->getUrl('mpanel/search/resetLayout') ?>" class="btn btn-primary deactive"><em class="fa fa-close"></em><?php echo $this->__(' Reset Left and Right') ?></a>
+                    <?php elseif ($this->helper('mpanel')->checkAccountPage()): ?>
+                        <a href="<?php echo $this->getUrl('mpanel/account/resetLayout') ?>" class="btn btn-primary deactive"><em class="fa fa-close"></em><?php echo $this->__(' Reset Left and Right') ?></a>
+                    <?php elseif ($this->helper('mpanel')->checkCmsPage()): ?>
+                        <?php $pageId = Mage::getBlockSingleton('cms/page')->getPage()->getId(); ?>
+                        <a class="btn btn-primary apply-to-all" href="<?php echo $this->getUrl('mpanel/page/applyToAll', array('page_id' => $pageId)) ?>"><em class="fa fa-check"></em><?php echo $this->__(' Apply To All') ?></a>
+                    <?php elseif ($this->helper('mpanel')->checkBrandPage()): ?>
+                        <a href="<?php echo $this->getUrl('mpanel/brand/resetLayout') ?>" class="btn btn-primary deactive"><em class="fa fa-close"></em><?php echo $this->__(' Reset Left and Right') ?></a>
+                    <?php elseif ($this->helper('mpanel')->checkBlogPage()): ?>
+                        <a href="<?php echo $this->getUrl('mpanel/blog/resetLayout') ?>" class="btn btn-primary deactive"><em class="fa fa-close"></em><?php echo $this->__(' Reset Left and Right') ?></a>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <a href="<?php echo $this->getUrl('mpanel/index/deactive', array('referrer' => $referrer)) ?>" class="btn btn-primary deactive"><em class="fa fa-close"></em><?php echo $this->__(' Disable Builder') ?></a>
+            <?php else: ?>
+                <a href="<?php echo $this->getUrl('mpanel/index/active', array('referrer' => $referrer)) ?>" class="btn btn-primary active"><em class="fa fa-pencil"></em><?php echo $this->__(' Active Builder') ?></a>
+                <?php endif ?>
+        </div>
+    </div>
+<?php endif; ?>

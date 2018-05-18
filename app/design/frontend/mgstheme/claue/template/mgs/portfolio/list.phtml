@@ -1,0 +1,105 @@
+<?php $menu = Mage::getModel('portfolio/category')->getCollection(); ?>
+<?php if($this->getRequest()->getParam('id')){
+	$checkParam = true;
+	$id_param = $this->getRequest()->getParam('id');
+}else{
+	$checkParam = false;
+}
+//var_dump($id_param);
+?>
+<?php// if(!$checkParam): ?>
+<div class="tabs-center">
+	<ul class="tab-menu tab-products tabs_categories_portfolio">
+		<li><a class="button <?php if(!$checkParam): ?>is-checked<?php endif ?>" data-filter=".item_all"><?php echo $this->__('All') ?></a></li>
+	<?php $i=0; foreach( $menu as $_menu ): $i++; ?>
+		<?php $id_get = $_menu->getId(); ?>
+		<li><a class="button <?php if($checkParam && $id_get == $id_param): ?>is-checked<?php endif ?>" data-filter=".item_<?php echo $_menu->getId() ?>"><?php echo $_menu->getCategoryName() ?></a></li>
+	<?php endforeach ?>
+	</ul>
+</div>
+<div class="tabs_categories_porfolio_content isotope row">
+	<?php $portfolios_all = $this->getPortfolios(); ?>
+	<?php if(count($portfolios_all)>0): ?>
+		<div class="portfolio-grid">
+			<?php $i=0; foreach($portfolios_all as $portfolio_item): $i++; ?>
+				<div class="item item_all col-md-4 col-sm-6 col-xs-12">
+					<div class="portfolio-content">
+						<a class="portfolio-image" href="<?php echo $portfolio_item->getAddress(); ?>"><img src="<?php echo $this->helper('portfolio')->getThumbnail($portfolio_item)?>" alt="" class="img-responsive"/></a>
+						<div class="portfolio-info">
+							<h5 class="portfolio-name text-uppercase"><a href="<?php echo $portfolio_item->getAddress(); ?>"><?php echo $portfolio_item->getName() ?></a></h5>
+							<div class="category-link"><?php echo $this->helper('portfolio')->getCategoriesLink($portfolio_item)?></div>
+						</div>						
+					</div>
+				</div>
+			<?php endforeach ?>
+		</div>
+	<?php else: ?>
+		<div class="row">
+			<div class="alert alert-danger item col-xs-12 item_all" style="min-height: 40px;"><?php echo $this->__('There are no portfolios matching the selection.') ?></div>
+		</div>
+	<?php endif ?>
+	<?php $i=0; foreach( $menu as $_menu ): $i++; ?>
+		<?php $id = $_menu->getId(); ?> 
+		<?php $portfolios = $this->getPortfoliosForCate($id); ?>
+			<?php if(count($portfolios)>0): ?>
+				<div class="portfolio-grid">
+					<?php $i=0; foreach($portfolios as $portfolio): $i++; ?>
+						<div class="item item_<?php echo $id ?> col-md-4 col-sm-6 col-xs-12">
+							<div class="portfolio-content">
+								<a class="portfolio-image" href="<?php echo $portfolio->getAddress(); ?>"><img src="<?php echo $this->helper('portfolio')->getThumbnail($portfolio)?>" alt="" class="img-responsive"/></a>
+								<div class="portfolio-info">
+									<h5 class="portfolio-name text-uppercase"><a href="<?php echo $portfolio->getAddress(); ?>"><?php echo $portfolio->getName() ?></a></h5>
+									<div class="category-link"><?php echo $this->helper('portfolio')->getCategoriesLink($portfolio)?></div>
+								</div>						
+							</div>
+						</div>
+					<?php endforeach ?>
+				</div>
+			<?php else: ?>
+			<div class="row">
+				<div class="alert alert-danger item col-xs-12 item_<?php echo $id ?>" style="min-height: 40px;"><?php echo $this->__('There are no portfolios matching the selection.') ?></div>
+			</div>
+			<?php endif ?>
+	<?php endforeach ?>
+</div>
+<script type="text/javascript">
+	mgsjQuery(window).load(function() {
+		var container = mgsjQuery('.isotope').isotope({
+			itemSelector: '.item',
+			percentPosition: true,
+			masonry: {
+					columnWidth: '.item'
+				},
+			getSortData: {
+				name: '.item'
+			}
+		});
+		mgsjQuery('.tabs_categories_portfolio').each( function( i, buttonGroup ) {
+			var filterLoadValue = mgsjQuery(this).find('.is-checked').attr('data-filter');
+			container.isotope({ filter: filterLoadValue });
+		});
+	});
+	mgsjQuery(window).ready(function() {
+		var container = mgsjQuery('.isotope').isotope({
+			itemSelector: '.item',
+			percentPosition: true,
+			masonry: {
+					columnWidth: '.item'
+				},
+			getSortData: {
+				name: '.item'
+			}
+		});
+		mgsjQuery('.tabs_categories_portfolio').on( 'click', '.button', function() {
+			var filterValue = mgsjQuery(this).attr('data-filter');
+			container.isotope({ filter: filterValue });
+		});
+		mgsjQuery('.tabs_categories_portfolio').each( function( i, buttonGroup ) {
+			var buttonGroup = mgsjQuery(buttonGroup);
+			buttonGroup.on( 'click', '.button', function() {
+				buttonGroup.find('.is-checked').removeClass('is-checked');
+				mgsjQuery(this).addClass('is-checked');
+			});
+		});
+	});
+	</script>

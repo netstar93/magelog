@@ -1,0 +1,27 @@
+<?php
+/* * ****************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php if (Mage::helper('productquestions')->isActive()): ?>
+    <?php $topics = $this->getTopics(); ?>
+    <?php if (count($topics)): ?>
+        <div class="block block-topics">
+            <div class="block-title">
+                <strong><span><?php echo Mage::helper('productquestions')->blockTitle(); ?></span></strong>
+            </div>
+            <div class="block-content">
+                <ul class="topics">
+                    <?php foreach ($topics as $topic): ?>
+                        <li><a title="<?php echo $topic->getTitle() ?>" href="<?php echo Mage::getUrl('productquestions/faq/view', array('_secure' => true, 'topic' => $topic->getId())) ?>"><?php echo $topic->getTitle() ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+                <div class="actions">
+                    <a href="<?php echo Mage::helper('productquestions')->faqsPageUrl(); ?>"><?php echo $this->__('View All') ?></a>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

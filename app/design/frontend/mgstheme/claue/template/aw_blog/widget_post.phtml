@@ -1,0 +1,137 @@
+<?php $posts = $this->getRecent() ?>
+
+<?php if($this->getTitle() != '' || $this->getSubTitle() != ''): ?>
+	<div class="content-heading">
+		<?php if($this->getTitle() != ''): ?>
+			<h3 class="title"><?php echo $this->getTitle(); ?></h3>
+		<?php endif ?>
+		<?php if($this->getSubTitle() != ''): ?>
+			<div class="block-note"><?php echo $this->getSubTitle(); ?></div>
+		<?php endif ?>
+	</div>
+<?php endif ?>
+
+<?php $baseImg = $this->getSkinUrl('images/blank.png'); ?>
+<?php $lazyLoad = Mage::getStoreConfig('mgs_theme/general/lazy_load_img'); ?>
+
+<div class="widget mgs-blog-lastest-posts <?php if($this->getViewMode()=='grid'): ?> blog-grid-block<?php else: ?> lastest-posts-list<?php endif ?>">
+	<?php if (count($posts)>0): ?>
+		<?php if($this->getViewMode()=='grid'): ?>
+			<?php $panelHelper = $this->helper('mpanel'); ?>
+			<?php $col =  $this->getColumn(); ?>
+			<?php $bootstrapClass = $panelHelper->convertColRowCustom($col); ?>
+			
+			<div class="mgs-blog-lastest-posts row<?php if($this->getSlider() != 1): ?> has-margin<?php endif ?>">
+				<?php if($this->getSlider()==1): ?>
+					<div class="owl-carousel latest-post-grid" id="latest-post-carousel">
+				<?php endif ?>
+					<?php $i=0; foreach ($posts as $post): $i++; ?>
+						<div class="post-item<?php if($this->getSlider() != 1): ?> col-md-<?php echo $bootstrapClass ?> col-sm-6 col-xs-12<?php if($i % $col == 1): ?> first-row-item<?php endif ?><?php if($i % 2 == 1): ?> first-sm-item<?php endif ?><?php endif ?>">
+							<div class="post-item-content">
+								<?php if ($post->getFeaturedImage() != ''): ?>
+									<div class="thumbnail-post">
+										<a class="post-title-link" href="<?php echo $post->getAddress(); ?>" >
+											<?php $postImg = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'blog/' . $post->getFeaturedImage(); ?>
+											<?php if(!$lazyLoad): ?><?php $baseImg = $postImg; ?><?php endif ?>
+											<img class="img-responsive<?php if($lazyLoad): ?><?php if($this->getSlider()==1): ?> lazyOwl<?php else: ?> lazy<?php endif ?><?php endif ?>" 
+												 src="<?php echo $baseImg; ?>" 
+												 alt="" 
+												 data-<?php if($this->getSlider()==1): ?>src<?php else: ?>original<?php endif ?>="<?php echo $postImg ?>"/>
+										</a>
+									</div>
+								<?php endif ?>
+								<div class="post-item-detail">
+									<h6 class="title">
+										<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a>
+									</h6>
+									<div class="post-info">
+										<?php $dateToFormat = date('Y', strtotime($post->getCreatedTime())).'-'.date('F', strtotime($post->getCreatedTime())).'-'.date('d', strtotime($post->getCreatedTime())); ?>
+										<?php $createDate = Mage::helper('core')->formatDate($dateToFormat, 'medium', false); ?>
+										<span class="post-author margin-right5">
+											<?php echo $this->__('By'); ?>&nbsp;<span><?php echo $post->getUser(); ?></span>
+											<span class="post-time"><?php echo $this->__('on'); ?>&nbsp;<span><?php echo $createDate ?></span></span>
+										</span>
+									</div>
+									<?php if($post->getShortContent()): ?>
+										<div class="short-content">
+											<?php if($this->getCharacterCount()!=''): ?>
+												<?php echo Mage::helper('core/string')->truncate(strip_tags($post->getShortContent()), $this->getCharacterCount()); ?>
+											<?php else: ?>
+												<?php echo strip_tags($post->getShortContent()); ?>
+											<?php endif ?>
+										</div>
+									<?php endif ?>
+								</div>
+							</div>
+						</div>
+					<?php endforeach ?>
+				<?php if($this->getSlider()==1): ?>
+					</div>
+				<?php endif ?>
+			</div>
+			<?php if($this->getSlider()==1): ?>
+				<script type="text/javascript">
+					mgsjQuery("#latest-post-carousel").owlCarousel({
+						items : <?php echo $this->getColumn() ?>,
+						lazyLoad : true,
+						navigation : <?php echo $this->getNavigation()?>,
+						pagination : <?php echo $this->getPagination()?>,
+						autoPlay: <?php echo $this->getAutoPlay()?>,
+						stopOnHover: <?php echo $this->getStopHover()?>,
+						navigationText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+						itemsDesktop: [1199,<?php echo $this->getColumn() ?>],
+						itemsDesktopSmall: [970,2],
+						itemsTablet: [768,2],
+						itemsTabletSmall: false,
+						itemsMobile: [480,1],
+						itemsCustom: false
+					});
+				</script>
+			<?php endif ?>
+		<?php else: ?>
+			<div class="block-content">
+				<ul>
+					<?php $i=0; foreach ($posts as $post): ?>
+						<li class="item">
+							<div class="blog-content list-content<?php if ($post->getFeaturedImage() != ''): ?> has-image<?php endif ?>">
+								<?php if ($post->getFeaturedImage() != ''): ?>
+									<div class="image">
+										<a class="post-title-link" href="<?php echo $post->getAddress(); ?>" >
+											<img class="img-responsive" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'blog/' . $post->getFeaturedImage(); ?>"/>
+										</a>					
+									</div>
+								<?php endif ?>	
+								<div class="short-detail">
+									<div class="title">
+										<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a>
+									</div>
+									<div class="post-info">
+										<?php $dateToFormat = date('Y', strtotime($post->getCreatedTime())).'-'.date('F', strtotime($post->getCreatedTime())).'-'.date('d', strtotime($post->getCreatedTime())); ?>
+										<?php $createDate = Mage::helper('core')->formatDate($dateToFormat, 'medium', false); ?>
+										<span class="post-author margin-right5">
+											<?php echo $this->__('By'); ?>&nbsp;<span><?php echo $post->getUser(); ?></span>
+											<span class="post-time"><?php echo $this->__('on'); ?>&nbsp;<span><?php echo $createDate ?></span></span>
+										</span>
+									</div>
+									<?php if($post->getShortContent()): ?>
+										<div class="short-content">
+											<?php if($this->getCharacterCount()!=''): ?>
+												<?php echo Mage::helper('core/string')->truncate(strip_tags($post->getShortContent()), $this->getCharacterCount()); ?>
+											<?php else: ?>
+												<?php echo strip_tags($post->getShortContent()); ?>
+											<?php endif ?>
+										</div>
+									<?php endif ?>
+								</div>
+							</div>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php endif ?>
+	<?php else: ?>
+		<div class="alert alert-danger">
+			<p><?php echo $this->__('There are no posts matching the selection.') ?></p>
+		</div>
+	<?php endif; ?>
+</div>

@@ -1,0 +1,53 @@
+<?php if (Mage::getStoreConfig('mpanel/popup_newsletter/enabled')!=0): ?>
+    <?php if (Mage::getStoreConfig('mpanel/popup_newsletter/width')){
+		 $width = Mage::getStoreConfig('mpanel/popup_newsletter/width').'px';}
+		 else{$width = '530px';}?>
+	<?php $img=''; if (Mage::getStoreConfig('mpanel/popup_newsletter/background')): ?>
+		<?php $img = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'mpanel/'.Mage::getStoreConfig('mpanel/popup_newsletter/background');?>
+	<?php endif ?>
+
+	<?php if(Mage::getStoreConfig('mpanel/popup_newsletter/html')!=''): ?>
+		<?php $html = Mage::getStoreConfig('mpanel/popup_newsletter/html') ?>
+	<?php else: ?>
+		<?php $html = "<h5>Sign up our newsletter and save 25% off for the next purchase!</h5><p> Subscribe to our newsletters and don’t miss new arrivals, the latest fashion updates and our promotions.</p>";?>
+	<?php endif ?>
+	
+	<?php if(Mage::getStoreConfig('mpanel/popup_newsletter/title')!=''): ?>
+		<?php $title = Mage::getStoreConfig('mpanel/popup_newsletter/title') ?>
+	<?php else: ?>
+		<?php $title = "Sign Up Newsletter";?>
+	<?php endif ?>
+	
+		<div style="display:none">
+			<div id="newsletter-popup" style="width:<?php echo $width;?>">
+				<div class="block-popup-subscribe">
+					<div class="block-popup-top" style="<?php if ($img==''){echo 'width:100%';}?>">
+						<div class="pop-sletter-title" style="background-color: rgb(233, 233, 233); background:url('<?php echo $img?>')">
+							<h4><?php echo $title;?></h4>
+						</div>
+						<div class="newsletter-popup-content"><?php echo $html;?></div>
+						<div class="newsletter-popup-form">
+							<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('newsletter/popup-subscribe.phtml')->toHtml(); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			mgsjQuery(window).load(function () {
+				if(mgsjQuery(window).width() > 991) {
+					if(getCookie('newsletterpopup')!='nevershow'){
+						if (mgsjQuery('#newsletter-popup').length) {
+							mgsjQuery.magnificPopup.open({
+								items: {
+									src: '#newsletter-popup' 
+								},
+								type: 'inline'
+							});
+						}
+					}
+				}
+			});
+		</script>
+<?php endif ?>

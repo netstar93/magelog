@@ -1,0 +1,110 @@
+<?php
+$helper = $this->helper('mpanel');
+$params = $this->getRequest()->getParams();
+$pageType = $params['page_type'];
+$pageId = $params['page_id'];
+$place = $params['place'];
+$type = $params['type'];
+?>
+<?php if ($helper->acceptToUsePanel()): ?>
+    <p id="error-msg" class="error-msg" style="display: none;"></p>
+    <div class="edit-static-form">
+        <div class="row">
+            <div class="col-md-12 builder-title">
+                <h2><?php echo $this->__('Add Category Navigation Block'); ?></h2>
+            </div>
+        </div>
+        <?php
+        $form = new Varien_Data_Form(
+                array('id' => 'edit_form', 'action' => $this->getUrl('mpanel/' . $pageType . '/saveCategoryNavigationBlock'), 'method' => 'post')
+        );
+        $form->setHtmlIdPrefix('block_');
+        $fieldset = $form->addFieldset('base_fieldset', array('legend' => $this->__(''), 'class' => 'fieldset-wide-custom'));
+        $fieldset->addField('page_type', 'hidden', array(
+            'name' => 'page_type',
+            'value' => $pageType
+        ));
+        $fieldset->addField('page_id', 'hidden', array(
+            'name' => 'page_id',
+            'value' => $pageId
+        ));
+        $fieldset->addField('place', 'hidden', array(
+            'name' => 'place',
+            'value' => $place
+        ));
+        $fieldset->addField('type', 'hidden', array(
+            'name' => 'type',
+            'value' => $type
+        ));
+        $fieldset->addField('title', 'text', array(
+            'label' => $this->__('Title'),
+            'name' => 'title',
+            'required' => true,
+            'class' => 'input-text col-sm-8'
+        ));
+        $fieldset->addField('selected_category_id', 'select', array(
+            'label' => $this->__('Select Category'),
+            'name' => 'selected_category_id',
+            'required' => true,
+            'class' => 'input-text col-sm-8',
+            'values' => Mage::getModel('mpanel/source_category')->toOptionArray()
+        ));        
+        $fieldset->addField('sort_order', 'text', array(
+            'label' => $this->__('Sort Order'),
+            'name' => 'sort_order',
+            'required' => false,
+            'class' => 'input-text col-sm-8'
+        ));
+        $form->setUseContainer(true);
+        echo $form->toHtml();
+        ?>
+    </div>
+    <script type="text/javascript">
+        mgsjQuery("#block_base_fieldset").append('<div class="form-group builder-action"><div class="col-md-12"><div class="buttons"><button type="button" class="btn btn-back" onclick="history.go(-1)"><span><span><?php echo $this->__('Back') ?></span></span></button><button type="button" class="btn btn-primary" onclick="updateForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div></div>');
+        var updateForm = new VarienForm('edit_form');
+        updateForm.submit = function (button, url) {
+            if (this.validator.validate()) {
+                mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+                mgsjQuery('#toggleblock_content').click();
+                button.disabled = true;
+                var form = this.form;
+                var oldUrl = form.action;
+                if (url) {
+                    form.action = url;
+                }
+                var e = null;
+                try {
+                    mgsjQuery.ajax({
+                        type: 'POST',
+                        url: form.action,
+                        dataType: 'json',
+                        data: mgsjQuery('#edit_form').serialize(),
+                        success: function (data, textStatus, xhr) {
+                            button.disabled = false;
+                            mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');
+                            if (data.status == 'success') {
+                                $('error-msg').update('');
+                                $('error-msg').hide();
+                                if (window.parent == window.top) {
+                                    window.parent.jQuery.magnificPopup.close();
+                                    window.top.location.reload();
+                                }
+                            } else {
+                                $('error-msg').update(data.message);
+                                $('error-msg').show();
+                            }
+                        }
+                    });
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(updateForm);
+    </script>
+<?php endif; ?>

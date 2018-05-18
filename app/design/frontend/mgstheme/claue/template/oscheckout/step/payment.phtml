@@ -1,0 +1,28 @@
+<script type="text/javascript">
+//<![CDATA[
+    var payment = new Payment('<?php echo $this->getUrl('oscheckout/index/loadreview/', array('_secure'=>true)) ?>','<?php echo $this->getUrl('oscheckout/index/loadpayment/', array('_secure'=>true)) ?>','<?php echo $this->getUrl('oscheckout/index/index', array('_secure'=>true)) ?>');
+//]]>	
+ </script>
+
+<div class="step-title payment-title block-title">
+	<h3 class="title-name"><?php echo Mage::helper('oscheckout')->__('Payment Methods') ?></h3>
+</div>
+
+<div id="ajax-payment-methods">
+<?php echo $this->getChildHtml('methods'); ?>
+</div>
+<script type="text/javascript">
+	function savePay(paymentmethod){
+		var para = {code: paymentmethod};
+		new Ajax.Request('<?php echo $this->getUrl('oscheckout/index/savepay/', array('_secure'=>true)) ?>', {
+			method: 'post',
+			parameters: para,
+			onSuccess: function(transport) {
+				if(transport.status == 200) {
+					payment.switchMethod(paymentmethod);
+				}
+			}
+
+		});
+	}
+</script>

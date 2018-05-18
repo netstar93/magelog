@@ -1,0 +1,190 @@
+<?php $helper = $this->helper('mpanel') ?>
+<form action="<?php echo $this->getUrl('mpanel/post/layout') ?>" method="POST" id="panel-form" enctype="multipart/form-data">
+    <input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+    <div class="col-md-7 col-sm-4 col-xs-4">
+        <div class="row">
+            <div id="settings" class="panel-group">
+                <div class="panel">
+                    <div class="general-setting">
+                        <a data-toggle="collapse" data-parent="#settings" href="#general-setting" class="collapsed general-setting-icon" title="<?php echo $this->__('General Setting') ?>"><em class="fa fa-gear"></em></a>
+                        <a data-toggle="collapse" data-parent="#settings" href="#color-setting" class="collapsed color-setting-icon" title="<?php echo $this->__('Color Setting') ?>"><em class="fa fa-paint-brush"></em></a>
+                        <h2 class="title">
+                            <?php echo $this->__('MGS Panel') ?>
+                        </h2>
+                    </div>
+
+                    <div class="layout-button" id="layout-button">
+                        <?php
+                        $layouts = Mage::getSingleton('page/source_layout')->toOptionArray();
+                        array_unshift($layouts, array('value' => '', 'label' => Mage::helper('catalog')->__('No layout updates')));
+
+                        $configLayout = Mage::getStoreConfig('mpanel/my_account/layout');
+                        ?>
+                        <select onchange="this.form.submit();" class="select page-layout" name="my_account[my_account][layout]">
+                            <?php foreach ($layouts as $_layout): ?>
+                                <option value="<?php echo $_layout['value'] ?>"<?php if ($configLayout == $_layout['value']): ?> selected="selected"<?php endif ?>><?php echo $_layout['label'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+						
+						<a data-toggle="collapse" data-parent="#settings" href="#layout-setting" class="template-button collapsed" title="<?php echo $this->__('Page Settings') ?>"><em class="fa fa-gears"></em>&nbsp;<?php echo $this->__('Settings') ?></a>
+                    </div>
+
+                </div>
+
+                <div class="panel col-md-12">
+                    <div id="general-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/general.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+					<div id="color-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/color.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+					<div id="layout-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div>
+								<div class="col-md-12">
+									<div class="form-horizontal row">
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_address"><?php echo $this->__('Hide "Address Book" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_address" class="form-control" name="my_account[my_account][disable_address]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_address') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_my_order"><?php echo $this->__('Hide "My Orders" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_my_order" class="form-control" name="my_account[my_account][disable_my_order]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_my_order') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_billing_agreements"><?php echo $this->__('Hide "Billing Agreements" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_billing_agreements" class="form-control" name="my_account[my_account][disable_billing_agreements]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_billing_agreements') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_recurring_profiles"><?php echo $this->__('Hide "Recurring Profiles" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_recurring_profiles" class="form-control" name="my_account[my_account][disable_recurring_profiles]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_recurring_profiles') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_my_reviews"><?php echo $this->__('Hide "My Product Reviews" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_my_reviews" class="form-control" name="my_account[my_account][disable_my_reviews]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_my_reviews') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_my_tags"><?php echo $this->__('Hide "My Tags" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_my_tags" class="form-control" name="my_account[my_account][disable_my_tags]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_my_tags') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_my_wishlist"><?php echo $this->__('Hide "My Wishlist" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_my_wishlist" class="form-control" name="my_account[my_account][disable_my_wishlist]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_my_wishlist') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_my_applications"><?php echo $this->__('Hide "My Applications" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_my_applications" class="form-control" name="my_account[my_account][disable_my_applications]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_my_applications') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_newsletter_subscriptions"><?php echo $this->__('Hide "Newsletter Subscriptions" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_newsletter_subscriptions" class="form-control" name="my_account[my_account][disable_newsletter_subscriptions]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_newsletter_subscriptions') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_downloadable_products"><?php echo $this->__('Hide "My Downloadable Products" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_downloadable_products" class="form-control" name="my_account[my_account][disable_downloadable_products]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_downloadable_products') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-7 control-label" for="disable_product_questions"><?php echo $this->__('Hide "Product Questions" link') ?></label>
+											<div class="col-sm-5">
+												<select id="disable_product_questions" class="form-control" name="my_account[my_account][disable_product_questions]">
+													<option value="0"><?php echo $this->__('No') ?></option>
+													<option value="1"<?php if(Mage::getStoreConfig('mpanel/my_account/disable_product_questions') == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-12">
+									<button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+								</div>
+							</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-4 col-xs-4">
+        <a href="<?php echo $this->getUrl('adminhtml') ?>" class="backend-link" title="<?php echo $this->__('Go to backend') ?>" target="_blank">
+            <?php echo $this->__('Admin') ?><em class="fa fa-user"></em>
+        </a>
+        <?php echo $this->getLayout()->createBlock('page/switch')->setTemplate('mgs/mpanel/languages.phtml')->toHtml() ?>
+        <span class="translate-inline-check">
+			<span><?php echo $this->__('Translate Inline') ?></span>
+			<?php if (Mage::getStoreConfig('dev/translate_inline/active')): ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" checked="checked" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 0, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php else: ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 1, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php endif ?>
+		</span>
+    </div>
+</form>
+

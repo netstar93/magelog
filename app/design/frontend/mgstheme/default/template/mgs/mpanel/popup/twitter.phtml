@@ -1,0 +1,85 @@
+<?php if($this->getRequest()->getPost()):?>
+	<script type="text/javascript">
+		<?php if(Mage::getSingleton('core/session')->getSaved()==1): ?>
+		<?php Mage::getSingleton('core/session')->setSaved(false); ?>
+
+			if (window.parent == window.top) {
+				window.top.location.reload();
+			}
+
+		<?php endif ?>
+	</script>
+<?php else: ?>
+<?php $settings = $this->helper('mpanel')->getThemeSettings() ?>
+<div class="edit-static-form">
+	<div class="row">
+		<div class="col-md-12 builder-title">
+			<h2><?php echo $this->__('Edit Twitter Information') ?></h2>
+		</div>
+	</div>
+	<form action="" method="post">
+		<div class="row form-horizontal">
+                        <div class="form-group">
+				<label for="twitter_title" class="col-sm-4 control-label"><?php echo $this->__('Block Title') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['twitter_title'] ?>" name="twitter_title" id="twitter_title" class="input-text"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="twitter_user" class="col-sm-4 control-label"><?php echo $this->__('Owner') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['twitter_user'] ?>" name="twitter_user" id="twitter_user" class="input-text"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="twitter_count" class="col-sm-4 control-label"><?php echo $this->__('Count display') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['twitter_count'] ?>" name="twitter_count" id="twitter_count" class="input-text"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="truncate" class="col-sm-4 control-label"><?php echo $this->__('Character Count') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['truncate'] ?>" name="truncate" id="truncate" class="input-text validate-greater-than-zero"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="token" class="col-sm-4 control-label"><?php echo $this->__('Access Token') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['token'] ?>" name="token" id="token" class="input-text"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="token_secret" class="col-sm-4 control-label"><?php echo $this->__('Access Token Secret') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['token_secret'] ?>" name="token_secret" id="token_secret" class="input-text"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="consumer_key" class="col-sm-4 control-label"><?php echo $this->__('Consumer Key (API Key)') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['consumer_key'] ?>" name="consumer_key" id="consumer_key" class="input-text"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="consumer_secret" class="col-sm-4 control-label"><?php echo $this->__('Consumer Secret (API Secret)') ?></label>
+				<div class="col-sm-8">
+					<input type="text" value="<?php echo $settings['consumer_secret'] ?>" name="consumer_secret" id="consumer_secret" class="input-text"/>
+				</div>
+			</div>
+			<div class="col-md-12 builder-action">
+				<div class="buttons">
+					<button type="submit" class="btn btn-primary"><span><?php echo $this->__('Submit') ?></span></button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<?php endif ?>

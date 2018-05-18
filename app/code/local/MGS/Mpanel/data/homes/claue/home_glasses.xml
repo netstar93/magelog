@@ -1,0 +1,266 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header5</header>
+	<footer>footer</footer>
+	
+	<block>
+		<name>block322</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block323</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>68</padding_top>
+		<padding_bottom>50</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block324</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block325</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>68</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	<block>
+		<name>block326</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>48</padding_top>
+		<padding_bottom>68</padding_bottom>
+		<block_position>5</block_position>
+	</block>
+	<block>
+		<name>block327</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[padding-left30 padding-right30]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>6</block_position>
+	</block>
+	<block>
+		<name>block328</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>30</padding_top>
+		<padding_bottom>60</padding_bottom>
+		<block_position>7</block_position>
+	</block>
+	<block>
+		<name>block337</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[#56cfe1]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>8</block_position>
+	</block>
+
+	<child>
+		<block_name>block322-0</block_name>
+		<block_content><![CDATA[{{widget type="revslider/slider_preview" id="9"}}]]></block_content>
+		<type>revolution</type>
+		<position>1</position>
+		<setting><![CDATA[9]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block323-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" products_count="8" slider="1" count_per_row="5" tabs="new_products,featured_products,rate_products" product_ratio="" product_template="grid" new_label="Reading Glasses" featured_label="Sunglasses" hot_label="" sale_label="" rate_label="Sport Glasses" auto_play="false" stop_hover="false" navigation="true" pagination="false" number_row="1" category_id="" template="mgs/mpanel/tabs.phtml"}}]]></block_content>
+		<type>tabs</type>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","product_tab":["new_products","featured_products","rate_products"],"new_label":"Reading Glasses","featured_label":"Sunglasses","hot_label":"","sale_label":"","rate_label":"Sport Glasses","product_template":"grid","product_count":"8","count_per_row":"5","product_ratio":"","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block325-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/products" display_type="featured_products" slider="0" products_count="10" sub_title="Top seller in the week" title="FEATURED PRODUCTS" product_ratio="" count_per_row="5"  template="mgs/mpanel/products/panel_products.phtml" load_more="0"}}]]></block_content>
+		<type>featured_products</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"FEATURED PRODUCTS","sub_title":"Top seller in the week","custom_class":"","animation":"","animation_delay":"","product_count":"10","view_mode":"grid","count_per_row":"5","number_col":"","count_per_col":"1","product_ratio":"","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block324-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Glassy Banner</banner_title>
+		<banner_filename>claue_glasses_banner.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[]]></banner_button>
+		<banner_content><![CDATA[<div class="sm-no-padding xs-no-padding" style="padding-right: 100px; text-align:left">
+<h3 class="fwm xs-font20" style="font-size:35px; line-height:35px; color:#282828;">THE BEST SUNGLASSES</h3>
+<h4 class="fwm hidden-xs" style="font-size:20px; line-height:24px; color:#282828;"><em class="sub-title">Super Mega Sale for new year. Save up to 29% discount</em></h4>
+</div>]]></banner_content>
+		<banner_text_align>right</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block327-0</block_name>
+		<block_content><![CDATA[{{widget type="blog/last" blog_count="5" categories="1,2,3,4,5,6" column="3" view_mode="grid" slider="1" title="LATEST FROM BLOG" sub_title="The freshest and most exciting news" character_count="115" auto_play="false" stop_hover="false" navigation="false" pagination="false"}}]]></block_content>
+		<type>latest_posts</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"LATEST FROM BLOG","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","categories":["1","2","3","4","5","6"],"product_count":"5","character_count":"115","view_mode":"grid","count_per_row":"3","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block323-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Title Hot Products]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_title_hot_products]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="content-heading">
+<h3 class="title">HOT PRODUCTS</h3>
+<div class="block-note">Top view in the weeks</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block337-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Services Bottom]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_services_bottom]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="service-boxed bot row">
+	<div class="icon-service col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-help2">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">SUPPORT 24/7</span></h6>
+			<p class="no-margin text-colour-white">We support 24 hours a day </p>
+		</div>
+	</div>
+	<div class="icon-service  col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-car">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">FREE SHIPPING</span></h6>
+			<p class="no-margin text-colour-white">Free shipping for all US order </p>
+		</div>
+	</div>
+	<div class="icon-service first-sm-item  col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-refresh">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">30 DAYS RETURN</span></h6>
+			<p class="no-margin text-colour-white">You have 30 days to return </p>
+		</div>
+	</div>
+	<div class="icon-service  col-md-3 col-sm-6 col-xs-12">
+		<div class="icon"><i class="pe-7s-door-lock">&nbsp;</i></div>
+		<div class="text">
+			<h6><span class="text-colour-white">100% PAYMENT SECURE</span></h6>
+			<p class="no-margin text-colour-white">Payment 100% secure</p>
+		</div>
+	</div>
+</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block253-0</block_name>
+		<block_content><![CDATA[]]></block_content>
+		<static_block_title><![CDATA[Claue Title Our]]></static_block_title>
+		<static_block_identifier><![CDATA[claue_title_our]]></static_block_identifier>
+		<static_block_content><![CDATA[<div class="content-heading">
+							<h3 class="title">OUR PRODUCTS</h3>
+										<div class="block-note">Top seller in the week</div>
+					</div>]]></static_block_content>
+		<type>static</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block326-0</block_name>
+		<block_content><![CDATA[{{block type="testimonial/testimonial" template="mgs/testimonial/view.phtml" view_mode="grid" title="" sub_title="" item_count=""}}]]></block_content>
+		<type>testimonials</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"text-left","animation":"","animation_delay":"","title":"","sub_title":"","item_count":"","view_mode":"grid"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[text-left]]></custom_class>
+	</child>
+	<child>
+		<block_name>block328-0</block_name>
+		<block_content><![CDATA[{{block type="brand/homeblock" brand_ids="1,2,3,4,6,7,8,9" slider="1" title="OUR BRANDS" sub_title="The freshest and most exciting news" count_per_row="5" number_row="1" auto_play="false" stop_hover="false" navigation="true" pagination="false" template="mgs/brand/home-featured-brands.phtml"}}]]></block_content>
+		<type>brands</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"OUR BRANDS","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","brand":["1","2","3","4","6","7","8","9"],"count_per_row":"5","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"},"number_row":"1"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

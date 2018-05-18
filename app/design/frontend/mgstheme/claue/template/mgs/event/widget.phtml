@@ -1,0 +1,109 @@
+<?php $collection = $this->getCollection(); ?>
+<?php $helper = $this->helper('mpanel') ?>
+<div class="events-block">
+    <?php if ($this->getTitle()): ?>
+        <div class="block-title"><h2><?php echo $this->getTitle() ?></h2></div>
+    <?php endif ?>
+    <?php if (count($collection)): ?>
+        <div class="content-wrap products">
+            <?php if ($this->getViewMode() == 'grid'): ?>
+
+                <?php
+                if ($this->getCountPerRow()) {
+                    $col = $this->getCountPerRow();
+                } else {
+                    $col = 3;
+                }
+
+                $col = $helper->convertColRowCustom($col);
+                ?>
+
+                <div class="events" id="events-content">
+                    <div class="row">
+                        <?php $i = 0;
+                        foreach ($collection as $event): $i++; ?>
+                            <div class="<?php if ($this->getSlider() != 1): ?> col-md-<?php echo $col; ?> col-sm-6 col-xs-12<?php endif ?>">
+                                <div class="item-event">
+                                    <div class="desc-event">
+                                        <?php if ($this->getShowImage()): ?>
+                                            <p class="event-image">
+                                                <a href="<?php echo $this->getUrl('event/index/view', array('id' => $event->getId())); ?>">
+                                                    <img alt="<?php echo $this->stripTags($event->getTitle(), null, true); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $event->getImage(); ?>" class="img-responsive">
+                                                </a>
+                                            </p>
+                                        <?php endif ?>
+                                        <?php if ($this->getShowTime()): ?>
+                                            <div class="event-date-time">
+                                                <p><?php echo $this->__('<span>From:</span> %s', date('F j, Y g:i A', strtotime($event->getTimeFrom()))); ?></p>
+                                                <p><?php echo $this->__('<span>To:</span> %s', date('F j, Y g:i A', strtotime($event->getTimeTo()))); ?></p>
+                                            </div>
+                                        <?php endif ?>
+                                        <div class="event-content">								
+                                            <div class="event-desc-details">
+                                                <a href="<?php echo $this->getUrl('event/index/view', array('id' => $event->getId())); ?>" class="event-name"><?php echo $event->getTitle() ?></a>
+                                                <?php if ($this->getCharacterCount() != '' && $this->getCharacterCount() > 0): ?>
+                                                    <?php echo Mage::helper('core/string')->truncate($event->getDescription(), $this->getCharacterCount()) ?>
+                                                <?php else: ?>
+                                                    <?php echo $event->getDescription() ?>
+                                                <?php endif; ?>
+                                                <?php if ($this->getShowLocation()): ?>
+                                                    <p class="event-location"><?php echo $this->__('Location: ') ?><?php echo $event->getLocation() ?></p>
+                                                <?php endif ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+
+                <?php if ($this->getSlider() == 1): ?>
+                    <script type="text/javascript">
+                        initSlider('events-content', <?php echo $this->getColumn() ?>, <?php echo $this->getAutoPlay() ?>, <?php echo $this->getStopHover() ?>, <?php echo $this->getNavigation() ?>, <?php echo $this->getPagination() ?>);
+                    </script>
+                <?php endif ?>
+            <?php else: ?>
+                <?php $i = 0;
+                foreach ($collection as $event): $i++; ?>
+                    <div class="item-event item-event-<?php echo $i ?>">
+                        <div class="desc-event">
+            <?php if ($this->getShowImage()): ?>
+                                <p class="event-image">
+                                    <a href="<?php echo $this->getUrl('event/index/view', array('id' => $event->getId())); ?>">
+                                        <img alt="<?php echo $this->stripTags($event->getTitle(), null, true); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $event->getImage(); ?>" class="img-responsive">
+                                    </a>
+                                </p>
+                            <?php endif ?>
+
+            <?php if ($this->getShowTime()): ?>
+                                <div class="event-date">
+                                    <p><span class="event-day"><?php echo date('d', strtotime($event->getTimeFrom())) ?></span></p>
+                                    <p><span class="event-month"><?php echo date('M', strtotime($event->getTimeFrom())) ?></span></p>
+                                </div>
+            <?php endif ?>
+
+                            <div class="event-content">
+                                <a href="<?php echo $this->getUrl('event/index/view', array('id' => $event->getId())); ?>" class="event-month"><?php echo $event->getTitle() ?></a>
+                                <p><span class="event-desc-details">
+                                        <?php if ($this->getCharacterCount() != '' && $this->getCharacterCount() > 0): ?>
+                                            <?php echo Mage::helper('core/string')->truncate($event->getDescription(), $this->getCharacterCount()) ?>
+                                        <?php else: ?>
+                                            <?php echo $event->getDescription() ?>
+                                <?php endif ?>
+                                    </span></p>
+                                <?php if ($this->getShowLocation()): ?>
+                                    <p class="event-location"><?php echo $event->getLocation() ?></p>
+            <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+        <?php endif ?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-warning no-product-display">
+        <?php echo $this->__('There are no events.') ?>
+        </div>
+<?php endif ?>
+</div>

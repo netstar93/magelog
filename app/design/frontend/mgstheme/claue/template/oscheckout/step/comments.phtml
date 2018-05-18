@@ -1,0 +1,20 @@
+<?php
+/**
+ * @name         :  MGS One Step Checkout
+ * @version      :  1.1
+ * @since        :  Magento ver 1.4, 1.5, 1.6, 1.7
+ * @author       :  MGS - http://www.mage-shop.com
+ * @copyright    :  Copyright (C) 2011 Powered by MGS
+ * @license      :  http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @Creation Date:  Sept 06 2012
+ * 
+ * */
+echo $this->settings['enable_comments'];
+?>
+
+ <?php if($this->settings['enable_comments']): ?>
+            <div class="oscheckout-comments">
+                <label for="id_comments"><?php echo Mage::helper('oscheckout')->__('Comments'); ?></label><br/>
+                <textarea id="id_comments" name="oscheckout_comments"><?php if(isset($_POST['oscheckout_comments'])) { echo $_POST['oscheckout_comments']; } ?></textarea>
+            </div>
+<?php endif; ?>

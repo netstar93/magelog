@@ -1,0 +1,34 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php $templateLayout = $this->getTemplateLayout() ?>
+<?php $blockName = $this->getBlockName() ?>
+<?php $blocks = $this->getChildBlocks() ?>
+<?php if (count($blocks) > 0): ?>
+    <div class="row content-panel">
+        <div id="sortable<?php echo $templateLayout ?><?php echo $blockName ?>" class="sort-block">
+            <?php foreach ($blocks as $_block): ?>
+                <?php $setting = json_decode($_block->getSetting(), true) ?>
+                <div class="sort-item builder-container child-builder <?php echo $helper->getChildClass($_block, $setting) ?>" <?php if (isset($setting['animation']) && $setting['animation'] != ''): ?> data-appear-animation="<?php echo $setting['animation'] ?>"<?php endif ?><?php if(isset($setting['animation_delay']) && $setting['animation_delay']!=''): ?> data-appear-animation-delay="<?php echo $setting['animation_delay'] ?>"<?php endif ?> id="<?php echo $templateLayout . '_' . $blockName . '_' . $_block->getId() ?>">
+                    <?php echo $helper->getEditChild($templateLayout, $blockName, $_block->getId(), $_block->getType()) ?>
+                    <?php echo $helper->getContentOfBlock($_block) ?>
+                </div>
+            <?php endforeach ?>
+        </div>
+        <script type="text/javascript">
+            mgsjQuery(document).ready(function() {
+                initSortable("sortable<?php echo $templateLayout ?><?php echo $blockName ?>", "<?php echo $this->getUrl('mpanel/post/sort', array('el' => $templateLayout . '_' . $blockName)) ?>");
+            });
+        </script>
+		<div class="add-new-block col-md-12">
+			<a class="btn btn-primary popup-link btn-new-block" title="Add new block" href="<?php echo $this->getUrl('mpanel/index/new', array('template' => $templateLayout, 'block' => $blockName)) ?>"><em class="fa fa-plus"></em><?php echo $this->__(' Add New Block'); ?></a>
+		</div>
+    </div>
+    
+<?php else: ?>
+	<div class="row content-panel empty-block">
+        <div class="add-new-block col-md-12">
+            <a class="btn btn-primary popup-link btn-new-block" title="Add new block" href="<?php echo $this->getUrl('mpanel/index/new', array('template' => $templateLayout, 'block' => $blockName)) ?>"><em class="fa fa-plus"></em><?php echo $this->__(' Add New Block'); ?></a>
+        </div>
+    </div>
+<?php endif ?>
+
+	

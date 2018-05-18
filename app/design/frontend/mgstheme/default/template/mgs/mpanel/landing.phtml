@@ -1,0 +1,25 @@
+<?php if (!Mage::registry('current_category')) return ?>
+<?php $_categories = $this->getCurrentChildCategories() ?>
+<?php $_count = is_array($_categories)?count($_categories):$_categories->count(); ?>
+<?php if($_count): ?>
+<div class="landing-page">
+	<?php foreach ($_categories as $_category): ?>
+		<?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+		<?php if($_category->getIsActive()): ?>
+		<div class="landing-item col-md-3">
+			<?php if($_category->getThumbnail()!=''): ?>
+				<div class="category-thumbnail img-thumbnail">
+					<a href="<?php echo $this->getCategoryUrl($_category) ?>">
+						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>catalog/category/<?php echo $_category->getThumbnail() ?>" alt="<?php echo $this->escapeHtml($_category->getName()) ?>" class="img-responsive"/>
+					</a>
+				</div>
+			<?php endif ?>
+			<div class="category-info">
+				<a href="<?php echo $this->getCategoryUrl($_category) ?>"><?php echo $this->escapeHtml($_category->getName()) ?></a>
+				<span class="category-product-count"><?php echo $this->__('%s products',$_category->getProductCount()) ?></span>
+			</div>
+		</div>
+		<?php endif; ?>
+	<?php endforeach ?>
+</div>
+<?php endif; ?>

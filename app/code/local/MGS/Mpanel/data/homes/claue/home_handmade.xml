@@ -1,0 +1,222 @@
+<layout>
+	<name>1_column_full</name>
+	<header>header5</header>
+	<footer>footer</footer>
+	
+	<block>
+		<name>block354</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>1</block_position>
+	</block>
+	<block>
+		<name>block355</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>68</padding_top>
+		<padding_bottom>50</padding_bottom>
+		<block_position>2</block_position>
+	</block>
+	<block>
+		<name>block356</name>
+		<block_cols><![CDATA[6,6]]></block_cols>
+		<block_class><![CDATA[["col-sm-6 col-xs-12 margin-bottom30","col-sm-6 col-xs-12 margin-bottom30"]]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>3</block_position>
+	</block>
+	<block>
+		<name>block357</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>45</padding_top>
+		<padding_bottom>50</padding_bottom>
+		<block_position>4</block_position>
+	</block>
+	<block>
+		<name>block358</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[#f6f6f8]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>20</padding_top>
+		<padding_bottom>50</padding_bottom>
+		<block_position>5</block_position>
+	</block>
+	<block>
+		<name>block359</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>0</fullwidth>
+		<padding_top>70</padding_top>
+		<padding_bottom>33</padding_bottom>
+		<block_position>6</block_position>
+	</block>
+	<block>
+		<name>block360</name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<block_class><![CDATA[]]></block_class>
+		<custom_class><![CDATA[]]></custom_class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat>0</background_repeat>
+		<parallax>0</parallax>
+		<fullwidth>1</fullwidth>
+		<padding_top>0</padding_top>
+		<padding_bottom>0</padding_bottom>
+		<block_position>7</block_position>
+	</block>
+
+	<child>
+		<block_name>block354-0</block_name>
+		<block_content><![CDATA[{{widget type="revslider/slider_preview" id="10"}}]]></block_content>
+		<type>revolution</type>
+		<position>1</position>
+		<setting><![CDATA[10]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block355-0</block_name>
+		<block_content><![CDATA[{{block type="mpanel/products" display_type="hot_products" slider="0" products_count="8" sub_title="Top seller in the week" title="HANDPICKED FOR YOU" product_ratio="1" count_per_row="4"  template="mgs/mpanel/products/panel_products.phtml" load_more="0"}}]]></block_content>
+		<type>hot</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"HANDPICKED FOR YOU","sub_title":"Top seller in the week","custom_class":"","animation":"","animation_delay":"","product_count":"8","view_mode":"grid","count_per_row":"4","number_col":"","count_per_col":"1","product_ratio":"1","slider":{"active":"0","number_row":"","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"load_more":"0","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","price_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block356-0</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Handmade Banner 1</banner_title>
+		<banner_filename>handmade_banner_1.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Home Decor]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block356-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Handmade Banner 2</banner_title>
+		<banner_filename>handmade_banner_2.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Accessories]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"col-sm-6 col-xs-6 col-xxs-full margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block356-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Handmade Banner 3</banner_title>
+		<banner_filename>handmade_banner_4.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Souvenirs]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>2</position>
+		<setting><![CDATA[{"custom_class":"col-sm-6 col-xs-6 col-xxs-full margin-bottom30","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>6</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block356-1</block_name>
+		<block_content><![CDATA[{{block type="promobanners/promobanners" banner_id="%s" template="mgs/promobanners/banner.phtml"}}]]></block_content>
+		<type>promo_banner</type>
+		<banner_title>Claue Handmade Banner 4</banner_title>
+		<banner_filename>handmade_banner_3.jpg</banner_filename>
+		<banner_url>#</banner_url>
+		<banner_button><![CDATA[Kids & Baby]]></banner_button>
+		<banner_content><![CDATA[]]></banner_content>
+		<banner_text_align>bottom-center</banner_text_align>
+		<position>3</position>
+		<setting><![CDATA[{"custom_class":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"%s"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block359-0</block_name>
+		<block_content><![CDATA[{{widget type="blog/last" blog_count="5" categories="1,2,3,4,5,6" column="3" view_mode="grid" slider="1" title="LATEST FROM BLOG" sub_title="The freshest and most exciting news" character_count="115" auto_play="false" stop_hover="false" navigation="false" pagination="false"}}]]></block_content>
+		<type>latest_posts</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"LATEST FROM BLOG","sub_title":"The freshest and most exciting news","custom_class":"","animation":"","animation_delay":"","categories":["1","2","3","4","5","6"],"product_count":"5","character_count":"115","view_mode":"grid","count_per_row":"3","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"false","pagination":"false"},"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":""}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	
+	<child>
+		<block_name>block358-0</block_name>
+		<block_content><![CDATA[{{block type="testimonial/testimonial" template="mgs/testimonial/view.phtml" view_mode="grid" title="" sub_title="" item_count="3" count_per_row="2"}}]]></block_content>
+		<type>testimonials</type>
+		<position>1</position>
+		<setting><![CDATA[{"custom_class":"text-left","animation":"","animation_delay":"","title":"","sub_title":"","item_count":"3","count_per_row":"2","view_mode":"grid"}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[text-left]]></custom_class>
+	</child>
+	<child>
+		<block_name>block360-0</block_name>
+		<block_content><![CDATA[{{block type="core/template" title="@ FOLLOW US ON INSTAGRAM" number="12" number_item_row="6" resolution="low_resolution" image_details="1" slider="1"  auto_play="false" stop_hover="false" navigation="true" pagination="false" number_row="1"template="mgs/mpanel/instagram_widget.phtml" }}]]></block_content>
+		<type>instagram</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"@ FOLLOW US ON INSTAGRAM","custom_class":"","animation":"","animation_delay":"","count":"12","number_item_row":"6","resolution":"low_resolution","image_details":"1","slider":{"active":"1","number_row":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"}}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+	<child>
+		<block_name>block357-0</block_name>
+		<block_content><![CDATA[{{block type="portfolio/portfolio" portfolio_count="8" categories="1,2,3,4,5,6" column="4" slider="1" title="OUR PORTFOLIO" sub_title="We make with passion" auto_play="false" stop_hover="false" navigation="true" pagination="false" template="mgs/portfolio/widget.phtml"}}]]></block_content>
+		<type>portfolio</type>
+		<position>1</position>
+		<setting><![CDATA[{"title":"OUR PORTFOLIO","sub_title":"We make with passion","custom_class":"","animation":"","animation_delay":"","categories":["1","2","3","4","5","6"],"product_count":"8","count_per_row":"4","slider":{"active":"1","auto":"false","stop_hover":"false","navigation":"true","pagination":"false"}}]]></setting>
+		<col>12</col>
+		<custom_class><![CDATA[]]></custom_class>
+	</child>
+</layout>

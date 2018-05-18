@@ -1,0 +1,40 @@
+<?php $brands = $this->getBrands(); ?>
+<?php 
+	if($this->getBrandCount()){
+		$number = $this->getBrandCount();
+	}
+	else{
+		$number = 5;
+	}
+?>
+<?php if(count($brands)>0): ?>
+	<div class="brands-container">
+		<?php if($this->getSlider()==1): ?>
+			<div class="carousel_wrapper">
+				<div class="title">
+					<h2><?php echo $this->getTitle() ?></h2>
+				</div>
+			</div>
+			<div class="brand-thumbnails clearfix">
+				<ul id="brands-carousel" class="owl-carousel brands-carousel">
+					<?php foreach($brands as $brand): ?>
+						<li class="item">
+							<div class="entry">
+								<a href="<?php echo $brand->getContent()?>"><img class="img-responsive" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'abrands/'.$brand->getFilename() ?>" alt="<?php echo $brand->getTitle() ?>"></a>
+							</div>
+						</li>
+					<?php endforeach ?>
+				</ul>
+			</div>
+			<script type="text/javascript">
+				initSlider('brands-carousel', <?php echo $number ?>, <?php echo $this->getAutoPlay()?>, <?php echo $this->getStopHover()?>, <?php echo $this->getNavigation()?>, <?php echo $this->getPagination()?>);
+			</script>
+		<?php else: ?>
+			<?php foreach($brands as $brand): ?>
+				<div class="col-md-3">
+					<a href="<?php echo $brand->getContent()?>"><img class="img-responsive" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'abrands/'.$brand->getFilename() ?>" alt="<?php echo $brand->getTitle() ?>"></a>
+				</div>
+			<?php endforeach ?>
+		<?php endif ?>
+	</div>
+<?php endif ?>

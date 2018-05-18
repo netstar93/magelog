@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<layout version="0.1.0">
+    <default>
+    </default>
+    <event_index_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="event/event" name="event" template="mgs/event/list.phtml" />
+        </reference>
+    </event_index_index>
+    <event_index_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="event/event_view" name="event.view" template="mgs/event/view.phtml" />
+        </reference>
+    </event_index_view>
+</layout>

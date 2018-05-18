@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+//<![CDATA[
+    var WEB_URL = '<?php echo $this->getUrl() ?>';
+//]]>
+</script>
+
+<!-- Css Section-->
+<?php echo $this->helper('mpanel')->getLinksFont() ?>
+<?php echo $this->getCssHtml() ?>
+<?php if(Mage::getStoreConfig('mgs_theme/general/layout_style')=='dark'): ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/dark-style.css') ?>" media="all" />
+<?php endif ?>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/config-color.css') ?>" media="all" />
+
+<?php if(Mage::getStoreConfig('mgs_theme/general/custom_css')): ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/custom.css') ?>" media="all" />
+<?php endif ?>
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $this->getUrl('mpanel/index/style', array('_secure' => true)) ?>"/>
+
+
+<!-- Js Section-->
+<?php echo $this->getJsHtml() ?>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.magnific-popup.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/owl.carousel.min.js') ?>"></script>
+
+<?php if($this->helper('mpanel')->acceptToUsePanel()): ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/mpanel.css') ?>" media="all" />
+	<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/mColorPicker.js') ?>"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/bootstrap-toggle.min.css') ?>" media="all" />
+	<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/bootstrap-toggle.min.js') ?>"></script>
+<?php endif ?>
+
+
+
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>

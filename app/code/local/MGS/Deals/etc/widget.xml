@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<widgets>
+	<deals_widget type="deals/widget" translate="name description" module="deals">
+        <name>Daily Deals</name>
+        <description type="desc">Add daily deal products</description>
+		<parameters>
+			<template translate="label">
+				<label>Frontend Template</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<values>
+					<grid translate="label">
+						<value>mgs/deals/widget/grid.phtml</value>
+						<label>Grid View</label>
+					</grid>
+					<slide translate="label">
+						<value>mgs/deals/widget/slide.phtml</value>
+						<label>Slideshow</label>
+					</slide>					
+				</values>
+			</template>
+			<column translate="label">
+                <visible>1</visible>
+                <label>Column (Grid View)</label>
+				<required>1</required>
+				<description type="desc">Number of columns in grid view</description>
+                <type>select</type>
+				<values>
+					<two translate="label">
+						<value>2</value>
+						<label>2 columns</label>
+					</two>
+					<three translate="label">
+						<value>3</value>
+						<label>3 columns</label>
+					</three>
+					<four translate="label">
+						<value>4</value>
+						<label>4 columns</label>
+					</four>
+					<five translate="label">
+						<value>5</value>
+						<label>5 columns</label>
+					</five>
+				</values>
+            </column>
+			<deal_id translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Deals</label>
+                <type>label</type>
+                <helper_block>
+                    <type>deals/adminhtml_catalog_product_widget_chooser</type>
+					<data>
+                        <button translate="open remove">
+                            <open>Select</open>
+                        </button>
+                    </data>
+                </helper_block>
+            </deal_id>		
+			<real_deal translate="label">
+                <visible>0</visible>
+                <label>Deal</label>
+				<required>1</required>
+                <type>text</type>
+            </real_deal>		
+		</parameters>
+    </deals_widget>
+</widgets>

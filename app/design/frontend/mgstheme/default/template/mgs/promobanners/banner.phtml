@@ -1,0 +1,14 @@
+<?php $banner = Mage::getModel('promobanners/promobanners')->load($this->getBannerId()); ?>
+<div class="promo-banner">
+    <a href="<?php echo $banner->getUrl() ?>"><img alt="<?php echo $banner->getTitle() ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'promobanners/' . $banner->getFilename() ?>" class="img-responsive"/></a>
+    <div class="text-container <?php if ($banner->getTextAlign() != ''): ?>text-<?php echo $banner->getTextAlign() ?><?php endif ?>">
+		<div class="text-hover">
+        <?php echo $banner->getContent() ?>
+		</div>
+        <?php if ($banner->getButton()): ?>
+			<div class="view-more">
+            	<button class="btn btn-primary btn-lg btn-promo-banner" onclick="setLocation('<?php echo $banner->getUrl() ?>')"><span><?php echo $banner->getButton() ?></span></button>
+			</div>
+        <?php endif ?>
+    </div>
+</div>

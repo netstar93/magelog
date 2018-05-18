@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="top.links">
+			<action method="addLink" ifconfig="storelocator/general/top_link">
+				<label>Store Locator</label>
+				<url>storelocator</url>
+				<title>Store Locator</title>
+				<prepare>true</prepare>
+				<position>2000</position>
+			</action>
+		</reference>
+	</default>
+    <mgs_storelocator_index_index translate="label">
+        <label>Store List Page</label>
+        <reference name="head">
+             <action method="addCss"><stylesheet>css/mgs_storelocator.css</stylesheet></action>
+             <block type="core/text" name="gmap_external_js">
+                 <action method="setText">
+                     <text><![CDATA[<script language="javascript" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>]]></text>
+                 </action>
+             </block>
+             <action method="addItem"><type>skin_js</type><name>js/mgs_storelocator/storelocator.js</name></action>
+            <action method="setTitle" translate="title" module="mgs_storelocator"><title>Store Locator</title></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+            <action method="setHeaderTitle" translate="title" module="mgs_storelocator">
+                <title>Storelocator</title>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="mgs_storelocator/list" name="stores.list" template="mgs/storelocator/list.phtml">
+                <block type="page/html_pager" name="stores.list.pager" />
+            </block>
+        </reference>
+    </mgs_storelocator_index_index>
+    
+     <mgs_storelocator_index_view translate="label">
+        <label>Store View Page</label>
+        <reference name="head">
+             <action method="addCss"><stylesheet>css/mgs_storelocator.css</stylesheet></action>
+             <block type="core/text" name="gmap_external_js">
+                 <action method="setText">
+                     <text><![CDATA[<script language="javascript" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>]]></text>
+                 </action>
+             </block>
+             <action method="addItem"><type>skin_js</type><name>js/mgs_storelocator/storelocator.js</name></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="mgs_storelocator/view" name="store.view" template="mgs/storelocator/view.phtml" />
+        </reference>
+    </mgs_storelocator_index_view>
+    <mgs_storelocator_index_search translate="label">
+      <update handle="mgs_storelocator_index_index"/>  
+    </mgs_storelocator_index_search>
+	
+	<mgs_storelocator_index_searchbydistance translate="label">
+      <update handle="mgs_storelocator_index_index"/>  
+    </mgs_storelocator_index_searchbydistance>
+</layout>

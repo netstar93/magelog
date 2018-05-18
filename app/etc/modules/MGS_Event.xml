@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_Event>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MGS_Event>
+    </modules>
+</config>

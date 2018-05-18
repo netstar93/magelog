@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addJs"><script>mpanel/jquery-1.8.3.min.js</script></action>
+            <action method="addJs"><script>mpanel/jquery.noConflict.js</script></action>
+            <action method="addJs"><script>mpanel/mColorPicker.js</script></action>
+        </reference>
+		
+		<reference name="content">
+            <block type="core/template" name="init_js_folder" template="mgs/mpanel/head.phtml"/>
+        </reference>
+    </adminhtml_system_config_edit>
+</layout>

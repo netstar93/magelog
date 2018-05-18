@@ -1,0 +1,4 @@
+*.htacccess
+*.idea
+var/
+assests/

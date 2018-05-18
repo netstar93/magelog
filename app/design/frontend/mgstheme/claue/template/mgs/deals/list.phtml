@@ -1,0 +1,41 @@
+<?php if(Mage::getStoreConfig('deals/general/enabled')): ?>
+	<?php if((Mage::app()->getRequest()->getControllerName()=='category' && Mage::getStoreConfig('deals/general/show_in_list')) || Mage::app()->getRequest()->getControllerName()!='category'):?>
+	<?php $deal = $this->getDeals(); ?>
+	<?php if($deal->getId()): ?>
+		<?php
+			$timezone = Mage::app()->getStore()->getConfig('general/locale/timezone');
+			$currentTimezone = @date_default_timezone_get();
+			@date_default_timezone_set($timezone);
+			$now = date('m/d/y h:i:s A');
+			$endTime = str_replace('23:59:59','00:00:00', $deal->getEndTime());
+		?>
+		<?php $itemLeft = $deal->getMaxDealQty(); ?>
+		<?php if($itemLeft!=''): ?>
+			<div class="hurry-text text-uppercase">
+				<?php echo $this->__('Hurry! Only %s left in stock', $itemLeft); ?>
+			</div>
+		<?php endif ?>
+		<div class="deal-timer">
+			<div id="deal-timer-<?php echo $this->getProductId(); ?><?php if($this->getData("widgetId")): echo $this->getData("widgetId"); endif;?>" class="countdown"></div>
+			<div class="time-note">
+				<span class="days"><?php echo $this->__('days') ?></span>
+				<span class="hours"><?php echo $this->__('hrs') ?></span>
+				<span class="mins"><?php echo $this->__('mins') ?></span>
+				<span class='secs'><?php echo $this->__('secs') ?></span>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var dthen<?php echo $this->getProductId(); ?> = new Date("<?php echo Date("m/d/y", strtotime($endTime)).' 11:59:59 PM'; ?>");
+			start = "<?php echo $now; ?>";
+			start_date = Date.parse(start);
+			var dnow<?php echo $this->getProductId(); ?> = new Date(start_date);
+			ddiff = new Date((dthen<?php echo $this->getProductId(); ?>)-(dnow<?php echo $this->getProductId(); ?>));
+			gsecs<?php echo $this->getProductId(); ?> = Math.floor(ddiff.valueOf()/1000);
+
+			var iid<?php echo $this->getProductId(); ?> = "deal-timer-<?php echo $this->getProductId(); ?><?php if($this->getData("widgetId")): echo $this->getData("widgetId"); endif;?>";
+			CountBack(gsecs<?php echo $this->getProductId(); ?>,"deal-timer-<?php echo $this->getProductId(); ?><?php if($this->getData("widgetId")): echo $this->getData("widgetId"); endif;?>", <?php echo $this->getProductId(); ?>);
+		</script>
+	<?php endif ?>
+	<?php endif ?>
+<?php endif ?>

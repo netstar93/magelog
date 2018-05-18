@@ -1,0 +1,87 @@
+<?php $portfolio = $this->getPortfolio() ?>
+<div class="row portfolio-details">
+	<div class="col-xs-12">
+		<div class="portfolio-image">
+			<img src="<?php echo $this->helper('portfolio')->getBaseImage($portfolio)?>" alt="" class="img-responsive"/>
+		</div>
+	</div>
+	<div class="col-xs-12">
+		<h2 class="text-uppercase title-porfolio"><?php echo $portfolio->getName() ?></h2>
+		<?php if($this->helper('portfolio')->getCategoriesLink($portfolio) != ''): ?>
+			<p class="text-desc porfolio-category"><?php echo $portfolio->getServices() ?></p>
+		<?php endif ?>
+	</div>
+	<div class="col-md-9 col-sm-12 col-xs-12">
+		<div class="description"><?php echo nl2br($portfolio->getDescription()) ?></div>
+	</div>
+	<div class="col-md-3 col-sm-12 col-xs-12">
+		<div class="portfolio-content">
+			<table class="table portfolio-table">
+				<tbody>
+					<?php if($portfolio->getPortfolioDate() != ''): ?>
+						<tr>
+							<td><?php echo $this->__('Date:') ?></td>
+							<td class="text-desc"><?php echo date('F d, Y', strtotime($portfolio->getPortfolioDate()))?></td>
+						</tr>
+					<?php endif ?>
+					<?php if($portfolio->getServices() != ''): ?>
+						<tr>
+							<td><?php echo $this->__('Categories:') ?></td>
+							<td class="text-desc"><?php echo $this->helper('portfolio')->getCategoriesLink($portfolio) ?></td>
+						</tr>
+					<?php endif ?>
+					<?php if($portfolio->getClient() != ''): ?>
+						<tr>
+							<td><?php echo $this->__('Client:') ?></td>
+							<td class="text-desc"><?php echo $portfolio->getClient() ?></td>
+						</tr>
+					<?php endif ?>
+					<?php if($portfolio->getSkills() != ''): ?>
+						<tr>
+							<td><?php echo $this->__('Skills:') ?></td>
+							<td class="text-desc"><?php echo $portfolio->getSkills() ?></td>
+						</tr>
+					<?php endif ?>
+					
+				</tbody>
+			</table>
+			<?php if($portfolio->getProjectUrl() != ''): ?>
+				<a class="btn btn-default btn-lg btn-full" target="_blank" href="<?php echo $portfolio->getProjectUrl() ?>"><?php echo $this->__('View Project') ?></a>
+			<?php endif ?>
+		</div>
+	</div>
+	
+	<?php $relatedPortfolio = $this->helper('portfolio')->getRelatedPortfolio($portfolio) ?>
+	<?php if(count($relatedPortfolio)>0): ?>
+	
+		<div class="portfolio-container col-md-12 col-sm-12 col-xs-12">
+			<div class="title-inline" style="margin-bottom: 30px;">
+				<h3 class="heading full text-uppercase"><span><?php echo $this->__('Related Works') ?></span></h3>
+			</div>
+			<div class="row">
+				<div class="portfolio-grid owl-carousel portfolio-carousel" id="portfolio_carousel">
+				<?php foreach($relatedPortfolio as $_portfolio): ?>
+					<div class="item">
+						<div class="porfolio-content">
+							<div class="portfolio-top-content">
+								<a class="porfolio-image" href="<?php echo $this->getUrl('portfolio/view/index', array('id'=>$_portfolio->getId())) ?>"><img src="<?php echo $this->helper('portfolio')->getThumbnail($_portfolio)?>" alt="" class="img-responsive"/></a>
+								<a class="view" href="<?php echo $this->getUrl('portfolio/view/index', array('id'=>$_portfolio->getId())) ?>"><span class="hover-info"><span class="fa fa-search"></span></span></a>
+							</div>
+							<div class="portfolio-bottom-content">
+								<h5 class="portfolio-name text-uppercase"><a href="<?php echo $this->getUrl('portfolio/view/index', array('id'=>$_portfolio->getId())) ?>"><?php echo $_portfolio->getName() ?></a></h5>
+								<p class="category-link text-desc"><?php echo $this->helper('portfolio')->getCategoriesLink($_portfolio)?></p>
+							</div>
+						
+						</div>
+					</div>
+				<?php endforeach ?>
+				</div>
+			</div>
+			
+
+			<script type="text/javascript">
+				initSlider('portfolio_carousel', 4, false, true, true, false);
+			</script>
+		</div>
+	<?php endif ?>
+</div>

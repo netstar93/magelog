@@ -1,0 +1,100 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php $helper = $this->helper('mpanel'); ?>
+<div id="header-v1" class="builder-container header-builder<?php if (Mage::getStoreConfig('mgs_theme/general/sticky_menu')): ?> sticky-menu<?php endif ?>">
+    <?php echo $helper->getEditHeaderPanel() ?>
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <?php echo $this->getChildHtml('store_language') ?>
+                    <?php echo $this->getChildHtml('top.currency') ?>
+                    <div class="welcome-msg builder-container inline-builder">
+                        <?php echo $helper->getEditStoreConfig('design-header-welcome', Mage::getStoreConfig('design/header/welcome')) ?>
+                        <span id="design-header-welcome-text"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></span>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 pull-right">
+                    <?php echo $this->getChildHtml('topLinks') ?>
+                </div>
+            </div>
+        </div>
+        <?php if (Mage::helper('social')->getGeneralConfig('show_on_header', Mage::app()->getStore()->getStoreId())): ?>
+            <?php echo $this->getChildHtml('social_header'); ?>
+        <?php endif; ?>
+    </div>
+    <div class="top-content">
+        <div class="container">
+            <div class="header-container">
+                <div class="header">
+                    <div class="col-md-9">
+						<?php $sticky_logo =  $this->getLayout()->createBlock('cms/block')->setBlockId('panel_logo_sticky')->toHtml(); ?>
+						<?php if (Mage::getStoreConfig('mgs_theme/general/sticky_menu')): ?>
+							<?php if($sticky_logo): ?>
+								<div style="padding: 20px; border-width: 1px; border-style: solid; border-color: #ddd">
+									<a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo">
+										<p>Logo on Sticky menu - Disable static block panel_logo_sticky to use default Logo</p>
+										<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('panel_logo_sticky')->setCanEdit(1)->toHtml(); ?>
+									</a>
+								</div>
+							<?php endif ?>
+						<?php endif ?>
+                        <div class="logo-container builder-container child-builder">
+                            <?php if ($this->getIsHomePage()): ?>
+                                <h1 class="logo">
+                                    <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo">
+                                        <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+                                    </a>
+                                </h1>
+                            <?php else: ?>
+                                <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo">
+                                    <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+                                </a>
+                            <?php endif ?>
+                            <?php echo $helper->getEditLogoPanel() ?>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <?php echo $this->getChildHtml('topSearch') ?>
+                    </div>
+                    <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <div class="navbar-collapse nav-main-collapse collapse">
+                    <nav class="nav-main mega-menu">
+                        <?php echo $this->getChildHtml('topMenu') ?>
+                    </nav>
+                </div>
+                <?php echo $this->getChildHtml('topContainer'); ?>
+            </div>
+        </div>
+    </div>
+</div>

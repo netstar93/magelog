@@ -1,0 +1,33 @@
+<?php $title = $this->getTitle(); ?>
+<?php if($title==''){ $title = 'Instagram'; } ?>
+<div class="title">
+	<span><?php echo $title; ?></span>
+</div>
+
+<?php $user_name = Mage::getStoreConfig('social/instagram/user_name'); ?>
+<?php $client_id = Mage::getStoreConfig('social/instagram/client_id'); ?>
+<?php $quantity = Mage::getStoreConfig('social/instagram/quantity'); ?>
+<?php $width = Mage::getStoreConfig('social/instagram/width'); ?>
+<?php $height = Mage::getStoreConfig('social/instagram/height'); ?>
+<?php $resolution = Mage::getStoreConfig('social/instagram/resolution'); ?>
+
+<?php if(Mage::getStoreConfig('social/instagram/active') == 1 && Mage::getStoreConfig('social/instagram/user_name') && Mage::getStoreConfig('social/instagram/client_id') && Mage::getStoreConfig('social/instagram/quantity')): ?>
+	<?php $images = $this->getWidgetInstagramData($user_name, $client_id, $quantity, $width, $height, $resolution); ?>
+	<div id="<?php if($this->getSlider() == 1): ?>instagram<?php endif; ?>" class="instagram <?php if($this->getSlider() == 1): ?> owl-carousel <?php endif; ?>">
+		<?php foreach($images as $image): ?>
+			<a class="item" href="<?php echo $image ?>" target="_blank"><img width="<?php if($width): echo $width; endif; ?>" height="<?php if($height): echo $height; endif; ?>" src="<?php echo $image ?>" alt="image" /></a>
+		<?php endforeach; ?>
+	</div>
+	<?php if($this->getSlider() == 1): ?>
+		<script type="text/javascript">
+			initSlider('instagram', <?php echo $number ?>, <?php echo $aplay ?>, <?php echo $stophv ?>, <?php echo $nav ?>, <?php echo $pag ?>);
+		</script>
+	<?php endif ?>
+<?php else: ?>
+<div class="alert alert-warning">
+	<?php echo $this->__('Please update your instagram settings first.') ?>
+</div>
+<?php endif; ?>
+
+
+

@@ -1,0 +1,33 @@
+<?php
+/* * ****************************************************
+ * Package   : AjaxCart
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php
+$panelHelper = $this->helper('mpanel');
+$size = $panelHelper->convertRatioToSize();
+?>
+<div class="mfp-iframe-scaler ajaxcart-iframe">
+    <div class="frame">
+        <div class="loader" id="success-message-container">
+            <div class="message"><span><?php echo $this->__('You\'ve just added ') ?><?php echo $_product->getName(); ?><?php echo $this->__('to cart') ?></span></div>
+            <div class="ajax-content">
+                <img class="img-responsive" src="<?php echo Mage::helper('catalog/image')->init($_product, 'image')->resize(135, 135); ?>"/>
+				<div class="info text-center">
+					<b><?php echo $this->__('Cart Subtotal:') ?><b> 
+					<?php echo Mage::helper('checkout')->formatPrice(Mage::helper('checkout')->getQuote()->getData('subtotal')); ?>
+					<button class="btn btn-default btn-cart margin-top10" id="finish_and_checkout" onclick="window.location.href = '<?php echo $this->getUrl('checkout/cart') ?>'" name="finish_and_checkout" type="button">
+                    <span><?php echo $this->__('View cart') ?></span>    
+					</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+			<button class="btn btn-primary btn-cart margin-bottom10" id="finish_and_checkout" onclick="window.location.href = '<?php echo $this->getUrl('oscheckout') ?>'" name="finish_and_checkout" type="button">
+				<span><?php echo $this->__('Proceed to Checkout') ?></span>    
+			</button>
+        </div>
+    </div>
+</div>

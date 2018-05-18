@@ -1,0 +1,121 @@
+<?php $template = $this->getRequest()->getParam('template') ?>
+<?php $block = $this->getRequest()->getParam('block') ?>
+
+<?php 
+	$exist = 0;
+	if($id = $this->getRequest()->getParam('id')){
+		$child =  Mage::getModel('mpanel/childs')->load($id);
+		$exist = 1;
+		
+		$settings = json_decode($child->getSetting(), true);
+	}
+?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	
+		<div class="edit-static-form">
+			
+			<form id="edit_form" method="post" action="<?php echo $this->getUrl('mpanel/post/child') ?>">
+				<div class="row">
+					<div class="col-md-12 builder-title">
+						<h2><?php echo $this->__('Flick Photo Block') ?></h2>
+					</div>
+				</div>
+				
+				<div class="form-horizontal">
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label" for="col"><?php echo $this->__('Block col (12 to full)') ?></label>
+						<div class="col-sm-8">
+							<select name="col" class="required-entry input-text" id="col">
+								<?php for($i=12; $i>=1; $i--): ?>
+									<option value="<?php echo $i ?>"<?php if($exist && ($child->getCol()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+								<?php endfor ?>
+							</select>
+						</div>
+					</div>
+								
+					<div class="form-group">
+						<label class="col-sm-4 control-label" for="title"><?php echo $this->__('Title') ?></label>
+						<div class="col-sm-8">
+							<input type="text" name="setting[title]" class="input-text" id="title"<?php if($exist): ?> value="<?php echo $settings['title'] ?>"<?php endif ?> />
+						</div>
+					</div>
+								
+					<div class="form-group">
+						<input type="hidden" value="flick_photo" name="type" id="block_type"/>
+						<input type="hidden" value="<?php echo $template ?>" name="home_name" id="block_home_name"/>
+						<input type="hidden" value="<?php echo $block ?>" name="block_name" id="block_block_name"/>
+						<input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+						<?php if($exist): ?>
+							<input type="hidden" value="<?php echo $child->getId() ?>" name="child_id" />
+						<?php endif ?>
+						
+						<label class="col-sm-4 control-label" for="custom_class"><?php echo $this->__('Custom Class') ?></label>
+						<div class="col-sm-8">
+							<input type="text" name="setting[custom_class]" class="input-text" id="custom_class"<?php if($exist): ?> value="<?php echo $settings['custom_class'] ?>"<?php endif ?> />
+						</div>
+						
+					</div>
+								
+					<div class="form-group">
+						<label class="col-sm-4 control-label" for="animation"><?php echo $this->__('Block Animation') ?></label>
+						<div class="col-sm-4">
+							<select name="setting[animation]" class="input-text" id="animation" onchange="changeAnimationClass(this.value)">
+								<?php $animation = $helper->getAnimationClass() ?>
+								<?php foreach($animation as $_animate): ?>
+									<option value="<?php echo $_animate['value'] ?>"<?php if($exist && ($settings['animation']==$_animate['value'])): ?> selected="selected"<?php endif ?>><?php echo $_animate['label'] ?></option>
+								<?php endforeach ?>
+							</select>
+						</div>
+						<div class="col-sm-4 text-center animated<?php if($exist && ($settings['animation']!='')): ?> <?php echo $settings['animation'] ?><?php endif ?>" id="animation-test"><h1>Animation Preview</h1></div>
+					</div>
+								
+					<div class="form-group">
+						<label class="col-sm-4 control-label" for="animation_delay"><?php echo $this->__('Animation Delay') ?></label>
+						<div class="col-sm-8">
+							<input type="text" name="setting[animation_delay]" class="input-text validate-number" id="animation_delay" placeholder="ms" <?php if($exist && isset($settings['animation_delay'])): ?> value="<?php echo $settings['animation_delay'] ?>"<?php endif ?>/>
+						</div>
+					</div>
+
+							
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label" for="key"><?php echo $this->__('API Key') ?></label>
+						<div class="col-sm-8">
+							<input type="text" name="setting[key]" class="input-text required-entry" id="key" <?php if($exist && isset($settings['key'])): ?> value="<?php echo $settings['key'] ?>"<?php endif ?>/>
+						</div>
+					</div>
+								
+					<div class="form-group">
+						<label class="col-sm-4 control-label" for="user"><?php echo $this->__('User Id') ?></label>
+						<div class="col-sm-8">
+							<input type="text" name="setting[user]" class="input-text required-entry" id="user" <?php if($exist && isset($settings['user'])): ?> value="<?php echo $settings['user'] ?>"<?php endif ?>/>
+						</div>
+					</div>
+
+				
+					<div class="row">
+						<div class="form-group builder-action">
+							<div class="col-md-12">
+								<div class="buttons">
+									<?php if(!$exist): ?>
+										<button onclick="history.go(-1)" class="btn btn-back" type="button">
+											<span><span><?php echo $this->__('Back') ?></span></span>
+										</button>
+									<?php endif ?>
+									<button id="submit-button" onclick="updateForm.submit(this)" class="btn btn-primary" type="button">
+										<span><span><?php echo $this->__('Submit') ?></span></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/form/script_action.phtml')->toHtml() ?>
+	
+	
+<?php endif ?>

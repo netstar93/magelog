@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.W
+ */
+-->
+<layout version="0.1.0">
+    <adminhtml_lookbook_index>
+        <reference name="content">
+            <block type="lookbook/adminhtml_lookbook" name="lookbook" />
+        </reference>
+    </adminhtml_lookbook_index>
+     <adminhtml_lookbook_edit>
+        <reference name="head">
+			<action method="addCss"><stylesheet>lookbook/css/lookbook.css</stylesheet></action>
+			<action method="addCss"><stylesheet>lookbook/css/fileuploader.css</stylesheet></action>
+			 <action method="addJs"><script>lookbook/jquery-1.8.2.min.js</script></action>
+			 <action method="addJs"><script>lookbook/jquery.noconflict.js</script></action>                 
+			 <action method="addJs"><script>lookbook/jquery-ui-1.9.1.js</script></action>
+			 <action method="addJs"><script>lookbook/jquery.annotate.js</script></action>
+			 <action method="addJs"><script>lookbook/fileuploader.js</script></action>
+			 <action method="addJs"><script>lookbook/json2.min.js</script></action>
+        </reference>
+		<reference name="content">
+			<block type="core/template" name="lookbook.script" template="mgs/lookbook/script.phtml"/>
+		</reference>
+    </adminhtml_lookbook_edit>
+	
+	<adminhtml_lookbook_slide_index>
+        <reference name="content">
+            <block type="lookbook/adminhtml_slide" name="lookbook" />
+        </reference>
+    </adminhtml_lookbook_slide_index>
+	
+	<adminhtml_lookbook_slide_items>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="lookbook/adminhtml_slide_edit_tab_items" name="lookbook.edit.tab.items"/>
+            <block type="adminhtml/widget_grid_serializer" name="lookbook_grid_serializer">
+                <reference name="lookbook_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>lookbook.edit.tab.items</grid_block_name>
+                        <data_callback>getSelectedLookbooks</data_callback>
+                        <hidden_input_name>slider[lookbook_ids]</hidden_input_name>
+                        <reload_param_name>lookbook_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_lookbook_slide_items>
+	
+	<adminhtml_lookbook_slide_lookbookgrid>
+		<block type="core/text_list" name="root" output="toHtml">
+            <block type="lookbook/adminhtml_slide_edit_tab_items" name="lookbook.edit.tab.items"/>
+        </block>
+	</adminhtml_lookbook_slide_lookbookgrid>
+</layout>

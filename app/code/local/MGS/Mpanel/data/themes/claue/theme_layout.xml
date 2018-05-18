@@ -1,0 +1,29 @@
+<theme_layout>
+	<item>
+		<page_type>category</page_type>
+		<indentifier>0</indentifier>
+		<left><![CDATA[]]></left>
+		<right><![CDATA[]]></right>
+	</item>
+	
+	<item>
+		<page_type>product</page_type>
+		<indentifier>0</indentifier>
+		<left><![CDATA[]]></left>
+		<right><![CDATA[]]></right>
+	</item>
+	
+	<item>
+		<page_type>cms</page_type>
+		<indentifier>0</indentifier>
+		<left><![CDATA[]]></left>
+		<right><![CDATA[]]></right>
+	</item>
+	
+	<item>
+		<page_type>customer</page_type>
+		<indentifier>0</indentifier>
+		<left><![CDATA[]]></left>
+		<right><![CDATA[]]></right>
+	</item>
+</theme_layout>

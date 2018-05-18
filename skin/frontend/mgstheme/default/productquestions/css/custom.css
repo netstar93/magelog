@@ -1,0 +1,280 @@
+.question-title {
+    position: relative;
+}
+.ask-question {
+    position: absolute; right: 0px; top: -4px;
+}
+.question-img-loader {
+    float: right; overflow: hidden;
+}
+.answer-img-loader {
+    float: right; overflow: hidden;
+}
+.question-content {    
+    position: relative;
+}
+.question-content .content {
+    cursor: pointer;
+    font-weight: bold;
+    padding-left: 24px;
+}
+.question-content .score {
+    position: absolute;
+    right: 50px;
+    top: 0;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 18px;
+}
+.question-list .item {
+    margin-bottom: 10px;
+}
+.answer-list .item {
+    position: relative;
+    margin-bottom: 20px;
+}
+.question-content .content.arrow-right {
+    background: url("../images/expand-closed.png") no-repeat scroll left center rgba(0, 0, 0, 0);    
+}
+.question-content .content.arrow-down {
+    background: url("../images/expand-open.png") no-repeat scroll left center rgba(0, 0, 0, 0);    
+}
+.question-content .like a {
+    background: url("../images/icon_like.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    height: 17px;
+    position: absolute;
+    right: 80px;
+    top: 0;
+    width: 17px;
+}
+.question-content .dislike a {
+    background: url("../images/icon_dislike.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    height: 17px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 17px;
+}
+.question-content .like a:hover {
+    background: url("../images/icon_like_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+}
+.question-content .dislike a:hover {
+    background: url("../images/icon_dislike_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+}
+.question-form {
+    margin-bottom: 20px;
+}
+.answer-form {
+    margin-bottom: 20px;
+}
+.answer-list {
+    margin-top: 10px;
+    padding-left: 40px;
+}
+.question-by {
+    color: #999999;
+    font-size: 10px;
+    padding-left: 24px;
+}
+.faq-question-by {
+    color: #999999;
+    font-size: 10px;    
+}
+.answer-content .like a {
+    background: url("../images/icon_like.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    height: 17px;
+    position: absolute;
+    right: 80px;
+    top: 0;
+    width: 17px;
+}
+.answer-content .dislike a {
+    background: url("../images/icon_dislike.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    height: 17px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 17px;
+}
+.answer-content .like a:hover {
+    background: url("../images/icon_like_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+}
+.answer-content .dislike a:hover {
+    background: url("../images/icon_dislike_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+}
+.question-content .like a.liked {
+    background: url("../images/icon_like_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+    pointer-events: none;    
+}
+.question-content .dislike a.disliked {
+    background: url("../images/icon_dislike_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+    pointer-events: none;    
+}
+.answer-content .like a.liked {
+    background: url("../images/icon_like_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+    pointer-events: none;    
+}
+.answer-content .dislike a.disliked {
+    background: url("../images/icon_dislike_active.png") no-repeat scroll left center rgba(0, 0, 0, 0);  
+    pointer-events: none;    
+}
+.answer-content .score {
+    position: absolute;
+    right: 50px;
+    top: 0;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 18px;
+}
+.answer-by {
+    color: #999999;
+    font-size: 10px;    
+}
+.question-content .like {    
+    height: 17px;
+    position: absolute;
+    right: -57px;
+    top: 0;
+    width: 17px;
+}
+.question-content .dislike {    
+    height: 17px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: 17px; 
+}
+.answer-content .like {    
+    height: 17px;
+    position: absolute;
+    right: -57px;
+    top: 0;
+    width: 17px;
+}
+.answer-content .dislike {    
+    height: 17px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: 17px; 
+}
+.accordion .section {
+    list-style: none;
+    margin: 5px;
+    padding: 0;
+}
+.accordion .section a.title {
+    background: #f2f2f2;    
+    color: #000;
+    display: block;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.accordion .section p.title {
+    background: #f2f2f2;    
+    color: #000;
+    display: block;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.accordion .section div.toggle {    
+    padding: 10px;
+}
+
+.accordion .section.expanded a.title {
+    background: #ccc;
+}
+.accordion .section.expanded p.title {
+    background: #ccc;
+}
+.accordion .child.section {
+    list-style: none;
+    margin: 5px;
+    padding: 0;
+}
+.accordion .child.section a.title {
+    background: #f2f2f2;    
+    color: #000;
+    display: block;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.accordion .child.section div.toggle {    
+    padding: 0 10px;
+}
+.accordion .child.section.expanded a.title {
+    background: #ccc;
+}
+.simplePagerContainer {
+    position: relative;
+}
+.simplePagerNav {
+    position: absolute; bottom: -50px; right: 0px;
+}
+ul.pagination1 li:hover,
+ul.pagination2 li:hover,
+ul.pagination3 li:hover {
+    background-color: #FF9500;
+}
+
+ul.pagination1 li,
+ul.pagination2 li,
+ul.pagination3 li {
+    padding: 10px;
+    font-family: georgia;
+    background-color: #8890FC;
+    font-size: 24px;
+    color: #fff;
+    line-height: 1;
+    width: 600px;
+    margin-bottom: 1px;
+    list-style:none;
+}
+
+ul.red {
+    outline:10px solid red;
+}
+
+ul.simplePagerNav li{
+    display: block;
+    float: left;
+    font-family: georgia;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 10px;
+    padding: 0 5px 5px;;
+}
+
+ul.simplePagerNav li a{
+    color: #333;
+    text-decoration: none;
+}
+
+li.currentPage {
+    background: red;
+    background: #FF9500;	
+}
+
+ul.simplePagerNav li.currentPage a {
+    color: #fff;	
+}
+
+table.pageme {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}  
+
+table.pageme td {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon{right:0.5em !important;left:auto !important;}

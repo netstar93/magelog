@@ -1,0 +1,21 @@
+<div class="step-title review-title">
+    <h2><?php echo Mage::helper('oscheckout')->__('Confirm Your Order') ?></h2>
+</div>
+
+<div class="order-review" id="oscheckout-review"></div>
+
+<div id="checkout-review-submit">
+    <?php if(Mage::getStoreConfig('oscheckout/terms/enabled')){ echo $this->getChildHtml('agreements'); } ?>
+    <div class="button-set" id="review-buttons-container">
+        <button type="button" id="review-btn" title="<?php echo Mage::helper('oscheckout')->__('Place Order') ?>" class="btn btn-lg btn-primary" onclick="review.save();"><span><span><?php echo Mage::helper('oscheckout')->__('Place Order') ?></span></span></button>
+        <div class="wait" id="review-require"></div>
+    </div>
+</div>
+<div class="mandatory-note"><?php //echo Mage::helper('oscheckout')->__('<span>*</span> mandatory field') ?></div>
+
+<script type="text/javascript">
+	//<![CDATA[
+		var review = new Review('oscheckout-form','<?php echo $this->getUrl('oscheckout/index/saveOrder', array('_secure'=>true)) ?>','<?php echo $this->getUrl('checkout/onepage/success', array('_secure'=>true)) ?>', $('checkout-agreements'));
+	//]]>
+</script>
+<div id="product-details"></div>

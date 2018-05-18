@@ -1,0 +1,196 @@
+<static_block>
+	<item>
+		<title>Claue Vertical Menu</title>
+		<identifier>claue_vertical_menu</identifier>
+		<content><![CDATA[<div class="widget-vertical-menu">
+<div class="vertical-title" onclick="toggleVerticalMenu('#vertical-menu-4');"><span class="fa fa-bars">&nbsp;</span>DEPARTMENTS</div>
+{{block type="megamenu/vertical" menu_id="4" template="megamenu/vertical.phtml"}}</div>]]></content>
+	</item>
+	<item>
+		<title>Claue Header Custom Link</title>
+		<identifier>claue_header_custom_link</identifier>
+		<content><![CDATA[<div class="top-custom-link">
+<ul>
+<li><a href="tel:+0123456789 "><span class="icon pe-7s-call">&nbsp;</span>+01 23456789</a></li>
+<li><a href="mailto:claue@domain.com"><span class="icon pe-7s-mail">&nbsp;</span>claue@domain.com</a></li>
+<li><a href="{{store url=""}}sales/order/history/"><span class="pe-7s-car">&nbsp;</span>Track Your Order</a></li>
+<li><a href="{{store url=""}}storelocator"><span class="pe-7s-map-marker">&nbsp;</span>Store Locator</a></li>
+</ul>
+</div>]]></content>
+	</item>
+<!-- update end -->
+	<item>
+		<title>Mpanel Contact Infomation</title>
+		<identifier>mpanel_contact_information</identifier>
+		<content><![CDATA[<h3 class="margin-bottom15">GET OFFICE INFO</h3>
+<p class="sub-title margin-bottom30"><em>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.</em></p>
+<ul class="list-icon">
+<li><span class="icon pe-7s-map-marker">&nbsp;</span>184 Main Rd E, St Albans <br />VIC 3021, Australia</li>
+<li><span class="icon pe-7s-mail">&nbsp;</span><a href="mailto:contact@company.com">contact@company.com</a><br /><a href="mailto:contact@claue.com">contact@claue.com</a></li>
+<li><span class="icon pe-7s-call">&nbsp;</span> <a href="tel:+0123456789">+01 23456789</a><br /><a href="tel:+0012233456">+001 2233 456</a></li>
+<li><span class="icon pe-7s-timer">&nbsp;</span>
+<p>Monday: 13:00-18:00 (shops open later than usual)</p>
+<p>Tuesday, Wednesday, Friday &amp; Saturday: 09:00-18:00</p>
+<p>Thursday: 09:00-21:00 (late-night shopping)</p>
+<p>Sunday: 12:00-17:00 (This primarily applies to the shops&nbsp;on and near&nbsp;the Nieuwendijk and Kalverstraat. In some of the other shopping streets, you may find that only a selection of the shops are open on Sundays).</p>
+</li>
+</ul>]]></content>
+	</item>
+	<item>
+		<title>Claue Menu Mobile</title>
+		<identifier>claue_menu_mobile</identifier>
+		<content><![CDATA[<div>{{block type="megamenu/horizontal" menu_id="1" template="megamenu/horizontal.phtml"}}</div>]]></content>
+	</item>
+	<item>
+		<title>Footer Links</title>
+		<identifier>footer_links</identifier>
+		<content><![CDATA[<ul>
+<li><a href="{{store direct_url="about-magento-demo-store"}}">About Us</a></li>
+<li><a href="{{store direct_url="customer-service"}}">Customer Service</a></li>
+<li class="last privacy"><a href="{{store direct_url="privacy-policy-cookie-restriction-mode"}}">Privacy Policy</a></li>
+</ul>]]></content>
+	</item>
+	<item>
+		<title>Footer Links Company</title>
+		<identifier>footer_links_company</identifier>
+		<content><![CDATA[<div class="links">
+<div class="block-title"><strong><span>Company</span></strong></div>
+<ul>
+<li><a href="{{store url=""}}about-magento-demo-store/">About Us</a></li>
+<li><a href="{{store url=""}}contacts/">Contact Us</a></li>
+<li><a href="{{store url=""}}customer-service/">Customer Service</a></li>
+<li><a href="{{store url=""}}privacy-policy-cookie-restriction-mode/">Privacy Policy</a></li>
+</ul>
+</div>]]></content>
+	</item>
+	<item>
+		<title>Cookie restriction notice</title>
+		<identifier>cookie_restriction_notice_block</identifier>
+		<content><![CDATA[<p>This website requires cookies to provide all of its features. For more information on what data is contained in the cookies, please see our <a href="{{store direct_url="privacy-policy-cookie-restriction-mode"}}">Privacy Policy page</a>. To accept cookies from this site, please click the Allow button below.</p>]]></content>
+	</item>
+	<item>
+		<title>Claue Header Contact</title>
+		<identifier>claue_header_contact</identifier>
+		<content><![CDATA[<div class="header-contact"><em class="pe-7s-call"></em> +01 23456789 <em class="pe-7s-mail ml__15"></em> <a href="mailto:contact@claue.com"><span class="__cf_email__">contact@claue.com</span></a></div>]]></content>
+	</item>
+	<item>
+		<title>Claue Header Text</title>
+		<identifier>claue_header_text</identifier>
+		<content><![CDATA[<div class="header-text">Summer sale discount off <span class="cr">50%</span>! <a href="#">Shop Now</a></div>]]></content>
+	</item>
+	<item>
+		<title>Claue Block Header Social</title>
+		<identifier>claue_header_social</identifier>
+		<content><![CDATA[<div class="social-block">
+<ul>
+<li><a href="#"><em class="fa fa-facebook">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-twitter">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-google-plus">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-pinterest">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-instagram">&nbsp;</em></a></li>
+</ul>
+</div>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Contact</title>
+		<identifier>claue_footer_contact</identifier>
+		<content><![CDATA[<ul class="footer-contact">
+<li><em class="pe-7s-map-marker">&nbsp;</em><span style="margin-top: -5px;">184 Main Rd E, St Albans <br />VIC 3021, Australia</span></li>
+<li><em class="pe-7s-mail">&nbsp;</em><span> <a href="mailto:contact@company.com">contact@company.com</a></span></li>
+<li><em class="pe-7s-call">&nbsp;</em> <span>+001 2233 456 </span></li>
+</ul>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Logo</title>
+		<identifier>claue_footer_logo</identifier>
+		<content><![CDATA[<div class="logo-footer"><a href="#"><img src="{{media url="wysiwyg/logo.png"}}" alt="" /></a></div>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Social</title>
+		<identifier>claue_footer_social</identifier>
+		<content><![CDATA[<div class="social-block">
+<ul>
+<li><a href="#"><em class="fa fa-facebook">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-twitter">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-google-plus">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-pinterest">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-instagram">&nbsp;</em></a></li>
+</ul>
+</div>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Categories</title>
+		<identifier>claue_footer_categories</identifier>
+		<content><![CDATA[<div class="block-categories block-link">
+<h6>Categories</h6>
+<div class="block-content">
+<ul>
+<li><a href="#">Men</a></li>
+<li><a href="#">Women</a></li>
+<li><a href="#">Accessories</a></li>
+<li><a href="#">Shoes</a></li>
+<li><a href="#">Denim</a></li>
+<li><a href="#">Dress</a></li>
+</ul>
+</div>
+</div>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Information</title>
+		<identifier>claue_footer_information</identifier>
+		<content><![CDATA[<div class="block-information block-link">
+<h6>Information</h6>
+<div class="block-content">
+<ul>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Contact Us</a></li>
+<li><a href="#">Terms &amp; Conditions</a></li>
+<li><a href="#">Returns &amp; Exchanges</a></li>
+<li><a href="#">Shipping &amp; Delivery</a></li>
+<li><a href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Quick links</title>
+		<identifier>claue_footer_quick_links</identifier>
+		<content><![CDATA[<div class="block-quicklinks block-link">
+<h6>Quick links</h6>
+<div class="block-content">
+<ul>
+<li><a href="#">My Account</a></li>
+<li><a href="#">Store Location</a></li>
+<li><a href="#">Orders Tracking</a></li>
+<li><a href="#">Size Guide</a></li>
+<li><a href="#">FAQs</a></li>
+</ul>
+</div>
+</div>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Newsletter</title>
+		<identifier>claue_footer_newsletter</identifier>
+		<content><![CDATA[<div class="block-footer-newsletter">
+<div class="block-content">
+<p>Subscribe to our newsletter and get 10% off your first purchase</p>
+{{block type="newsletter/subscribe" template="newsletter/footer-subscribe.phtml"}}</div>
+</div>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer payment</title>
+		<identifier>claue_footer_payment</identifier>
+		<content><![CDATA[<p><img src="{{media url="wysiwyg/payment.png"}}" alt="" /></p>]]></content>
+	</item>
+	<item>
+		<title>Claue Footer Links</title>
+		<identifier>claue_footer_links</identifier>
+		<content><![CDATA[<ul class="main-link">
+<li><a href="#">Home</a></li>
+<li><a href="#">Shop</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">Blog</a></li>
+</ul>]]></content>
+	</item>
+</static_block>

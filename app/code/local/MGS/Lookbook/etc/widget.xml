@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<widgets>
+    <lookbook type="lookbook/widget_lookbook" translate="name description" module="lookbook">
+        <name>MGS Lookbook</name>
+        <description></description>
+        <parameters>
+            <lookbook_id translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Lookbook</label>
+                <type>label</type>
+                <helper_block>
+                    <type>lookbook/adminhtml_widget_lookbook</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Lookbook...</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>10</sort_order>
+            </lookbook_id>
+			
+            <template translate="label">
+                <label>Template</label>
+                <visible>0</visible>
+                <value>mgs/lookbook/widget/lookbook.phtml</value>
+            </template>
+        </parameters>
+    </lookbook>
+	<lookbook_slider type="lookbook/widget_slider" translate="name description" module="lookbook">
+        <name>MGS Lookbook Slider</name>
+        <description></description>
+        <parameters>
+            <slider_id translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Lookbook Slider</label>
+                <type>label</type>
+                <helper_block>
+                    <type>lookbook/adminhtml_widget_slider</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Slider...</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>10</sort_order>
+            </slider_id>
+			
+            <template translate="label">
+                <label>Template</label>
+                <visible>0</visible>
+                <value>mgs/lookbook/widget/slider.phtml</value>
+            </template>
+        </parameters>
+    </lookbook_slider>
+</widgets>

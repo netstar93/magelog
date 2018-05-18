@@ -1,0 +1,31 @@
+<?php if(Mage::getStoreConfig('mgs_theme/general/popup_newsletter')): ?>
+	<?php $html = $this->getLayout()->createBlock('cms/block')->setBlockId('newsletter_popup')->toHtml() ?>
+	<?php if($html!=''): ?>
+		<div style="display:none">
+			<div id="newsletter-popup">
+				<div class="block-popup-subscribe">
+					<div class="block-popup-top">
+						<?php echo $html;  ?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			mgsjQuery(window).load(function () {
+				if(mgsjQuery(window).width() > 991) {
+					if(getCookie('newsletterpopup')!='nevershow'){
+						if (mgsjQuery('#newsletter-popup').length) {
+							mgsjQuery.magnificPopup.open({
+								items: {
+									src: '#newsletter-popup' 
+								},
+								type: 'inline'
+							});
+						}
+					}
+				}
+			});
+		</script>
+	<?php endif ?>
+<?php endif ?>

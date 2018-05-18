@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MGS_Megamenu>
+            <version>0.1.3</version>
+        </MGS_Megamenu>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <megamenu>
+                    <file>megamenu.xml</file>
+                </megamenu>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<MGS_Megamenu after="Mage_Adminhtml">MGS_Megamenu_Adminhtml</MGS_Megamenu>
+					</modules> 
+				</args>
+			</adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<mgscore module="mgscore"> 
+				<children>
+					<megamenu module="megamenu">
+						<title>Megamenu</title>
+						<sort_order>71</sort_order>               
+						<children>
+							<parent module="megamenu">
+								<title>Manage Menu</title>
+								<sort_order>0</sort_order>
+								<action>adminhtml/parent</action>
+							</parent>
+							<items module="megamenu">
+								<title>Manage Menu Items</title>
+								<sort_order>1</sort_order>
+								<action>adminhtml/megamenu</action>
+							</items>
+							<config module="megamenu">
+								<title>Configuration</title>
+								<sort_order>2</sort_order>
+								<action>adminhtml/system_config/edit/section/megamenu</action>
+							</config>
+						</children>
+					</megamenu>
+				</children>
+			</mgscore>
+		</menu>
+
+		
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<mgscore module="mgscore"> 
+							<children>
+								<megamenu module="megamenu">
+									<title>Megamenu</title>
+									<sort_order>71</sort_order>               
+									<children>
+										<parent module="megamenu">
+											<title>Manage Menu</title>
+											<sort_order>0</sort_order>
+										</parent>
+										<items module="megamenu">
+											<title>Manage Megamenu Items</title>
+											<sort_order>1</sort_order>
+										</items>
+										<config module="megamenu">
+											<title>Configuration</title>
+											<sort_order>2</sort_order>
+										</config>
+									</children>
+								</megamenu>
+							</children>
+						</mgscore>
+						<system>
+							<children>
+								<config>
+									<children>
+										<megamenu translate="title">
+											<title>Megamenu</title>
+											<sort_order>888</sort_order>
+										</megamenu>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<megamenu>
+					<file>mgs_megamenu.xml</file>
+				</megamenu>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <megamenu>
+                <class>MGS_Megamenu_Model</class>
+                <resourceModel>megamenu_mysql4</resourceModel>
+            </megamenu>
+            <megamenu_mysql4>
+                <class>MGS_Megamenu_Model_Mysql4</class>
+                <entities>
+                    <megamenu>
+                        <table>mgs_megamenu</table>
+                    </megamenu>
+					
+					<parent>
+                        <table>mgs_megamenu_parent</table>
+                    </parent>
+                </entities>
+            </megamenu_mysql4>
+        </models>
+        <resources>
+            <megamenu_setup>
+                <setup>
+                    <module>MGS_Megamenu</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </megamenu_setup>
+            <megamenu_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </megamenu_write>
+            <megamenu_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </megamenu_read>
+        </resources>
+        <blocks>
+            <megamenu>
+                <class>MGS_Megamenu_Block</class>
+            </megamenu>
+			
+			<page>
+                <rewrite>
+					<html_topmenu>MGS_Megamenu_Block_Html_Topmenu</html_topmenu>
+                </rewrite>
+            </page>
+        </blocks>
+        <helpers>
+            <megamenu>
+                <class>MGS_Megamenu_Helper</class>
+            </megamenu>
+        </helpers>
+    </global>
+	<default>
+		<megamenu>
+			<general>
+				<enabled>1</enabled>
+				<home>1</home>
+				<hometext>Home</hometext>
+				<max_column>5</max_column>
+			</general>
+		</megamenu>
+	</default>
+</config>

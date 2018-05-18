@@ -1,0 +1,12 @@
+<?php $settings = $this->helper('mpanel')->getThemeSettings() ?>
+<?php if($settings['enabled_gmap'] && ($settings['address']!='')): ?>
+	<?php $image = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'mpanel/map/'.$settings['image'] ?>
+	<div class="map-container nopadding">
+		<div id="map"></div>
+	</div>
+	
+	<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript">
+		initGmap('<?php echo $settings['address'] ?>', '<?php echo $settings['html'] ?>', '<?php echo $image ?>');
+	</script>
+<?php endif ?>

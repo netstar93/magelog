@@ -1,0 +1,180 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$collection = $this->getBrandCollection();
+$urlKey = $this->getUrlKey();
+$helper = Mage::helper('brand');
+?>
+<?php if ($this->showWidgetAs() == 'slider') : ?>
+    <?php
+    $showBrandsTitle = $this->getShowBrandsTitle();
+    $infinite = $this->getInfinite();
+    $slidesToShow = $this->getSlidesToShow();
+    $slidesToScroll = $this->getSlidesToScroll();
+    $speed = $this->getSpeed();
+    $autoplay = $this->getAutoplay();
+    $autoplaySpeed = $this->getAutoplaySpeed();
+    $arrows = $this->getArrows();
+    $dots = $this->getDots();
+    $vertical = $this->getVertical();
+
+    if ($showBrandsTitle) {
+        $showBrandsTitle = true;
+    } else {
+        $showBrandsTitle = false;
+    }
+
+    if ($infinite) {
+        $infinite = "true";
+    } else {
+        $infinite = "false";
+    }
+    if (!$slidesToShow) {
+        $slidesToShow = 5;
+    }
+    if (!$slidesToScroll) {
+        $slidesToScroll = 1;
+    }
+    if (!$speed) {
+        $speed = 300;
+    }
+    if ($autoplay) {
+        $autoplay = "true";
+    } else {
+        $autoplay = "false";
+    }
+    if (!$autoplaySpeed) {
+        $autoplaySpeed = 3000;
+    }
+    if ($arrows) {
+        $arrows = "true";
+    } else {
+        $arrows = "false";
+    }
+    if ($dots) {
+        $dots = "true";
+    } else {
+        $dots = "false";
+    }
+    if ($vertical) {
+        $vertical = "true";
+    } else {
+        $vertical = "false";
+    }
+
+    $randId = 'brands-list-slider-' . rand();
+    ?>
+    <?php if (count($collection)): ?>
+        <?php if ($helper->loadjQuery()): ?>
+            <script
+                src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>mgs/brand/jquery-1.11.2.min.js"
+            type="text/javascript"></script>
+            <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>mgs/brand/noconflict.js"
+            type="text/javascript"></script>
+        <?php endif; ?>
+        <?php if ($helper->loadSlider()): ?>
+            <link media="all"
+                  href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>mgs/brand/slick/slick.css"
+                  type="text/css" rel="stylesheet" property="stylesheet"/>
+            <link media="all"
+                  href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>mgs/brand/slick/slick-theme.css"
+                  type="text/css" rel="stylesheet" property="stylesheet"/>
+            <script
+                src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>mgs/brand/slick/slick.min.js"
+            type="text/javascript"></script>
+        <?php endif; ?>
+        <div class="brands-widget<?php echo ($vertical == "true") ? " vertical-slider" : "" ?>">
+            <div class="brands-list-slider" id="<?php echo $randId; ?>">
+                <?php foreach ($collection as $brand): ?>
+                    <div class="brand-item">
+                        <div class="brand-item-inner">
+                            <div class="brand-image">
+                                <a class="brand-img" title="<?php echo $brand->getTitle(); ?>"
+                                   href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+                                       <?php if ($brand->getIcon() != ''): ?>
+                                        <img alt="<?php echo $brand->getTitle(); ?>"
+                                             src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getIcon(); ?>">
+                                         <?php else: ?>
+                                        <img alt="<?php echo $brand->getTitle(); ?>"
+                                             src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+                                         <?php endif; ?>
+                                </a>
+                            </div>
+                            <?php if ($showBrandsTitle): ?>
+                                <div class="brand-title">
+                                    <a title="<?php echo $brand->getTitle(); ?>"
+                                       href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>"><?php echo $brand->getTitle(); ?></a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <script type="text/javascript">
+                jQuery(function ($) {
+                    $('#<?php echo $randId; ?>').slick({
+                        infinite: <?php echo $infinite; ?>,
+                        slidesToShow: <?php echo $slidesToShow; ?>,
+                        slidesToScroll: <?php echo $slidesToScroll; ?>,
+                        autoplay: <?php echo $autoplay; ?>,
+                        autoplaySpeed: <?php echo $autoplaySpeed; ?>,
+                        arrows: <?php echo $arrows; ?>,
+                        dots: <?php echo $dots; ?>,
+                        vertical: <?php echo $vertical; ?>,
+                        speed: <?php echo $speed; ?>
+
+                    });
+                });
+            </script>
+        </div>
+    <?php endif; ?>
+<?php else: ?>
+    <?php
+    if ($helper->iconWidth() != '') {
+        $iconWidth = $helper->iconWidth();
+    } else {
+        $iconWidth = 135;
+    }
+    if ($helper->iconHeight() != '') {
+        $iconHeight = $helper->iconHeight();
+    } else {
+        $iconHeight = 135;
+    }
+    ?>
+    <?php if (count($collection)): ?>
+        <div class="brands-container">
+            <?php if ($this->getTitle() != ''): ?>
+                <h3><?php echo $this->getTitle(); ?></h3>
+            <?php endif; ?>
+            <ul class="brands-list">
+                <?php foreach ($collection as $brand): ?>
+                    <li class="brand-item">
+                        <div class="brand-image">
+                            <a title="<?php echo $brand->getTitle(); ?>"
+                               href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+                                   <?php if ($brand->getIcon() != ''): ?>
+                                    <img class="brand-img" width="<?php echo $iconWidth; ?>"
+                                         height="<?php echo $iconHeight; ?>" alt="<?php echo $brand->getTitle(); ?>"
+                                         src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getIcon(); ?>">
+                                     <?php else: ?>
+                                    <img class="brand-img" width="<?php echo $iconWidth; ?>"
+                                         height="<?php echo $iconHeight; ?>" alt="<?php echo $brand->getTitle(); ?>"
+                                         src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+                                     <?php endif; ?>
+                            </a>
+                        </div>
+                        <h3 class="brand-title">
+                            <a title="<?php echo $brand->getTitle(); ?>"
+                               href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>"><?php echo $brand->getTitle(); ?></a>
+                        </h3>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

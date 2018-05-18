@@ -1,0 +1,177 @@
+<?php
+$helper = $this->helper('mpanel');
+$params = $this->getRequest()->getParams();
+$pageType = $params['page_type'];
+$pageId = $params['page_id'];
+$productId = $params['product_id'];
+$place = $params['place'];
+$type = $params['type'];
+$blockId = $params['block_id'];
+$model = Mage::getModel('mpanel/block')->load($blockId);
+$options = unserialize($model->getOptions());
+?>
+<?php if ($helper->acceptToUsePanel()): ?>        
+    <div class="edit-static-form">
+        <form id="edit_form" method="post" action="<?php echo $this->getUrl('mpanel/' . $pageType . '/updatePromoBlock') ?>" enctype="multipart/form-data">
+            <input type="hidden" name="block_id" value="<?php echo $blockId; ?>"/>
+            <input type="hidden" name="page_type" value="<?php echo $pageType; ?>"/>
+            <input type="hidden" name="product_id" value="<?php echo $productId; ?>"/>
+            <input type="hidden" name="page_id" value="<?php echo $pageId; ?>"/>
+            <input type="hidden" name="place" value="<?php echo $place; ?>"/>
+            <input type="hidden" name="type" value="<?php echo $type; ?>"/>            
+            <div class="row">
+                <div class="col-md-12 builder-title">
+                    <h2><?php echo $this->__('Edit Promo Banner Block') ?></h2>
+                </div>
+            </div>
+            <div class="form-horizontal">
+                <div class="row">
+                    <?php $banners = Mage::getModel('promobanners/promobanners')->getCollection()->addFieldToFilter('status', 1); ?>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="chooser"><?php echo $this->__('Create new or choose exist banner') ?></label>
+                        <div class="col-sm-8">
+                            <select name="chooser" class="required-entry input-text" id="chooser" onchange="chooserBanner(this.value)">
+                                <option value="new"><?php echo $this->__('Create New Promo Banner') ?></option>
+                                <option value="exist"><?php echo $this->__('Choose exist banner') ?></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="sort_order"><?php echo $this->__('Sort Order') ?></label>
+                        <div class="col-sm-8">
+                            <input id="sort_order" class="input-text col-sm-8 input-text" type="text" value="<?php echo $model->getSortOrder(); ?>" name="sort_order">
+                        </div>
+                    </div>
+                    <div id="exist-banner-container" style="display:none">
+                        <hr/>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="exist_id"><?php echo $this->__('Banner') ?></label>
+                            <div class="col-sm-8">
+                                <select name="exist_id" class="required-entry input-text" id="exist_id" onchange="loadBannerContent()">
+                                    <?php foreach ($banners as $_banner): ?>
+                                        <option value="<?php echo $_banner->getId() ?>"><?php echo $_banner->getTitle() ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="new-banner-container">
+                        <hr/>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="title"><?php echo $this->__('Title') ?></label>
+                            <div class="col-sm-8">
+                                <input type="text" name="title" class="input-text" id="title"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="url"><?php echo $this->__('Link') ?></label>
+                            <div class="col-sm-8">
+                                <input type="text" name="url" class="input-text" id="url"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="button"><?php echo $this->__('Button') ?></label>
+                            <div class="col-sm-8">
+                                <input type="text" name="button" class="input-text" id="button" onchange="updateButton()"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="filename"><?php echo $this->__('Background Image') ?></label>
+                            <div class="col-sm-8">
+                                <input type="file" name="filename" id="filename"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="content"><?php echo $this->__('Html Content') ?></label>
+                            <div class="col-sm-8">
+                                <textarea name="content" class="input-text" id="content" onchange="updateContent()"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12" id="promo-banner-temp">
+                            <div class="promo-banner">
+                                <div class="banner-position">
+                                    <div class="banner">
+                                        <div class="text-content" id="text_temp"></div>
+                                        <div class="button-content" id="button-container" style="display:none">
+                                            <button class="btn btn-primary btn-promo-banner"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="img-responsive" src="" alt="" id="img_temp" style="width:100%"/>
+                                <div class="banner-hover">
+                                    <a href="#">&nbsp;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group builder-action">
+                        <div class="col-md-12">
+                            <div class="buttons">
+                                <button onclick="history.go(-1)" class="btn btn-back" type="button">
+                                    <span><span><?php echo $this->__('Back') ?></span></span>
+                                </button>
+                                <button id="submit-button" onclick="updateForm.submit(this)" class="btn btn-primary" type="button">
+                                    <span><span><?php echo $this->__('Submit') ?></span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>	
+    <script type="text/javascript">
+        var updateForm = new VarienForm('edit_form');
+    </script>
+    <script type="text/javascript">
+        oldCol = 'col-sm-12';
+        mgsjQuery('#filename').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            mgsjQuery("#img_temp").attr('src', URL.createObjectURL(event.target.files[0]));
+        });
+        mgsjQuery("#content").keypress(function (event) {
+            updateContent();
+        });
+        function updateContent() {
+            mgsjQuery('#text_temp').html(mgsjQuery("#content").val());
+        }
+        function toggleEl(el) {
+            mgsjQuery('#' + el).slideToggle('fast');
+        }
+        function chooserBanner(val) {
+            toggleEl('new-banner-container');
+            toggleEl('exist-banner-container');
+            if (val == 'exist') {
+                loadBannerContent();
+            }
+            else {
+                mgsjQuery("#img_temp").attr('src', '');
+                mgsjQuery('#text_temp').html('');
+                mgsjQuery('#button-container button').html('');
+                mgsjQuery('#button-container').hide();
+            }
+        }
+        function loadBannerContent() {
+            mgsjQuery.ajax({
+                url: '<?php echo $this->getUrl('mpanel/index/banner') ?>id/' + mgsjQuery('#exist_id').val(),
+                success: function (data, textStatus, xhr) {
+                    mgsjQuery('#promo-banner-temp').html(data);
+                }
+            });
+        }
+        mgsjQuery("#button").keypress(function (event) {
+            updateButton();
+        });
+        function updateButton() {
+            mgsjQuery('#button-container button').html(mgsjQuery("#button").val());
+            if (mgsjQuery('#button-container button').html() != '') {
+                mgsjQuery('#button-container').show();
+            }
+            else {
+                mgsjQuery('#button-container').hide();
+            }
+        }
+    </script>
+<?php endif; ?>

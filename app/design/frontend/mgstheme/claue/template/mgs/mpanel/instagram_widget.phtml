@@ -1,0 +1,107 @@
+<?php $socialHelper = $this->helper('mpanel/social'); ?>
+
+<?php $baseImg = $this->getSkinUrl('images/blank.png'); ?>
+<?php $lazyLoad = Mage::getStoreConfig('mgs_theme/general/lazy_load_img'); ?>
+
+<div class="block-panel-title instagram-block">
+	<?php if($this->getTitle() != ""): ?>
+		<div class="content-heading">
+			<h3 class="title"><?php echo $this->getTitle(); ?></h3>
+		</div>
+	<?php endif ?>
+	<div class="block-content">
+		<?php // Widget config ?>
+		<?php $access_token = Mage::getStoreConfig('social/instagram/access_token'); ?>
+		<?php $count = $this->getNumber(); ?>
+		<?php $resolution = $this->getResolution(); ?>
+		
+		<?php $bootstrapClass = false; ?>
+		<?php 
+			if($this->getSlider() != 1){
+				$bootstrapClass = true;
+			}else {
+				if($this->getNumberRow() > 1){
+					$bootstrapClass = true;
+				}
+			}
+		?>
+		
+		<?php if($this->getSlider() == 1 && $this->getNumberRow() > 1): ?>
+			<?php $itemSlider = $this->getNumberRow() * $this->getNumberItemRow(); ?>
+		<?php endif ?>
+		<?php // Widget Content ?>
+		<?php if($access_token && $count): ?>
+			<?php $images = $socialHelper->getWidgetInstagramData($access_token, $count, $resolution); ?>
+			<?php if($this->getSlider() != 1): ?><div class="row"><?php endif ?>
+				<div id="instagram-widget" class="instagram-widget<?php if($this->getSlider() == 1): ?> owl-carousel<?php if($this->getNumberRow() == 1): ?> one-row<?php endif ?><?php endif ?>">
+					<?php $i=0; foreach($images as $image): $i++; ?>
+						<?php if($this->getSlider() == 1 && $this->getNumberRow() > 1): ?>
+							<?php if($i % $itemSlider == 1): ?>
+								<div class="items-slider">
+							<?php endif ?>
+						<?php endif ?>
+						<div class="item<?php if($bootstrapClass): ?> col-md-<?php echo $socialHelper->convertColRow($this->getNumberItemRow()); ?> col-sm-4 col-xs-6<?php endif ?>">
+							<div class="instagram-item">
+								<a href="<?php echo $image['url'] ?>" target="_blank">
+									<?php $insImg = $image['imgUrl']; ?>
+									<?php if(!$lazyLoad): ?><?php $baseImg = $insImg; ?><?php endif ?>
+									<img class="img-responsive<?php if($lazyLoad): ?><?php if($this->getSlider()==1): ?> lazyOwl<?php else: ?> lazy<?php endif ?><?php endif ?>" 
+										 src="<?php echo $baseImg; ?>" 
+										 alt="image" 
+										 data-<?php if($this->getSlider()==1): ?>src<?php else: ?>original<?php endif ?>="<?php echo $insImg ?>"/>
+								
+								</a>
+								<?php if($this->getImageDetails() == 1): ?>
+									<span class="social-count"> 
+										<span class="like-count"><span class="fa fa-heart-o"></span><span class="number"><?php echo $image['like'] ?></span></span> 
+										<span class="comment-count"><span class="fa fa-comments-o"></span><span class="number"><?php echo $image['comment'] ?></span></span> 
+									</span>
+								<?php endif ?>
+							</div>
+						</div>
+						<?php if($this->getSlider() == 1 && $this->getNumberRow() > 1): ?>
+							<?php if($i % $itemSlider == 0 || $i == count($images)): ?>
+								</div>
+							<?php endif ?>
+						<?php endif ?>
+					<?php endforeach; ?>
+				</div>
+			<?php if($this->getSlider() != 1): ?></div><?php endif ?>
+			
+			<?php if($this->getSlider() == 1): ?>
+				<?php $number = $this->getNumberItemRow(); ?>
+				<?php $stophv = $this->getStopHover(); ?>
+				<?php $aplay = $this->getAutoPlay(); ?>
+				<?php $nav = $this->getNavigation(); ?>
+				<?php $pag = $this->getPagination(); ?>
+				<script type="text/javascript">
+					mgsjQuery("#instagram-widget").owlCarousel({
+						<?php if($this->getNumberRow() > 1): ?>
+						items : 1,
+						<?php else: ?>
+						items : <?php echo $number ?>,
+						<?php endif ?>
+						lazyLoad : true,
+						navigation : <?php echo $nav ?>,
+						pagination : <?php echo $pag ?>,
+						autoPlay: <?php echo $aplay ?>,
+						stopOnHover: <?php echo $stophv ?>,
+						navigationText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+						<?php if($this->getNumberRow() == 1): ?>
+						itemsDesktop: [1199,4],
+						itemsDesktopSmall: [970,3],
+						itemsTablet: [768,3],
+						itemsTabletSmall: false,
+						itemsMobile: [480,2],
+						itemsCustom: false
+						<?php endif ?>
+					});
+				</script>
+			<?php endif; ?>
+		<?php else: ?>
+			<div class="alert alert-warning">
+				<?php echo $this->__('Please update your instagram settings first.') ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</div>

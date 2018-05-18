@@ -1,0 +1,17 @@
+<?php $title = $this->getTitle(); ?>
+<?php if($title==''){ $title = Mage::getStoreConfig('social/twitter/twitter_title'); } ?>
+<?php $user = $this->getUser(); ?>
+<?php $count = $this->getCount(); ?>
+<?php $truncate = $this->getTruncate(); ?>
+<div>
+	<?php if($title!=''): ?><h2><?php echo $title ?></h2><?php endif ?>
+	<?php if(Mage::getStoreConfig('social/twitter/token')!='' && Mage::getStoreConfig('social/twitter/token_secret') !='' && Mage::getStoreConfig('social/twitter/client_id')!='' && Mage::getStoreConfig('social/twitter/client_secret') !=''): ?>
+		<?php echo $this->helper('mpanel/social')->getLastTwitter($user, $count, $truncate); ?>
+	<?php else: ?>
+		<div class="alert alert-warning">
+			<?php echo $this->__('Please update your twitter settings first.') ?>
+		</div>
+	<?php endif ?>
+</div>
+
+

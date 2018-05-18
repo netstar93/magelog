@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<config>  
+    <tabs>
+        <mgscore translate="label" module="event">
+            <label>Mage Solutions</label>
+            <sort_order>205</sort_order>
+        </mgscore>
+    </tabs>  
+    <sections>
+        <event translate="label" module="event">
+            <label>Event</label>
+            <tab>mgscore</tab>
+            <sort_order>130</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="event">
+                    <label>General Setup</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Active</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>							
+                        </active>
+                        <router translate="label">
+                            <label>Router</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-identifier</validate>
+                        </router>	
+                    </fields>
+                </general>
+            </groups>
+        </event>
+    </sections>
+</config>

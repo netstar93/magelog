@@ -1,0 +1,9 @@
+<?php
+$url = Mage::getUrl('customer/account/index');
+?>
+<script type="text/javascript">
+    mgsjQuery(document).ready(function () {
+        window.parent.jQuery.magnificPopup.close();
+        parent.window.location.href = '<?php echo $url; ?>';        
+    });
+</script>

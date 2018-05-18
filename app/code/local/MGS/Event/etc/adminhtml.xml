@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<config>
+    <menu>
+        <mgscore translate="title" module="event">
+            <title>Mage Solutions</title>
+            <sort_order>71</sort_order>                      
+            <children>
+                <event translate="title" module="event">
+                    <title>Event</title>
+                    <sort_order>99</sort_order>               
+                    <children>
+                        <items translate="title" module="event">
+                            <title>Manage Events</title>
+                            <sort_order>0</sort_order>
+                            <action>adminhtml/event</action>
+                        </items>
+                        <settings translate="title" module="event">
+                            <title>Settings</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/system_config/edit/section/event</action>
+                        </settings>
+                    </children>
+                </event>
+            </children>
+        </mgscore>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <event translate="title">
+                                        <title>Event</title>
+                                        <sort_order>10</sort_order>
+                                    </event>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <mgscore translate="title" module="event">
+                        <title>Mage Solutions</title>
+                        <sort_order>71</sort_order>                      
+                        <children>
+                            <event translate="title" module="event">
+                                <title>Event</title>
+                                <sort_order>99</sort_order>               
+                                <children>
+                                    <items translate="title" module="event">
+                                        <title>Manage Events</title>
+                                        <sort_order>0</sort_order>
+                                    </items>
+                                </children>
+                            </event>
+                        </children>
+                    </mgscore>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

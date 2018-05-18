@@ -1,0 +1,87 @@
+<?php
+if(isset($_GET['displaytype'])){
+	$type = $_GET['displaytype'];
+}else {
+	$type = $this->getDisplayType();
+}
+?>
+<?php $baseImg = $this->getSkinUrl('images/blank.png'); ?>
+<?php $baseImgHover = $this->getSkinUrl('images/blank.png'); ?>
+<?php $lazyLoad = Mage::getStoreConfig('mgs_theme/general/lazy_load_img'); ?>
+<?php $useSlider = $this->getSlider(); ?>
+
+<?php $product_url_not_rw = Mage::getBaseUrl() . 'catalog/product/view/id/'; ?>
+
+	<?php $helper = $this->helper('mpanel') ?>
+	<?php $size = $helper->convertRatioToSize($this->getProductRatio()) ?>
+	<?php 
+		if(isset($_GET['perrow'])){
+			$col = $_GET['perrow'];
+		}else{
+			if($this->getCountPerRow()){
+				$col = $this->getCountPerRow();
+			}
+			else{
+				$col = 3;
+			}
+		}
+		$perrow = $col;
+		$col = $helper->convertColRowCustom($col);
+		
+		if(isset($_GET['p']) && isset($_GET['limit'])){
+			$i = ($_GET['p'] - 1) * $_GET['limit'];
+		}else{
+			$i = 0;
+		}
+	?>
+		<?php $_product = Mage::getModel('catalog/product')->load($this->getProductId()) ?>		
+		<div class="product-item-info metro_template">
+			<div class="product-content">
+				<div class="product-top">
+					<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="product-image photo">
+						
+						<?php $productImage = $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']); ?>
+						<?php $productImageHover = $this->helper('catalog/image')->init($_product, 'thumbnail')->resize($size['width'], $size['height']); ?>
+						<?php if(!$lazyLoad): ?>
+							<?php $baseImg = $productImage; $baseImgHover = $productImageHover; ?>
+						<?php endif ?>
+						<img id="product-collection-image-<?php echo $_product->getId() ?>" src="<?php echo $baseImg ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive<?php if($lazyLoad): ?> lazy<?php if($useSlider):?>Owl<?php endif ?><?php endif ?>" data-<?php if($useSlider):?>src<?php else: ?>original<?php endif ?>="<?php echo $productImage ?>"/>
+						
+						<?php if(basename($_product->getData('thumbnail')) != basename($_product->getData('small_image'))): ?>
+							<img src="<?php echo $baseImgHover ?>" 
+							alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive img-hover<?php if($lazyLoad): ?> lazy<?php if($useSlider):?>Owl<?php endif ?><?php endif ?>" data-<?php if($useSlider):?>src<?php else: ?>original<?php endif ?>="<?php echo $productImage ?>"/>
+						<?php endif ?>
+						
+					</a>
+					<?php echo $helper->getProductLabel($_product) ?>
+					<ul class="icon-links">
+						<?php if($this->helper('core')->isModuleEnabled('MGS_QuickView') && Mage::getStoreConfig('quickview/general/active')): ?>
+							<li class="li-quickview"><button type="button" title="<?php echo $this->__('Quickview') ?>" class="btn-quickview action quick-view" onclick="quickView('<?php echo $product_url_not_rw . $_product->getId() ?>'); return false;"><em class="pe-7s-search"></em></button></li>
+						<?php endif ?>
+						<?php if ($this->helper('wishlist')->isAllow() && $helper->isShowWishList()) : ?>
+							<li><button class="action action-wishlist" type="button" title="<?php echo $this->__('Add to Wishlist') ?>" onclick="setLocation('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>')"><em class="pe-7s-like"></em></button></li>
+						<?php endif; ?>
+						<?php $_compareUrl=$this->getAddToCompareUrl($_product); ?>
+						<?php if($_compareUrl && $helper->isShowCompare()): ?>
+							<li><button type="button" class="action action-compare" title="<?php echo $this->__('Add to Compare') ?>" onclick="setLocation('<?php echo $_compareUrl ?>')"><em class="pe-7s-graph3"></em></button></li>
+						<?php endif; ?>
+					</ul>
+					<?php if($helper->isShowAddtoCart() && $_product->isSaleable()): ?>
+						<div class="add-to-cart">
+							<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn-cart action" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span class="icon pe-7s-shopbag"></span><span class="text"><?php echo $this->__('Add to Cart'); ?></span></button>
+						</div>
+					<?php endif ?>
+				</div>
+				<div class="product-desc">
+					<h5 class="product-name">
+						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>)"><?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName() , 'name') ?></a>
+					</h5>
+					<?php echo $this->getPriceHtml($_product, true, '-widget-new-grid') ?>
+					<?php 
+						$_nameAfterChild = $this->getLayout()->getBlock('product_list.swatches');
+						$_nameAfterChild->setProduct($_product);
+						echo $_nameAfterChild->toHtml();
+					?>
+				</div>
+			</div>
+		</div>

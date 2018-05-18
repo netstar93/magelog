@@ -1,0 +1,13 @@
+<?php 
+	$footer = Mage::getStoreConfig('mgs_theme/general/footer');
+	$helper = Mage::helper('mpanel');
+	if($helper->acceptToUsePanel()){
+		echo $this->getLayout()->createBlock('page/html_footer')
+			->setTemplate('page/html/footer/admin/'.$footer.'.phtml')
+			->toHtml();
+	}
+	else{
+		echo $this->getLayout()->createBlock('page/html_footer')->setTemplate('page/html/footer/'.$footer.'.phtml')->toHtml();
+	}
+
+?>

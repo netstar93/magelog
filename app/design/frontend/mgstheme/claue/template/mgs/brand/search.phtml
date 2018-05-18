@@ -1,0 +1,41 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$params = $this->getRequest()->getParams();
+$urlKey = $this->getUrlKey();
+?>
+<div class="block brands-search margin-top30">
+    <div class="content-heading">
+		<h3 class="title text-uppercase"><?php echo $this->__('Search Brand'); ?></h3>
+    </div>
+    <div class="block-content">
+        <div class="brands-search-form margin-bottom10">
+            <form action="" method="get" id="brands-search-form">
+                <input type="text" value="<?php
+                if (isset($params['q'])) {
+                    echo $params['q'];
+                }
+                ?>" title="<?php echo $this->__('Enter Keyword'); ?>" class="input-text form-control"
+                       placeholder="<?php echo $this->__('Search brand here...'); ?>" name="q">
+				<button type="submit" class="btn btn-primary btn-search"><span><span><?php echo $this->__('Search'); ?></span></span>
+				</button>
+            </form>
+        </div>
+        <div>
+			<ul class="chars-filter">
+				<li><a href="<?php echo $this->getUrl() . $urlKey; ?>"><?php echo $this->__('All'); ?></a></li>
+				<?php foreach (range('A', 'Z') as $char): ?>
+					<li <?php if (isset($params['char']) && $params['char'] == $char): ?>class="active"<?php endif; ?>><a
+							href="<?php echo $this->getUrl() . $urlKey . '?char=' . $char; ?>"><?php echo $char; ?></a></li>
+					<?php endforeach; ?>
+			</ul>
+			<button type="button" class="btn btn-primary btn-reset" onclick="setLocation('<?php echo $this->getUrl() . $urlKey; ?>')">
+			<span><span><?php echo $this->__('Reset Filter'); ?></span></span></button>
+		</div>
+    </div>
+</div>

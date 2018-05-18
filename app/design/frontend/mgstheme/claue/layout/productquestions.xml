@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+*******************************************************/
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="productquestions" ifconfig="productquestions/faqs_page/faqs_link_to_toplink">
+                <label helper="productquestions/faqsPageTitle"/>
+                <url helper="productquestions/faqsPageUrl"/>
+                <title helper="productquestions/faqsPageTitle"/>
+                <prepare/>
+                <urlParams/>
+                <position>10</position>
+            </action>
+        </reference>
+        <reference name="right">
+            <block type="productquestions/right" name="productquestions.right">
+                <action method="setTemplate" ifconfig="productquestions/faqs_block/active">
+                    <template>productquestions/right.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </default>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="productquestions">
+                <name>productquestions</name>
+                <path>productquestions</path>
+                <label>Product Questions</label>
+            </action>
+        </reference>
+    </customer_account>    
+    <catalog_product_view>
+        <reference name="product.info">
+            <block type="productquestions/question" name="product.questions" as="product.questions" template="productquestions/list.phtml" after="-" />        
+        </reference>
+    </catalog_product_view>
+    <productquestions_index_index translate="label">
+        <label>Product Questions</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="productquestions/manage" name="manage.questions">
+                <block type="core/text_list" name="manage.questions.info" as="manage.questions.info" translate="label">
+                    <label>Product Questions Info</label>
+                </block>
+            </block>            
+        </reference>
+    </productquestions_index_index>
+    <productquestions_faq_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="productquestions/faq" name="productquestions.faq" template="productquestions/faq.phtml">                
+                <block type="core/template" name="productquestions.faq.search" template="productquestions/faq/search.phtml" />
+                <block type="productquestions/faq_topic" name="productquestions.faq.topic" template="productquestions/faq/topic.phtml" />
+            </block>
+        </reference>
+    </productquestions_faq_index>
+    <productquestions_faq_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="productquestions/faq_view" name="productquestions.faq.view" template="productquestions/faq/view.phtml"/>            
+        </reference>
+    </productquestions_faq_view>
+</layout> 

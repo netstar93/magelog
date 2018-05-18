@@ -1,0 +1,247 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php $settings = $helper->getCheckoutSettings() ?>
+<form action="<?php echo $this->getUrl('mpanel/post/layout') ?>" method="POST" id="panel-form" enctype="multipart/form-data">
+    <input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+    <div class="col-md-7 col-sm-4 col-xs-4">
+        <div class="row">
+
+            <div id="settings" class="panel-group">
+                <div class="panel">
+                    <div class="general-setting">
+                        <a data-toggle="collapse" data-parent="#settings" href="#general-setting" class="collapsed general-setting-icon" title="<?php echo $this->__('General Setting') ?>"><em class="fa fa-gear"></em></a>
+                        <a data-toggle="collapse" data-parent="#settings" href="#color-setting" class="collapsed color-setting-icon" title="<?php echo $this->__('Color Setting') ?>"><em class="fa fa-paint-brush"></em></a>
+                        <h2 class="title">
+                            <?php echo $this->__('MGS Panel') ?>
+                        </h2>
+                    </div>
+
+                    <div class="layout-button" id="layout-button">
+                        <a title="<?php echo $this->__('Page Settings') ?>" class="template-button collapsed" href="#layout-setting" data-parent="#settings" data-toggle="collapse"><em class="fa fa-gears"></em>&nbsp;<?php echo $this->__('Page Settings') ?></a>
+                    </div>
+
+                </div>
+
+                <div class="panel col-md-12">
+                    <div id="general-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/general.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+					<div id="color-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/color.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+
+                    <div id="layout-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div id="checkout-settings" style="display:block">
+                                <div class="col-md-12">
+                                    <div class="form-horizontal row">
+                                        <div id="checkout-accordion" class="panel-group">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion1" href="#checkoutcollapseOne"><?php echo $this->__('General') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseOne" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="checkout_title" class="col-sm-4 control-label"><?php echo $this->__('Checkout Title') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="oscheckout[general][checkout_title]" class="form-control" id="checkout_title" value="<?php echo $settings['checkout_title'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="checkout_title" class="col-sm-4 control-label"><?php echo $this->__('Top Link Label') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="oscheckout[general][checkout_link]" class="form-control" id="checkout_link" value="<?php echo $settings['checkout_link'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="guest_checkout" class="col-sm-4 control-label"><?php echo $this->__('Allow Guest Checkout') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[registration][guest_checkout]" class="form-control" id="guest_checkout">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['guest_checkout'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion2" href="#checkoutcollapseTwo"><?php echo $this->__('Show/Hide fields') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseTwo" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="company" class="col-sm-4 control-label"><?php echo $this->__('Hide Company') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[display][company]" class="form-control" id="company">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['company'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="telephone" class="col-sm-4 control-label"><?php echo $this->__('Hide Telephone') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[display][telephone]" class="form-control" id="telephone">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['telephone'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="fax" class="col-sm-4 control-label"><?php echo $this->__('Hide Fax') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[display][fax]" class="form-control" id="fax">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['fax'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="address" class="col-sm-4 control-label"><?php echo $this->__('Hide Address') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[display][address]" class="form-control" id="address">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['address'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="discount" class="col-sm-4 control-label"><?php echo $this->__('Show Discount Codes') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[display][discount]" class="form-control" id="discount">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['discount'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion3" href="#checkoutcollapseThree"><?php echo $this->__('Terms - conditions') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseThree" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="terms_enabled" class="col-sm-4 control-label"><?php echo $this->__('Is Enabled') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[terms][enabled]" class="form-control" id="terms_enabled">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['terms_enabled'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="terms_title" class="col-sm-4 control-label"><?php echo $this->__('Title') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="oscheckout[terms][title]" class="form-control" id="terms_title" value="<?php echo $settings['terms_title'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="terms_label" class="col-sm-4 control-label"><?php echo $this->__('Label') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="oscheckout[terms][label]" class="form-control" id="terms_label" value="<?php echo $settings['terms_label'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="terms_contents" class="col-sm-4 control-label"><?php echo $this->__('Content') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <textarea class="form-control" name="oscheckout[terms][contents]" id="terms_contents"><?php echo $settings['terms_contents'] ?></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#checkout-accordion4" href="#checkoutcollapseFour"><?php echo $this->__('Order Comment') ?></a>
+                                                    </h4>
+                                                </div>
+                                                <div id="checkoutcollapseFour" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="comment_enabled" class="col-sm-4 control-label"><?php echo $this->__('Is Enabled') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[comment][enabled]" class="form-control" id="comment_enabled">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['comment_enabled'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="comment_title" class="col-sm-4 control-label"><?php echo $this->__('Title') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="oscheckout[comment][title]" class="form-control" id="comment_title" value="<?php echo $settings['comment_title'] ?>"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="show_grid" class="col-sm-4 control-label"><?php echo $this->__('Show in Orders List') ?></label>
+                                                            <div class="col-sm-6">
+                                                                <select name="oscheckout[comment][show_grid]" class="form-control" id="show_grid">
+                                                                    <option value="1"><?php echo $this->__('Yes') ?></option>
+                                                                    <option value="0"<?php if ($settings['show_grid'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-4 col-xs-4">
+        <a href="<?php echo $this->getUrl('adminhtml') ?>" class="backend-link" title="<?php echo $this->__('Go to backend') ?>" target="_blank">
+            <?php echo $this->__('Admin') ?><em class="fa fa-user"></em>
+        </a>
+        <?php echo $this->getLayout()->createBlock('page/switch')->setTemplate('mgs/mpanel/languages.phtml')->toHtml() ?>
+        <span class="translate-inline-check">
+			<span><?php echo $this->__('Translate Inline') ?></span>
+			<?php if (Mage::getStoreConfig('dev/translate_inline/active')): ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" checked="checked" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 0, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php else: ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 1, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php endif ?>
+		</span>
+    </div>
+</form>
+

@@ -1,0 +1,14 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php $templateLayout = $this->getTemplateLayout() ?>
+<?php $blockName = $this->getBlockName() ?>
+<?php $blocks = $this->getChildBlocks() ?>
+<div class="row">
+	<?php if(count($blocks)>0): ?>
+		<?php foreach($blocks as $_block): ?>
+			<?php $setting = json_decode($_block->getSetting(), true) ?>
+			<div class="<?php echo $helper->getChildClass($_block, $setting) ?>"<?php if(isset($setting['animation']) && $setting['animation']!=''): ?> data-appear-animation="<?php echo $setting['animation'] ?>"<?php endif ?><?php if(isset($setting['animation_delay']) && $setting['animation_delay']!=''): ?> data-appear-animation-delay="<?php echo $setting['animation_delay'] ?>"<?php endif ?>>
+				<?php echo $helper->getContentOfBlock($_block) ?>
+			</div>
+		<?php endforeach ?>
+	<?php endif ?>
+</div>

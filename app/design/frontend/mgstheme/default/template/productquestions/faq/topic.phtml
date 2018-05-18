@@ -1,0 +1,244 @@
+<?php
+/* * ****************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php if (!$this->getRequest()->getParam('query')): ?>
+    <?php if (Mage::helper('productquestions')->allowAccordition()): ?>
+        <?php $parentTopics = $this->getParentTopics(); ?>
+        <?php if (count($parentTopics)): ?>
+            <div class="panel-group" id="accordion-product-questions">
+                <?php foreach ($parentTopics as $parentTopic): ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">                                
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $result = $this->getQuestionByTopicId($parentTopic->getId()); ?>
+                                    <a data-toggle="collapse" data-parent="#accordionTopic<?php echo $parentTopic->getId(); ?>" href="#collapseTopic<?php echo $parentTopic->getId(); ?>">
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - %s question(s)', count($result)) ?>
+                                    </a>                                    
+                                <?php else: ?>
+                                    <a data-toggle="collapse" data-parent="#accordionTopic<?php echo $parentTopic->getId(); ?>" href="#collapseTopic<?php echo $parentTopic->getId(); ?>">
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - 0 question(s)') ?>
+                                    </a>                                    
+                                <?php endif; ?>
+                            </h4>
+                        </div>
+                        <div id="collapseTopic<?php echo $parentTopic->getId(); ?>" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $questions = $this->getQuestionByTopicId($parentTopic->getId()); ?>
+                                    <?php if (count($questions)): ?>
+                                        <ul class="question-list">
+                                            <?php foreach ($questions as $question): ?>
+                                                <li class="item">
+                                                    <div style="font-weight: bold;"><?php echo $question->getContent(); ?></div>
+                                                    <div class="faq-question-by"><?php echo $this->__('Question by: ') . $question->getCustomerName() . ' on ' . Mage::helper('core')->formatDate($question->getCreatedAt(), 'medium', true); ?></div>
+                                                    <?php if ($question->haveAnswers()): ?>
+                                                        <?php $answers = $this->getAnswersByQuestionId($question->getId()); ?>
+                                                        <ul class="answer-list">
+                                                            <?php foreach ($answers as $answer): ?>
+                                                                <li class="item">
+                                                                    <div><?php echo $answer->getAContent(); ?></div>
+                                                                    <div class="answer-by"><?php echo $this->__('Answer by: ') . $answer->getACustomerName() . ' on ' . Mage::helper('core')->formatDate($answer->getACreatedAt(), 'medium', true); ?></div>                                                            
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php else: ?>
+                                        <?php echo $this->__('Have no questions.') ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?php echo $this->__('Have no questions.') ?>
+                                <?php endif; ?>                                
+                            </div>
+                        </div>
+                    </div>  
+                <?php endforeach; ?>   
+            </div>            
+        <?php else: ?>
+            <p class="note-msg"><?php echo $this->__('Have no topics.') ?></p>
+        <?php endif; ?> 
+    <?php else: ?>
+        <?php $parentTopics = $this->getParentTopics(); ?>
+        <?php if (count($parentTopics)): ?>
+            <div class="panel-group">
+                <?php foreach ($parentTopics as $parentTopic): ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">                                
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $result = $this->getQuestionByTopicId($parentTopic->getId()); ?>
+                                    <span>
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - %s question(s)', count($result)) ?>
+                                    </span>                                    
+                                <?php else: ?>
+                                    <span>
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - 0 question(s)') ?>
+                                    </span>                                    
+                                <?php endif; ?>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $questions = $this->getQuestionByTopicId($parentTopic->getId()); ?>
+                                    <?php if (count($questions)): ?>
+                                        <ul class="question-list">
+                                            <?php foreach ($questions as $question): ?>
+                                                <li class="item">
+                                                    <div style="font-weight: bold;"><?php echo $question->getContent(); ?></div>
+                                                    <div class="faq-question-by"><?php echo $this->__('Question by: ') . $question->getCustomerName() . ' on ' . Mage::helper('core')->formatDate($question->getCreatedAt(), 'medium', true); ?></div>
+                                                    <?php if ($question->haveAnswers()): ?>
+                                                        <?php $answers = $this->getAnswersByQuestionId($question->getId()); ?>
+                                                        <ul class="answer-list">
+                                                            <?php foreach ($answers as $answer): ?>
+                                                                <li class="item">
+                                                                    <div><?php echo $answer->getAContent(); ?></div>
+                                                                    <div class="answer-by"><?php echo $this->__('Answer by: ') . $answer->getACustomerName() . ' on ' . Mage::helper('core')->formatDate($answer->getACreatedAt(), 'medium', true); ?></div>                                                            
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php else: ?>
+                                        <?php echo $this->__('Have no questions.') ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?php echo $this->__('Have no questions.') ?>
+                                <?php endif; ?>                                
+                            </div>
+                        </div>
+                    </div>  
+                <?php endforeach; ?>   
+            </div>
+        <?php else: ?>
+            <p class="note-msg"><?php echo $this->__('Have no topics.') ?></p>
+        <?php endif; ?> 
+    <?php endif; ?>
+<?php else: ?>
+    <?php if (Mage::helper('productquestions')->allowAccordition()): ?>
+        <?php $parentTopics = $this->getParentTopics(); ?>
+        <?php if (count($parentTopics)): ?>
+            <div class="panel-group" id="accordion-product-questions">
+                <?php foreach ($parentTopics as $parentTopic): ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">                                
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $questions = $this->getQuestionByParams($parentTopic->getId()); ?>
+                                    <a data-toggle="collapse" data-parent="#accordionTopic<?php echo $parentTopic->getId(); ?>" href="#collapseTopic<?php echo $parentTopic->getId(); ?>">
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - %s question(s)', count($questions)) ?>
+                                    </a>                                    
+                                <?php else: ?>
+                                    <a data-toggle="collapse" data-parent="#accordionTopic<?php echo $parentTopic->getId(); ?>" href="#collapseTopic<?php echo $parentTopic->getId(); ?>">
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - 0 question(s)') ?>
+                                    </a>                                    
+                                <?php endif; ?>
+                            </h4>
+                        </div>
+                        <div id="collapseTopic<?php echo $parentTopic->getId(); ?>" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $questions = $this->getQuestionByParams($parentTopic->getId()); ?>
+                                    <?php if (count($questions)): ?>
+                                        <ul class="question-list">
+                                            <?php foreach ($questions as $question): ?>
+                                                <li class="item">
+                                                    <div style="font-weight: bold;"><?php echo $question->getContent(); ?></div>
+                                                    <div class="faq-question-by"><?php echo $this->__('Question by: ') . $question->getCustomerName() . ' on ' . Mage::helper('core')->formatDate($question->getCreatedAt(), 'medium', true); ?></div>
+                                                    <?php if ($question->haveAnswers()): ?>
+                                                        <?php $answers = $this->getAnswersByQuestionId($question->getId()); ?>
+                                                        <ul class="answer-list">
+                                                            <?php foreach ($answers as $answer): ?>
+                                                                <li class="item">
+                                                                    <div><?php echo $answer->getAContent(); ?></div>
+                                                                    <div class="answer-by"><?php echo $this->__('Answer by: ') . $answer->getACustomerName() . ' on ' . Mage::helper('core')->formatDate($answer->getACreatedAt(), 'medium', true); ?></div>                                                            
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php else: ?>
+                                        <?php echo $this->__('Have no questions.') ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?php echo $this->__('Have no questions.') ?>
+                                <?php endif; ?>                                
+                            </div>
+                        </div>
+                    </div>  
+                <?php endforeach; ?>   
+            </div>            
+        <?php else: ?>
+            <p class="note-msg"><?php echo $this->__('Have no topics.') ?></p>
+        <?php endif; ?> 
+    <?php else: ?>
+        <?php $parentTopics = $this->getParentTopics(); ?>
+        <?php if (count($parentTopics)): ?>
+            <div class="panel-group">
+                <?php foreach ($parentTopics as $parentTopic): ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">                                
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $questions = $this->getQuestionByParams($parentTopic->getId()); ?>
+                                    <span>
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - %s question(s)', count($questions)) ?>
+                                    </span>                                    
+                                <?php else: ?>
+                                    <span>
+                                        <?php echo $parentTopic->getTitle(); ?><?php echo $this->__(' - 0 question(s)') ?>
+                                    </span>                                    
+                                <?php endif; ?>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <?php if ($parentTopic->haveQuestions()): ?>
+                                    <?php $questions = $this->getQuestionByParams($parentTopic->getId()); ?>
+                                    <?php if (count($questions)): ?>
+                                        <ul class="question-list">
+                                            <?php foreach ($questions as $question): ?>
+                                                <li class="item">
+                                                    <div style="font-weight: bold;"><?php echo $question->getContent(); ?></div>
+                                                    <div class="faq-question-by"><?php echo $this->__('Question by: ') . $question->getCustomerName() . ' on ' . Mage::helper('core')->formatDate($question->getCreatedAt(), 'medium', true); ?></div>
+                                                    <?php if ($question->haveAnswers()): ?>
+                                                        <?php $answers = $this->getAnswersByQuestionId($question->getId()); ?>
+                                                        <ul class="answer-list">
+                                                            <?php foreach ($answers as $answer): ?>
+                                                                <li class="item">
+                                                                    <div><?php echo $answer->getAContent(); ?></div>
+                                                                    <div class="answer-by"><?php echo $this->__('Answer by: ') . $answer->getACustomerName() . ' on ' . Mage::helper('core')->formatDate($answer->getACreatedAt(), 'medium', true); ?></div>                                                            
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php else: ?>
+                                        <?php echo $this->__('Have no questions.') ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?php echo $this->__('Have no questions.') ?>
+                                <?php endif; ?>                                
+                            </div>
+                        </div>
+                    </div>  
+                <?php endforeach; ?>   
+            </div>
+        <?php else: ?>
+            <p class="note-msg"><?php echo $this->__('Have no topics.') ?></p>
+        <?php endif; ?> 
+    <?php endif; ?>
+<?php endif; ?>

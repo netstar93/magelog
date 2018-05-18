@@ -1,0 +1,197 @@
+<?php
+$helper = $this->helper('mpanel');
+$productTabs = $this->getProductTabs();
+?>
+<?php if ($helper->acceptToUsePanel()): ?>    
+    <div class="edit-static-form">
+        <div class="row">
+            <div class="col-sm-12 builder-title">
+                <h2><?php echo $this->__('Manage Product Tabs'); ?></h2>
+            </div>
+        </div>
+          <div id="manage_product_tabs" class="tabbable">
+            <ul class="nav nav-tabs">
+                <?php
+                $i = 0;
+                foreach ($productTabs as $key): $i++;
+                    ?>
+                    <li<?php if ($i == 1): ?> class="active"<?php endif ?>>
+                        <a href="#<?php echo "manage-box-{$key}" ?>" data-toggle="tab">
+                            <?php echo str_replace('_', ' ', uc_words($key)); ?>                                               
+                        </a>
+                    </li>
+                <?php endforeach ?>                    
+            </ul>
+            <form id="edit_form" action="<?php echo $this->getUrl('mpanel/post/saveProductTabs') ?>" method="POST" enctype="multipart/form-data">
+                <div id="manage_product_tabs_content" class="tab-content">
+                    <?php
+                    $i = 0;
+                    $j = 0;
+                    foreach ($productTabs as $key): $i++;
+                        $j++;
+                        ?>
+                        <?php if ($key != 'description' && $key != 'additional' && $key != 'reviews' && $key != 'product_tag_list' && $key != 'product_questions'): ?>   
+                            <div class="tab-pane<?php if ($j == 1): ?> active<?php endif ?>" id="<?php echo "manage-box-{$key}" ?>">
+                                <fieldset class="fieldset-wide-custom">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="<?php echo 'show_' . $key; ?>" class="col-sm-4 control-label"><?php echo $this->__('Show %s', str_replace('_', ' ', uc_words($key))); ?></label>                        
+                                            <div class="col-sm-8">
+                                                <select id="<?php echo 'show_' . $key; ?>" class="input-text select" name="<?php echo 'show_' . $key; ?>">                                                                                                                
+                                                    <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . 'show_' . $key) == 1): ?>selected="selected"<?php endif; ?> value="1"><?php echo $this->__('Yes'); ?></option>
+                                                    <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . 'show_' . $key) == 0): ?>selected="selected"<?php endif; ?> value="0"><?php echo $this->__('No'); ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="<?php echo $key; ?>" class="col-sm-4 control-label"><?php echo $this->__('Type'); ?></label>                        
+                                            <div class="col-sm-8">
+                                                <select id="<?php echo $key; ?>" class="input-text select" name="<?php echo $key; ?>"> 
+                                                    <option value=""></option>
+                                                    <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . $key) == 'static'): ?>selected="selected"<?php endif; ?> value="static"><?php echo $this->__('Static Block'); ?></option>
+                                                    <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . $key) == 'attribute'): ?>selected="selected"<?php endif; ?> value="attribute"><?php echo $this->__('Product Attribute'); ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        $blocks = Mage::getModel('cms/block')->getCollection();
+                                        ?>
+                                        <div id="<?php echo $key; ?>-static-select" class="form-group" style="display: <?php if(Mage::getStoreConfig('mpanel/product_tabs/' . $key) == 'static'): ?>block<?php else: ?>none<?php endif; ?>;">
+                                            <label for="<?php echo $key . '_identifier_value'; ?>" class="col-sm-4 control-label"><?php echo $this->__('Identifier'); ?></label>                        
+                                            <div class="col-sm-8">
+                                                <select id="<?php echo $key . '_identifier_value'; ?>" class="input-text select" name="<?php echo $key . '_identifier_value'; ?>">                                                        
+                                                    <option value=""></option>
+                                                    <?php foreach ($blocks as $block): ?>
+                                                        <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . $key . '_identifier_value') == $block->getData('identifier')): ?>selected="selected"<?php endif; ?> value="<?php echo $block->getData('identifier'); ?>"><?php echo $block->getData('title'); ?></option>
+                                                    <?php endforeach; ?>                                                        
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        $productAttrs = Mage::getResourceModel('catalog/product_attribute_collection');
+                                        ?>
+                                        <div id="<?php echo $key; ?>-attribute-select" class="form-group" style="display: <?php if(Mage::getStoreConfig('mpanel/product_tabs/' . $key) == 'attribute'): ?>block<?php else: ?>none<?php endif; ?>;">
+                                            <label for="<?php echo $key . '_attribute_code_value'; ?>" class="col-sm-4 control-label"><?php echo $this->__('Attribute Code'); ?></label>                        
+                                            <div class="col-sm-8">                                                    
+                                                <select id="<?php echo $key . '_attribute_code_value'; ?>" class="input-text select" name="<?php echo $key . '_attribute_code_value'; ?>">                                                        
+                                                    <option value=""></option>
+                                                    <?php foreach ($productAttrs as $productAttr): ?>
+                                                        <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . $key . '_attribute_code_value') == $productAttr->getData('attribute_code')): ?>selected="selected"<?php endif; ?> value="<?php echo $productAttr->getData('attribute_code'); ?>"><?php echo $productAttr->getData('frontend_label'); ?></option>
+                                                    <?php endforeach; ?>                                                        
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="<?php echo $key . '_title'; ?>" class="col-sm-4 control-label"><?php echo $this->__('Title'); ?></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class=" input-text" title="<?php echo $this->__('Title'); ?>" name="<?php echo $key . '_title'; ?>" id="<?php echo $key . '_title'; ?>" value="<?php echo Mage::getStoreConfig('mpanel/product_tabs/' . $key . '_title'); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="<?php echo 'position_' . $key; ?>" class="col-sm-4 control-label"><?php echo $this->__('Position'); ?></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class=" validate-not-negative-number input-text" title="<?php echo $this->__('Position'); ?>" name="<?php echo 'position_' . $key; ?>" id="<?php echo 'position_' . $key; ?>" value="<?php echo Mage::getStoreConfig('mpanel/product_tabs/' . 'position_' . $key); ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        <?php else: ?>
+                            <div class="tab-pane<?php if ($j == 1): ?> active<?php endif ?>" id="<?php echo "manage-box-{$key}" ?>">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="<?php echo 'show_' . $key; ?>" class="col-sm-4 control-label"><?php echo $this->__('Show %s', str_replace('_', ' ', uc_words($key))); ?></label>                        
+                                        <div class="col-sm-8">
+                                            <select id="<?php echo 'show_' . $key; ?>" class="input-text select" name="<?php echo 'show_' . $key; ?>">                                                        
+                                                <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . 'show_' . $key) == 1): ?>selected="selected"<?php endif; ?> value="1"><?php echo $this->__('Yes'); ?></option>
+                                                <option <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . 'show_' . $key) == 0): ?>selected="selected"<?php endif; ?> value="0"><?php echo $this->__('No'); ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <?php if ($key == 'product_questions'): ?> 
+                                        <div class="form-group">
+                                            <label for="<?php echo $key . '_title'; ?>" class="col-sm-4 control-label"><?php echo $this->__('Title'); ?></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class=" input-text" title="<?php echo $this->__('Title'); ?>" name="<?php echo $key . '_title'; ?>" id="<?php echo $key . '_title'; ?>" value="<?php echo Mage::getStoreConfig('mpanel/product_tabs/' . $key . '_title'); ?>">
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="form-group">
+                                        <label for="<?php echo 'position_' . $key; ?>" class="col-sm-4 control-label"><?php echo $this->__('Position'); ?></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class=" validate-not-negative-number input-text" title="<?php echo $this->__('Position'); ?>" name="<?php echo 'position_' . $key; ?>" id="<?php echo 'position_' . $key; ?>" value="<?php echo Mage::getStoreConfig('mpanel/product_tabs/' . 'position_' . $key); ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                   
+                        <?php endif; ?>                
+                    <?php endforeach ?>
+                </div>
+            </form>
+        </div> <!-- end manage edit product tab --> 
+    </div>
+    <script type="text/javascript">
+        <?php foreach ($productTabs as $key): ?>
+            <?php if ($key != 'description' && $key != 'additional' && $key != 'reviews' && $key != 'product_tag_list' && $key != 'product_questions'): ?>
+                mgsjQuery('#<?php echo $key; ?>').change(function() {
+                    if(this.value == 'static') {
+                        mgsjQuery('#<?php echo $key; ?>-static-select').show();
+                        mgsjQuery('#<?php echo $key; ?>-attribute-select').hide();                        
+                    } else if(this.value == 'attribute') {
+                        mgsjQuery('#<?php echo $key; ?>-static-select').hide();
+                        mgsjQuery('#<?php echo $key; ?>-attribute-select').show();                        
+                    } else {
+                        mgsjQuery('#<?php echo $key; ?>-static-select').hide();
+                        mgsjQuery('#<?php echo $key; ?>-attribute-select').hide();
+                        mgsjQuery('#<?php echo $key; ?>_identifier_value').val('');
+                        mgsjQuery('#<?php echo $key; ?>_attribute_code_value').val('');
+                    }
+                });
+            <?php endif; ?>
+        <?php endforeach; ?>
+        mgsjQuery("#manage_product_tabs_content").append('<div class="builder-action"><div class="buttons"><button type="button" class="btn btn-primary" onclick="updateForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div>');
+        var updateForm = new VarienForm('edit_form');
+        updateForm.submit = function (button, url) {
+            if (this.validator.validate()) {
+                mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+                mgsjQuery('#toggleblock_content').click();
+                button.disabled = true;
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                    form.action = url;
+                }
+                var e = null;
+                try {
+                    mgsjQuery.ajax({
+                        type: 'POST',
+                        url: form.action,
+                        dataType: 'json',
+                        data: mgsjQuery('#edit_form').serialize(),
+                        success: function (data, textStatus, xhr) {
+                            if (data.result == 'success') {
+                                button.disabled = false;
+                                mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');
+                                if (window.parent == window.top) {
+                                    window.parent.mgsjQuery.magnificPopup.close();
+                                    window.top.location.reload();
+                                }
+                            }
+                        }
+                    });
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(updateForm);
+    </script>
+<?php endif; ?>
+

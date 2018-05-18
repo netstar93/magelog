@@ -1,0 +1,91 @@
+<script type="text/javascript">
+	document.observe("dom:loaded", function() {
+		setMainGereral();
+		Event.observe($("menu_type"),'change', function(){
+			setMainGereral();
+		});
+		
+		Event.observe($("togglestatic_content"), 'click', function(){
+			hideElement();
+		});
+		
+		Event.observe($("toggletop_content"), 'click', function(){
+			hideElement();
+		});
+		
+		Event.observe($("togglebottom_content"), 'click', function(){
+			hideElement();
+		});
+		
+		Event.observe($("toggleleft_content"), 'click', function(){
+			hideElement();
+		});
+		
+		Event.observe($("toggleright_content"), 'click', function(){
+			hideElement();
+		});
+	});
+	
+	function hideElement(){
+		$A(document.getElementsByClassName('add-widget')).each(
+			function(b)
+			{
+				b.hide();
+			}
+		);
+		
+		$A(document.getElementsByClassName('add-variable')).each(
+			function(c)
+			{
+				c.hide();
+			}
+		);
+	}
+	
+	
+	function setMainGereral(){
+		var menuType = $("menu_type").value;
+		if(menuType==2){
+			$('megamenu_tabs_category').hide();
+			$('megamenu_tabs_topbottom').hide();
+
+			$('megamenu_tabs_static').setStyle({'display': 'block'});
+			$('url_note').hide();
+		}
+		else{
+			$('megamenu_tabs_category').setStyle({'display': 'block'});
+			$('megamenu_tabs_topbottom').setStyle({'display': 'block'});
+
+
+			$('megamenu_tabs_static').hide();
+			$('url_note').show();
+			
+		}
+	}
+
+	var inputDateFrom = document.getElementById('from_date');
+	var inputDateTo = document.getElementById('to_date');
+	inputDateTo.onchange=function(){dateTestAnterior(this)};
+	inputDateFrom.onchange=function(){dateTestAnterior(this)};
+
+
+	function dateTestAnterior(inputChanged){
+		dateFromStr=inputDateFrom.value;
+		dateToStr=inputDateTo.value;
+
+		if(dateFromStr.indexOf('.')==-1)
+			dateFromStr=dateFromStr.replace(/(\d{1,2} [a-zA-Z??????????]{3})[^ \.]+/,"$1.");
+		if(dateToStr.indexOf('.')==-1)
+			dateToStr=dateToStr.replace(/(\d{1,2} [a-zA-Z??????????]{3})[^ \.]+/,"$1.");
+
+		fromDate= Date.parseDate(dateFromStr,"%e %b %Y %H:%M:%S");
+		toDate= Date.parseDate(dateToStr,"%e %b %Y %H:%M:%S");
+
+		if(dateToStr!=''){
+			if(fromDate>toDate){
+				inputChanged.value='';
+				alert('You must set a date to value greater than the date from value');
+			}
+		}
+	}
+</script>

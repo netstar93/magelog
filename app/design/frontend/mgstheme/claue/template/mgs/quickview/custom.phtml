@@ -1,0 +1,23 @@
+<?php
+
+/* * ****************************************************
+ * Package   : QuickView
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php $_helper = $this->helper('quickview'); ?>
+<?php if ($_helper->isActive()): ?>
+    <script type="text/javascript">
+        $$('aside.col-left').each(Element.remove);
+        $$('aside.col-right').each(Element.remove);
+        var header = document.body.getElementsByTagName('header')[0];
+        document.body.removeChild(header);
+        if ($('after-header') != undefined) {
+            $('after-header').remove();
+        }
+        if ($('footer') != undefined) {
+            $('footer').remove();
+        }
+    </script>
+<?php endif; ?>

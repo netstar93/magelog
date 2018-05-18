@@ -1,0 +1,76 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$collection = $this->getBrandCollection();
+$urlKey = $this->getUrlKey();
+$helper = Mage::helper('brand');
+?>
+<?php if ($this->showWidgetAs() == 'owl_carousel') : ?>
+    <?php if (count($collection)): ?>
+        <?php
+        $items = $this->getOwlCarouselItems();
+        $imageWidth = $this->getOwlCarouselImageWidth();
+        $imageHeight = $this->getOwlCarouselImageHeight();
+        $slideSpeed = $this->getOwlCarouselSlideSpeed();
+        $paginationSpeed = $this->getOwlCarouselPaginationSpeed();
+        $rewindSpeed = $this->getOwlCarouselRewindSpeed();
+        $autoPlay = $this->getOwlCarouselAutoPlay();
+        if ($this->getOwlCarouselStopOnHover()) {
+            $stopOnHover = 'true';
+        } else {
+            $stopOnHover = 'false';
+        }
+        if ($this->getOwlCarouselNavigation()) {
+            $navigation = 'true';
+        } else {
+            $navigation = 'false';
+        }
+        ?>
+        <div class="brands-container">
+            <?php if ($this->getTitle() != ''): ?>
+                <h3><?php echo $this->getTitle(); ?></h3>
+            <?php endif; ?>
+            <div id="owl-brand">
+                <?php foreach ($collection as $brand): ?>
+                    <div class="item">
+                        <a class="brand" title="<?php echo $brand->getTitle(); ?>"
+                           href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+                               <?php if ($brand->getIcon() != ''): ?>
+                                <img width="<?php echo $imageWidth; ?>" height="<?php echo $imageHeight; ?>" alt="<?php echo $brand->getTitle(); ?>"
+                                     src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getIcon(); ?>">
+                                 <?php else: ?>
+                                <img width="<?php echo $imageWidth; ?>" height="<?php echo $imageHeight; ?>" alt="<?php echo $brand->getTitle(); ?>"
+                                     src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+                                 <?php endif; ?>
+                        </a>
+                    </div>
+                <?php endforeach; ?>                
+            </div>                
+        </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#owl-brand').owlCarousel({
+                    items: <?php echo $items; ?>,
+                    //Basic Speeds
+                    slideSpeed: <?php echo $slideSpeed; ?>,
+                    paginationSpeed: <?php echo $paginationSpeed; ?>,
+                    rewindSpeed: <?php echo $rewindSpeed; ?>,
+                    //Autoplay
+                    autoPlay: <?php echo $autoPlay; ?>,
+                    stopOnHover: <?php echo $stopOnHover; ?>,
+                    // Navigation
+                    navigation: <?php echo $navigation; ?>
+                });
+            });
+        </script>
+	<?php else: ?>
+		<div class="alert alert-danger">
+			<p><?php echo $this->__('There are no brands matching the selection.') ?></p>
+		</div>
+    <?php endif; ?>
+<?php endif; ?>

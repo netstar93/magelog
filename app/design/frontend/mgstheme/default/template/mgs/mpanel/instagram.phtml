@@ -1,0 +1,13 @@
+<?php if(Mage::getStoreConfig('social/instagram/active') == 1 && Mage::getStoreConfig('social/instagram/user_name') && Mage::getStoreConfig('social/instagram/client_id') && Mage::getStoreConfig('social/instagram/quantity')): ?>
+<?php $user_name = Mage::getStoreConfig('social/instagram/user_name'); ?>
+<?php $client_id = Mage::getStoreConfig('social/instagram/client_id'); ?>
+<?php $quantity = Mage::getStoreConfig('social/instagram/quantity'); ?>
+<?php $width = Mage::getStoreConfig('social/instagram/width'); ?>
+<?php $height = Mage::getStoreConfig('social/instagram/height'); ?>
+<?php $resolution = Mage::getStoreConfig('social/instagram/resolution'); ?>
+<?php $this->helper('mpanel/social')->getInstagramData($user_name, $client_id, $quantity, $width, $height, $resolution); ?>
+<?php else: ?>
+<div class="alert alert-warning">
+	<?php echo $this->__('Please update your instagram settings first.') ?>
+</div>
+<?php endif; ?>

@@ -1,0 +1,21 @@
+<?php
+/* * ****************************************************
+ * Package   : Social
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php
+$helper = Mage::helper('social');
+$storeId = Mage::app()->getStore()->getStoreId();
+?>
+<?php if ($helper->isActived($storeId)): ?>
+    <?php if (Mage::helper('social/facebook')->isActived($storeId) || Mage::helper('social/google')->isActived($storeId) || Mage::helper('social/twitter')->isActived($storeId)): ?>
+        <div class="social-login-options">
+            <h4><?php echo $this->__('Or login with'); ?></h4>
+            <?php echo $this->getChildHtml('social_facebook'); ?>
+            <?php echo $this->getChildHtml('social_google'); ?>
+            <?php echo $this->getChildHtml('social_twitter'); ?>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

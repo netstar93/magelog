@@ -1,0 +1,445 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php $settings = $this->helper('mpanel')->getBlogSettings() ?>
+<form action="<?php echo $this->getUrl('mpanel/post/layout') ?>" method="POST" id="panel-form" enctype="multipart/form-data">
+	<input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+	<div class="col-md-7 col-sm-4 col-xs-4">
+		<div class="row">
+			<div id="settings" class="panel-group">
+				<div class="panel">
+					<div class="general-setting">
+                        <a data-toggle="collapse" data-parent="#settings" href="#general-setting" class="collapsed general-setting-icon" title="<?php echo $this->__('General Setting') ?>"><em class="fa fa-gear"></em></a>
+                        <a data-toggle="collapse" data-parent="#settings" href="#color-setting" class="collapsed color-setting-icon" title="<?php echo $this->__('Color Setting') ?>"><em class="fa fa-paint-brush"></em></a>
+						<h2 class="title">
+                            <?php echo $this->__('Blog') ?>                        
+						</h2>
+					</div>
+					<div class="layout-button" id="layout-button">
+						<select onchange="this.form.submit();" class="select page-layout" name="blog[blog][layout]">
+							<option value='page/empty.phtml'<?php if($settings['layout']=='page/empty.phtml'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Empty') ?></option>
+							<option value='page/1column.phtml'<?php if($settings['layout']=='page/1column.phtml'): ?> selected="selected"<?php endif ?>><?php echo $this->__('1 column') ?></option>
+							<option value='page/2columns-left.phtml'<?php if($settings['layout']=='page/2columns-left.phtml'): ?> selected="selected"<?php endif ?>><?php echo $this->__('2 columns with left bar') ?></option>
+							<option value='page/2columns-right.phtml'<?php if($settings['layout']=='page/2columns-right.phtml'): ?> selected="selected"<?php endif ?>><?php echo $this->__('2 columns with right bar') ?></option>
+							<option value='page/3columns.phtml'<?php if($settings['layout']=='page/3columns.phtml'): ?> selected="selected"<?php endif ?>><?php echo $this->__('3 columns') ?></option>
+						</select>
+						
+
+						<a data-toggle="collapse" data-parent="#settings" href="#layout-setting" class="template-button collapsed" title="<?php echo $this->__('Page Settings') ?>"><em class="fa fa-gears"></em>&nbsp;<?php echo $this->__('Settings') ?></a>
+						
+					</div>
+
+					<div class="seo-setting">
+						<a data-toggle="collapse" data-parent="#settings" href="#seo-setting" class="collapsed"><em class="fa fa-globe"></em>&nbsp;<?php echo $this->__('SEO') ?></a>
+					</div>
+				</div>
+				
+				<div class="panel col-md-12">
+					<div id="general-setting" class="panel-collapse collapse">
+						<div class="panel-body">
+							 <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/general.phtml')->toHtml() ?>
+						</div>
+					</div>
+					
+					<div id="color-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/color.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+					<div id="layout-setting" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div id="blog-settings" style="display:block">
+								<div class="col-md-12">
+									<div class="form-horizontal row">
+										<div id="blog-accordion" class="panel-group">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#blog-accordion1" href="#blogcollapseOne"><?php echo $this->__('General Settings') ?></a>
+													</h4>
+												</div>
+												<div id="blogcollapseOne" class="panel-collapse collapse">
+													<div class="panel-body">
+														 <div class="form-group">
+															<label for="date_format" class="col-sm-4 control-label"><?php echo $this->__('Date Format') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][dateformat]" class="form-control" id="date_format">
+																	<option value="full"<?php if($settings['dateformat']=='full'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Full') ?></option>
+																	<option value="long"<?php if($settings['dateformat']=='long'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Long') ?></option>
+																	<option value="medium"<?php if($settings['dateformat']=='medium'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Medium') ?></option>
+																	<option value="short"<?php if($settings['dateformat']=='short'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Short') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="blogcrumbs" class="col-sm-4 control-label"><?php echo $this->__('Show Breadcrumbs') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][blogcrumbs]" class="form-control" id="blogcrumbs">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['blogcrumbs']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="readmore" class="col-sm-4 control-label"><?php echo $this->__('Summary Character Count') ?></label>
+															<div class="col-sm-6">
+																<input type="text" class="form-control" id="readmore" name="blog[blog][readmore]" value="<?php echo $settings['readmore'] ?>"/>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="useshortcontent" class="col-sm-4 control-label"><?php echo $this->__('Use Short Content Field') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][useshortcontent]" class="form-control" id="useshortcontent">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['useshortcontent']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="parse_cms" class="col-sm-4 control-label"><?php echo $this->__('Parse CMS Tags in Post Contents') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][parse_cms]" class="form-control" id="parse_cms">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['parse_cms']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="perpage" class="col-sm-4 control-label"><?php echo $this->__('Posts per Page') ?></label>
+															<div class="col-sm-6">
+																<input type="text" class="form-control" id="perpage" name="blog[blog][perpage]" value="<?php echo $settings['perpage'] ?>"/>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="categories_urls" class="col-sm-4 control-label"><?php echo $this->__('Use Categories ID in Posts URLs') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][categories_urls]" class="form-control" id="categories_urls">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['categories_urls']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="bookmarkslist" class="col-sm-4 control-label"><?php echo $this->__('Show Bookmarks in Lists') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][bookmarkslist]" class="form-control" id="bookmarkslist">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['bookmarkslist']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="bookmarkspost" class="col-sm-4 control-label"><?php echo $this->__('Show Bookmarks in Posts') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][bookmarkspost]" class="form-control" id="bookmarkspost">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['bookmarkspost']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="bookmarkspost" class="col-sm-4 control-label"><?php echo $this->__('Default Posts Sorting') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[blog][sorter]" class="form-control" id="sorter">
+																	<option value="DESC"<?php if($settings['sorter']=='DESC'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Newest first') ?></option>
+																	<option value="ASC"<?php if($settings['sorter']=='ASC'): ?> selected="selected"<?php endif ?>><?php echo $this->__('Older first') ?></option>
+																	
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<?php 
+																$type = 'blog_list';
+																if($this->getRequest()->getActionName()=='view' && $this->getRequest()->getControllerName()=='post'){
+																	$type = 'blog_detail';
+																}
+															?>
+															<label for="share_this_blog" class="col-sm-4 control-label"><?php echo $this->__('Enable Share This') ?></label>
+															<div class="col-sm-6">
+																<select name="share_this[share_this][<?php echo $type ?>]" class="form-control" id="share_this_product">
+																	<option value="0"><?php echo $this->__('No') ?></option>
+																	<option value="1"<?php if(Mage::getStoreConfig('mpanel/share_this/'.$type)==1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#blog-accordion2" href="#blogcollapseTwo"><?php echo $this->__('Menus and Links') ?></a>
+													</h4>
+												</div>
+												<div id="blogcollapseTwo" class="panel-collapse collapse">
+													<div class="panel-body">
+														 <div class="form-group">
+															<label for="left" class="col-sm-4 control-label"><?php echo $this->__('Enable Left Menu') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[menu][left]" class="form-control" id="left">
+																	<option value="1"><?php echo $this->__('Yes, all pages') ?></option>
+																	<option value="2"<?php if($settings['left']==2): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes, only blog page') ?></option>
+																	<option value="0"<?php if($settings['left']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="right" class="col-sm-4 control-label"><?php echo $this->__('Enable Right Menu') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[menu][right]" class="form-control" id="right">
+																	<option value="1"><?php echo $this->__('Yes, all pages') ?></option>
+																	<option value="2"<?php if($settings['right']==2): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes, only blog page') ?></option>
+																	<option value="0"<?php if($settings['right']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="footer" class="col-sm-4 control-label"><?php echo $this->__('Enable Footer Link') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[menu][footer]" class="form-control" id="footer">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['footer']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="top" class="col-sm-4 control-label"><?php echo $this->__('Enable Top Link') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[menu][top]" class="form-control" id="top">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['top']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="recent" class="col-sm-4 control-label"><?php echo $this->__('Recent Posts') ?></label>
+															<div class="col-sm-6">
+																<input type="text" class="form-control" id="recent" name="blog[menu][recent]" value="<?php echo $settings['recent'] ?>"/>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="blog_category" class="col-sm-4 control-label"><?php echo $this->__('Enable Categories Menu') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[menu][category]" class="form-control" id="blog_category">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['category']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="tagcloud_size" class="col-sm-4 control-label"><?php echo $this->__('Tags to Display') ?></label>
+															<div class="col-sm-6">
+																<input type="text" class="form-control" id="tagcloud_size" name="blog[menu][tagcloud_size]" value="<?php echo $settings['tagcloud_size'] ?>"/>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#blog-accordion2" href="#blogcollapseThree"><?php echo $this->__('Comments') ?></a>
+													</h4>
+												</div>
+												<div id="blogcollapseThree" class="panel-collapse collapse">
+													<div class="panel-body">
+														<div class="form-group">
+															<label for="enabled" class="col-sm-4 control-label"><?php echo $this->__('Enable Comments') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[comments][enabled]" class="form-control" id="enabled">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['comments_enabled']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="login" class="col-sm-4 control-label"><?php echo $this->__('Login Required to Comment') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[comments][login]" class="form-control" id="login">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['login']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="approval" class="col-sm-4 control-label"><?php echo $this->__('Auto Approve Comments') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[comments][approval]" class="form-control" id="approval">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['approval']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="loginauto" class="col-sm-4 control-label"><?php echo $this->__('Logged in Auto Approve Comments') ?></label>
+															<div class="col-sm-6">
+																<select name="blog[comments][loginauto]" class="form-control" id="loginauto">
+																	<option value="1"><?php echo $this->__('Yes') ?></option>
+																	<option value="0"<?php if($settings['loginauto']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="recipient_email" class="col-sm-4 control-label"><?php echo $this->__('Send Emails to') ?></label>
+															<div class="col-sm-6">
+																<input type="text" class="form-control" id="recipient_email" name="blog[comments][recipient_email]" value="<?php echo $settings['recipient_email'] ?>"/>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="sender_email_identity" class="col-sm-4 control-label"><?php echo $this->__('Email Sender') ?></label>
+															<div class="col-sm-6">
+																<?php 
+																	$options = array();
+																	$config = Mage::getSingleton('adminhtml/config')->getSection('trans_email')->groups->children();
+																	foreach ($config as $node) {
+																		$nodeName   = $node->getName();
+																		$label      = (string) $node->label;
+																		$sortOrder  = (int) $node->sort_order;
+																		$options[$sortOrder] = array(
+																			'value' => preg_replace('#^ident_(.*)$#', '$1', $nodeName),
+																			'label' => $this->__($label)
+																		);
+																	}
+																	ksort($options);
+																?>
+																<select name="blog[comments][sender_email_identity]" class="form-control" id="sender_email_identity">
+																	<?php if(count($options)>0): ?>
+																		<?php foreach($options as $_option): ?>
+																			<option value="<?php echo $_option['value'] ?>"<?php if($settings['sender_email_identity']==$_option['value']): ?> selected="selected"<?php endif ?>><?php echo $_option['label'] ?></option>
+																		<?php endforeach ?>
+																	<?php endif ?>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="email_template" class="col-sm-4 control-label"><?php echo $this->__('Email Template') ?></label>
+															<div class="col-sm-6">
+																<?php 
+																	$collection = Mage::getResourceModel('core/email_template_collection')->load();
+																	$options = $collection->toOptionArray();
+																	$templateName = $this->__('Default Template from Locale');
+																	$nodeName = 'blog_comments_email_template';
+																	
+																	$templateLabelNode = Mage::app()->getConfig()->getNode('global/template/email/label');
+																	
+																	$templateLabelNode = Mage::app()->getConfig()->getNode('global/template/email/' . $nodeName . '/label');
+																	if ($templateLabelNode) {
+																		$templateName = $this->__((string)$templateLabelNode);
+																		$templateName = $this->__('%s (Default Template from Locale)', $templateName);
+																	}
+																	array_unshift(
+																		$options,
+																		array(
+																			'value'=> $nodeName,
+																			'label' => $templateName
+																		)
+																	);
+																	
+																?>
+																<select name="blog[comments][email_template]" class="form-control" id="email_template">
+																	<?php if(count($options)>0): ?>
+																		<?php foreach($options as $_option): ?>
+																			<option value="<?php echo $_option['value'] ?>"<?php if($settings['email_template']==$_option['value']): ?> selected="selected"<?php endif ?>><?php echo $_option['label'] ?></option>
+																		<?php endforeach ?>
+																	<?php endif ?>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<label for="page_count" class="col-sm-4 control-label"><?php echo $this->__('Comments per Page') ?></label>
+															<div class="col-sm-6">
+																<input type="text" class="form-control" id="page_count" name="blog[comments][page_count]" value="<?php echo $settings['page_count'] ?>"/>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="seo-setting" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div>
+								<div class="col-md-12">
+									<div class="form-horizontal row">
+										<div class="form-group">
+											<label class="col-sm-4 control-label" for="page_title"><?php echo $this->__('Page Title') ?></label>
+											<div class="col-sm-6">
+												<input type="text" id="page_title" class="form-control" name="blog[blog][title]" value="<?php echo $settings['title'] ?>"/>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-4 control-label" for="meta_keywords"><?php echo $this->__('Meta Keywords') ?></label>
+											<div class="col-sm-6">
+												<textarea id="meta_keywords" class="form-control" name="blog[blog][keywords]"><?php echo $settings['keywords'] ?></textarea>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-4 control-label" for="meta_description"><?php echo $this->__('Meta Description') ?></label>
+											<div class="col-sm-6">
+												<textarea id="meta_description" class="form-control" name="blog[blog][description]"><?php echo $settings['description'] ?></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-12">
+									<button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-5 col-sm-4 col-xs-4">
+                <a href="<?php echo $this->getUrl('adminhtml') ?>" class="backend-link" title="<?php echo $this->__('Go to backend') ?>" target="_blank">
+			<?php echo $this->__('Admin') ?><em class="fa fa-user"></em>
+		</a>
+		<?php echo $this->getLayout()->createBlock('page/switch')->setTemplate('mgs/mpanel/languages.phtml')->toHtml() ?>
+        <span class="translate-inline-check">
+			<span><?php echo $this->__('Translate Inline') ?></span>
+			<?php if (Mage::getStoreConfig('dev/translate_inline/active')): ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" checked="checked" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 0, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php else: ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 1, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php endif ?>
+		</span>
+	</div>
+</form>
+

@@ -1,0 +1,38 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$collection = $this->getBrandCollection();
+$urlKey = $this->getUrlKey();
+?>
+<?php if (count($collection)): ?>
+    <div class="brand-widget">
+        <?php foreach ($collection as $brand): ?>
+            <div class="brand">
+                <a class="brand-image" title="<?php echo $brand->getTitle(); ?>"
+                   href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>">
+                       <?php if ($brand->getImage() != ''): ?>
+                        <img width="135" height="135" alt="<?php echo $brand->getTitle(); ?>"
+                             src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/' . $brand->getImage(); ?>">
+                         <?php else: ?>
+                        <img width="135" height="135" alt="<?php echo $brand->getTitle(); ?>"
+                             src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'media/mgs/brand/no_image.jpg'; ?>">
+                         <?php endif; ?>
+                </a>
+
+                <h2 class="brand-title">
+                    <a title="<?php echo $brand->getTitle(); ?>"
+                       href="<?php echo $this->getUrl() . $urlKey . '/' . $brand->getUrlKey(); ?>"><?php echo $brand->getTitle(); ?></a>
+                </h2>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+<div class="alert alert-danger">
+	<p><?php echo $this->__('There are no brands matching the selection.') ?></p>
+</div>
+<?php endif; ?>

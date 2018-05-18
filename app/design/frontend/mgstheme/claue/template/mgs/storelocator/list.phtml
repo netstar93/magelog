@@ -1,0 +1,270 @@
+<?php
+$markers = array();
+?>
+<div class="row store-list-container">
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="search-form">
+			<form action="<?php echo $this->getUrl('storelocator/index/search') ?>" method="GET" id="search_by_area">
+				<h3><?php echo $this->__('Search by Area') ?></h3>
+				<?php $country = Mage::getResourceModel('directory/country_collection') ;?>
+				
+					<div class="form-group">
+						<div class="row">
+						<?php if (count($country) > 0): ?>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+									<label class="control-label" for="country"><?php echo $this->__('Country') ?></label>
+									
+										<select name="country" id="country" class="input-text form-control" title="<?php echo $this->__('Country') ?>">
+											<option value=""><?php echo $this->__('-- Please Select --'); ?></option>
+											<?php foreach($country as $_country): ?>
+											<option value="<?php echo $_country->getName() ?>" 
+												<?php if($this->getFormData()->getCountry() == $_country->getName()):?>selected="selected"<?php endif;?>>
+												<?php echo $_country->getName() ?>
+											</option>
+											<?php endforeach; ?>
+										</select>
+									
+							</div>
+						<?php endif; ?>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							
+								<label class="control-label" for="state"><?php echo $this->__('State') ?></label>
+								
+									<input type="text" name="state" id="state" value="<?php echo $this->escapeHtml($this->getFormData()->getState()) ?>" title="<?php echo $this->__('state') ?>" class="input-text form-control" />
+								
+							
+						</div>
+						</div>
+					</div>
+				
+				
+				<div class="form-group">
+					<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						
+							<label class="control-label" for="city"><?php echo $this->__('City') ?></label>
+							
+								<input type="text" name="city" id="city" value="<?php echo $this->escapeHtml($this->getFormData()->getCity()) ?>" title="<?php echo $this->__('City') ?>" class="input-text form-control" />
+							
+					</div>
+				
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						
+							<label class=" control-label" for="zipcode"><?php echo $this->__('Zipcode') ?></label>
+							
+								<input type="text" name="zipcode" id="zipcode" value="<?php echo $this->escapeHtml($this->getFormData()->getZipcode()) ?>" title="<?php echo $this->__('Zipcode') ?>" class="input-text form-control" />
+							
+					</div>
+					</div>
+				</div>
+					
+				
+				<div class="form-group">
+					<div class="col-sm-12">
+						<button class="btn btn-primary" title="<?php echo $this->__('Search') ?>" type="submit"><span><span><?php echo $this->__('Search') ?></span></span></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="search-form">
+			<form action="<?php echo $this->getUrl('storelocator/index/searchbydistance') ?>" method="GET" id="search_by_distance">
+				<h3><?php echo $this->__('Search by Distance') ?></h3>
+				
+				<div class="form-group">
+					<label class="control-label" for="location"><?php echo $this->__('Location') ?></label>
+				
+						<input type="text" name="location" id="location" value="<?php echo $this->getRequest()->getParam('location') ?>" title="<?php echo $this->__('Location') ?>" class="input-text required-entry form-control" placeholder="<?php echo $this->__('Street, City, State, Zipcode, Country') ?>"/>
+						<input type="hidden" id="lat_search" value="" name="lat_search" />
+						<input type="hidden" id="long_search" value="" name="long_search" />
+					
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label" for="radius"><?php echo $this->__('Radius') ?></label>
+					
+						<input type="text" name="radius" id="radius" value="<?php echo $this->getRequest()->getParam('radius') ?>" title="<?php echo $this->__('Radius') ?>" class="input-text required-entry form-control" placeholder="<?php echo $this->__('Kilomet') ?>"/>
+					
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<button class="btn btn-primary" title="<?php echo $this->__('Search') ?>" type="button" onclick="storeSearch.submit(this)"><span><span><?php echo $this->__('Search') ?></span></span></button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+		//<![CDATA[
+			var storeSearch = new VarienForm('search_by_distance');
+			
+			storeSearch.submit = function(button, url) {
+				if (this.validator.validate()) {
+					var form = this.form;
+					var oldUrl = form.action;
+
+					if (url) {
+					   form.action = url;
+					}
+					var e = null;
+					try {
+						mgsjQuery.ajax({
+							type: "GET",
+							dataType: "json",
+							url: "http://maps.googleapis.com/maps/api/geocode/json",
+							data: {'address': mgsjQuery('#location').val(),'sensor':false},
+							success: function(data){
+								if(data.results.length){
+									latitude = data.results[0].geometry.location.lat;
+									longitude = data.results[0].geometry.location.lng;
+									$('lat_search').value = latitude;
+									$('long_search').value = longitude;
+									
+									mgsjQuery("#search_by_distance").submit();
+								}
+							}
+						});
+						//this.form.submit();
+						
+					} catch (e) {
+					}
+					this.form.action = oldUrl;
+					if (e) {
+						throw e;
+					}
+
+					if (button && button != 'undefined') {
+						button.disabled = true;
+					}
+				}
+			}.bind(storeSearch);
+		//]]>
+		</script>
+	</div>
+</div>
+
+<?php $_StoreCollection = $this->getStoreCollection(); ?>
+<?php $totalStoreCount = $_StoreCollection->count(); ?>
+<div class="row store-list-container">
+	<div class="col-md-4 col-sm-12 col-xs-12">
+		<div class="store-list">
+			<h3><?php echo $this->__('Store List') ?></h3>
+			<div class="items">
+				<?php if(!$totalStoreCount): ?>
+					<div class="alert alert-warning"><?php echo $this->__('There are no stores.') ?></div>
+				<?php else: ?>
+					<ul class="stores">
+						<?php $i=0; foreach ($_StoreCollection as $store): $i++; ?>
+							<?php $markers[$i]['name'] = '<div class="map-short-info"><h3>'.$store->getName().'</h3><p>'; ?>
+							<?php $markers[$i]['lat'] = $store->getLatitude(); ?>
+							<?php $markers[$i]['long'] = $store->getLongitude(); ?>
+							<li>
+								<div class="store-info">
+									<div class="store-image"> <a href="<?php echo $this->getStoreUrl($store);?>">
+                                        <img class="img-responsive" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'mgs_storelocator/'.$store->getStoreLogo() ?>" alt="<?php echo $this->escapeHtml($store->getName()); ?>"/>
+								    </a></div>
+									<div class="store-details">
+										<h4><a href="<?php echo $this->getStoreUrl($store);?>"><?php echo $this->escapeHtml($store->getName()) ?></a></h4>
+									<div class="store-address">
+										<?php if($store->getStreetAddress()): ?>
+										<span><?php echo $this->escapeHtml($store->getStreetAddress()) ?></span>
+										<?php $markers[$i]['name'] .= $store->getStreetAddress(); ?>
+									<?php endif; ?>
+									<?php if($store->getCity()): ?>
+										<span><?php echo $this->escapeHtml($store->getCity()) ;?></span>
+										<?php $markers[$i]['name'] .= ' '.$store->getCity(); ?>
+									<?php endif; ?>
+									<?php if($store->getState()): ?>
+										<span><?php echo $this->escapeHtml($store->getState()); ?></span>
+										<?php $markers[$i]['name'] .= ' '.$store->getState(); ?>
+									<?php endif; ?>
+									<?php if($store->getZipcode()): ?>
+										<span><?php echo $this->__('Zip Code: %s', $this->escapeHtml($store->getZipcode())) ?></span>
+										<?php $markers[$i]['name'] .= ' '.$store->getZipcode(); ?>
+									<?php endif; ?>
+									<?php if($store->getCountry()): ?>
+										<span><?php echo $this->getCountryName($store->getCountry()); ?></span>
+										<?php $markers[$i]['name'] .= ' '.$store->getCountry(); ?>
+									<?php endif; ?>
+									
+									<?php $markers[$i]['name'] .= '</span>'; ?>
+									</div>
+									
+									<?php if($store->getPhone()): ?>
+										<p><?php echo $this->__('Phone: %s', $this->escapeHtml($store->getPhone())) ?></p>
+										
+										<?php $markers[$i]['name'] .= '<p>'.$this->__('Phone: ').'<a href="tel:'.$store->getPhone().'">'.$store->getPhone().'</a></p>'; ?>
+									<?php endif; ?>
+									
+									<?php $markers[$i]['name'] .= '<p><a href="'.$this->getStoreUrl($store).'">'.$this->__('Details').'</a></p>'; ?>
+									
+									<?php $markers[$i]['name'] .= '</div>'; ?>
+									
+									<?php $storeName = $store->getName(); ?>
+									<?php $storeLat = $store->getLatitude(); ?>
+									<?php $storeLong = $store->getLongitude(); ?>
+									<?php $storeRadius = $this->getRadius($store); ?>
+									<?php $storeZoomLevel = $this->getZoomLevel($store); ?>
+									<?php if($storeLat && $storeLong): ?>
+										<button onclick="initialize(<?php echo $storeLat ;?>, <?php echo $storeLong ;?>, <?php echo $storeRadius ;?>,'<?php echo str_replace('"','-quotation-',$markers[$i]['name']) ;?>', 'store-list-map');" class="btn btn-xs btn-primary" title="<?php echo $this->__('View Map') ?>" type="button">
+											
+												<span>
+												<?php echo $this->__('View Map') ?>
+												</span>
+										</button>
+									<?php endif ;?>									
+									</div>
+									
+								</div>
+							</li>
+						<?php endforeach ?>
+					</ul>
+				<?php endif ?>
+			</div>
+		</div>
+		<?php echo $this->getPager() ?>
+	</div>
+	
+	<div class="col-md-8 col-sm-12 col-xs-12">
+		<?php if($totalStoreCount): ?>
+			<div>
+				<div id="store-list-map">&nbsp;</div>
+			</div>
+	<?php if(is_array($markers) && count($markers)>0 ) :?>
+		 <script>
+			  //<![CDATA[
+			  var markers = [
+			<?php foreach ($markers as $marker) : ?>
+			 ['<?php echo $marker['name'];?>',<?php echo $marker['lat'];?>,<?php echo $marker['long'];?>],
+			<?php endforeach ?>
+			<?php if($this->getRequest()->getParam('lat_search') && $this->getRequest()->getParam('long_search')): ?>
+				//['<?php echo $this->__('Your Location');?>',<?php echo $this->getRequest()->getParam('lat_search'); ?>,<?php echo $this->getRequest()->getParam('long_search') ;?>],
+			<?php endif ?>
+			  ];
+				//]]>
+			 </script>
+		<?php endif ?>
+		 <div id="show-all-store">
+			<button onclick="drawMap(markers, googleMapDivId);" class="btn btn-lg btn-secondary pull-right margin-top15" title="<?php echo Mage::helper('mgs_storelocator')->__('Show All Stores') ?>" type="button">
+				
+				  <span>
+					<?php echo Mage::helper('mgs_storelocator')->__('Show All Stores') ?>
+				  </span>
+				
+			</button>
+		 </div>
+		  <script>
+			  //<![CDATA[
+			var googleMapDivId = 'store-list-map';
+			<?php if($this->getRequest()->getParam('lat_search') && $this->getRequest()->getParam('long_search')): ?>
+			google.maps.event.addDomListener(window, 'load', drawMapWithCircle(markers, googleMapDivId, <?php echo $this->getRequest()->getParam('lat_search') ?>, <?php echo $this->getRequest()->getParam('long_search') ?>, <?php echo $this->getRequest()->getParam('radius') ?>, '<?php echo $this->getSkinUrl('images/your_location.png')  ?>'));
+			<?php else: ?>
+				google.maps.event.addDomListener(window, 'load', drawMap(markers, googleMapDivId, false, false));
+			<?php endif ?>
+			  //]]>
+		</script>
+	<?php endif ?>
+
+	</div>
+</div>

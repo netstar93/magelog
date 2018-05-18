@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <adminhtml_profilesbackend_index>
+	<reference name="content">
+	  <block type="profiles/adminhtml_profilesbackend" name="profilesbackend" template="profiles/profilesbackend.phtml"/>
+	</reference>
+  </adminhtml_profilesbackend_index>
+  <adminhtml_profile_index>
+	<reference name="content">
+	  <block type="profiles/adminhtml_profile" name="profile" />
+	</reference>
+  </adminhtml_profile_index>
+</layout>

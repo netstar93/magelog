@@ -1,0 +1,16 @@
+<?php
+/* * ****************************************************
+ * Package   : Social
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php
+$helper = Mage::helper('social/facebook');
+$storeId = Mage::app()->getStore()->getStoreId();
+?>
+<?php if ($helper->getFacebookConfig('active_sdk', $storeId) && $helper->isActived($storeId)): ?>    
+	<div class="social-facebook social-item">
+		<a class="facebook" title="<?php echo $this->__('Facebook Login'); ?>" href="<?php echo $this->escapeUrl($this->_getButtonUrl()); ?>"><span class="icon fa fa-facebook"></span></a>
+	</div>
+<?php endif; ?>

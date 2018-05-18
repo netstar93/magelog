@@ -1,0 +1,33 @@
+<?php
+$helper = $this->helper('mpanel');
+$pageId = Mage::getBlockSingleton('cms/page')->getPage()->getId();
+$blocks = $this->getBlocks();
+?>
+<section class="builder-container">
+    <div>                        
+        <?php if (count($blocks)): ?>
+            <div id="sortable-right" class="sort-block">
+                <?php foreach ($blocks as $block): ?>                    
+                    <div class="sort-item builder-container child-builder" id="block_right_<?php echo $block->getId(); ?>">
+                        <?php echo $helper->renderButtons($block->getId(), 'page'); ?>
+                        <?php echo $helper->renderContent($block->getId()); ?>
+                    </div>                    
+                <?php endforeach ?>
+            </div>
+            <script type="text/javascript">
+                mgsjQuery(document).ready(function () {
+                    initSortable('sortable-right', '<?php echo $this->getUrl('mpanel/page/sort', array('el' => 'block_right', 'page_id' => $pageId)) ?>');
+                });
+            </script>
+            <div class="col-md-12">
+                <a class="btn btn-primary popup-link btn-new-block" data-original-title="<?php echo $this->__('Add new block'); ?>" data-toggle="tooltip" data-placement="bottom" href="<?php echo $this->getUrl('mpanel/page/add', array('page_id' => $pageId, 'place' => 'right')) ?>"><em class="fa fa-plus"></em><?php echo $this->__('Add new block'); ?></a>
+            </div>
+        <?php else: ?>
+            <div class="empty-block">
+                <div class="col-md-12">                    
+                    <a class="btn btn-primary popup-link btn-new-block" data-original-title="<?php echo $this->__('Add new block'); ?>" data-toggle="tooltip" data-placement="bottom" href="<?php echo $this->getUrl('mpanel/page/add', array('page_id' => $pageId, 'place' => 'right')) ?>"><em class="fa fa-plus"></em><?php echo $this->__('Add new block'); ?></a>
+                </div>
+            </div>
+        <?php endif ?>
+    </div>
+</section>

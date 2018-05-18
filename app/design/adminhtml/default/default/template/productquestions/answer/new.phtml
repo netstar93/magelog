@@ -1,0 +1,134 @@
+<?php
+/* * ****************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php
+$user = Mage::getSingleton('admin/session');
+$userEmail = $user->getUser()->getEmail();
+$userFirstname = $user->getUser()->getFirstname();
+$userLastname = $user->getUser()->getLastname();
+?>
+<div class="content-header">
+    <h3 class="icon-head head-adminhtml-answer"><?php echo $this->__('Add Answer') ?></h3>    
+</div>
+<div id="answer_new_error" style="display: none;">
+    <ul class="messages">
+        <li class="error-msg">
+            <ul>
+                <li>
+                    <span><?php echo $this->__('Unable to find answer to save.') ?></span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="entry-edit">
+    <form id="edit_form">        
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend">Answer Details</h4>            
+        </div>
+        <div>
+            <input id="question_id" name="question_id" value="<?php echo $this->getRequest()->getParam('question_id') ?>" type="hidden">
+        </div>
+        <div class="fieldset " id="answer_form">
+            <div class="hor-scroll">
+                <table class="form-list" cellspacing="0">
+                    <tbody>                        
+                        <tr>
+                            <td class="label"><label for="a_customer_name"><?php echo $this->__('Customer Name') ?> <span class="required">*</span></label></td>
+                            <td class="value">
+                                <input id="a_customer_name" name="a_customer_name" class="required-entry input-text" type="text" value="<?php echo $userFirstname . ' ' . $userLastname; ?>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="a_customer_email"><?php echo $this->__('Customer Email') ?> <span class="required">*</span></label></td>
+                            <td class="value">
+                                <input id="a_customer_email" name="a_customer_email" class="required-entry validate-email input-text" type="text" value="<?php echo $userEmail; ?>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="a_content"><?php echo $this->__('Content') ?> <span class="required">*</span></label></td>
+                            <td class="value">
+                                <textarea id="a_content" name="a_content" class="required-entry textarea" rows="2" cols="15"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="is_admin"><?php echo $this->__('Answer From Admin') ?></label></td>
+                            <td class="value">
+                                <select id="is_admin" name="is_admin" class="select">
+                                    <option selected="selected" value="1"><?php echo $this->__('Yes') ?></option>
+                                    <option value="0"><?php echo $this->__('No') ?></option>                                    
+                                </select>            
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="a_status"><?php echo $this->__('Status') ?></label></td>
+                            <td class="value">
+                                <select id="a_status" name="a_status" class="select">
+                                    <option selected="selected" value="1"><?php echo $this->__('Pending') ?></option>
+                                    <option value="2"><?php echo $this->__('Approved') ?></option>
+                                    <option value="3"><?php echo $this->__('Declined') ?></option>
+                                </select>            
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td class="label"><label for="a_score"><?php echo $this->__('Score') ?></label></td>
+                            <td class="value">
+                                <input id="a_score" name="a_score" class="validate-not-negative-number input-text" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"></td>
+                            <td class="value">                                           
+                                <button id="save_answer" class="scalable save" type="submit" title="<?php echo $this->__('Save Answer') ?>"><?php echo $this->__('Save Answer') ?></button>
+                                <button id="cancel" class="scalable" onclick="Windows.close('widget_window', event)" type="button" title="<?php echo $this->__('Cancel') ?>"><?php echo $this->__('Cancel') ?></button>                                
+                                <img style="display: none; float: right; overflow: hidden;" id="img_loader" src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>        
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var formId = 'edit_form';
+    var editForm = new varienForm(formId, true);
+    var postUrl = '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/answer/save') ?>';
+    var answerUrl = '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/question/answerGrid', array('id' => $this->getRequest()->getParam('question_id'))) ?>';
+    function doAjax() {
+        if (editForm.validator.validate()) {
+            $('img_loader').show();
+            new Ajax.Request(postUrl, {
+                method: 'post',
+                parameters: $(formId).serialize(true),
+                onComplete: function(response) {
+                    var json = response.responseText.evalJSON();
+                    if (json.message == 'SUCCESS') {
+                        $('img_loader').hide();
+                        Windows.close('widget_window');
+                        $('answer_new_success').show();
+                        new Ajax.Request(answerUrl, {
+                            method: 'post',
+                            onComplete: function(response) {
+                                $('answerGrid').update(response.responseText);
+                            }
+                        });
+                    } else {
+                        $('img_loader').hide();
+                        $('answer_new_error').show();
+                    }
+                }
+            });
+        }
+    }
+    new Event.observe(formId, 'submit', function(e) {
+        e.stop();
+        doAjax();
+    });
+//]]>
+</script>

@@ -1,0 +1,3045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <mgs_theme translate="label">
+            <label>Theme Settings</label>
+            <tab>mgscore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>2</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <install translate="label">
+                    <label>Theme Installation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <import translate="label">
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>mpanel/adminhtml_config_button</frontend_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                    </fields>
+                </install>
+				
+                <demo translate="label">
+                    <label>Import Demo Data</label>
+                    <frontend_model>mpanel/adminhtml_config_demo</frontend_model>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <import translate="label">
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                    </fields>
+                </demo>
+				
+                <general translate="label" >
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+					
+                        <page_width translate="label">
+                            <label>Width</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_width</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page_width>
+					
+                        <!--right_to_left translate="label">
+                            <label>Right to left layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </right_to_left-->
+					
+                        <layout translate="label">
+                            <label>Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_layout</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout>
+						
+                        <!--layout_style translate="label">
+                            <label>Layout Style</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_style</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout_style-->
+						
+                        <logo translate="label">
+                            <label>Logo</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">mpanel/logo</upload_dir>
+                            <base_url type="media" scope_info="1">mpanel/logo</base_url>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo>
+						
+                        <header translate="label">
+                            <label>Header version</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_header</source_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header>
+						
+                        <footer translate="label">
+                            <label>Footer version</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_footer</source_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </footer>
+						
+                        <sticky_menu translate="label">
+                            <label>Sticky menu</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sticky_menu>
+						
+                        <back_to_top translate="label">
+                            <label>Display back to top icon</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </back_to_top>
+						
+                        <lazy_load_img translate="label">
+                            <label>Enable Lazy Load Img</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>350</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </lazy_load_img>
+						
+                        <preloader translate="label">
+                            <label>Active Preloader</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </preloader>
+						
+                        <snippets translate="label">
+                            <label>Enable Google rich snippets</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </snippets>
+						
+                        <custom_css translate="label">
+                            <label>Custom css</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>600</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_css>
+						
+                    </fields>
+                </general>
+				
+                <background translate="label" >
+                    <label>Background</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <bg_color translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg_color>
+						
+                        <bg_upload translate="label">
+                            <label>Background Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">mpanel/background</upload_dir>
+                            <base_url type="media" scope_info="1">mpanel/background</base_url>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg_upload>
+						
+                        <bg_image translate="label">
+                            <label>Background pattern</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_background</source_model>
+                            <comment>applied for boxed layout style</comment>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg_image>
+						
+                        <bg_repeat translate="label">
+                            <label>Background repeat</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_repeat</source_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg_repeat>
+						
+                        <bg_position_x translate="label">
+                            <label>Background position (x)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_xposition</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg_position_x>
+						
+                        <bg_position_y translate="label">
+                            <label>Background position (y)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_yposition</source_model>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg_position_y>
+                    </fields>
+                </background>
+				
+                <fonts translate="label" >
+                    <label>Fonts</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>400</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <font translate="label">
+                            <label>Default font</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </font>
+						
+						<font_size translate="label">
+                            <label>Default font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </font_size>
+						
+						<top_heading>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>151</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading>
+						
+                        <h1 translate="label">
+                            <label>Heading 1</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h1>
+						
+						<h1_fontsize translate="label">
+                            <label>Heading 1 font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h1_fontsize>
+						
+						<top_heading1>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>251</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading1>
+						
+                        <h2 translate="label">
+                            <label>Heading 2</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h2>
+						
+						<h2_fontsize translate="label">
+                            <label>Heading 2 font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>350</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h2_fontsize>
+						
+						<top_heading2>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>351</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading2>
+						
+                        <h3 translate="label">
+                            <label>Heading 3</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h3>
+						
+						<h3_fontsize translate="label">
+                            <label>Heading 3 font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h3_fontsize>
+						
+						<top_heading3>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>411</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading3>
+						
+                        <h4 translate="label">
+                            <label>Heading 4</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>420</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h4>
+						
+						<h4_fontsize translate="label">
+                            <label>Heading 4 font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>430</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h4_fontsize>
+						
+						<top_heading4>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>431</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading4>
+						
+                        <h5 translate="label">
+                            <label>Heading 5</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>440</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h5>
+						
+						<h5_fontsize translate="label">
+                            <label>Heading 5 font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>450</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h5_fontsize>
+						
+						<top_heading5>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>451</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading5>
+						
+                        <h6 translate="label">
+                            <label>Heading 6</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>460</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h6>
+						
+						<h6_fontsize translate="label">
+                            <label>Heading 6 font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>470</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h6_fontsize>
+						
+						<top_heading6>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>471</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading6>
+						
+                        <price translate="label">
+                            <label>Price</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price>
+						
+						<price_fontsize translate="label">
+                            <label>Price font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>501</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_fontsize>
+						
+						<top_heading7>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>502</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading7>
+						
+                        <menu translate="label">
+                            <label>Menu</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>600</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </menu>
+						
+						<menu_fontsize translate="label">
+                            <label>Menu font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>601</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </menu_fontsize>
+						
+						<top_heading8>
+							<label><![CDATA[&nbsp;]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>700</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading8>
+						
+						<custom_class translate="label">
+                            <label>Element use font</label>
+                            <frontend_type>textarea</frontend_type>
+							<comment>eg: .class-element-1, .class-element-2, #id-element</comment>
+                            <sort_order>701</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_class>
+						
+                        <custom_font translate="label">
+                            <label>Font Family</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_fonts</source_model>
+                            <frontend_model>mpanel/adminhtml_fields_fonts</frontend_model>
+                            <sort_order>702</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_font>
+						
+						<custom_fontsize translate="label">
+                            <label>Csutom Element font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>703</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_fontsize>
+                    </fields>
+                </fonts>
+				
+				<custom_style translate="label" >
+                    <label>Add Custom Style</label>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<top_heading>
+							<label>Add Custom Font</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top_heading>
+						
+                        <font_name translate="label">
+                            <label>Font name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </font_name>
+						
+						<ttf translate="label">
+							<label>TTF file</label>
+							<comment><![CDATA[Please upload file .ttf]]></comment>
+							<frontend_type>file</frontend_type>
+							<backend_model>mpanel/source_fonts_ttf</backend_model>
+							<upload_dir>media/mpanel/fonts</upload_dir>
+							<sort_order>200</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</ttf>
+						
+						<eot translate="label">
+							<label>EOT file</label>
+							<comment><![CDATA[Please upload file .eot]]></comment>
+							<frontend_type>file</frontend_type>
+							<backend_model>mpanel/source_fonts_eot</backend_model>
+							<upload_dir>media/mpanel/fonts</upload_dir>
+							<sort_order>300</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</eot>
+						
+						<woff translate="label">
+							<label>WOFF file</label>
+							<comment><![CDATA[Please upload file .woff]]></comment>
+							<frontend_type>file</frontend_type>
+							<backend_model>mpanel/source_fonts_woff</backend_model>
+							<upload_dir>media/mpanel/fonts</upload_dir>
+							<sort_order>400</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</woff>
+						
+						<svg translate="label">
+							<label>SVG file</label>
+							<comment><![CDATA[Please upload file .svg]]></comment>
+							<frontend_type>file</frontend_type>
+							<backend_model>mpanel/source_fonts_svg</backend_model>
+							<upload_dir>media/mpanel/fonts</upload_dir>
+							<sort_order>500</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</svg>
+						
+						<style_heading>
+							<label>Add Custom Style</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>510</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </style_heading>
+						
+						<style>
+							<label>Custom Style</label>
+							<frontend_type>textarea</frontend_type>
+							<comment><![CDATA[eg: .links{font-size:11px; font-weight:bold}]]></comment>
+                            <sort_order>600</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </style>
+                    </fields>
+                </custom_style>
+				
+				
+				
+            </groups>
+        </mgs_theme>
+        <mpanel translate="label">
+            <label>MGS Panel</label>
+            <tab>mgscore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" >
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <account translate="label">
+                            <label>Email Accounts to use panel</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>Comma-separated.</comment>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account>
+						
+						<themepack translate="label">
+                            <label>Default theme pack</label>
+                            <comment><![CDATA[app/design/frontend/<b style="color:red">mgstheme</b><br/>skin/frontend/<b style="color:red">mgstheme</b>]]></comment>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </themepack>
+                    </fields>
+                </general>
+				
+                <catalog translate="label">
+                    <label>Catalog</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <layout translate="label">
+                            <label>Default Page Layout For Category Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_layouts</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout>
+						
+                        <product_layout translate="label">
+                            <label>Default Page Layout For Product Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_layouts</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_layout>
+						
+                        <product_per_row translate="label">
+                            <label>Number Of Product Per Row</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_perrow</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_per_row>
+						
+                        <featured translate="label">
+                            <label>Featured Product Attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_featured</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </featured>
+						
+                        <hot translate="label">
+                            <label>Best Selling Product Attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_hot</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hot>
+						
+						<max_width_image translate="label">
+                            <label>Max Width of Product Images (Default)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                            <comment>px</comment>
+                        </max_width_image>
+						
+						<max_width_image_detail translate="label">
+                            <label>Max Width of Product Images (Product View Page)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<validate>validate-number</validate>
+                            <comment>px</comment>
+                        </max_width_image_detail>
+
+                        <picture_ratio translate="label">
+                            <label>Product Picture ratio</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_ratio</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </picture_ratio>
+						
+                        <new_label translate="label">
+                            <label>New Label</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Empty to disable</comment>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </new_label>
+						
+                        <sale_label translate="label">
+                            <label>Sale Label</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Empty to disable</comment>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sale_label>
+						
+                        <price_slider translate="label">
+                            <label>Active Price Slider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_slider>
+						
+                        <more_view translate="label">
+                            <label>Active Ajax Load More Products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </more_view>
+						
+                        <preload translate="label">
+                            <label>Active Preload</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </preload>
+						
+						<hide_add_to_cart_button translate="label">
+                            <label>Hide Add to Cart button</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hide_add_to_cart_button>
+						
+                        <wishlist_button translate="label">
+                            <label>Hide Add to Wishlist button</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </wishlist_button>
+						
+                        <compare_button translate="label">
+                            <label>Hide Add to Compare button</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </compare_button>
+
+                        <disable_hover_effect translate="label">
+                            <label>Disable Hover Effect</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_hover_effect>
+
+                    </fields>
+                </catalog>
+				
+                <catalogsearch translate="label">
+                    <label>Catalog Search</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>210</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <layout translate="label">
+                            <label>Page Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_layouts</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout>
+						
+                        <product_per_row translate="label">
+                            <label>Number Of Product Per Row</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_searchperrow</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_per_row>
+
+                        <picture_ratio translate="label">
+                            <label>Product Picture ratio</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_searchratio</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </picture_ratio>                        
+                    </fields>
+                </catalogsearch>
+				
+                <product_tabs translate="label">
+                    <label>Product Tabs</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>250</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <detail_template_layout translate="label">
+                            <label>Default Layout and Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_detail_tab</source_model>    
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </detail_template_layout>
+						
+                        <show_description translate="label">
+                            <label>Show Description</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show description on tabs</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_description>
+                        <position_description translate="label">
+                            <label>Position Description</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_description>1</show_description>
+                            </depends>
+                        </position_description>
+						
+                        <show_additional translate="label">
+                            <label>Show Additional Information</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show additional information on tabs</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_additional>
+                        <position_additional translate="label">
+                            <label>Position Additional Information</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_additional>1</show_additional>
+                            </depends>
+                        </position_additional>
+						
+                        <show_reviews translate="label">
+                            <label>Show Reviews</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show reviews on tabs</comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_reviews>
+                        <position_reviews translate="label">
+                            <label>Position Reviews</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_reviews>1</show_reviews>
+                            </depends>
+                        </position_reviews>
+						
+                        <show_product_tag_list translate="label">
+                            <label>Show Product Tags</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show product tags on tabs</comment>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_product_tag_list>
+                        <position_product_tag_list translate="label">
+                            <label>Position Product Tags</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_product_tag_list>1</show_product_tag_list>
+                            </depends>
+                        </position_product_tag_list>
+						
+                        <show_custom_tab_one translate="label">
+                            <label>Show Custom Tab 1</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show custom tab 1 on tabs</comment>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_custom_tab_one>
+                        <custom_tab_one translate="label">
+                            <label>Custom Tab 1</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_tabs</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_one>1</show_custom_tab_one>
+                            </depends>                            
+                        </custom_tab_one>						
+                        <custom_tab_one_title translate="label">
+                            <label>Custom Tab 1 Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_one>1</show_custom_tab_one>
+                            </depends>                            
+                        </custom_tab_one_title>						
+                        <custom_tab_one_attribute_code_value translate="label">
+                            <label>Custom Tab 1 Value</label>
+                            <frontend_type>select</frontend_type>   
+                            <source_model>mpanel/source_attribute</source_model>                         
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_one>1</show_custom_tab_one>
+                                <custom_tab_one>attribute</custom_tab_one>
+                            </depends>                            
+                        </custom_tab_one_attribute_code_value>
+                        <custom_tab_one_identifier_value translate="label">
+                            <label>Custom Tab 1 Value</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_static</source_model>                               
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_one>1</show_custom_tab_one>
+                                <custom_tab_one>static</custom_tab_one>
+                            </depends>                            
+                        </custom_tab_one_identifier_value>                        
+                        <position_custom_tab_one translate="label">
+                            <label>Position Custom Tab 1</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_custom_tab_one>1</show_custom_tab_one>
+                            </depends>
+                        </position_custom_tab_one>
+					
+                        <show_custom_tab_two translate="label">
+                            <label>Show Custom Tab 2</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show custom tab 2 on tabs</comment>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_custom_tab_two>	
+                        <custom_tab_two translate="label">
+                            <label>Custom Tab 2</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_tabs</source_model>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_two>1</show_custom_tab_two>
+                            </depends>                            
+                        </custom_tab_two>						
+                        <custom_tab_two_title translate="label">
+                            <label>Custom Tab 2 Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_two>1</show_custom_tab_two>
+                            </depends>                            
+                        </custom_tab_two_title>						
+                        <custom_tab_two_attribute_code_value translate="label">
+                            <label>Custom Tab 2 Value</label>
+                            <frontend_type>select</frontend_type>   
+                            <source_model>mpanel/source_attribute</source_model>                         
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_two>1</show_custom_tab_two>
+                                <custom_tab_two>attribute</custom_tab_two>
+                            </depends>                            
+                        </custom_tab_two_attribute_code_value>
+                        <custom_tab_two_identifier_value translate="label">
+                            <label>Custom Tab 2 Value</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_static</source_model>                               
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_two>1</show_custom_tab_two>
+                                <custom_tab_two>static</custom_tab_two>
+                            </depends>                            
+                        </custom_tab_two_identifier_value>
+                        <position_custom_tab_two translate="label">
+                            <label>Position Custom Tab 2</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_custom_tab_two>1</show_custom_tab_two>
+                            </depends>
+                        </position_custom_tab_two>
+                        
+                        <show_custom_tab_three translate="label">
+                            <label>Show Custom Tab 3</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show custom tab 3 on tabs</comment>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_custom_tab_three>
+                        <custom_tab_three translate="label">
+                            <label>Custom Tab 3</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_tabs</source_model>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_three>1</show_custom_tab_three>
+                            </depends>                            
+                        </custom_tab_three>						
+                        <custom_tab_three_title translate="label">
+                            <label>Custom Tab 3 Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_three>1</show_custom_tab_three>
+                            </depends>                            
+                        </custom_tab_three_title>						
+                        <custom_tab_three_attribute_code_value translate="label">
+                            <label>Custom Tab 3 Value</label>
+                            <frontend_type>select</frontend_type>   
+                            <source_model>mpanel/source_attribute</source_model>                         
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_three>1</show_custom_tab_three>
+                                <custom_tab_three>attribute</custom_tab_three>
+                            </depends>                            
+                        </custom_tab_three_attribute_code_value>
+                        <custom_tab_three_identifier_value translate="label">
+                            <label>Custom Tab 3 Value</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_static</source_model>                               
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_custom_tab_three>1</show_custom_tab_three>
+                                <custom_tab_three>static</custom_tab_three>
+                            </depends>                            
+                        </custom_tab_three_identifier_value>
+                        <position_custom_tab_three translate="label">
+                            <label>Position Custom Tab 3</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_custom_tab_three>1</show_custom_tab_three>
+                            </depends>
+                        </position_custom_tab_three>
+                        
+                        <show_product_questions translate="label">
+                            <label>Show Product Questions</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show product questions on tabs</comment>
+                            <sort_order>27</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_product_questions>
+                        <product_questions_title translate="label">
+                            <label>Product Questions Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>28</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_product_questions>1</show_product_questions>
+                            </depends>                            
+                        </product_questions_title>
+                        <position_product_questions translate="label">
+                            <label>Position Product Questions</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>29</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-not-negative-number</validate>
+                            <depends>
+                                <show_product_questions>1</show_product_questions>
+                            </depends>
+                        </position_product_questions>
+                    </fields>
+                </product_tabs>
+                
+                <product_details translate="label">
+                    <label>Product Details</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>250</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <detail_template_layout translate="label">
+                            <label>Default Template Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_detail_template</source_model>                       
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </detail_template_layout>
+						
+                        <disable_zoom_detail translate="label">
+                            <label>Disable Zoom Image On Mobile</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_zoom_detail>
+						
+                        <sku translate="label">
+                            <label>Show Sku</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sku>
+						
+                        <email_friend translate="label">
+                            <label>Show Email Friend</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_friend>
+						
+                        <reviews_summary translate="label">
+                            <label>Show Reviews Summary</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reviews_summary>
+						
+                        <alert_urls translate="label">
+                            <label>Show Alert URLs</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </alert_urls>
+                        
+                        <wishlist_compare translate="label">
+                            <label>Show Wishlist, Compare Link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </wishlist_compare>
+                        
+                        <short_description translate="label">
+                            <label>Show Short Description</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </short_description>
+                        
+                        <upsell_products translate="label">
+                            <label>Show Upsell Products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </upsell_products>
+						
+						<brand_image translate="label">
+                            <label>Show Brand Image</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_image>
+						
+						<brand_products translate="label">
+                            <label>Show Same Brand Products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_products>
+						
+						<item_per_row translate="label">
+                            <label>Number products per row</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_searchperrow</source_model>      
+                            <comment>Config for Related product (Grid), Upsell Product, Related Product By Brand</comment>                      
+                            <sort_order>95</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </item_per_row>
+						                        
+                    </fields>
+                </product_details>
+				
+                <contact>
+                    <label>Contact Map</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>400</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						
+                        <enabled translate="label">
+                            <label>Display google map</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+						<apikey translate="label">							
+                            <label>Google API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        
+						</apikey>
+                        <address translate="label">
+                            <label>Address</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </address>
+						
+                        <html translate="label">
+                            <label>Html</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </html>
+						
+                        <image translate="label">
+                            <label>Pin image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">mpanel/map</upload_dir>
+                            <base_url type="media" scope_info="1">mpanel/map</base_url>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </image>
+                    </fields>
+                </contact>
+				
+                <my_account>
+                    <label>My Account Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <layout translate="label">
+                            <label>Page Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_layouts</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout>
+						
+						<disable_address translate="label">
+                            <label>Disable "Address Book" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_address>
+						
+						<disable_my_order translate="label">
+                            <label>Disable "My Orders" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_my_order>
+						
+						<disable_billing_agreements translate="label">
+                            <label>Disable "Billing Agreements" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_billing_agreements>
+						
+						<disable_recurring_profiles translate="label">
+                            <label>Disable "Recurring Profiles" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_recurring_profiles>
+						
+						<disable_my_reviews translate="label">
+                            <label>Disable "My Product Reviews" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_my_reviews>
+						
+						<disable_my_tags translate="label">
+                            <label>Disable "My Tags" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_my_tags>
+						
+						<disable_my_wishlist translate="label">
+                            <label>Disable "My Wishlist" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_my_wishlist>
+						
+						<disable_my_applications translate="label">
+                            <label>Disable "My Applications" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_my_applications>
+						
+						<disable_newsletter_subscriptions translate="label">
+                            <label>Disable "Newsletter Subscriptions" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_newsletter_subscriptions>
+						
+						<disable_downloadable_products translate="label">
+                            <label>Disable "My Downloadable Products" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_downloadable_products>
+						
+						<disable_product_questions translate="label">
+                            <label>Disable "Product Questions" link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disable_product_questions>
+                    </fields>
+                </my_account>
+				
+				<share_this>
+                    <label>Share this</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>600</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<category translate="label">
+                            <label>Enable for category page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category>
+						
+						<product translate="label">
+                            <label>Enable for product page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product>
+						
+						<blog_list translate="label">
+                            <label>Enable for Blog list page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </blog_list>
+						
+						<blog_detail translate="label">
+                            <label>Enable for Blog detail page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </blog_detail>
+						
+						<span_tags translate="label">
+                            <label>Share this "Span Tags"</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment><![CDATA[Click <a href="http://www.sharethis.com/get-sharing-tools" target="_bank">this link</a> to get span tags]]></comment>
+                        </span_tags>
+						
+						<script_tags translate="label">
+                            <label>Share this "Script Tags"</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment><![CDATA[Click <a href="http://www.sharethis.com/get-sharing-tools" target="_bank">this link</a> to get script tags]]></comment>
+                        </script_tags>
+                    </fields>
+                </share_this>
+				<breadcrumb translate="label" >
+                    <label>Breadcrumb</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>700</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <breadcrumbactive translate="label">
+                            <label>Breadcrumb Full Width</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </breadcrumbactive>
+						<bgbreadcrumb translate="label">
+                            <label>Background Page Title</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mpanel/source_breadcrumb</source_model>
+                            <sort_order>350</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bgbreadcrumb>
+						<breadcrumbcolor translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </breadcrumbcolor>
+                        <breadcrumbimage translate="label">
+                            <label>Background Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">mpanel/breadcrumb</upload_dir>
+                            <base_url type="media" scope_info="1">mpanel/breadcrumb</base_url>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </breadcrumbimage>
+                    </fields>
+                </breadcrumb>
+				<popup_newsletter>
+                    <label>Popup Newsletter</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>900</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<enabled translate="label">
+                            <label>Enable Popup Newsletter</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+												
+						<html translate="label">
+                            <label>Popup Newsletter Html</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </html>
+						
+						<title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+						
+						<bottom_text translate="label">
+                            <label>Bottom Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bottom_text>
+						
+						<background translate="label">
+                            <label>Background Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">mpanel</upload_dir>
+                            <base_url type="media" scope_info="1">mpanel</base_url>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </background>
+						
+						<width translate="label">
+                            <label>Width Of Popup Newsletter</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                            <comment>px</comment>
+                        </width>
+						
+                    </fields>
+                </popup_newsletter>
+            </groups>
+        </mpanel>
+        
+		<theme_color translate="label">
+            <label>Theme Color</label>
+            <tab>mgscore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>3</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                
+                <header translate="label" >
+                    <label>Header</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <use_custom translate="label">
+                            <label>Use Custom</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_custom>
+						
+						<top_heading>
+							<label>Top Link Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_heading>
+						
+						<top_background translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_background>
+						
+						<top_text_color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_text_color>
+						
+						<top_link_color translate="label">
+                            <label>Link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_link_color>
+						
+						<top_link_hover_color translate="label">
+                            <label>Link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_link_hover_color>
+						
+						<top_dropdown_background translate="label">
+                            <label>Dropdown background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>61</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_dropdown_background>
+						
+						<top_dropdown_link translate="label">
+                            <label>Dropdown link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>62</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_dropdown_link>
+						
+						<top_dropdown_link_hover translate="label">
+                            <label>Dropdown link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>63</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_dropdown_link_hover>
+						
+						<top_dropdown_border translate="label">
+                            <label>Dropdown border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>64</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_dropdown_border>
+						
+						<middle_heading>
+							<label>Header Middle Content Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_heading>
+						
+						<middle_background translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_background>
+
+                        <icon_color translate="label">
+                            <label>Icon color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </icon_color>
+
+                        <icon_hover_color translate="label">
+                            <label>Icon hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </icon_hover_color>
+
+                        <text_color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>105</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </text_color>
+
+                        <text_hover_color translate="label">
+                            <label>Text hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </text_hover_color>
+						
+						<search_heading>
+							<label>Top Search Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_heading>
+						
+						<search_background translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_background>
+						
+						<search_text_color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_text_color>
+						
+						<search_link_color translate="label">
+                            <label>Link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_link_color>
+						
+						<search_link_hover_color translate="label">
+                            <label>Link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_link_hover_color>
+						
+						<search_input_color translate="label">
+                            <label>Input text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_input_color>
+						
+						<search_icon_color translate="label">
+                            <label>Search icon color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>175</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_icon_color>
+						
+						<search_dropdown_background translate="label">
+                            <label>Dropdown background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_dropdown_background>
+						
+						<search_dropdown_hover_background translate="label">
+                            <label>Dropdown hover background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>185</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_dropdown_hover_background>
+						
+						<search_dropdown_text_color translate="label">
+                            <label>Dropdown text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_dropdown_text_color>
+						
+						<search_dropdown_text_hover_color translate="label">
+                            <label>Dropdown text hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </search_dropdown_text_hover_color>
+						
+						<cart_heading>
+							<label>Top Cart Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </cart_heading>
+						
+						<cart_text_color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>215</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </cart_text_color>
+						
+						<cart_price_color translate="label">
+                            <label>Price color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>216</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </cart_price_color>
+						
+						<cart_icon_background translate="label">
+                            <label>Icon background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </cart_icon_background>
+						
+						<cart_number_background translate="label">
+                            <label>Number background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </cart_number_background>
+						
+						<cart_number_text translate="label">
+                            <label>Number text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </cart_number_text>
+						
+						
+						<menu_heading>
+							<label>Menu Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </menu_heading>
+						
+						<menu_background translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>260</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </menu_background>
+						
+						<menu_link_color translate="label">
+                            <label>Link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>270</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </menu_link_color>
+						
+						<menu_link_hover_color translate="label">
+                            <label>Link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>280</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </menu_link_hover_color>
+						
+						<menu_border_color translate="label">
+                            <label>Border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>290</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </menu_border_color>
+                    </fields>
+                </header>
+				
+				<main>
+					<label>Main Content</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>150</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<use_custom translate="label">
+                            <label>Use Custom</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_custom>
+						
+						<default_color translate="label">
+                            <label>Theme Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </default_color>
+						
+						<top_heading>
+							<label><![CDATA[Text & Link]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_heading>
+						
+						<color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </color>
+						
+						<price_color translate="label">
+                            <label>Price color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </price_color>
+						
+						<link_color translate="label">
+                            <label>Link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </link_color>
+						
+						<link_hover_color translate="label">
+                            <label>Link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </link_hover_color>
+						
+						<default_button_heading>
+							<label>Default Button</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </default_button_heading>
+						
+						<button_color translate="label">
+                            <label>Button text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_color>
+						
+						<button_hover_color translate="label">
+                            <label>Button hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_hover_color>
+						
+						<button_background translate="label">
+                            <label>Button background</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_background>
+						
+						<button_hover_background translate="label">
+                            <label>Button hover background</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_hover_background>
+						
+						<button_border_color translate="label">
+                            <label>Button border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_border_color>
+						
+						<button_border_hover_color translate="label">
+                            <label>Button border hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_border_hover_color>
+						
+						<button_one_heading>
+							<label>Primary Button</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>105</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_one_heading>
+						
+						<button_one_color translate="label">
+                            <label>Button text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_one_color>
+						
+						<button_one_hover_color translate="label">
+                            <label>Button hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_one_hover_color>
+						
+						<button_one_background translate="label">
+                            <label>Button background</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_one_background>
+						
+						<button_one_hover_background translate="label">
+                            <label>Button hover background</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_one_hover_background>
+						
+						<button_one_border translate="label">
+                            <label>Button border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_one_border>
+						
+						<button_one_border_hover translate="label">
+                            <label>Button border hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_one_border_hover>
+						
+						<two_button_heading>
+							<label>Secondary Button</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>165</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </two_button_heading>
+						
+						<button_two_color translate="label">
+                            <label>Button text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_two_color>
+						
+						<button_two_hover_color translate="label">
+                            <label>Button hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_two_hover_color>
+						
+						<button_two_background translate="label">
+                            <label>Button background</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_two_background>
+						
+						<button_two_hover_background translate="label">
+                            <label>Button hover background</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_two_hover_background>
+						
+						<button_two_border translate="label">
+                            <label>Button border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_two_border>
+						
+						<button_two_border_hover translate="label">
+                            <label>Button border hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </button_two_border_hover>
+					</fields>
+				</main>
+				
+				<footer>
+					<label>Footer</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <use_custom translate="label">
+                            <label>Use Custom</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_custom>
+						
+						<top_heading>
+							<label>Top Footer Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_heading>
+						
+						<top_background translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_background>
+						
+						<top_text_color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_text_color>
+						
+						<top_heading_color translate="label">
+                            <label>Heading color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_heading_color>
+						
+						<top_link_color translate="label">
+                            <label>Link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_link_color>
+						
+						<top_link_hover_color translate="label">
+                            <label>Link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_link_hover_color>
+						
+						<top_icon_color translate="label">
+                            <label>Icon color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_icon_color>
+						
+						<top_border_color translate="label">
+                            <label>Border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </top_border_color>
+						
+						<middle_heading>
+							<label>Middle Footer Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_heading>
+						
+						<middle_background translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_background>
+						
+						<middle_text_color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_text_color>
+						
+						<middle_heading_color translate="label">
+                            <label>Heading color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_heading_color>
+						
+						<middle_link_color translate="label">
+                            <label>Link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_link_color>
+						
+						<middle_link_hover_color translate="label">
+                            <label>Link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_link_hover_color>
+						
+						<middle_icon_color translate="label">
+                            <label>Icon color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_icon_color>
+						
+						<middle_border_color translate="label">
+                            <label>Border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </middle_border_color>
+						
+						<bottom_heading>
+							<label>Bottom Footer Section</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_heading>
+						
+						<bottom_background translate="label">
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_background>
+						
+						<bottom_text_color translate="label">
+                            <label>Text color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_text_color>
+						
+						<bottom_heading_color translate="label">
+                            <label>Heading color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_heading_color>
+						
+						<bottom_link_color translate="label">
+                            <label>Link color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_link_color>
+						
+						<bottom_link_hover_color translate="label">
+                            <label>Link hover color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_link_hover_color>
+						
+						<bottom_icon_color translate="label">
+                            <label>Icon color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_icon_color>
+						
+						<bottom_border_color translate="label">
+                            <label>Border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>mpanel/adminhtml_fields_color</frontend_model>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+                                <use_custom>1</use_custom>
+                            </depends>
+                        </bottom_border_color>
+					</fields>
+				</footer>
+            </groups>
+        </theme_color>
+		
+		<defer_js>
+			<label>Defer Javascript</label>
+            <tab>mgscore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>9999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" >
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                    </fields>
+                </general>
+			</groups>
+		</defer_js>
+    </sections>
+</config>

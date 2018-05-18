@@ -1,0 +1,28 @@
+<?php
+/* * ****************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php $event = $this->getEvent(); ?>
+<div class="page-title event-title">
+    <h1><?php echo $this->__($event->getTitle()); ?></h1>
+</div>
+<div class="event-content">
+    <div class="event-image">
+        <?php if ($event->getImage() != ''): ?>
+            <img alt="<?php echo $this->stripTags($event->getTitle(), null, true); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $event->getImage(); ?>">            
+        <?php endif; ?>
+    </div>
+    <div class="event-time">
+        <p><?php echo $this->__('Time From: %s', date('F j, Y g:i A', strtotime($event->getTimeFrom()))); ?></p>
+        <p><?php echo $this->__('Time To: %s', date('F j, Y g:i A', strtotime($event->getTimeTo()))); ?></p>
+    </div>
+    <div class="event-location">
+        <p><?php echo $this->__('Location: %s', $event->getLocation()); ?></p>                    
+    </div>
+    <div class="event-description">
+        <?php echo $event->getDescription(); ?>                   
+    </div>
+</div>

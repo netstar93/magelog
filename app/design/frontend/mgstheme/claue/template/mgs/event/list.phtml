@@ -1,0 +1,42 @@
+<?php
+/* * ****************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php
+$urlKey = Mage::helper('event')->getGeneralConfig('router', Mage::app()->getStore()->getStoreId());
+$collection = $this->getCollection();
+?>
+<?php if (count($collection)): ?>
+    <div class="events events-list row">
+        <?php $i=0; foreach ($collection as $event): $i++; ?>
+            <div class="item col-md-4 col-sm-4 col-xs-12 <?php if($i % 3 == 1): ?> first-row-item row-sm-first<?php endif;?>">
+			<div class="event-content">
+                <div class="event-image">
+                    <a href="<?php echo $this->getUrl() . $urlKey . '/' . $event->getUrlKey(); ?>" title="<?php echo $this->stripTags($event->getTitle(), null, true); ?>">
+                       
+                            <img alt="<?php echo $this->stripTags($event->getTitle(), null, true); ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $event->getImage(); ?>" class="img-responsive">
+                        
+                            
+                    </a>
+					<div class="event-info">
+						<div class="event-time">
+							<span><?php echo $this->__('%s', date('F j, Y g:i A ', strtotime($event->getTimeFrom()))); ?></span>
+							<span><?php echo $this->__(' - %s', date('F j, Y g:i A', strtotime($event->getTimeTo()))); ?></span>
+						</div>
+						<div class="event-location">
+							<span><?php echo $this->__('Location: %s', $event->getLocation()); ?></span>                    
+						</div>
+					</div>
+                </div>
+				
+				<h4 class="event-name"><a href="<?php echo $this->getUrl() . $urlKey . '/' . $event->getUrlKey(); ?>" title="<?php echo $this->stripTags($event->getTitle(), null, true); ?>" ><?php echo $this->stripTags($event->getTitle(), null, true); ?></a></h4>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p class="note-msg"><?php echo $this->__('There are no events.') ?></p>
+<?php endif; ?>

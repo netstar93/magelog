@@ -1,0 +1,48 @@
+<?php $_shippingRateGroups = $this->getShippingRates(); ?>
+<?php if (!($_shippingRateGroups)): ?>
+	<strong><?php echo Mage::helper('oscheckout')->__('Sorry, no quotes are available for this order at this time.') ?></strong>
+<?php else: ?>
+	<dl class="shipment-methods">
+		<?php foreach ($_shippingRateGroups as $code => $_rates): ?>
+			<dd><?php echo $this->getCarrierName($code) ?></dd>
+			<?php $methodcount = count($_rates); ?>
+			<?php foreach ($_rates as $_rate): ?>
+				<dt style="margin-bottom: 5px;">
+					<?php if ($_rate->getErrorMessage()): ?>
+						<ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
+					<?php else: ?>
+						<input <?php echo $methodcount == 1 ? 'checked="checked"':'' ?> name="shipping_method" type="radio" class="validate-one-required-by-name" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>" />
+						<label for="s_method_<?php echo $_rate->getCode() ?>"> <?php echo $_rate->getMethodTitle() ?>
+							<strong>
+								<?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+								<?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
+
+								<?php echo $_excl; ?>
+								<?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+								(<?php echo Mage::helper('oscheckout')->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+								<?php endif; ?>
+							</strong>
+						</label>
+					<?php endif ?>
+				</dt>
+			<?php endforeach; ?>
+		<?php endforeach; ?>
+	</dl>
+<?php endif; ?> 
+
+<script type="text/javascript">
+	<?php if($methodcount == 1): ?>
+	document.observe('dom:loaded', function(){
+		shipping.loadReview();
+	});
+	<?php endif; ?>
+	$$('dl.shipment-methods input').invoke('observe', 'click', function() {
+		shipping.loadReview();
+	});
+
+</script>
+<div id="oscheckout-additional">
+	<?php if (!$this->getQuote()->isVirtual()): ?>
+		<?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
+	<?php endif; ?>
+</div>

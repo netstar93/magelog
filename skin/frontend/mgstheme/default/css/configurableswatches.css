@@ -1,0 +1,280 @@
+.product-img-box {
+  float: left;
+}
+.product-img-box .product-name h1 {
+  border: 0;
+}
+.product-img-box .product-image {
+
+}
+.product-img-box .product-image img {
+  max-width: 100%;
+  margin: 0px auto;
+}
+.product-image img {
+	max-width: 100%;
+}
+.catalog-product-view .configurable-swatch-list {
+	margin: 0;
+}
+.catalog-product-view .configurable-swatch-list li {
+	margin-left: 0;
+}
+.catalog-product-view .configurable-swatch-list li + li {
+	margin-left: 10px;
+}
+.products-grid.product-v1 .product-item-grid .product-item-details .configurable-swatch-list, 
+.products-grid.product-v2 .product-item-grid .product-item-details .configurable-swatch-list,
+.products-grid.product-v3 .product-item-grid .product-item-details .configurable-swatch-list,
+.products-grid.product-v5 .product-item-grid .product-item-details .configurable-swatch-list {
+	margin-top: 10px;
+}
+.products-grid.product-v3 .product-item-grid .product-item-details .configurable-swatch-list.configurable-swatch-color .swatch-link.has-image,
+.products-grid.product-v3 .product-item-grid .product-item-details .configurable-swatch-list.configurable-swatch-color .swatch-link.has-image * {
+	border-radius: 50%;
+}
+.product.product-list .product-meta-container .configurable-swatch-list {
+	display: inline-block;
+}
+.configurable-swatch-list:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.products-grid.product-v4 .product-item-grid .product-item-details .configurable-swatch-list {
+	margin-bottom: 0px;
+	margin-top: 0;
+}
+.product-image-gallery {
+  position: relative;
+}
+.product-image-gallery .gallery-image {
+  display: none;
+}
+.product-image-gallery .gallery-image.visible {
+  display: block;
+}
+.product-image-gallery .gallery-image.visible.hidden {
+  visibility: hidden;
+}
+.product-image-gallery:before, .product-image-gallery:after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.product-image-gallery:before {
+  background-color: white;
+  opacity: 0.8;
+  z-index: 2;
+}
+.product-image-gallery:after {
+  background-image: url("../images/ajax-loader.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 3;
+}
+.product-image-gallery.loading {
+  position: relative;
+}
+
+.product-image-gallery.loading:before, .product-image-gallery.loading:after {
+  display: block;
+}
+
+.product-image-thumbs li {
+  display: inline-block;
+}
+.product-image-thumbs li:first-child {
+  margin-left: -1px;
+}
+.swatch-link .x{display:none}
+.zoomWindow{background-color:#fff;}
+.zoomContainer{z-index:100}
+
+
+.swatch-link,
+.swatch-label {
+  display: block;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+  color: #636363;
+  text-decoration: none;
+  box-sizing: content-box;
+}
+
+.swatch-link {
+  border: 1px solid #cccccc;
+  margin: 0 0 3px;
+}
+.swatch-link img {
+  border-radius: 2px;
+}
+.swatch-link:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+.swatch-link .x {
+  display: none;
+}
+.swatch-link.has-image .swatch-label {
+  position: relative;
+}
+.swatch-link.has-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.swatch-label {
+  border: 1px solid #fff;
+  margin: 0;
+  white-space: nowrap;
+  background: #f4f4f4;
+}
+
+.configurable-swatch-list {
+  margin-left: -3px;
+  zoom: 1;
+  clear: both;
+  -webkit-transform: translateZ(0px);
+}
+
+.category-products .configurable-swatch-list{margin:5px 0 0 0}
+
+.configurable-swatch-list li {
+  float: left;
+  zoom: 1;
+  margin: 0 0 0 3px;
+}
+.block-layered-nav .configurable-swatch-list{margin:0}
+.block-layered-nav .configurable-swatch-list li{
+	float:none;
+	margin:0
+}
+
+.products-grid .configurable-swatch-list li {
+  display: inline-block;
+  float: none;
+  margin: 0;
+  vertical-align: top;
+}
+.configurable-swatch-list .not-available .x {
+
+}
+.configurable-swatch-list .not-available .swatch-link {
+  border-color: #ededed;
+  position: relative;
+}
+.configurable-swatch-list .not-available .swatch-link.has-image img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+.configurable-swatch-list .not-available .swatch-label {
+  color: #aaa;
+  background: #fff;
+}
+.configurable-swatch-list .wide-swatch .swatch-label {
+  padding: 0 6px;
+}
+.configurable-swatch-list .not-available a:focus {
+  outline: 0;
+}
+
+#narrow-by-list dd li.configurable-swatch-list-item {
+	float:left;
+	border: none;
+	white-space: nowrap;
+}
+#narrow-by-list dd li.configurable-swatch-list-item a,
+#narrow-by-list dd li.configurable-swatch-list-item span {
+	margin: 0;
+	vertical-align: top;
+}
+#narrow-by-list dd li.configurable-swatch-list-item span {
+	margin-left: 4px;
+}
+#narrow-by-list dd .swatch-link {
+  border: none;
+  line-height: 25px;
+  margin-right: 2px;
+  text-align: left;
+}
+#narrow-by-list dd .swatch-link.has-image {
+  line-height: inherit;
+}
+
+#narrow-by-list dd .swatch-label {
+  background: #f4f4f4;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  display: block;
+  float: left;
+  line-height: 1.5em;
+  margin: 0 5px 0 0;
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+#narrow-by-list dd .swatch-label img {
+  border: 1px solid #fff;
+  border-radius: 3px;
+  box-sizing: content-box;
+}
+#narrow-by-list dd .has-image .swatch-label {
+  padding: 0;
+}
+
+.currently .swatch-current {
+  position: relative;
+}
+.currently .swatch-current .btn-remove {
+  margin-top: -10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+.currently .swatch-current span {
+  display: block;
+  float: left;
+}
+.currently .swatch-link {
+  display: inline-block;
+  margin: 0 0 0 3px;
+}
+.currently .swatch-link:hover {
+  border-color: #cccccc;
+  cursor: default;
+}
+
+/* Other Swatch States */
+.configurable-swatch-list .selected .swatch-link{
+  border-color: #3399cc;
+}
+
+.configurable-swatch-box {
+  background: none !important;
+}
+.configurable-swatch-box select.swatch-select {
+  display: none;
+}
+.configurable-swatch-box .validation-advice {
+  margin: 0 0 5px;
+  background: #df280a;
+  padding: 2px 5px !important;
+  font-weight: bold;
+  color: #fff !important;
+  float: left;
+  display: block;
+  border-radius: 3px;
+}
+
+.product-info-box .product-image img{max-width:100%}
+select.no-display{display:none}
+.thumbnails .owl-carousel .owl-controls .owl-buttons div.owl-prev, .thumbnails .owl-carousel .owl-controls .owl-buttons div.owl-next, .product-img-box .owl-carousel{z-index:998}
+.product-options dd{margin-bottom:15px}
+.product-options .swatch-attr label em{font-style:italic; color:red}
+.product-options .swatch-attr .select-label{font-weight:normal; font-style:italic}

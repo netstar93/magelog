@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+*******************************************************/
+-->
+<widgets>
+    <brand type="brand/brand_widget" translate="name description" module="brand">
+        <name>MGS Brand</name>
+        <description></description>
+        <parameters>
+            <template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <type>select</type>
+                <value>mgs/brand/widget/default.phtml</value>
+                <values>
+                    <owl_carousel translate="label">
+                        <value>mgs/brand/widget/owl-carousel.phtml</value>
+                        <label>Owl Carousel Template</label>
+                    </owl_carousel>
+                    <default translate="label">
+                        <value>mgs/brand/widget/default.phtml</value>
+                        <label>List Template</label>
+                    </default>                    
+                </values>
+            </template>
+            <title translate="label">
+                <label>Title</label>
+                <visible>1</visible>
+                <type>text</type>
+            </title>
+            <ids translate="label">
+                <label>Select Brands</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>multiselect</type>
+                <source_model>brand/source_option</source_model>
+            </ids>
+            <show_widget_as translate="label">
+                <label>Show Widget As</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <description>Depends on template selected.</description>
+                <values>                                        
+                    <owl_carousel translate="label">
+                        <value>owl_carousel</value>
+                        <label>Owl Carousel</label>
+                    </owl_carousel>
+                    <!--                    <slider translate="label">
+                        <value>slider</value>
+                        <label>Slider</label>
+                    </slider>-->
+                    <list translate="label">
+                        <value>list</value>
+                        <label>List</label>
+                    </list>
+                </values>
+            </show_widget_as>            
+            <owl_carousel_items translate="label">
+                <label>Items</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>5</value>
+                <description>This variable allows you to set the maximum amount of items displayed at a time with the widest browser width. Default: 5.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_items>
+            <owl_carousel_image_width translate="label">
+                <label>Image Width</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>135</value>
+                <description></description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_image_width>
+            <owl_carousel_image_height translate="label">
+                <label>Image Height</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>135</value>
+                <description></description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_image_height>
+            <owl_carousel_slide_speed translate="label">
+                <label>Slide Speed</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>200</value>
+                <description>Slide speed in milliseconds. Default: 200.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_slide_speed>
+            <owl_carousel_pagination_speed translate="label">
+                <label>Pagination Speed</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>800</value>
+                <description>Pagination speed in milliseconds. Default: 800.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_pagination_speed>
+            <owl_carousel_rewind_speed translate="label">
+                <label>Rewind Speed</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>1000</value>
+                <description>Rewind speed in milliseconds. Default: 1000.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_rewind_speed>
+            <owl_carousel_auto_play translate="label">
+                <label>Auto Play</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>false</value>
+                <description>Change to any integrer for example autoPlay : 5000 to play every 5 seconds. If you set autoPlay: true default speed will be 5 seconds. Default: false.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_auto_play>
+            <owl_carousel_stop_on_hover translate="label">
+                <label>Stop On Hover</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+                <description>Stop autoplay on mouse hover.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_stop_on_hover>
+            <owl_carousel_navigation translate="label">
+                <label>Navigation </label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+                <description>Display "next" and "prev" buttons.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>owl_carousel</value>
+                    </show_widget_as>
+                </depends>
+            </owl_carousel_navigation>
+            <!--            <show_brands_title translate="label">
+                <label>Show Brands Title</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>Show Brands Title.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </show_brands_title>
+            <infinite translate="label">
+                <label>Infinite</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+                <description>Infinite loop sliding.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </infinite>
+            <slides_to_show translate="label">
+                <label>Slides to Show</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>5</value>
+                <description>Number of slides to show.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </slides_to_show>
+            <slides_to_scroll translate="label">
+                <label>Slides to Scroll</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>1</value>
+                <description>Number of slides to scroll.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </slides_to_scroll>
+            <speed translate="label">
+                <label>Speed</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>300</value>
+                <description>Slide/Fade animation speed in milliseconds.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </speed>
+            <autoplay translate="label">
+                <label>Autoplay</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+                <description>Enables Autoplay.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </autoplay>
+            <autoplaySpeed translate="label">
+                <label>Autoplay Speed</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>3000</value>
+                <description>Autoplay Speed in milliseconds.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </autoplaySpeed>
+            <arrows translate="label">
+                <label>Arrow</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>1</value>
+                <description>Prev/Next Arrows.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </arrows>
+            <dots translate="label">
+                <label>Dots</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>Show dot indicators.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </dots>
+            <vertical translate="label">
+                <label>Vertical</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <description>Vertical slide mode.</description>
+                <depends>
+                    <show_widget_as>
+                        <value>slider</value>
+                    </show_widget_as>
+                </depends>
+            </vertical>-->
+        </parameters>
+    </brand>
+</widgets>

@@ -1,0 +1,63 @@
+<?php $helper = $this->helper('mpanel') ?>
+
+<form action="<?php echo $this->getUrl('mpanel/post/layout') ?>" method="POST" id="panel-form" enctype="multipart/form-data">
+    <input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+    <div class="col-md-7 col-sm-4 col-xs-4">
+        <div class="row">
+
+            <div id="settings" class="panel-group">
+                <div class="panel">
+                    <div class="general-setting">
+                        <a data-toggle="collapse" data-parent="#settings" href="#general-setting" class="collapsed general-setting-icon" title="<?php echo $this->__('General Setting') ?>"><em class="fa fa-gear"></em></a>
+                        <a data-toggle="collapse" data-parent="#settings" href="#color-setting" class="collapsed color-setting-icon" title="<?php echo $this->__('Color Setting') ?>"><em class="fa fa-paint-brush"></em></a>
+                        <h2 class="title">
+                            <?php echo $this->__('MGS Panel') ?>
+                        </h2>
+                    </div>
+                    <?php if (Mage::app()->getRequest()->getModuleName() == 'deals'): ?>
+                        <div class="seo-setting">
+                            <a data-toggle="collapse" data-parent="#settings" href="#seo-setting" class="collapsed"><em class="fa fa-globe"></em>&nbsp;<?php echo $this->__('SEO') ?></a>
+                        </div>
+                    <?php endif ?>
+                </div>
+
+                <div class="panel col-md-12">
+                    <div id="general-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/general.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+					<div id="color-setting" class="panel-collapse collapse">
+                        <div class="panel-body">
+							<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/color.phtml')->toHtml() ?>
+                        </div>
+                    </div>
+					
+                    <?php if (Mage::app()->getRequest()->getModuleName() == 'deals'): ?>
+                        <div id="seo-setting" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/panel/seo.phtml')->toHtml() ?>
+                            </div>
+                        </div>
+                    <?php endif ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-4 col-xs-4">
+        <a href="<?php echo $this->getUrl('adminhtml') ?>" class="backend-link" title="<?php echo $this->__('Go to backend') ?>" target="_blank">
+            <?php echo $this->__('Admin') ?><em class="fa fa-user"></em>
+        </a>
+        <?php echo $this->getLayout()->createBlock('page/switch')->setTemplate('mgs/mpanel/languages.phtml')->toHtml() ?>
+        <span class="translate-inline-check">
+			<span><?php echo $this->__('Translate Inline') ?></span>
+			<?php if (Mage::getStoreConfig('dev/translate_inline/active')): ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" checked="checked" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 0, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php else: ?>
+				<input type="checkbox" name="translate-inline-check" data-toggle="toggle" data-height="20" data-width="90" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" id="translate_inline_check" onchange="setLocation('<?php echo $this->getUrl('mpanel/index/translate', array('value' => 1, 'referrer' => Mage::helper('core/url')->getCurrentBase64Url())) ?>')" />
+			<?php endif ?>
+		</span>
+    </div>
+</form>
+

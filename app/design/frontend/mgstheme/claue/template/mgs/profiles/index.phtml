@@ -1,0 +1,41 @@
+<?php $profiles = $this->getProfiles(); ?>
+<?php if (count($profiles) > 0): ?>
+	<div class="profile-grid">
+		<div class="carousel-container profiles row">
+			<?php foreach ($profiles as $profile): ?>
+				<div class="item col-md-4 col-sm-4 col-xs-12">												
+					<div class="profile-content">
+						<div class="profile-top">
+							<a href="<?php echo $profile->getAddress(); ?>" class="profile-image"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .$profile->getPhoto() ?>" class="img-responsive"/></a>
+							
+							<div class="profile-desc">													
+								<a class="profile-name" href="<?php echo $profile->getAddress(); ?>"><?php echo $profile->getName() ?></a>
+								<p class="job-design">
+									<?php echo $profile->getPosition(); ?>
+								</p> 	
+								<div class="social-links">
+									<ul>
+										<?php if($profile->getFacebook()!=''): ?>
+											<li><a href="<?php echo $profile->getFacebook() ?>"><i class="fa fa-facebook"></i></a></li>
+										<?php endif ?>
+										<?php if($profile->getTwitter()!=''): ?>
+											<li><a href="<?php echo $profile->getTwitter() ?>"><i class="fa fa-twitter"></i></a></li>
+										<?php endif ?>
+										<?php if($profile->getLinkedin()!=''): ?>
+											<li><a href="<?php echo $profile->getLinkedin() ?>"><i class="fa fa-linkedin"></i></a></li>
+										<?php endif ?>
+									</ul>
+								</div>								
+							</div>							
+						</div>
+						
+					</div>
+				</div>
+			<?php endforeach ?>
+		</div>
+	</div>
+<?php else: ?>
+    <div class="alert alert-warning no-product-display">
+		<?php echo $this->__('There are no profiles.') ?>
+	</div>
+<?php endif; ?>

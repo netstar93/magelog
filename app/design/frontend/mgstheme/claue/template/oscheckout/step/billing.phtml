@@ -1,0 +1,194 @@
+<input type="hidden" value="<?php echo $this->BillingAddressForShipping(); ?>" id="for-shipping"/>
+<input type="hidden" value="<?php echo $this->getUrl('oscheckout/index/savebilling', array('_secure'=>true)); ?>" id="save-billing-url"/>
+<div class="title">
+   <h3><?php echo Mage::helper('oscheckout')->__('Billing Address') ?></h3>
+</div>
+<?php if ($this->customerHasAddresses()): ?>
+	<label  for="billing-address-select"><?php echo Mage::helper('oscheckout')->__('Select a billing address from your address book or enter a new address.') ?></label>
+	<div class="input-box">
+		<?php echo $this->getAddressesHtmlSelect('billing') ?>
+	</div>
+	<?php if(Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+		<script type="text/javascript">
+			ajaxUpdateShippingMethod();
+			$('billing-address-select').addClassName('form-control');
+			$('billing-address-select').observe('change', function(){
+				ajaxUpdateShippingMethod();
+			});
+			
+			function ajaxUpdateShippingMethod(){
+				var url = '<?php echo $this->getUrl('oscheckout/index/savebilling', array('_secure' => true)); ?>';
+				var url1 = '<?php echo $this->getUrl('oscheckout/index/load', array('_secure' => true)); ?>';
+				new Ajax.Request(url, {
+					method: "POST",
+					parameters: {billing_address_id: $('billing-address-select').value},
+					onLoading: function(){
+						$('ajax-shipping-method').update('<div class="ajax-load">&nbsp;</div>');
+					},
+					onSuccess: function(response) {
+						data=response.responseText.evalJSON();
+						$('ajax-shipping-method').update(data.shipping_method);
+					}
+				});
+			}
+		</script>
+	<?php endif ?>
+<?php endif; ?>
+<div id="billing-new-address-form"<?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif; ?>>
+	<input type="hidden" name="billing[address_id]" value="<?php echo $this->getAddress()->getId() ?>" id="billing:address_id" />
+	<input type="hidden" value="" id="register_customer" />
+	<div class="row">
+		<?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+	</div>
+	<?php if(!Mage::getStoreConfig('oscheckout/display/company')):?>
+            <div class="form-group">
+		<label for="billing:company"><?php echo Mage::helper('oscheckout')->__('Company') ?></label>
+		<div class="input-box">
+			<input type="text" id="billing:company" name="billing[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo Mage::helper('oscheckout')->__('Company') ?>" class="form-control input-text" />
+		</div>
+            </div>
+	<?php endif; ?>
+	<?php if(!$this->isCustomerLoggedIn()): ?>
+            <div class="form-group">
+		<label for="billing:email" class="required"><?php echo Mage::helper('oscheckout')->__('Email Address') ?></label>
+		<div class="input-box">
+			<input type="text" name="billing[email]" id="billing:email" title="<?php echo Mage::helper('oscheckout')->__('Email Address') ?>" class="form-control input-text validate-email required-entry" value="<?php echo $this->htmlEscape($this->getAddress()->getEmail()) ?>">
+		</div>
+            </div>
+	<?php endif ?>
+	<div class="row">
+		<?php if(!Mage::getStoreConfig('oscheckout/display/telephone')):?>
+				<div class="form-group col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+			<label for="billing:telephone" class="required"><?php echo Mage::helper('oscheckout')->__('Telephone') ?></label>
+			<div class="input-box">
+				<input type="text" name="billing[telephone]" value="<?php echo $this->htmlEscape($this->getAddress()->getTelephone()) ?>" title="<?php echo Mage::helper('oscheckout')->__('Telephone') ?>" class="form-control input-text required-entry" id="billing:telephone" />
+			</div>
+				</div>
+		<?php endif; ?>
+		<?php if(!Mage::getStoreConfig('oscheckout/display/fax')):?>
+				<div class="form-group col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+			<label for="billing:fax"><?php echo Mage::helper('oscheckout')->__('Fax') ?></label>
+			<div class="input-box">
+				<input type="text" name="billing[fax]" value="<?php echo $this->htmlEscape($this->getAddress()->getFax()) ?>" title="<?php echo Mage::helper('oscheckout')->__('Fax') ?>" class="form-control input-text" id="billing:fax" />
+			</div>
+				</div>
+		<?php endif; ?>
+	</div>
+	<?php if(!Mage::getStoreConfig('oscheckout/display/address')):?>
+            <div class="form-group ">
+		<label for="billing:street1" class="required"><?php echo Mage::helper('oscheckout')->__('Address') ?></label>
+		<input type="text" title="<?php echo Mage::helper('oscheckout')->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="form-control input-text required-entry" />
+		<?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+			<input type="text" title="<?php echo Mage::helper('oscheckout')->__('Street Address %s', $_i) ?>" name="billing[street][]" id="billing:street<?php echo $_i ?>" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" class="form-control input-text address-fields" />
+		<?php endfor ?>
+            </div>
+	<?php endif; ?>
+	<?php $city = $this->htmlEscape($this->getAddress()->getCity()); ?>
+        <div class="row">
+			<div class="form-group col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+				<label for="billing:city" class="required"><?php echo Mage::helper('oscheckout')->__('City') ?></label>
+				<input type="text" title="<?php echo Mage::helper('oscheckout')->__('City') ?>" name="billing[city]" value="<?php echo $city ?>" class="form-control input-text required-entry city-input" id="billing:city" />
+			</div>
+			<div class="form-group col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+				<label for="billing:region_id" class="required"><?php echo Mage::helper('oscheckout')->__('State/Province') ?></label>
+				<select id="billing:region_id" name="billing[region_id]" title="<?php echo Mage::helper('oscheckout')->__('State/Province') ?>" class="form-control validate-select " style="display:none;">
+					<option value=""><?php echo Mage::helper('oscheckout')->__('Please select region, state or province') ?></option>
+				</select>
+				<script type="text/javascript">
+						//<![CDATA[
+						$('billing:region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
+						//]]>
+				</script>
+				<input type="text" id="billing:region" name="billing[region]" value="<?php echo $this->htmlEscape($this->getAddress()->getRegion()) ?>"  title="<?php echo Mage::helper('oscheckout')->__('State/Province') ?>" class="form-control input-text" style="display:none;" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+				<label for="billing:postcode" class="required"><?php echo Mage::helper('oscheckout')->__('Zip/Postal Code') ?></label>
+				<div class="input-box">
+					<input type="text" title="<?php echo Mage::helper('oscheckout')->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="form-control input-text validate-zip-international required-entry"/>
+				</div>
+			</div>
+			<div class="form-group col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+				<label for="billing:country_id" class="required"><?php echo Mage::helper('oscheckout')->__('Country') ?></label>
+				<?php echo $this->getCountryHtmlSelect('billing') ?>
+			</div>
+        </div>
+	<?php if(!$this->isCustomerLoggedIn()): ?>
+		<?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+		<?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+		<?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat'); ?>
+
+		<?php if ($_dob->isEnabled()): ?>
+			<?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+		<?php endif; ?>
+		<?php if (($_gender->isEnabled()) && ($_taxvat->isEnabled())) : ?>
+			<?php echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+			<?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+		<?php else : ?>
+			<?php if ($_gender->isEnabled()): ?>
+				<?php echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+			<?php endif ?>
+			<?php if ($_taxvat->isEnabled()): ?>
+				<?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+			<?php endif ?>
+		<?php endif ?>
+		<?php if (Mage::getStoreConfig('oscheckout/registration/guest_checkout') && !$this->isCustomerLoggedIn()): ?>
+			<h5><?php echo Mage::helper('oscheckout')->__('Checkout as:') ?></h5>
+			<div class="col-gl-6">
+				<label for="login:guest" style="margin-right:5px;"><?php echo Mage::helper('oscheckout')->__('Guest') ?></label><input type="radio" class="validate-one-required-by-name" name="checkout_method" onclick="changeCheckoutMethod()" id="login:guest" value="guest"<?php if ($this->getQuote()->getCheckoutMethod() == Mage_Checkout_Model_Type_Onepage::METHOD_GUEST): ?> checked="checked"<?php endif; ?> class="radio" />
+				
+				<label for="login:register" style="margin-right:5px;margin-left:5px;"><?php echo Mage::helper('oscheckout')->__('Register') ?></label><input type="radio" class="validate-one-required-by-name" name="checkout_method" id="login:register"  onclick="changeCheckoutMethod()" value="register"<?php if ($this->getQuote()->getCheckoutMethod() == Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER || !$this->getQuote()->isAllowedGuestCheckout()): ?> checked="checked"<?php endif ?> checked="checked" class="radio" />
+			</div>
+		<?php else: ?>
+			<input type="hidden" name="checkout_method" id="login:register" value="register<?php $this->getQuote()->getCheckoutMethod() == Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER;?>" checked="checked" />
+		<?php endif; ?>
+
+		<div class="fields" id="passowrd-container">
+			<div class="row">
+				<div id="password-field" class="col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+					<div class="form-group">
+						<label for="billing:customer_password" class="required"><?php echo Mage::helper('oscheckout')->__('Password') ?></label>
+						<div class="input-box">
+							<input type="password" name="billing[customer_password]" id="billing:customer_password" title="<?php echo Mage::helper('oscheckout')->__('Password') ?>" class="form-control input-text required-entry validate-password" />
+						</div>
+					</div>
+				</div>
+
+				<div id="repassword-field" class="col-md-6 col-sm-6 col-xs-6 col-xxs-full">
+					<div class="form-group">
+						<label for="billing:confirm_password" class="required"><?php echo Mage::helper('oscheckout')->__('Re-Password') ?></label>
+						<div class="input-box">
+							<input type="password" name="billing[confirm_password]" title="<?php echo Mage::helper('oscheckout')->__('Re-Password') ?>" id="billing:confirm_password" class="form-control input-text required-entry validate-cpassword" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="newsletter-field">
+				<label for="billing:is_subscribed">
+					<input type="checkbox"  style="float: left;margin-top: 2px;margin-right: 4px" name="billing[is_subscribed]" value="1" title="<?php echo Mage::helper('customer')->__('Sign Up for Newsletter') ?>" id="billing:is_subscribed" />
+					<?php echo Mage::helper('customer')->__('Sign Up for Newsletter') ?>
+				</label>
+			</div>
+		</div>	
+	<?php endif; ?>
+	<?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
+		<input type="hidden" name="billing[save_in_address_book]"  value="1" title="<?php echo Mage::helper('oscheckout')->__('Save in address book') ?>" id="billing:save_in_address_book" />
+	<?php else:?>
+		<input type="hidden" name="billing[save_in_address_book]" value="1" />
+	<?php endif; ?>
+</div>	
+<script type="text/javascript">
+	//<![CDATA[
+		var billing = new Billing('oscheckout-form', '<?php echo $this->getUrl('checkout/onepage/getAddress') ?>address/', '<?php echo $this->getUrl('checkout/onepage/saveBilling') ?>');
+		var billingForm = new VarienForm('oscheckout-form');
+		$('billing-address-select') && billing.newAddress(!$('billing-address-select').value);
+    //]]>
+</script>
+<?php if(!Mage::getStoreConfig('oscheckout/display/state')):?>
+    <script type="text/javascript">
+		countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?>;
+		var billingRegionUpdater = new RegionUpdater('billing:country_id', 'billing:region', 'billing:region_id', countryRegions, undefined, 'billing:postcode');
+	</script>
+<?php endif;?>

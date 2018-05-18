@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MGS_Mgscore>
+            <version>0.1.2</version>
+        </MGS_Mgscore>
+    </modules>
+	
+	<adminhtml>
+		<menu>
+			<mgscore module="mgscore">
+				<title>Mage Solutions</title>
+				<sort_order>99</sort_order>               
+				<children>
+					<about module="mgscore">
+						<title>About Us</title>
+						<sort_order>0</sort_order>
+						<action>adminhtml/system_config/edit/section/mgscore_about</action>
+					</about>
+				</children>
+			</mgscore>
+		</menu>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<mgscore module="mgscore">
+							<title>Mage Solutions</title>
+							<sort_order>99</sort_order>               
+							<children>
+								<about module="mgscore">
+									<title>About Us</title>
+									<sort_order>0</sort_order>
+								</about>
+							</children>
+						</mgscore>
+						<system>
+							<children>
+								<config>
+									<children>
+										<mgscore_about translate="title">
+											<title>Mage Solutions</title>
+											<sort_order>888</sort_order>
+										</mgscore_about>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<tabs>
+					<file>mgscore.xml</file>
+				</tabs>
+			</updates>
+		</layout>
+    </adminhtml> 
+	
+    <global>
+        <helpers>
+            <mgscore>
+                <class>MGS_Mgscore_Helper</class>
+            </mgscore>
+        </helpers>
+		
+		<blocks>
+            <mgscore>
+                <class>MGS_Mgscore_Block</class>
+            </mgscore>
+        </blocks>
+		
+		<resources>
+            <mgscore_setup>
+                <setup>
+                    <module>MGS_Mgscore</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mgscore_setup>
+            <mgscore_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mgscore_write>
+            <mgscore_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mgscore_read>
+        </resources>
+    </global>
+</config>

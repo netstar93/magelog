@@ -1,0 +1,79 @@
+<?php $settings = $this->helper('mpanel')->getThemeSettings() ?>
+<div class="edit-static-form">
+	<div class="row">
+		<div class="col-md-12 builder-title">
+			<h2><?php echo $this->__('Edit Contact Map Information') ?></h2>
+		</div>
+	</div>
+	<form action="<?php echo $this->getUrl('mpanel/post/map') ?>" method="POST" enctype="multipart/form-data" id="change-header-form">
+		<div class="form-horizontal row margin-top15">
+		
+			<div class="form-group">
+				<label for="mpanel_contact_enabled" class="col-sm-4 control-label"><?php echo $this->__('Display google map') ?></label>
+				<div class="col-sm-8">
+					<select class="input-text select" name="groups[contact][fields][enabled][value]" id="mpanel_contact_enabled">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if(!$settings['enabled_gmap']): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="mpanel_contact_address" class="col-sm-4 control-label"><?php echo $this->__('Address') ?></label>
+				<div class="col-sm-8">
+					<textarea class="input-text textarea" name="groups[contact][fields][address][value]" id="mpanel_contact_address"><?php echo $settings['address'] ?></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="mpanel_contact_html" class="col-sm-4 control-label"><?php echo $this->__('Html') ?></label>
+				<div class="col-sm-8">
+					<textarea class="input-text textarea" name="groups[contact][fields][html][value]" id="mpanel_contact_html"><?php echo $settings['html'] ?></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="mpanel_contact_image" class="col-sm-4 control-label"><?php echo $this->__('Pin image') ?></label>
+				<div class="col-sm-8 image-input">
+					<?php if($settings['image']!=''): ?>
+						<a onclick="return false;" href="#">
+							<img width="22" height="22" id="mpanel_contact_image_image" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>mpanel/map/<?php echo $settings['image'] ?>">
+						</a>
+					<?php endif ?>
+					
+					<input type="file" class="input-file" value="<?php echo $settings['image'] ?>" name="groups[contact][fields][image][value]" id="mpanel_contact_image">
+					
+					<?php if($settings['image']!=''): ?>										
+						<div class="checkbox">
+							<label for="mpanel_contact_image_delete">
+								<input type="checkbox" id="mpanel_contact_image_delete" class="checkbox" value="1" name="groups[contact][fields][image][value][delete]">
+								<?php echo $this->__('Delete Image') ?>
+							</label>
+						</div>
+						<input type="hidden" value="<?php echo $settings['image'] ?>" name="groups[contact][fields][image][value][value]">
+					<?php endif ?>
+				</div>
+			</div>
+			
+			<div class="form-group builder-action">
+				<div class="buttons">
+					<button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<?php if($this->getRequest()->getPost()):?>
+
+	<script type="text/javascript">
+		<?php if(Mage::getSingleton('core/session')->getSaved()==1): ?>
+		<?php Mage::getSingleton('core/session')->setSaved(false); ?>
+
+			if (window.parent == window.top) {
+				window.top.location.reload();
+			}
+
+		<?php endif ?>
+	</script>
+
+<?php endif ?>

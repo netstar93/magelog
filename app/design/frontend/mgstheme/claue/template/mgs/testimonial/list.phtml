@@ -1,0 +1,28 @@
+<?php $testimonials = $this->getTestimonialsPager(); 
+	$pager = $this->getCount() / $this->getPerPage();
+	if($this->getCount() % $this->getPerPage() == 0) {
+		$pager = $pager;
+	}
+	else {
+		$pager = $pager + 1;
+	}
+?>
+<div class="testimonial">
+<?php $count = 0; ?>
+<?php foreach($testimonials as $testimonial): ?>
+	<?php $testimonial = Mage::getModel('testimonial/testimonial')->load($testimonial); ?>
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="avatar col-md-3 col-sm-3 col-xs-12">
+			<img class="img-responsive" src="<?php echo  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'testimonial/'. $testimonial->getAvatar();  ?>" alt="<?php $testimonial->getName(); ?>" />
+		</div>
+		<div class="content col-md-9 col-sm-9 col-xs-12">
+			<div class="comment"><?php echo $testimonial->getContent(); ?></div>
+			<h4 class="name"><?php echo $testimonial->getName(); ?></h4>
+			<p class="information"><?php echo $testimonial->getInformation(); ?></p>
+		</div>
+	</div>
+<?php endforeach; ?>
+</div>
+<div class="pager">
+	<?php $this->getPageNumber($pager); ?>
+</div>

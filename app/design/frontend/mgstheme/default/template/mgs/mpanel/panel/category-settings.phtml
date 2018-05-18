@@ -1,0 +1,115 @@
+<?php 
+	$helper = $this->helper('mpanel');
+	
+	$category = $this->getCategory();
+	$storeId = Mage::app()->getStore()->getId();
+	$cms = Mage::getResourceModel('cms/block_collection');
+	$storeTable = Mage::getSingleton('core/resource')->getTableName('cms_block_store');
+	$cms->getSelect()
+		->joinLeft(array('store' => $storeTable), 'main_table.block_id =store.block_id', array('store.store_id'))
+		->where('store_id IN (?)', array(0, $storeId))
+		->group('identifier')
+		->order('store_id DESC');
+	
+	$settings = $this->helper('mpanel')->getThemeSettings();
+	
+	$catSetting = $helper->getCatSetting($category->getId());
+?>
+<div>
+	<div class="col-md-12">
+		<div class="form-horizontal row">
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="display_mode"><?php echo $this->__('Display Mode') ?></label>
+				<div class="col-sm-5">
+					<select id="display_mode" class="form-control" name="general[display_mode]">
+						<option value="<?php echo Mage_Catalog_Model_Category::DM_PRODUCT ?>"<?php if(Mage_Catalog_Model_Category::DM_PRODUCT == $category->getDisplayMode()): ?> selected="selected"<?php endif ?>><?php echo Mage::helper('catalog')->__('Products only') ?></option>
+						<option value="<?php echo Mage_Catalog_Model_Category::DM_PAGE ?>"<?php if(Mage_Catalog_Model_Category::DM_PAGE == $category->getDisplayMode()): ?> selected="selected"<?php endif ?>><?php echo Mage::helper('catalog')->__('Static block only') ?></option>
+						<option value="<?php echo Mage_Catalog_Model_Category::DM_MIXED ?>"<?php if(Mage_Catalog_Model_Category::DM_MIXED == $category->getDisplayMode()): ?> selected="selected"<?php endif ?>><?php echo Mage::helper('catalog')->__('Static block and products') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="landing_page"><?php echo $this->__('CMS Block') ?></label>
+				<div class="col-sm-5">
+					<select id="landing_page" class="form-control" name="general[landing_page]">
+						<option value=""><?php echo Mage::helper('catalog')->__('Please select a static block ...') ?></option>
+						<?php foreach($cms as $_cms): ?>
+							<option value="<?php echo $_cms->getBlockId() ?>" <?php if($_cms->getBlockId() == $category->getLandingPage()): ?> selected="selected"<?php endif ?>><?php echo $_cms->getTitle() ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="is_anchor"><?php echo $this->__('Is Anchor') ?></label>
+				<div class="col-sm-5">
+					<select id="is_anchor" class="form-control" name="general[is_anchor]">
+						<option value="1"<?php if($category->getIsAnchor() == 1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($category->getIsAnchor() == 0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="number_product_on_row" class="col-sm-5 control-label"><?php echo $this->__('Number Of Product Per Row') ?></label>
+				<div class="col-sm-5">
+					<select name="category_setting[number_product_on_row]" class="form-control" id="number_product_on_row">
+						<option value=""><?php echo $this->__('Use general setting') ?></option>
+						<?php for($i=2; $i<=8; $i++): ?>
+							<option value="<?php echo $i ?>"<?php if($catSetting && $catSetting['number_product_on_row']==$i): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+						<?php endfor ?>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="ratio" class="col-sm-5 control-label"><?php echo $this->__('Product Picture ratio') ?></label>
+				<div class="col-sm-5">
+					<?php
+					$ratio = array(
+						array('value' => '1', 'label' => Mage::helper('mpanel')->__('1/1 Square')),
+						array('value' => '2', 'label' => Mage::helper('mpanel')->__('1/2 Portrait')),
+						array('value' => '3', 'label' => Mage::helper('mpanel')->__('2/3 Portrait')),
+						array('value' => '4', 'label' => Mage::helper('mpanel')->__('3/4 Portrait')),
+						array('value' => '5', 'label' => Mage::helper('mpanel')->__('2/1 Landscape')),
+						array('value' => '6', 'label' => Mage::helper('mpanel')->__('3/2 Landscape')),
+						array('value' => '7', 'label' => Mage::helper('mpanel')->__('4/3 Landscape'))
+					);
+					?>
+					<select name="category_setting[ratio]" class="form-control" id="ratio">
+						<option value=""><?php echo $this->__('Use general setting') ?></option>
+						<?php foreach ($ratio as $_ratio): ?>
+							<option value="<?php echo $_ratio['value'] ?>"<?php if($catSetting && $catSetting['ratio']==$_ratio['value']): ?> selected="selected"<?php endif ?>><?php echo $_ratio['label'] ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="desc_position" class="col-sm-5 control-label"><?php echo $this->__('Description Position') ?></label>
+				<div class="col-sm-5">
+					<select name="category_setting[desc_position]" class="form-control" id="desc_position">
+						<option value=""><?php echo $this->__('Use general setting') ?></option>
+						<option value="1"<?php if($catSetting && $catSetting['desc_position']==1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Above product list') ?></option>
+						<option value="2"<?php if($catSetting && $catSetting['desc_position']==2): ?> selected="selected"<?php endif ?>><?php echo $this->__('Below product list') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="share_this_cat" class="col-sm-5 control-label"><?php echo $this->__('Enable Share This') ?></label>
+				<div class="col-sm-5">
+					<select name="share_this[share_this][category]" class="form-control" id="share_this_cat">
+						<option value="0"><?php echo $this->__('No') ?></option>
+						<option value="1"<?php if(Mage::getStoreConfig('mpanel/share_this/category')==1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-md-12">
+		<button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+	</div>
+</div>

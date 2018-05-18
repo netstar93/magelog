@@ -1,0 +1,9 @@
+<?php
+$helper = $this->helper('mpanel');
+$blocks = $this->getBlocks();
+?>
+<?php foreach ($blocks as $block): ?>                    
+    <div class="sort-item builder-container child-builder" id="block_right_<?php echo $block->getId(); ?>">        
+        <?php echo $helper->renderContent($block->getId()); ?>
+    </div>                    
+<?php endforeach; ?>

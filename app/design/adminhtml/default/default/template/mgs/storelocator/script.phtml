@@ -1,0 +1,100 @@
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/mgstheme/default/js/jquery.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<style type="text/css">
+	#form_map{height:500px; <?php if(!$this->getRequest()->getParam('storelocator_id')): ?>display:none<?php endif ?>}
+</style>
+
+<script type="text/javascript">
+	function getMapbyAddress(){
+		streetValue = $('street_address').value;
+		countryValue = $('country').value;
+		stateValue = $('state').value;
+		cityValue = $('city').value;
+		zipcodeValue = $('zipcode').value;
+		mgsjQuery('#form_map').show();
+		mgsjQuery('#form_map').html('<div class="loading-container"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/mgstheme/default/images/ajax-loader.gif" /></div>');
+		var address = streetValue + " " + cityValue + " " + stateValue + " " + zipcodeValue + " " + countryValue;
+		
+		mgsjQuery.ajax({
+			type: "GET",
+			dataType: "json",
+			url: "http://maps.googleapis.com/maps/api/geocode/json",
+			data: {'address': address,'sensor':false},
+			success: function(data){
+				if(data.results.length){
+					latitude = data.results[0].geometry.location.lat;
+					longitude = data.results[0].geometry.location.lng;
+					
+					$('latitude').value = latitude;
+					$('longitude').value = longitude;
+					
+					getMap(latitude, longitude);
+				}
+			}
+		});
+	}
+	
+	function getMapByLocation(){
+		mgsjQuery('#form_map').show();
+		mgsjQuery('#form_map').html('<div class="loading-container"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/mgstheme/default/images/ajax-loader.gif" /></div>');
+		latitude = $('latitude').value;
+		longitude = $('longitude').value;
+		getMap(latitude, longitude);
+	}
+	
+	function getMap(latitude, longitude){
+		
+		nameValue = $('name').value;
+		if(nameValue != ''){
+			nameValue = '<h2>'+nameValue+'</h2>';
+		}
+		
+		var locations = [
+			[nameValue, latitude, longitude, 2]
+		];
+		
+		var map = new google.maps.Map(document.getElementById('form_map'), {
+		  zoom: 15,
+			scrollwheel: false,
+			navigationControl: true,
+			mapTypeControl: false,
+			scaleControl: false,
+			draggable: true,
+			center: new google.maps.LatLng(latitude, longitude),
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+		
+		var infowindow = new google.maps.InfoWindow();
+		
+		var marker, i;
+		
+		for (i = 0; i < locations.length; i++) {
+			marker = new google.maps.Marker({ 
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
+				map: map ,
+				icon: ''
+			});
+			
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+			  infowindow.setContent(locations[i][0]);
+			  infowindow.open(map, marker);
+			}
+		  })(marker, i));
+		}
+		
+		
+		google.maps.event.addListener(map, "click", function (e) {
+			$('latitude').value = e.latLng.lat();
+			$('longitude').value = e.latLng.lng();
+			getMap(e.latLng.lat(),e.latLng.lng());
+			
+		});
+	}
+	
+	<?php if($this->getRequest()->getParam('storelocator_id')): ?>
+		mgsjQuery('#storelocator_tabs_form_section_google_map').click(function(){
+			getMapByLocation();
+		});
+	<?php endif ?>
+</script>

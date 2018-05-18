@@ -1,0 +1,33 @@
+<?php
+$helper = $this->helper('mpanel');
+$pageId = 0;
+$blocks = $this->getBlocks();
+?>
+<section class="builder-container">
+    <div>                        
+        <?php if (count($blocks)): ?>
+            <div id="sortable-left" class="sort-block">
+                <?php foreach ($blocks as $block): ?>                    
+                    <div class="sort-item builder-container child-builder" id="block_left_<?php echo $block->getId(); ?>">
+                        <?php echo $helper->renderButtons($block->getId(), 'account'); ?>
+                        <?php echo $helper->renderContent($block->getId()); ?>
+                    </div>                    
+                <?php endforeach ?>
+            </div>
+            <script type="text/javascript">
+                mgsjQuery(document).ready(function () {
+                    initSortable('sortable-left', '<?php echo $this->getUrl('mpanel/account/sort', array('el' => 'block_left', 'page_id' => $pageId)) ?>');
+                });
+            </script>
+            <div class="col-md-12">
+                <a class="btn btn-primary popup-link btn-new-block" data-original-title="<?php echo $this->__('Add new block'); ?>" data-toggle="tooltip" data-placement="bottom" href="<?php echo $this->getUrl('mpanel/account/add', array('page_id' => $pageId, 'place' => 'left')) ?>"><em class="fa fa-plus"></em><?php echo $this->__('Add new block'); ?></a>
+            </div>
+        <?php else: ?>
+            <div class="empty-block">
+                <div class="col-md-12">                    
+                    <a class="btn btn-primary popup-link btn-new-block" data-original-title="<?php echo $this->__('Add new block'); ?>" data-toggle="tooltip" data-placement="bottom" href="<?php echo $this->getUrl('mpanel/account/add', array('page_id' => $pageId, 'place' => 'left')) ?>"><em class="fa fa-plus"></em><?php echo $this->__('Add new block'); ?></a>
+                </div>
+            </div>
+        <?php endif ?>
+    </div>
+</section>

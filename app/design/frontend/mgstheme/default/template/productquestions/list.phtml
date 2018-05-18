@@ -1,0 +1,828 @@
+<?php
+/* * ****************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php $helper = Mage::helper('productquestions'); ?>
+<?php $isLoggedIn = Mage::getSingleton('customer/session')->isLoggedIn(); ?>
+<?php if ($helper->isActive()): ?>
+    <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+        <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+        <script type="text/javascript">
+            function showRecaptcha(element) {
+                Recaptcha.create('<?php echo Mage::helper('productquestions')->getPublicKey(); ?>', element, {
+                    theme: '<?php echo Mage::helper('productquestions')->getTheme(); ?>',
+                    lang: '<?php echo Mage::helper('productquestions')->getLang(); ?>',
+                    callback: Recaptcha.focus_response_field});
+            }
+        </script>
+    <?php endif; ?>
+    <?php $collection = $this->getQuestions(); ?>
+    <?php $productId = $this->getProductId(); ?>
+    <div class="question-title">        
+        <h2><?php echo $this->__('Product Questions') ?></h2>
+        <?php if ($helper->allowGuestToAskQuestion()): ?>
+            <button title="<?php echo $this->__('Ask Question') ?>" class="button ask-question btn btn-primary btn-xs" type="button" onclick="toggleForm()">
+                <span>
+                    <span id="button-text"><?php echo $this->__('Ask Question') ?></span>                    
+                </span>
+            </button>
+        <?php else: ?>
+            <?php if ($isLoggedIn): ?>
+                <button title="<?php echo $this->__('Ask Question') ?>" class="button ask-question btn btn-primary btn-xs" type="button" onclick="toggleForm()">
+                    <span>
+                        <span id="button-text"><?php echo $this->__('Ask Question') ?></span>                    
+                    </span>
+                </button>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+    <div id="question_save_success" style="display: none;">
+        <ul class="messages">
+            <li class="success-msg">
+                <ul>
+                    <li>
+                        <?php if ($helper->approveQuestionAutomatic()): ?>
+                            <span><?php echo $this->__('Your question has been received. Please reload page to see the latest question that you asked.') ?></span>
+                        <?php else: ?>
+                            <span><?php echo $this->__('Your question has been received. A notification will be sent once the answer is published.') ?></span>
+                        <?php endif; ?>                            
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="question_save_error" style="display: none;">
+        <ul class="messages">
+            <li class="error-msg">
+                <ul>
+                    <li>
+                        <span><?php echo $this->__('Unable to find question to save.') ?></span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="save_error_recaptcha" style="display: none;">
+        <ul class="messages">
+            <li class="error-msg">
+                <ul>
+                    <li>
+                        <span><?php echo $this->__('The reCAPTCHA wasn\'t entered correctly. Try it again.') ?></span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="answer_save_success" style="display: none;">
+        <ul class="messages">
+            <li class="success-msg">
+                <ul>
+                    <li>
+                        <span><?php echo $this->__('Your answer has been received. A notification will be sent when the answer is published.') ?></span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="answer_save_error" style="display: none;">
+        <ul class="messages">
+            <li class="error-msg">
+                <ul>
+                    <li>
+                        <span><?php echo $this->__('Unable to find answer to save.') ?></span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <?php if ($helper->allowGuestToAskQuestion()): ?>
+        <div id="question-form" class="question-form" style="display: none;">        
+            <form id="questionForm">
+                <div class="fieldset">
+                    <h2 class="legend"><?php echo Mage::helper('productquestions')->__('Question Details') ?></h2>
+                    <ul class="form-list">
+                        <li class="fields">
+                            <div class="field form-group">
+                                <label for="customer_name" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Name') ?></label>
+                                <div class="input-box">
+                                    <input name="customer_name" id="customer_name" title="<?php echo Mage::helper('productquestions')->__('Customer Name') ?>" class="input-text required-entry" type="text" />
+                                </div>
+                            </div>
+                            <div class="field form-group">
+                                <label for="customer_email" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Email') ?></label>
+                                <div class="input-box">
+                                    <input name="customer_email" id="customer_email" title="<?php echo Mage::helper('productquestions')->__('Customer Email') ?>" class="input-text required-entry validate-email" type="text" />
+                                </div>
+                            </div>
+                            <?php if ($helper->allowCustomerDefinedQuestionVisibility()): ?>
+                                <div class="field form-group">
+                                    <label for="visibility"><?php echo Mage::helper('productquestions')->__('Is Question Private?') ?></label>
+                                    <div class="input-box">
+                                        <input name="visibility" id="visibility" title="<?php echo Mage::helper('productquestions')->__('Is Question Private?') ?>" type="checkbox" value="2" />
+                                    </div>                            
+                                </div>
+                            <?php endif; ?>
+                        </li>                    
+                        <li class="wide form-group">
+                            <label for="content" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Content') ?></label>
+                            <div class="input-box">
+                                <textarea name="content" id="content" title="<?php echo Mage::helper('productquestions')->__('Content') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                            </div>
+                        </li>
+                        <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                            <li class="wide">  
+                                <label for="recaptcha"><?php echo Mage::helper('productquestions')->__('reCAPTCHA') ?></label>
+                                <div class="input-box">
+                                    <div id="recaptcha_question"></div>
+                                </div>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                    <input name="product_id" type="hidden" value="<?php echo $productId; ?>" />
+                    <?php if ($helper->approveQuestionAutomatic()): ?>
+                        <input name="status" type="hidden" value="2" />
+                    <?php endif; ?>
+                </div>
+                <div class="buttons-set">
+                    <p class="required"><?php echo Mage::helper('productquestions')->__('* Required Fields') ?></p>                
+                    <button type="submit" title="<?php echo Mage::helper('productquestions')->__('Send Question') ?>" class="button"><span><span><?php echo Mage::helper('productquestions')->__('Send Question') ?></span></span></button>
+                    <img class="question-img-loader" style="display: none;" id="img_loader" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>">
+                </div>
+            </form>        
+            <script type="text/javascript">
+                //<![CDATA[
+                var formId = 'questionForm';
+                var editForm = new VarienForm(formId, false);
+                var postUrl = '<?php echo Mage::getUrl('productquestions/index/save', array('_secure' => true)) ?>';
+                function doAjax() {
+                    if (editForm.validator.validate()) {
+                        $('img_loader').show();
+                        new Ajax.Request(postUrl, {
+                            method: 'post',
+                            parameters: $(formId).serialize(true),
+                            onComplete: function (response) {
+                                $('img_loader').hide();
+                                var json = response.responseText.evalJSON();
+                                if (json.message == 'SUCCESS') {
+                                    $('img_loader').hide();
+                                    $('question_save_success').show();
+                                } else {
+                                    $('img_loader').hide();
+                                    if (json.error != '') {
+                                        $('save_error_recaptcha').show();
+                                    } else {
+                                        $('question_save_error').show();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+                new Event.observe(formId, 'submit', function (e) {
+                    e.stop();
+                    doAjax();
+                    setTimeout(function () {
+                        $('question_save_success').hide();
+                        $('question_save_error').hide();
+                        $('save_error_recaptcha').hide();
+                    }, 10000);
+                });
+                //]]>
+            </script>
+        </div>            
+    <?php else: ?>
+        <?php if ($isLoggedIn): ?>
+            <div id="question-form" class="question-form" style="display: none;">        
+                <form id="questionForm">
+                    <div class="fieldset">
+                        <h2 class="legend"><?php echo Mage::helper('productquestions')->__('Question Details') ?></h2>
+                        <ul class="form-list">
+                            <li class="fields">
+                                <div class="field form-group">
+                                    <label for="customer_name" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Name') ?></label>
+                                    <div class="input-box">
+                                        <input name="customer_name" id="customer_name" title="<?php echo Mage::helper('productquestions')->__('Customer Name') ?>" class="input-text required-entry" type="text" />
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="customer_email" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Email') ?></label>
+                                    <div class="input-box">
+                                        <input name="customer_email" id="customer_email" title="<?php echo Mage::helper('productquestions')->__('Customer Email') ?>" class="input-text required-entry validate-email" type="text" />
+                                    </div>
+                                </div>
+                                <?php if ($helper->allowCustomerDefinedQuestionVisibility()): ?>
+                                    <div class="field form-group">
+                                        <label for="visibility"><?php echo Mage::helper('productquestions')->__('Is Question Private?') ?></label>
+                                        <div class="input-box">
+                                            <input name="visibility" id="visibility" title="<?php echo Mage::helper('productquestions')->__('Is Question Private?') ?>" type="checkbox" value="2" />
+                                        </div>                            
+                                    </div>
+                                <?php endif; ?>
+                            </li>                    
+                            <li class="wide form-group">
+                                <label for="content" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Content') ?></label>
+                                <div class="input-box">
+                                    <textarea name="content" id="content" title="<?php echo Mage::helper('productquestions')->__('Content') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                                </div>
+                            </li>
+                            <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                                <li class="wide form-group"> 
+                                    <label for="recaptcha"><?php echo Mage::helper('productquestions')->__('reCAPTCHA') ?></label>
+                                    <div class="input-box">
+                                        <div id="recaptcha_question"></div>
+                                    </div>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                        <input name="product_id" type="hidden" value="<?php echo $productId; ?>" />
+                    </div>
+                    <div class="buttons-set">
+                        <p class="required"><?php echo Mage::helper('productquestions')->__('* Required Fields') ?></p>                
+                        <button type="submit" title="<?php echo Mage::helper('productquestions')->__('Send Question') ?>" class="button btn btn-primary btn-xs"><span><span><?php echo Mage::helper('productquestions')->__('Send Question') ?></span></span></button>
+                        <img class="question-img-loader" style="display: none;" id="img_loader" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>">
+                    </div>
+                </form>        
+                <script type="text/javascript">
+                    //<![CDATA[
+                    var formId = 'questionForm';
+                    var editForm = new VarienForm(formId, false);
+                    var postUrl = '<?php echo Mage::getUrl('productquestions/index/save', array('_secure' => true)) ?>';
+                    function doAjax() {
+                        if (editForm.validator.validate()) {
+                            $('img_loader').show();
+                            new Ajax.Request(postUrl, {
+                                method: 'post',
+                                parameters: $(formId).serialize(true),
+                                onComplete: function (response) {
+                                    $('img_loader').hide();
+                                    var json = response.responseText.evalJSON();
+                                    if (json.message == 'SUCCESS') {
+                                        $('img_loader').hide();
+                                        $('question_save_success').show();
+                                    } else {
+                                        $('img_loader').hide();
+                                        if (json.error != '') {
+                                            $('save_error_recaptcha').show();
+                                        } else {
+                                            $('question_save_error').show();
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    new Event.observe(formId, 'submit', function (e) {
+                        e.stop();
+                        doAjax();
+                        setTimeout(function () {
+                            $('question_save_success').hide();
+                            $('question_save_error').hide();
+                            $('save_error_recaptcha').hide();
+                        }, 10000);
+                    });
+                    //]]>
+                </script>
+            </div>                
+        <?php endif; ?>
+    <?php endif; ?>
+    <div class="question-list">
+        <?php if (count($collection)): ?>
+            <?php foreach ($collection as $question): ?>
+                <div id="question_<?php echo $question->getId(); ?>" class="item">
+                    <div class="question-content">                        
+                        <div id="content_<?php echo $question->getId(); ?>" onclick="toggleView('answer_list_<?php echo $question->getId(); ?>', '<?php echo $question->getId(); ?>');" class="content arrow-right"><?php echo $question->getContent(); ?></div>
+                        <div id="question_by_<?php echo $question->getId(); ?>" class="question-by" style="display: none;">
+                            <?php echo $this->__('Question by: ') ?><?php echo $question->getCustomerName(); ?> on <?php echo Mage::helper('core')->formatDate($question->getCreatedAt(), 'medium', true); ?>
+                        </div>                            
+                        <div class="score"><span id="question_score_<?php echo $question->getId(); ?>"><?php echo $question->getScore(); ?></span></div>
+                        <?php if ($helper->allowRate()): ?>
+                            <?php if ($helper->allowGuestRateHelpfulness()): ?>
+                                <div class="like">
+                                    <a id="question_like_<?php echo $question->getId(); ?>" class="icon_like" onclick="likeQuestion('<?php echo $question->getId(); ?>');
+                                            return false;" href="#" title="<?php echo $this->__('Like Question') ?>"></a>
+                                </div>
+                                <div class="dislike">
+                                    <a id="question_dislike_<?php echo $question->getId(); ?>" class="icon_dislike" onclick="dislikeQuestion('<?php echo $question->getId(); ?>');
+                                            return false;" href="#" title="<?php echo $this->__('Dislike Question') ?>"></a>
+                                </div>
+                            <?php else: ?>
+                                <?php if ($isLoggedIn): ?>
+                                    <div class="like">
+                                        <a id="question_like_<?php echo $question->getId(); ?>" class="icon_like" onclick="likeQuestion('<?php echo $question->getId(); ?>');
+                                                return false;" href="#" title="<?php echo $this->__('Like Question') ?>"></a>
+                                    </div>
+                                    <div class="dislike">
+                                        <a id="question_dislike_<?php echo $question->getId(); ?>" class="icon_dislike" onclick="dislikeQuestion('<?php echo $question->getId(); ?>');
+                                                return false;" href="#" title="<?php echo $this->__('Dislike Question') ?>"></a>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                    <?php $answers = $this->getAnswers($question->getId()); ?>
+                    <?php if (count($answers)): ?>
+                        <div class="answer-list" id="answer_list_<?php echo $question->getId(); ?>" style="display: none;">
+                            <?php foreach ($answers as $answer): ?>                                
+                                <div id="answer_<?php echo $answer->getId(); ?>" class="item">
+                                    <div class="answer-content">  
+                                        <div class="content"><?php echo $answer->getAContent(); ?></div>
+                                        <div class="answer-by">
+                                            <?php echo $this->__('Answer by: ') ?><?php echo $answer->getACustomerName(); ?> <?php
+                                            if ($answer->getIsAdmin()) {
+                                                echo '(Admin)';
+                                            }
+                                            ?> on <?php echo Mage::helper('core')->formatDate($answer->getACreatedAt(), 'medium', true); ?>
+                                        </div>                                            
+                                        <div class="score"><span id="answer_score_<?php echo $answer->getId(); ?>"><?php echo $answer->getAScore(); ?></span></div>
+                                        <?php if ($helper->allowRate()): ?>
+                                            <?php if ($helper->allowGuestRateHelpfulness()): ?>
+                                                <div class="like">
+                                                    <a id="answer_like_<?php echo $answer->getId(); ?>" class="icon_like" onclick="likeAnswer('<?php echo $answer->getId(); ?>');
+                                                            return false;" href="#" title="<?php echo $this->__('Like Answer') ?>"></a>
+                                                </div>
+                                                <div class="dislike">
+                                                    <a id="answer_dislike_<?php echo $answer->getId(); ?>" class="icon_dislike" onclick="dislikeAnswer('<?php echo $answer->getId(); ?>');
+                                                            return false;" href="#" title="<?php echo $this->__('Dislike Answer') ?>"></a>
+                                                </div>
+                                            <?php else: ?>
+                                                <?php if ($isLoggedIn): ?>
+                                                    <div class="like">
+                                                        <a id="answer_like_<?php echo $answer->getId(); ?>" class="icon_like" onclick="likeAnswer('<?php echo $answer->getId(); ?>');
+                                                                return false;" href="#" title="<?php echo $this->__('Like Answer') ?>"></a>
+                                                    </div>
+                                                    <div class="dislike">
+                                                        <a id="answer_dislike_<?php echo $answer->getId(); ?>" class="icon_dislike" onclick="dislikeAnswer('<?php echo $answer->getId(); ?>');
+                                                                return false;" href="#" title="<?php echo $this->__('Dislike Answer') ?>"></a>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>                                
+                                </div>
+                            <?php endforeach; ?>
+                            <?php if ($helper->allowCustomerToAddAnswer()): ?>
+                                <div class="answer-box">
+                                    <button title="<?php echo $this->__('Add Answer') ?>" class="button add-answer btn btn-primary btn-xs" type="button" onclick="toggleAnswerForm('<?php echo $question->getId(); ?>')">
+                                        <span>
+                                            <span id="button-text-answer-<?php echo $question->getId(); ?>"><?php echo $this->__('Add Answer') ?></span>                    
+                                        </span>
+                                    </button>
+                                </div>
+                                <div id="answer-form-<?php echo $question->getId(); ?>" class="answer-form" style="display: none;">        
+                                    <form id="answerForm<?php echo $question->getId(); ?>">
+                                        <div class="fieldset">
+                                            <h2 class="legend"><?php echo Mage::helper('productquestions')->__('Answer Details') ?></h2>
+                                            <ul class="form-list">
+                                                <li class="fields">
+                                                    <div class="field form-group">
+                                                        <label for="a_customer_name_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Name') ?></label>
+                                                        <div class="input-box">
+                                                            <input name="a_customer_name_<?php echo $question->getId(); ?>" id="a_customer_name_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Name') ?>" class="input-text required-entry" type="text" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="field form-group">
+                                                        <label for="a_customer_email_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Email') ?></label>
+                                                        <div class="input-box">
+                                                            <input name="a_customer_email_<?php echo $question->getId(); ?>" id="a_customer_email_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Email') ?>" class="input-text required-entry validate-email" type="text" />
+                                                        </div>
+                                                    </div>                                                
+                                                </li>                    
+                                                <li class="wide form-group">
+                                                    <label for="a_content_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Content') ?></label>
+                                                    <div class="input-box">
+                                                        <textarea name="a_content_<?php echo $question->getId(); ?>" id="a_content_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Content') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                                                    </div>
+                                                </li>
+                                                <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                                                    <li class="wide form-group">  
+                                                        <label for="recaptcha"><?php echo Mage::helper('productquestions')->__('reCAPTCHA') ?></label>
+                                                        <div class="input-box">
+                                                            <div id="recaptcha_answer_<?php echo $question->getId(); ?>"></div>
+                                                        </div>
+                                                    </li>
+                                                <?php endif; ?>
+                                            </ul>
+                                            <input name="question_id" type="hidden" value="<?php echo $question->getId(); ?>" />
+                                        </div>
+                                        <div class="buttons-set">
+                                            <p class="required"><?php echo Mage::helper('productquestions')->__('* Required Fields') ?></p>                
+                                            <button type="button btn btn-primary btn-xs" onclick="saveAnswer('<?php echo $question->getId(); ?>');" title="<?php echo Mage::helper('productquestions')->__('Add Answer') ?>" class="button"><span><span><?php echo Mage::helper('productquestions')->__('Add Answer') ?></span></span></button>
+                                            <img class="answer-img-loader" style="display: none;" id="img_loader_<?php echo $question->getId(); ?>" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>">
+                                        </div>
+                                    </form>                                
+                                </div>
+                            <?php else: ?>
+                                <?php if ($isLoggedIn): ?>
+                                    <div class="answer-box">
+                                        <button title="<?php echo $this->__('Add Answer') ?>" class="button add-answer btn btn-primary btn-xs" type="button" onclick="toggleAnswerForm('<?php echo $question->getId(); ?>')">
+                                            <span>
+                                                <span id="button-text-answer-<?php echo $question->getId(); ?>"><?php echo $this->__('Add Answer') ?></span>                    
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div id="answer-form-<?php echo $question->getId(); ?>" class="answer-form" style="display: none;">        
+                                        <form id="answerForm<?php echo $question->getId(); ?>">
+                                            <div class="fieldset">
+                                                <h2 class="legend"><?php echo Mage::helper('productquestions')->__('Answer Details') ?></h2>
+                                                <ul class="form-list">
+                                                    <li class="fields">
+                                                        <div class="field form-group">
+                                                            <label for="a_customer_name_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Name') ?></label>
+                                                            <div class="input-box">
+                                                                <input name="a_customer_name_<?php echo $question->getId(); ?>" id="a_customer_name_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Name') ?>" class="input-text required-entry" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="field form-group">
+                                                            <label for="a_customer_email_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Email') ?></label>
+                                                            <div class="input-box">
+                                                                <input name="a_customer_email_<?php echo $question->getId(); ?>" id="a_customer_email_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Email') ?>" class="input-text required-entry validate-email" type="text" />
+                                                            </div>
+                                                        </div>                                                
+                                                    </li>                    
+                                                    <li class="wide form-group">
+                                                        <label for="a_content_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Content') ?></label>
+                                                        <div class="input-box">
+                                                            <textarea name="a_content_<?php echo $question->getId(); ?>" id="a_content_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Content') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                                                        </div>
+                                                    </li>
+                                                    <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                                                        <li class="wide form-group">   
+                                                            <label for="recaptcha"><?php echo Mage::helper('productquestions')->__('reCAPTCHA') ?></label>
+                                                            <div class="input-box">
+                                                                <div id="recaptcha_answer_<?php echo $question->getId(); ?>"></div>
+                                                            </div>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                </ul>
+                                                <input name="question_id" type="hidden" value="<?php echo $question->getId(); ?>" />
+                                            </div>
+                                            <div class="buttons-set">
+                                                <p class="required"><?php echo Mage::helper('productquestions')->__('* Required Fields') ?></p>                
+                                                <button type="button" onclick="saveAnswer('<?php echo $question->getId(); ?>');" title="<?php echo Mage::helper('productquestions')->__('Add Answer') ?>" class="button btn btn-primary btn-xs"><span><span><?php echo Mage::helper('productquestions')->__('Add Answer') ?></span></span></button>
+                                                <img class="answer-img-loader" style="display: none;" id="img_loader_<?php echo $question->getId(); ?>" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>">
+                                            </div>
+                                        </form>                                
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="answer-list" id="answer_list_<?php echo $question->getId(); ?>" style="display: none;">
+                            <p><?php echo $this->__('Have no answers.') ?></p>
+                            <?php if ($helper->allowCustomerToAddAnswer()): ?>
+                                <div class="answer-box">
+                                    <button title="<?php echo $this->__('Add Answer') ?>" class="button add-answer btn btn-primary btn-xs" type="button" onclick="toggleAnswerForm('<?php echo $question->getId(); ?>')">
+                                        <span>
+                                            <span id="button-text-answer-<?php echo $question->getId(); ?>"><?php echo $this->__('Add Answer') ?></span>                    
+                                        </span>
+                                    </button>
+                                </div>
+                                <div id="answer-form-<?php echo $question->getId(); ?>" class="answer-form" style="display: none;">        
+                                    <form id="answerForm<?php echo $question->getId(); ?>">
+                                        <div class="fieldset">
+                                            <h2 class="legend"><?php echo Mage::helper('productquestions')->__('Answer Details') ?></h2>
+                                            <ul class="form-list">
+                                                <li class="fields">
+                                                    <div class="field form-group">
+                                                        <label for="a_customer_name_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Name') ?></label>
+                                                        <div class="input-box">
+                                                            <input name="a_customer_name_<?php echo $question->getId(); ?>" id="a_customer_name_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Name') ?>" class="input-text required-entry" type="text" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="field form-group">
+                                                        <label for="a_customer_email_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Email') ?></label>
+                                                        <div class="input-box">
+                                                            <input name="a_customer_email_<?php echo $question->getId(); ?>" id="a_customer_email_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Email') ?>" class="input-text required-entry validate-email" type="text" />
+                                                        </div>
+                                                    </div>                                                
+                                                </li>                    
+                                                <li class="wide form-group">
+                                                    <label for="a_content_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Content') ?></label>
+                                                    <div class="input-box">
+                                                        <textarea name="a_content_<?php echo $question->getId(); ?>" id="a_content_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Content') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                                                    </div>
+                                                </li>
+                                                <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                                                    <li class="wide form-group"> 
+                                                        <label for="recaptcha"><?php echo Mage::helper('productquestions')->__('reCAPTCHA') ?></label>
+                                                        <div class="input-box">
+                                                            <div id="recaptcha_answer_<?php echo $question->getId(); ?>"></div>
+                                                        </div>
+                                                    </li>
+                                                <?php endif; ?>
+                                            </ul>
+                                            <input name="question_id" type="hidden" value="<?php echo $question->getId(); ?>" />
+                                        </div>
+                                        <div class="buttons-set">
+                                            <p class="required"><?php echo Mage::helper('productquestions')->__('* Required Fields') ?></p>                
+                                            <button type="button" onclick="saveAnswer('<?php echo $question->getId(); ?>');" title="<?php echo Mage::helper('productquestions')->__('Add Answer') ?>" class="button btn btn-primary btn-xs"><span><span><?php echo Mage::helper('productquestions')->__('Add Answer') ?></span></span></button>
+                                            <img class="answer-img-loader" style="display: none;" id="img_loader_<?php echo $question->getId(); ?>" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>">
+                                        </div>
+                                    </form>                                
+                                </div>
+                            <?php else: ?>
+                                <?php if ($isLoggedIn): ?>
+                                    <div class="answer-box">
+                                        <button title="<?php echo $this->__('Add Answer') ?>" class="button add-answer btn btn-primary btn-xs" type="button" onclick="toggleAnswerForm('<?php echo $question->getId(); ?>')">
+                                            <span>
+                                                <span id="button-text-answer-<?php echo $question->getId(); ?>"><?php echo $this->__('Add Answer') ?></span>                    
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div id="answer-form-<?php echo $question->getId(); ?>" class="answer-form" style="display: none;">        
+                                        <form id="answerForm<?php echo $question->getId(); ?>">
+                                            <div class="fieldset">
+                                                <h2 class="legend"><?php echo Mage::helper('productquestions')->__('Answer Details') ?></h2>
+                                                <ul class="form-list">
+                                                    <li class="fields">
+                                                        <div class="field form-group">
+                                                            <label for="a_customer_name_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Name') ?></label>
+                                                            <div class="input-box">
+                                                                <input name="a_customer_name_<?php echo $question->getId(); ?>" id="a_customer_name_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Name') ?>" class="input-text required-entry" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="field form-group">
+                                                            <label for="a_customer_email_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Customer Email') ?></label>
+                                                            <div class="input-box">
+                                                                <input name="a_customer_email_<?php echo $question->getId(); ?>" id="a_customer_email_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Customer Email') ?>" class="input-text required-entry validate-email" type="text" />
+                                                            </div>
+                                                        </div>                                                
+                                                    </li>                    
+                                                    <li class="wide form-group">
+                                                        <label for="a_content_<?php echo $question->getId(); ?>" class="required"><em>*</em><?php echo Mage::helper('productquestions')->__('Content') ?></label>
+                                                        <div class="input-box">
+                                                            <textarea name="a_content_<?php echo $question->getId(); ?>" id="a_content_<?php echo $question->getId(); ?>" title="<?php echo Mage::helper('productquestions')->__('Content') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                                                        </div>
+                                                    </li>
+                                                    <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                                                        <li class="wide form-group">
+                                                            <label for="recaptcha"><?php echo Mage::helper('productquestions')->__('reCAPTCHA') ?></label>
+                                                            <div class="input-box">
+                                                                <div id="recaptcha_answer_<?php echo $question->getId(); ?>"></div>
+                                                            </div>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                </ul>
+                                                <input name="question_id" type="hidden" value="<?php echo $question->getId(); ?>" />
+                                            </div>
+                                            <div class="buttons-set">
+                                                <p class="required"><?php echo Mage::helper('productquestions')->__('* Required Fields') ?></p>                
+                                                <button type="button" onclick="saveAnswer('<?php echo $question->getId(); ?>');" title="<?php echo Mage::helper('productquestions')->__('Add Answer') ?>" class="button btn btn-primary btn-xs"><span><span><?php echo Mage::helper('productquestions')->__('Add Answer') ?></span></span></button>
+                                                <img class="answer-img-loader" style="display: none;" id="img_loader_<?php echo $question->getId(); ?>" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>">
+                                            </div>
+                                        </form>                                
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>                    
+                </div>
+            <?php endforeach; ?>            
+            <script type="text/javascript">
+                function toggleView(ele, id) {
+                    ele = document.getElementById(ele);
+                    if (ele.style.display == 'block' || ele.style.display == '') {
+                        ele.style.display = 'none';
+                        $('question_' + id).removeClassName('active');
+                        $('question_by_' + id).style.display = 'none';
+                        $('content_' + id).removeClassName('arrow-down');
+                        $('content_' + id).addClassName('arrow-right');
+                    } else {
+                        ele.style.display = 'block';
+                        $('question_' + id).addClassName('active');
+                        $('question_by_' + id).style.display = 'block';
+                        $('content_' + id).addClassName('arrow-down');
+                        $('content_' + id).removeClassName('arrow-right');
+                    }
+                    return false;
+                }
+            </script>
+            <script type="text/javascript">
+                function saveAnswer(id) {
+                    var formAnswerId = 'answerForm' + id;
+                    var editAnswerForm = new VarienForm(formAnswerId, false);
+                    var postAnswerUrl = '<?php echo Mage::getUrl('productquestions/index/saveAnswer', array('_secure' => true)) ?>';
+                    if (editAnswerForm.validator.validate()) {
+                        $('img_loader_' + id).show();
+                        new Ajax.Request(postAnswerUrl, {
+                            method: 'post',
+                            parameters: $(formAnswerId).serialize(true),
+                            onComplete: function (response) {
+                                $('img_loader_' + id).hide();
+                                var json = response.responseText.evalJSON();
+                                if (json.message == 'SUCCESS') {
+                                    $('img_loader_' + id).hide();
+                                    $('answer_save_success').show();
+                                } else {
+                                    if (json.error != '') {
+                                        $('save_error_recaptcha').show();
+                                    } else {
+                                        $('answer_save_error').show();
+                                    }
+                                    $('img_loader_' + id).hide();
+                                }
+                                setTimeout(function () {
+                                    $('answer_save_success').hide();
+                                    $('answer_save_error').hide();
+                                    $('save_error_recaptcha').hide();
+                                }, 10000);
+                            }
+                        });
+                    }
+                }
+                function likeQuestion(id) {
+                    new Ajax.Request('<?php echo Mage::getUrl('productquestions/index/likeQuestion', array('_secure' => true)) ?>', {
+                        method: 'post',
+                        parameters: {id: id},
+                        onComplete: function (response) {
+                            var json = response.responseText.evalJSON();
+                            if (json.question_like == 'liked') {
+                                document.cookie = 'question_like_' + id + '=liked; expires=Thu, 01 Jan 3000 00:00:00 GMT';
+                                document.cookie = 'question_dislike_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('question_like_' + id).addClassName('liked');
+                                $('question_dislike_' + id).removeClassName('disliked');
+                            } else {
+                                document.cookie = 'question_like_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('question_like_' + id).removeClassName('liked');
+                            }
+                            if (parseInt(json.score) > 0) {
+                                $('question_score_' + id).innerHTML = json.score;
+                            } else {
+                                $('question_score_' + id).innerHTML = '0';
+                            }
+                        }
+                    });
+                }
+                function dislikeQuestion(id) {
+                    new Ajax.Request('<?php echo Mage::getUrl('productquestions/index/dislikeQuestion', array('_secure' => true)) ?>', {
+                        method: 'post',
+                        parameters: {id: id},
+                        onComplete: function (response) {
+                            var json = response.responseText.evalJSON();
+                            if (json.question_dislike == 'disliked') {
+                                document.cookie = 'question_dislike_' + id + '=disliked; expires=Thu, 01 Jan 3000 00:00:00 GMT';
+                                document.cookie = 'question_like_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('question_dislike_' + id).addClassName('disliked');
+                                $('question_like_' + id).removeClassName('liked');
+                            } else {
+                                document.cookie = 'question_dislike_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('question_dislike_' + id).removeClassName('disliked');
+                            }
+                            if (parseInt(json.score) > 0) {
+                                $('question_score_' + id).innerHTML = json.score;
+                            } else {
+                                $('question_score_' + id).innerHTML = '0';
+                            }
+                        }
+                    });
+                }
+                function likeAnswer(id) {
+                    new Ajax.Request('<?php echo Mage::getUrl('productquestions/index/likeAnswer', array('_secure' => true)) ?>', {
+                        method: 'post',
+                        parameters: {id: id},
+                        onComplete: function (response) {
+                            var json = response.responseText.evalJSON();
+                            if (json.answer_like == 'liked') {
+                                document.cookie = 'answer_like_' + id + '=liked; expires=Thu, 01 Jan 3000 00:00:00 GMT';
+                                document.cookie = 'answer_dislike_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('answer_like_' + id).addClassName('liked');
+                                $('answer_dislike_' + id).removeClassName('disliked');
+                            } else {
+                                document.cookie = 'answer_like_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('answer_like_' + id).removeClassName('liked');
+                            }
+                            if (parseInt(json.score) > 0) {
+                                $('answer_score_' + id).innerHTML = json.score;
+                            } else {
+                                $('answer_score_' + id).innerHTML = '0';
+                            }
+                        }
+                    });
+                }
+                function dislikeAnswer(id) {
+                    new Ajax.Request('<?php echo Mage::getUrl('productquestions/index/dislikeAnswer', array('_secure' => true)) ?>', {
+                        method: 'post',
+                        parameters: {id: id},
+                        onComplete: function (response) {
+                            var json = response.responseText.evalJSON();
+                            if (json.answer_dislike == 'disliked') {
+                                document.cookie = 'answer_dislike_' + id + '=disliked; expires=Thu, 01 Jan 3000 00:00:00 GMT';
+                                document.cookie = 'answer_like_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('answer_dislike_' + id).addClassName('disliked');
+                                $('answer_like_' + id).removeClassName('liked');
+                            } else {
+                                document.cookie = 'answer_dislike_' + id + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                                $('answer_dislike_' + id).removeClassName('disliked');
+                            }
+                            if (parseInt(json.score) > 0) {
+                                $('answer_score_' + id).innerHTML = json.score;
+                            } else {
+                                $('answer_score_' + id).innerHTML = '0';
+                            }
+                        }
+                    });
+                }
+                function getCookie(cname)
+                {
+                    var name = cname + '=';
+                    var ca = document.cookie.split(';');
+                    for (var i = 0; i < ca.length; i++)
+                    {
+                        var c = ca[i].trim();
+                        if (c.indexOf(name) == 0)
+                            return c.substring(name.length, c.length);
+                    }
+                    return '';
+                }
+                function toggleAnswerForm(id) {
+                    $('answer-form-' + id).toggle();
+                    if ($('button-text-answer-' + id).innerHTML == '<?php echo $this->__('Add Answer') ?>') {
+                        $('button-text-answer-' + id).innerHTML = '<?php echo $this->__('Hide Answer Form') ?>';
+                        $('question-form').hide();
+                        if ($('button-text').innerHTML == '<?php echo $this->__('Hide Question Form') ?>') {
+                            $('button-text').innerHTML = '<?php echo $this->__('Ask Question') ?>';
+                        }
+        <?php if (count($collection)): ?>
+            <?php foreach ($collection as $question): ?>
+                                if (id != '<?php echo $question->getId() ?>') {
+                                    $('answer_list_<?php echo $question->getId() ?>').hide();
+                                    $('question_by_<?php echo $question->getId() ?>').hide();
+                                    $('content_<?php echo $question->getId() ?>').removeClassName('arrow-down');
+                                    $('content_<?php echo $question->getId() ?>').addClassName('arrow-right');
+                                    $('answer-form-<?php echo $question->getId() ?>').hide();
+                                    if ($('button-text-answer-<?php echo $question->getId() ?>').innerHTML == '<?php echo $this->__('Hide Answer Form') ?>') {
+                                        $('button-text-answer-<?php echo $question->getId() ?>').innerHTML = '<?php echo $this->__('Add Answer') ?>';
+                                    }
+                                }
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                            showRecaptcha('recaptcha_answer_' + id);
+        <?php endif; ?>
+                    } else {
+                        $('button-text-answer-' + id).innerHTML = '<?php echo $this->__('Add Answer') ?>';
+                    }
+                }
+            </script>                
+            <script type="text/javascript">
+                document.observe('dom:loaded', function () {
+        <?php foreach ($collection as $question): ?>
+                        var id = '<?php echo $question->getId(); ?>';
+                        if (getCookie('question_like_' + id) == 'liked') {
+                            $('question_like_' + id).addClassName('liked');
+                            $('question_dislike_' + id).removeClassName('disliked');
+                        }
+                        if (getCookie('question_dislike_' + id) == 'disliked') {
+                            $('question_dislike_' + id).addClassName('disliked');
+                            $('question_like_' + id).removeClassName('liked');
+                        }
+            <?php $answers = $this->getAnswers($question->getId()); ?>
+            <?php if (count($answers)): ?>
+                <?php foreach ($answers as $answer): ?>
+                                var answerId = '<?php echo $answer->getId(); ?>';
+                                if (getCookie('answer_like_' + answerId) == 'liked') {
+                                    $('answer_like_' + answerId).addClassName('liked');
+                                    $('answer_dislike_' + answerId).removeClassName('disliked');
+                                }
+                                if (getCookie('answer_dislike_' + answerId) == 'disliked') {
+                                    $('answer_dislike_' + answerId).addClassName('disliked');
+                                    $('answer_like_' + answerId).removeClassName('liked');
+                                }
+                <?php endforeach; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+                });
+            </script>
+        <?php else: ?>
+            <p><?php echo $this->__('Have no questions.') ?></p>
+        <?php endif; ?>
+        <script type="text/javascript">
+            function toggleForm() {
+                $('question-form').toggle();
+                if ($('button-text').innerHTML == '<?php echo $this->__('Ask Question') ?>') {
+    <?php if (count($collection)): ?>
+        <?php foreach ($collection as $question): ?>
+                            $('answer_list_<?php echo $question->getId() ?>').hide();
+                            $('question_by_<?php echo $question->getId() ?>').hide();
+                            $('content_<?php echo $question->getId() ?>').removeClassName('arrow-down');
+                            $('content_<?php echo $question->getId() ?>').addClassName('arrow-right');
+                            $('answer-form-<?php echo $question->getId() ?>').hide();
+                            if ($('button-text-answer-<?php echo $question->getId() ?>').innerHTML == '<?php echo $this->__('Hide Answer Form') ?>') {
+                                $('button-text-answer-<?php echo $question->getId() ?>').innerHTML = '<?php echo $this->__('Add Answer') ?>';
+                            }
+        <?php endforeach; ?>
+    <?php endif; ?>
+                    $('button-text').innerHTML = '<?php echo $this->__('Hide Question Form') ?>';
+    <?php if (Mage::helper('productquestions')->enabledReCaptcha()): ?>
+                        showRecaptcha('recaptcha_question');
+    <?php endif; ?>
+                } else {
+                    $('button-text').innerHTML = '<?php echo $this->__('Ask Question') ?>';
+                }
+            }
+        </script>
+    </div>
+<?php endif; ?>

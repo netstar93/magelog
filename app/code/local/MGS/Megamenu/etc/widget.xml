@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/** MGS_Aslideshow Extension
+ *
+ * @category    Local
+ * @package     MGS_Aslideshow
+ * @author      dungnv (dungnv@arrowhitech.com)
+ * @copyright   Copyright(c) 2011 Arrowhitech Inc. (http://www.arrowhitech.com)
+ *
+ */
+
+/**
+ *
+ * @category   Local
+ * @package    MGS_Aslideshow
+ * @author     dungnv <dungnv@arrowhitech.com>
+ */
+-->
+<widgets>
+    <special_product type="megamenu/product" translate="name description" module="megamenu">
+        <name>Special Product (MGS Megamenu)</name>
+        <description>Specified Product</description>
+        <is_email_compatible>1</is_email_compatible>
+        <parameters>
+            <product_id translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Product</label>
+                <type>label</type>
+                <helper_block>
+                    <type>adminhtml/catalog_product_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Product...</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>10</sort_order>
+            </product_id>
+			
+            <template translate="label">
+                <label>Template</label>
+                <visible>0</visible>
+                <value>megamenu/widget/product.phtml</value>
+            </template>
+        </parameters>
+    </special_product>
+</widgets>

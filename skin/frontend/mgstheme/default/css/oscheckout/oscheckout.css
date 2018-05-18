@@ -1,0 +1,74 @@
+.no-width .col-md-6{padding:0;width:100%}
+#lightbox-container{
+	background-color: #1c1c1c;
+	height:100%;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+	position: fixed;
+	top: 0px;
+	bottom:0px;
+	width: 100%;
+	z-index: 9999;
+}
+#login-form a.close{float:right;}
+#login-form{
+	background:url("../../images/oscheckout/login.png") no-repeat scroll 175px 23px #FFFFFF;
+	padding:10px;
+	border:1px solid #ccc;
+	min-height:160px;
+	width:350px;
+	border-radius:5px; 
+	height: auto;
+}
+div.ajax-load {
+	clear:both;
+	width:100%;
+	height: 55px;
+	text-align: center;
+	display:block;
+	background: url('../../images/oscheckout/ajax-loader.gif') left center no-repeat;
+	margin-bottom:10px
+}
+#checkout-review div.ajax-load{background: url(../../images/oscheckout/ajax-loader.gif) center center no-repeat;}
+#login-container .input{float:left; width:100%; clear:both; display:block; margin-bottom:2px}
+#login-container .input-box{float:left; width:50%}
+#login-container .input-box input{width:150px}
+
+#oscheckout-login-form h3{font-family:"Myriad Pro", arial, tahoma; font-weight:bold; color:#3b3b3b; text-transform:uppercase}
+#login-container .bottom-control{margin-top:8px; clear:both; float:left; display:block}
+
+.please-wait-loading{display:block; width:100%; display:block; height:16px; background: url(../../images/oscheckout/ajax-load.gif) top right no-repeat; float:right}
+.sp-methods .form-list label{margin: 10px 0 0;}
+.sp-methods .form-list input,.sp-methods .form-list select{
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 6px 12px;
+  margin:10px 0 0;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #ededed;
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.sp-methods .form-list input:focus,.sp-methods .form-list select:focus {
+  
+  outline: 0;
+}
+.sp-methods .form-list input::-moz-placeholder,.sp-methods .form-list select::-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+.sp-methods .form-list input:-ms-input-placeholder,.sp-methods .form-list select:-ms-input-placeholder {
+  color: #999999;
+}
+.sp-methods .form-list input::-webkit-input-placeholder,.sp-methods .form-list select::-webkit-input-placeholder {
+  color: #999999;
+}

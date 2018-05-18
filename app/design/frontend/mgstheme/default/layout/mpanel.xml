@@ -1,0 +1,2310 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="after_body_start">
+            <block type="mpanel/mpanel" name="mpanel" template="mgs/mpanel/toppanel.phtml" />
+        </reference>
+		
+        <reference name="before_body_end">
+            <block type="core/template" name="mpanel.script" template="mgs/mpanel/script.phtml" />
+            <block type="core/template" name="mpanel.home.button" template="mgs/mpanel/button.phtml" />
+        </reference>
+    </default>
+	
+    <editor>
+        <reference name="head">
+            <block type="core/template" name="head.editor" template="mgs/mpanel/editor.phtml"/>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            
+            <action method="addCss">
+                <name>lib/prototype/windows/themes/magento.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>extjs/resources/css/ext-all.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>extjs/resources/css/ytheme-magento.css</name>
+            </action>
+        </reference>
+    </editor>
+	
+    <popup>
+        <update handle="default"/>
+        <remove name="header"/>
+        <remove name="menu"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>popup.phtml</template>
+            </action>
+        </reference>
+    </popup>
+	
+    <overlay_popup>
+        <update handle="popup"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>mgs/mpanel/overlay_popup.phtml</template>
+            </action>
+        </reference>
+    </overlay_popup>
+	
+    <mpanel_wysiwyg_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>mgs/mpanel/overlay_popup.phtml</template>
+            </action>
+        </reference>
+        <remove name="footer" />
+        <remove name="head" />
+		
+        <reference name="content">
+            <block type="mpanel/content" name="wysiwyg_images.content" template="mgs/mpanel/browser/content.phtml">
+                <block name="wysiwyg_images.js" type="mpanel/cms_wysiwyg_images_content" template="mgs/mpanel/browser/js.phtml" />
+                <block name="wysiwyg_images.tree" type="mpanel/cms_wysiwyg_images_tree" template="mgs/mpanel/browser/tree.phtml" />
+				
+                <block type="mpanel/cms_wysiwyg_images_content_uploader" name="wysiwyg_images.uploader" template="mgs/mpanel/browser/content/uploader.phtml" />
+                <block type="mpanel/cms_wysiwyg_images_content_newfolder" name="wysiwyg_images.newfolder" template="mgs/mpanel/browser/content/newfolder.phtml" />
+            </block>
+        </reference>
+    </mpanel_wysiwyg_index>
+	
+	
+    <mpanel_wysiwyg_contents>
+        <block name="wysiwyg_images.files" type="mpanel/cms_wysiwyg_images_content_files" template="mgs/mpanel/browser/content/files.phtml" output="toHtml" />
+    </mpanel_wysiwyg_contents>
+	
+	
+    <mpanel_edit_popup>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.popup" template="mgs/mpanel/popup/child.phtml"/>
+        </reference>
+    </mpanel_edit_popup>
+	
+    <mpanel_edit_block>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/edit_block" name="mpanel.popup" template="mgs/mpanel/popup/block.phtml"/>
+        </reference>
+    </mpanel_edit_block>
+	
+    <mpanel_edit_static>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.popup" template="mgs/mpanel/popup/static.phtml"/>
+        </reference>
+    </mpanel_edit_static>
+	
+    <mpanel_edit_header>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/edit_block" name="mpanel.popup" template="mgs/mpanel/popup/header.phtml"/>
+        </reference>
+    </mpanel_edit_header>
+	
+    <mpanel_edit_footer>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/edit_block" name="mpanel.popup" template="mgs/mpanel/popup/footer.phtml"/>
+        </reference>
+    </mpanel_edit_footer>
+	
+    <mpanel_edit_twitter>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/edit_block" name="mpanel.popup" template="mgs/mpanel/popup/twitter.phtml"/>
+        </reference>
+    </mpanel_edit_twitter>
+	
+    <mpanel_post_logo>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/edit_block" name="mpanel.popup" template="mgs/mpanel/popup/logo.phtml"/>
+        </reference>
+    </mpanel_post_logo>
+    
+    <mpanel_post_categoryimage>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.popup.category.image" template="mgs/mpanel/popup/category-image.phtml"/>
+        </reference>
+    </mpanel_post_categoryimage>
+    
+    <mpanel_post_categorydescription>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.popup.category.description" template="mgs/mpanel/popup/category-description.phtml"/>
+        </reference>
+    </mpanel_post_categorydescription>
+    
+    <mpanel_post_editcmscontent>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.popup.edit.cms.content" template="mgs/mpanel/popup/edit-cms-content.phtml"/>
+        </reference>
+    </mpanel_post_editcmscontent>
+	
+    <mpanel_post_map>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/edit_block" name="mpanel.popup" template="mgs/mpanel/popup/map.phtml"/>
+        </reference>
+    </mpanel_post_map>
+	
+    <mpanel_post_info>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/edit_block" name="mpanel.popup" template="mgs/mpanel/popup/contact.phtml"/>
+        </reference>
+    </mpanel_post_info>
+	
+    <mpanel_index_new>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.popup" template="mgs/mpanel/popup/new.phtml"/>
+        </reference>
+    </mpanel_index_new>        
+    
+    <mpanel_index_createproducttab>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/product_tab" name="mpanel.popup.create.product.tab" template="mgs/mpanel/popup/create-product-tab.phtml"/>
+        </reference>
+    </mpanel_index_createproducttab>
+    
+    <mpanel_index_manageproducttabs>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="mpanel/product_tab_manage" name="mpanel.popup.manage.product.tabs" template="mgs/mpanel/popup/manage-product-tabs.phtml"/>
+        </reference>
+    </mpanel_index_manageproducttabs>
+	
+    <mpanel_index_form>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.form" template="mgs/mpanel/form.phtml"/>
+        </reference>
+    </mpanel_index_form>               
+    
+    <mpanel_index_createstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.create.static.block" template="mgs/mpanel/create-static-block.phtml"/>
+        </reference>
+    </mpanel_index_createstaticblock>        
+    
+    <mpanel_index_after>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.form.after" template="mgs/mpanel/after.phtml"/>
+        </reference>
+    </mpanel_index_after>                                                                      
+	
+    <empty>
+    </empty>
+	
+    <catalog_category_default>
+        <reference name="head">
+            <block type="core/template" name="share_this">
+                <action method="setTemplate" ifconfig="mpanel/share_this/category">
+                    <template>mgs/share_this/script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_default>
+	
+    <catalog_category_layered>
+        <reference name="head">
+            <block type="core/template" name="share_this">
+                <action method="setTemplate" ifconfig="mpanel/share_this/category">
+                    <template>mgs/share_this/script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_layered>
+	
+    <catalog_product_view>
+        <reference name="head">
+            <block type="core/template" name="share_this">
+                <action method="setTemplate" ifconfig="mpanel/share_this/product">
+                    <template>mgs/share_this/script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_product_view>
+	
+    <blog_index_list>
+        <reference name="head">
+            <block type="core/template" name="share_this">
+                <action method="setTemplate" ifconfig="mpanel/share_this/blog_list">
+                    <template>mgs/share_this/script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </blog_index_list>
+	
+    <blog_index_index>
+        <reference name="head">
+            <block type="core/template" name="share_this">
+                <action method="setTemplate" ifconfig="mpanel/share_this/blog_list">
+                    <template>mgs/share_this/script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </blog_index_index>
+	
+    <blog_cat_view>
+        <reference name="head">
+            <block type="core/template" name="share_this">
+                <action method="setTemplate" ifconfig="mpanel/share_this/blog_list">
+                    <template>mgs/share_this/script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </blog_cat_view>
+	
+    <blog_post_view>
+        <reference name="head">
+            <block type="core/template" name="share_this">
+                <action method="setTemplate" ifconfig="mpanel/share_this/blog_detail">
+                    <template>mgs/share_this/script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </blog_post_view>
+    <mpanel_index_saleproducts>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.form.sale.products" template="mgs/mpanel/sale-products.phtml"/>
+        </reference>
+    </mpanel_index_saleproducts>
+    <mpanel_index_facebooklikebox>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.form.facebooklikebox.products" template="mgs/mpanel/facebook-like-box.phtml"/>
+        </reference>
+    </mpanel_index_facebooklikebox>
+    <mpanel_index_twitterfeed>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+		
+        <reference name="content">
+            <block type="core/template" name="mpanel.form.twitterfeed.products" template="mgs/mpanel/twitter-feed.phtml"/>
+        </reference>
+    </mpanel_index_twitterfeed>    
+    
+    <mpanel_category_add>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.add" template="mgs/mpanel/popup/category/add.phtml"/>
+        </reference>
+    </mpanel_category_add>
+    
+    <mpanel_category_addcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcoreblock" template="mgs/mpanel/add-core-block.phtml"/>
+        </reference>
+    </mpanel_category_addcoreblock>
+    
+    <mpanel_category_addproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addproductblock" template="mgs/mpanel/add-product-block.phtml"/>
+        </reference>
+    </mpanel_category_addproductblock>
+    
+    <mpanel_category_addstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addstaticblock" template="mgs/mpanel/add-static-block.phtml"/>
+        </reference>
+    </mpanel_category_addstaticblock>
+    
+    <mpanel_category_addcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcategorynavigationblock" template="mgs/mpanel/add-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_category_addcategorynavigationblock>
+    
+    <mpanel_category_addpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpromoblock" template="mgs/mpanel/add-promo-block.phtml"/>
+        </reference>
+    </mpanel_category_addpromoblock>
+    
+    <mpanel_category_addpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpollblock" template="mgs/mpanel/add-poll-block.phtml"/>
+        </reference>
+    </mpanel_category_addpollblock>
+    
+    <mpanel_category_addmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addmenublock" template="mgs/mpanel/add-menu-block.phtml"/>
+        </reference>
+    </mpanel_category_addmenublock>
+    
+    <mpanel_category_addfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addfacebooklikeboxblock" template="mgs/mpanel/add-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_category_addfacebooklikeboxblock>
+    
+    <mpanel_category_addtwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addtwitterfeedblock" template="mgs/mpanel/add-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_category_addtwitterfeedblock>
+    
+    <mpanel_category_editcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcoreblock" template="mgs/mpanel/edit-core-block.phtml"/>
+        </reference>
+    </mpanel_category_editcoreblock>
+    
+    <mpanel_category_editproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editproductblock" template="mgs/mpanel/edit-product-block.phtml"/>
+        </reference>
+    </mpanel_category_editproductblock>
+    
+    <mpanel_category_editstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editstaticblock" template="mgs/mpanel/edit-static-block.phtml"/>
+        </reference>
+    </mpanel_category_editstaticblock>
+    
+    <mpanel_category_editcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcategorynavigationblock" template="mgs/mpanel/edit-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_category_editcategorynavigationblock>
+    
+    <mpanel_category_editpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpromoblock" template="mgs/mpanel/edit-promo-block.phtml"/>
+        </reference>
+    </mpanel_category_editpromoblock>
+    
+    <mpanel_category_editpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpollblock" template="mgs/mpanel/edit-poll-block.phtml"/>
+        </reference>
+    </mpanel_category_editpollblock>
+    
+    <mpanel_category_editmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editmenublock" template="mgs/mpanel/edit-menu-block.phtml"/>
+        </reference>
+    </mpanel_category_editmenublock>
+    
+    <mpanel_category_editfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editfacebooklikeboxblock" template="mgs/mpanel/edit-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_category_editfacebooklikeboxblock>
+    
+    <mpanel_category_edittwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.edittwitterfeedblock" template="mgs/mpanel/edit-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_category_edittwitterfeedblock>
+    
+    <mpanel_product_add>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.add" template="mgs/mpanel/popup/product/add.phtml"/>
+        </reference>
+    </mpanel_product_add>
+    
+    <mpanel_product_addcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcoreblock" template="mgs/mpanel/add-core-block.phtml"/>
+        </reference>
+    </mpanel_product_addcoreblock>
+    
+    <mpanel_product_addproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addproductblock" template="mgs/mpanel/add-product-block.phtml"/>
+        </reference>
+    </mpanel_product_addproductblock>
+    
+    <mpanel_product_addstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addstaticblock" template="mgs/mpanel/add-static-block.phtml"/>
+        </reference>
+    </mpanel_product_addstaticblock>
+    
+    <mpanel_product_addcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcategorynavigationblock" template="mgs/mpanel/add-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_product_addcategorynavigationblock>
+    
+    <mpanel_product_addpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpromoblock" template="mgs/mpanel/add-promo-block.phtml"/>
+        </reference>
+    </mpanel_product_addpromoblock>
+    
+    <mpanel_product_addpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpollblock" template="mgs/mpanel/add-poll-block.phtml"/>
+        </reference>
+    </mpanel_product_addpollblock>
+    
+    <mpanel_product_addmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addmenublock" template="mgs/mpanel/add-menu-block.phtml"/>
+        </reference>
+    </mpanel_product_addmenublock>
+    
+    <mpanel_product_addfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addfacebooklikeboxblock" template="mgs/mpanel/add-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_product_addfacebooklikeboxblock>
+    
+    <mpanel_product_addtwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addtwitterfeedblock" template="mgs/mpanel/add-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_product_addtwitterfeedblock>
+    
+    <mpanel_product_editcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcoreblock" template="mgs/mpanel/edit-core-block.phtml"/>
+        </reference>
+    </mpanel_product_editcoreblock>
+    
+    <mpanel_product_editproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editproductblock" template="mgs/mpanel/edit-product-block.phtml"/>
+        </reference>
+    </mpanel_product_editproductblock>
+    
+    <mpanel_product_editstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editstaticblock" template="mgs/mpanel/edit-static-block.phtml"/>
+        </reference>
+    </mpanel_product_editstaticblock>
+    
+    <mpanel_product_editcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcategorynavigationblock" template="mgs/mpanel/edit-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_product_editcategorynavigationblock>
+    
+    <mpanel_product_editpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpromoblock" template="mgs/mpanel/edit-promo-block.phtml"/>
+        </reference>
+    </mpanel_product_editpromoblock>
+    
+    <mpanel_product_editpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpollblock" template="mgs/mpanel/edit-poll-block.phtml"/>
+        </reference>
+    </mpanel_product_editpollblock>
+    
+    <mpanel_product_editmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editmenublock" template="mgs/mpanel/edit-menu-block.phtml"/>
+        </reference>
+    </mpanel_product_editmenublock>
+    
+    <mpanel_product_editfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editfacebooklikeboxblock" template="mgs/mpanel/edit-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_product_editfacebooklikeboxblock>
+    
+    <mpanel_product_edittwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.edittwitterfeedblock" template="mgs/mpanel/edit-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_product_edittwitterfeedblock>
+    
+    <mpanel_search_add>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.add" template="mgs/mpanel/popup/search/add.phtml"/>
+        </reference>
+    </mpanel_search_add>
+    
+    <mpanel_search_addcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcoreblock" template="mgs/mpanel/add-core-block.phtml"/>
+        </reference>
+    </mpanel_search_addcoreblock>
+    
+    <mpanel_search_addproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addproductblock" template="mgs/mpanel/add-product-block.phtml"/>
+        </reference>
+    </mpanel_search_addproductblock>
+    
+    <mpanel_search_addstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addstaticblock" template="mgs/mpanel/add-static-block.phtml"/>
+        </reference>
+    </mpanel_search_addstaticblock>
+    
+    <mpanel_search_addcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcategorynavigationblock" template="mgs/mpanel/add-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_search_addcategorynavigationblock>
+    
+    <mpanel_search_addpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpromoblock" template="mgs/mpanel/add-promo-block.phtml"/>
+        </reference>
+    </mpanel_search_addpromoblock>
+    
+    <mpanel_search_addpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpollblock" template="mgs/mpanel/add-poll-block.phtml"/>
+        </reference>
+    </mpanel_search_addpollblock>
+    
+    <mpanel_search_addmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addmenublock" template="mgs/mpanel/add-menu-block.phtml"/>
+        </reference>
+    </mpanel_search_addmenublock>
+    
+    <mpanel_search_addfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addfacebooklikeboxblock" template="mgs/mpanel/add-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_search_addfacebooklikeboxblock>
+    
+    <mpanel_search_addtwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addtwitterfeedblock" template="mgs/mpanel/add-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_search_addtwitterfeedblock>
+    
+    <mpanel_search_editcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcoreblock" template="mgs/mpanel/edit-core-block.phtml"/>
+        </reference>
+    </mpanel_search_editcoreblock>
+    
+    <mpanel_search_editproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editproductblock" template="mgs/mpanel/edit-product-block.phtml"/>
+        </reference>
+    </mpanel_search_editproductblock>
+    
+    <mpanel_search_editstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editstaticblock" template="mgs/mpanel/edit-static-block.phtml"/>
+        </reference>
+    </mpanel_search_editstaticblock>
+    
+    <mpanel_search_editcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcategorynavigationblock" template="mgs/mpanel/edit-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_search_editcategorynavigationblock>
+    
+    <mpanel_search_editpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpromoblock" template="mgs/mpanel/edit-promo-block.phtml"/>
+        </reference>
+    </mpanel_search_editpromoblock>
+    
+    <mpanel_search_editpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpollblock" template="mgs/mpanel/edit-poll-block.phtml"/>
+        </reference>
+    </mpanel_search_editpollblock>
+    
+    <mpanel_search_editmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editmenublock" template="mgs/mpanel/edit-menu-block.phtml"/>
+        </reference>
+    </mpanel_search_editmenublock>
+    
+    <mpanel_search_editfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editfacebooklikeboxblock" template="mgs/mpanel/edit-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_search_editfacebooklikeboxblock>
+    
+    <mpanel_search_edittwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.edittwitterfeedblock" template="mgs/mpanel/edit-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_search_edittwitterfeedblock>
+    
+    <mpanel_page_add>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.add" template="mgs/mpanel/popup/page/add.phtml"/>
+        </reference>
+    </mpanel_page_add>
+    
+    <mpanel_page_addcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcoreblock" template="mgs/mpanel/add-core-block.phtml"/>
+        </reference>
+    </mpanel_page_addcoreblock>
+    
+    <mpanel_page_addproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addproductblock" template="mgs/mpanel/add-product-block.phtml"/>
+        </reference>
+    </mpanel_page_addproductblock>
+    
+    <mpanel_page_addstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addstaticblock" template="mgs/mpanel/add-static-block.phtml"/>
+        </reference>
+    </mpanel_page_addstaticblock>
+    
+    <mpanel_page_addcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcategorynavigationblock" template="mgs/mpanel/add-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_page_addcategorynavigationblock>
+    
+    <mpanel_page_addpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpromoblock" template="mgs/mpanel/add-promo-block.phtml"/>
+        </reference>
+    </mpanel_page_addpromoblock>
+    
+    <mpanel_page_addpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpollblock" template="mgs/mpanel/add-poll-block.phtml"/>
+        </reference>
+    </mpanel_page_addpollblock>
+    
+    <mpanel_page_addmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addmenublock" template="mgs/mpanel/add-menu-block.phtml"/>
+        </reference>
+    </mpanel_page_addmenublock>
+    
+    <mpanel_page_addfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addfacebooklikeboxblock" template="mgs/mpanel/add-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_page_addfacebooklikeboxblock>
+    
+    <mpanel_page_addtwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addtwitterfeedblock" template="mgs/mpanel/add-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_page_addtwitterfeedblock>
+    
+    <mpanel_page_editcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcoreblock" template="mgs/mpanel/edit-core-block.phtml"/>
+        </reference>
+    </mpanel_page_editcoreblock>
+    
+    <mpanel_page_editproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editproductblock" template="mgs/mpanel/edit-product-block.phtml"/>
+        </reference>
+    </mpanel_page_editproductblock>
+    
+    <mpanel_page_editstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editstaticblock" template="mgs/mpanel/edit-static-block.phtml"/>
+        </reference>
+    </mpanel_page_editstaticblock>
+    
+    <mpanel_page_editcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcategorynavigationblock" template="mgs/mpanel/edit-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_page_editcategorynavigationblock>
+    
+    <mpanel_page_editpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpromoblock" template="mgs/mpanel/edit-promo-block.phtml"/>
+        </reference>
+    </mpanel_page_editpromoblock>
+    
+    <mpanel_page_editpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpollblock" template="mgs/mpanel/edit-poll-block.phtml"/>
+        </reference>
+    </mpanel_page_editpollblock>
+    
+    <mpanel_page_editmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editmenublock" template="mgs/mpanel/edit-menu-block.phtml"/>
+        </reference>
+    </mpanel_page_editmenublock>
+    
+    <mpanel_page_editfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editfacebooklikeboxblock" template="mgs/mpanel/edit-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_page_editfacebooklikeboxblock>
+    
+    <mpanel_page_edittwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.edittwitterfeedblock" template="mgs/mpanel/edit-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_page_edittwitterfeedblock>
+    
+    <mpanel_account_add>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.add" template="mgs/mpanel/popup/account/add.phtml"/>
+        </reference>
+    </mpanel_account_add>
+    
+    <mpanel_account_addcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcoreblock" template="mgs/mpanel/add-core-block.phtml"/>
+        </reference>
+    </mpanel_account_addcoreblock>
+    
+    <mpanel_account_addproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addproductblock" template="mgs/mpanel/add-product-block.phtml"/>
+        </reference>
+    </mpanel_account_addproductblock>
+    
+    <mpanel_account_addstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addstaticblock" template="mgs/mpanel/add-static-block.phtml"/>
+        </reference>
+    </mpanel_account_addstaticblock>
+    
+    <mpanel_account_addcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcategorynavigationblock" template="mgs/mpanel/add-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_account_addcategorynavigationblock>
+    
+    <mpanel_account_addpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpromoblock" template="mgs/mpanel/add-promo-block.phtml"/>
+        </reference>
+    </mpanel_account_addpromoblock>
+    
+    <mpanel_account_addpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpollblock" template="mgs/mpanel/add-poll-block.phtml"/>
+        </reference>
+    </mpanel_account_addpollblock>
+    
+    <mpanel_account_addmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addmenublock" template="mgs/mpanel/add-menu-block.phtml"/>
+        </reference>
+    </mpanel_account_addmenublock>
+    
+    <mpanel_account_addfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addfacebooklikeboxblock" template="mgs/mpanel/add-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_account_addfacebooklikeboxblock>
+    
+    <mpanel_account_addtwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addtwitterfeedblock" template="mgs/mpanel/add-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_account_addtwitterfeedblock>
+    
+    <mpanel_account_editcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcoreblock" template="mgs/mpanel/edit-core-block.phtml"/>
+        </reference>
+    </mpanel_account_editcoreblock>
+    
+    <mpanel_account_editproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editproductblock" template="mgs/mpanel/edit-product-block.phtml"/>
+        </reference>
+    </mpanel_account_editproductblock>
+    
+    <mpanel_account_editstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editstaticblock" template="mgs/mpanel/edit-static-block.phtml"/>
+        </reference>
+    </mpanel_account_editstaticblock>
+    
+    <mpanel_account_editcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcategorynavigationblock" template="mgs/mpanel/edit-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_account_editcategorynavigationblock>
+    
+    <mpanel_account_editpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpromoblock" template="mgs/mpanel/edit-promo-block.phtml"/>
+        </reference>
+    </mpanel_account_editpromoblock>
+    
+    <mpanel_account_editpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpollblock" template="mgs/mpanel/edit-poll-block.phtml"/>
+        </reference>
+    </mpanel_account_editpollblock>
+    
+    <mpanel_account_editmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editmenublock" template="mgs/mpanel/edit-menu-block.phtml"/>
+        </reference>
+    </mpanel_account_editmenublock>
+    
+    <mpanel_account_editfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editfacebooklikeboxblock" template="mgs/mpanel/edit-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_account_editfacebooklikeboxblock>
+    
+    <mpanel_account_edittwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.edittwitterfeedblock" template="mgs/mpanel/edit-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_account_edittwitterfeedblock>
+    
+    <mpanel_brand_add>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.add" template="mgs/mpanel/popup/brand/add.phtml"/>
+        </reference>
+    </mpanel_brand_add>
+    
+    <mpanel_brand_addcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcoreblock" template="mgs/mpanel/add-core-block.phtml"/>
+        </reference>
+    </mpanel_brand_addcoreblock>
+    
+    <mpanel_brand_addproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addproductblock" template="mgs/mpanel/add-product-block.phtml"/>
+        </reference>
+    </mpanel_brand_addproductblock>
+    
+    <mpanel_brand_addstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addstaticblock" template="mgs/mpanel/add-static-block.phtml"/>
+        </reference>
+    </mpanel_brand_addstaticblock>
+    
+    <mpanel_brand_addcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcategorynavigationblock" template="mgs/mpanel/add-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_brand_addcategorynavigationblock>
+    
+    <mpanel_brand_addpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpromoblock" template="mgs/mpanel/add-promo-block.phtml"/>
+        </reference>
+    </mpanel_brand_addpromoblock>
+    
+    <mpanel_brand_addpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpollblock" template="mgs/mpanel/add-poll-block.phtml"/>
+        </reference>
+    </mpanel_brand_addpollblock>
+    
+    <mpanel_brand_addmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addmenublock" template="mgs/mpanel/add-menu-block.phtml"/>
+        </reference>
+    </mpanel_brand_addmenublock>
+    
+    <mpanel_brand_addfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addfacebooklikeboxblock" template="mgs/mpanel/add-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_brand_addfacebooklikeboxblock>
+    
+    <mpanel_brand_addtwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addtwitterfeedblock" template="mgs/mpanel/add-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_brand_addtwitterfeedblock>
+    
+    <mpanel_brand_editcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcoreblock" template="mgs/mpanel/edit-core-block.phtml"/>
+        </reference>
+    </mpanel_brand_editcoreblock>
+    
+    <mpanel_brand_editproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editproductblock" template="mgs/mpanel/edit-product-block.phtml"/>
+        </reference>
+    </mpanel_brand_editproductblock>
+    
+    <mpanel_brand_editstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editstaticblock" template="mgs/mpanel/edit-static-block.phtml"/>
+        </reference>
+    </mpanel_brand_editstaticblock>
+    
+    <mpanel_brand_editcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcategorynavigationblock" template="mgs/mpanel/edit-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_brand_editcategorynavigationblock>
+    
+    <mpanel_brand_editpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpromoblock" template="mgs/mpanel/edit-promo-block.phtml"/>
+        </reference>
+    </mpanel_brand_editpromoblock>
+    
+    <mpanel_brand_editpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpollblock" template="mgs/mpanel/edit-poll-block.phtml"/>
+        </reference>
+    </mpanel_brand_editpollblock>
+    
+    <mpanel_brand_editmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editmenublock" template="mgs/mpanel/edit-menu-block.phtml"/>
+        </reference>
+    </mpanel_brand_editmenublock>
+    
+    <mpanel_brand_editfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editfacebooklikeboxblock" template="mgs/mpanel/edit-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_brand_editfacebooklikeboxblock>
+    
+    <mpanel_brand_edittwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.edittwitterfeedblock" template="mgs/mpanel/edit-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_brand_edittwitterfeedblock>
+    
+    <mpanel_blog_add>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.add" template="mgs/mpanel/popup/blog/add.phtml"/>
+        </reference>
+    </mpanel_blog_add>
+    
+    <mpanel_blog_addcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcoreblock" template="mgs/mpanel/add-core-block.phtml"/>
+        </reference>
+    </mpanel_blog_addcoreblock>
+    
+    <mpanel_blog_addproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addproductblock" template="mgs/mpanel/add-product-block.phtml"/>
+        </reference>
+    </mpanel_blog_addproductblock>
+    
+    <mpanel_blog_addstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addstaticblock" template="mgs/mpanel/add-static-block.phtml"/>
+        </reference>
+    </mpanel_blog_addstaticblock>
+    
+    <mpanel_blog_addcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addcategorynavigationblock" template="mgs/mpanel/add-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_blog_addcategorynavigationblock>
+    
+    <mpanel_blog_addpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpromoblock" template="mgs/mpanel/add-promo-block.phtml"/>
+        </reference>
+    </mpanel_blog_addpromoblock>
+    
+    <mpanel_blog_addpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addpollblock" template="mgs/mpanel/add-poll-block.phtml"/>
+        </reference>
+    </mpanel_blog_addpollblock>
+    
+    <mpanel_blog_addmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addmenublock" template="mgs/mpanel/add-menu-block.phtml"/>
+        </reference>
+    </mpanel_blog_addmenublock>
+    
+    <mpanel_blog_addfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addfacebooklikeboxblock" template="mgs/mpanel/add-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_blog_addfacebooklikeboxblock>
+    
+    <mpanel_blog_addtwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.addtwitterfeedblock" template="mgs/mpanel/add-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_blog_addtwitterfeedblock>
+    
+    <mpanel_blog_editcoreblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcoreblock" template="mgs/mpanel/edit-core-block.phtml"/>
+        </reference>
+    </mpanel_blog_editcoreblock>
+    
+    <mpanel_blog_editproductblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editproductblock" template="mgs/mpanel/edit-product-block.phtml"/>
+        </reference>
+    </mpanel_blog_editproductblock>
+    
+    <mpanel_blog_editstaticblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editstaticblock" template="mgs/mpanel/edit-static-block.phtml"/>
+        </reference>
+    </mpanel_blog_editstaticblock>
+    
+    <mpanel_blog_editcategorynavigationblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editcategorynavigationblock" template="mgs/mpanel/edit-category-navigation-block.phtml"/>
+        </reference>
+    </mpanel_blog_editcategorynavigationblock>
+    
+    <mpanel_blog_editpromoblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpromoblock" template="mgs/mpanel/edit-promo-block.phtml"/>
+        </reference>
+    </mpanel_blog_editpromoblock>
+    
+    <mpanel_blog_editpollblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editpollblock" template="mgs/mpanel/edit-poll-block.phtml"/>
+        </reference>
+    </mpanel_blog_editpollblock>
+    
+    <mpanel_blog_editmenublock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editmenublock" template="mgs/mpanel/edit-menu-block.phtml"/>
+        </reference>
+    </mpanel_blog_editmenublock>
+    
+    <mpanel_blog_editfacebooklikeboxblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.editfacebooklikeboxblock" template="mgs/mpanel/edit-facebook-like-box-block.phtml"/>
+        </reference>
+    </mpanel_blog_editfacebooklikeboxblock>
+    
+    <mpanel_blog_edittwitterfeedblock>
+        <update handle="editor"/>
+        <remove name="mpanel"/>
+        <remove name="theme.setting"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>		
+        <reference name="content">
+            <block type="core/template" name="mpanel.edittwitterfeedblock" template="mgs/mpanel/edit-twitter-feed-block.phtml"/>
+        </reference>
+    </mpanel_blog_edittwitterfeedblock>
+</layout>

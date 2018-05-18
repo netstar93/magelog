@@ -1,0 +1,86 @@
+<?php 
+	$hotspot_icon  = Mage::getBaseUrl('media').'lookbook/icons/default/hotspot-icon.png';	
+	$products_link = Mage::helper("adminhtml")->getUrl('adminhtml/catalog_product/');
+	$helper = Mage::helper('lookbook');
+	$width = Mage::getStoreConfig('lookbook/general/pin_width');
+	$height = Mage::getStoreConfig('lookbook/general/pin_height');
+	$background = Mage::getStoreConfig('lookbook/general/pin_background');
+	$color = Mage::getStoreConfig('lookbook/general/pin_text');
+	$okText = Mage::helper('core')->__('Save');
+	$deleteText = Mage::helper('core')->__('Delete');
+	$cancelText = Mage::helper('core')->__('Cancel');
+	$addPinText = Mage::helper('core')->__('Add Pin');
+	$radius = round($width/2);
+?>
+<style>
+	.image-annotate-area, .image-annotate-edit-area{
+		background: #<?php echo $background ?>;
+		color: #<?php echo $color ?>;
+		-webkit-border-radius: <?php echo $radius ?>px;
+		-moz-border-radius: <?php echo $radius ?>px;
+		border-radius: <?php echo $radius ?>px;
+		line-height: <?php echo $height ?>px;
+	}
+</style>
+
+<input type="hidden" id="default_pin_text" value="<?php echo Mage::getStoreConfig('lookbook/general/pin_default') ?>"/>
+<input type="hidden" id="ok_text" value="<?php echo $okText ?>"/>
+<input type="hidden" id="delete_text" value="<?php echo $deleteText ?>"/>
+<input type="hidden" id="cancel_text" value="<?php echo $cancelText ?>"/>
+<input type="hidden" id="add_text" value="<?php echo $addPinText ?>"/>
+<input type="hidden" id="pin_width" value="<?php echo $width ?>"/>
+<input type="hidden" id="pin_height" value="<?php echo $height ?>"/>
+<input type="hidden" id="load_product_url" value="<?php echo Mage::getUrl("adminhtml/lookbook/loadproduct", array('_secure'=>true)) ?>"/>
+		
+<script type="text/javascript">
+	//<![CDATA[                    
+		function InitHotspotBtn() {
+			 if (jQuery("img#LookbookImage").attr("id")) {
+				var annotObj = jQuery("img#LookbookImage").annotateImage({            				    
+					editable: true,
+					useAjax: false,
+					<?php if($id = $this->getRequest()->getParam('id')): ?>
+						<?php $lookbook = Mage::getModel('lookbook/lookbook')->load($id) ?>
+						<?php if ($lookbook->getPins()): ?>
+							notes: <?php echo $lookbook->getPins() ?>,
+						<?php endif ?>
+					<?php endif ?>
+					
+					input_field_id: "pins"                                          
+				});
+					
+				return annotObj;
+			}
+			else
+			{
+				return false;
+			}
+		};        
+								
+		function checkSKU(){
+			result = "";
+			request = new Ajax.Request(
+			"<?php echo Mage::getUrl("adminhtml/lookbook/checkproduct", array('_secure'=>true)) ?>",
+			{
+				method: 'post',
+				asynchronous: false,
+				onComplete: function(transport){
+					if (200 == transport.status) {
+						result = transport.responseText;
+						return result;
+					}
+					if (result.error) {
+						alert("Unable to check product SKU");
+						return false;                                                                                                
+					}
+				},
+				parameters: Form.serialize($("annotate-edit-form"))
+			});
+			return result;
+		};
+		
+		function setBlankPinLabel(){
+			jQuery('#image-annotate-label').val('');
+		}
+	//]]>
+</script>

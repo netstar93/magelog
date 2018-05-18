@@ -1,0 +1,43 @@
+<?php
+/* * ****************************************************
+ * Package   : AjaxCart
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+		<?php if (!$_product->isGrouped()): ?>
+			<div class="form-group">
+				<span onclick="minusQty('<?php echo $_product->getId(); ?>')" class="qty minus">-</span>
+				<input type="text" name="qty" id="qty<?php echo $_product->getId(); ?>" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('qty') ?>" class="input-qty-product qty" />
+				<span onclick="plusQty('<?php echo $_product->getId(); ?>')" class="qty plus">+</span>
+			</div>
+		<?php endif; ?>
+		<div class="btn-shop">
+			<button type="button" title="<?php echo $buttonTitle ?>" class="btn btn-secondary" onclick="ajaxSubmitForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>        
+			<div id="ajax_cart_loader" style="display:none;"><img src="<?php echo $this->getSkinUrl('images/loader.svg') ?>"/></div>
+				<?php echo $this->getChildHtml('', true, true) ?>
+		</div>
+    </div>
+<?php endif; ?>
+
+	<script type="text/javascript">
+		function plusQty(itemId){
+		qty = $('qty'+itemId).value;
+		qty = parseInt(qty);
+		qty++;
+		$('qty'+itemId).value = qty;
+	}
+	function minusQty(itemId){
+		qty = $('qty'+itemId).value;
+		qty = parseInt(qty);
+		
+		if(qty>0){
+			qty--;
+			$('qty'+itemId).value = qty;
+		}
+	}
+	</script>

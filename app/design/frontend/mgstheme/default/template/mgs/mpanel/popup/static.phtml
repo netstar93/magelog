@@ -1,0 +1,97 @@
+<?php if($id = $this->getRequest()->getParam('id')): ?>
+	<div class="edit-static-form">
+		<div class="row">
+			<div class="col-md-12 builder-title">
+				<h2><?php echo $this->__('Edit Static Block') ?></h2>
+			</div>
+		</div>
+		
+		<?php 
+			$helper = $this->helper('mpanel');
+			
+			$form = new Varien_Data_Form(
+				array('id' => 'edit_form', 'action' => $this->getUrl('mpanel/edit/staticpost',array('id'=>$id)), 'method' => 'post')
+			);
+			
+			$form->setHtmlIdPrefix('block_');
+			
+			$fieldset = $form->addFieldset('base_fieldset', array('legend'=>'', 'class' => 'fieldset-wide'));
+			
+			
+			$static = Mage::getModel('cms/block')->setStoreId(Mage::app()->getStore()->getId())->load($id);
+
+			$fieldset->addField('content', 'editor', array(
+				'name'      => 'content',
+				'label'     => $this->__('Content'),
+				'title'     => $this->__('Content'),
+				'class'		=> 'input-text',
+				'style'     => 'height:22em',
+				'config'    => $helper->getConfig(),
+				'required'  => true,
+			));
+			
+			$form->setUseContainer(true);
+
+			$values = $static->getData();
+			$form->setValues($values);
+			
+			echo $form->toHtml();
+		?>
+		
+		<script type="text/javascript">
+			mgsjQuery("#block_base_fieldset").append( '<div class="builder-action"><div class="buttons"><button type="button" class="btn btn-primary" onclick="updateForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div>' );
+			
+			var updateForm = new VarienForm('edit_form');
+			
+			updateForm.submit = function(button, url) {
+			
+				if (this.validator.validate()) {
+					mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+					mgsjQuery('#toggleblock_content').click();
+					button.disabled = true;
+					var form = this.form;
+					var oldUrl = form.action;
+
+					if (url) {
+					   form.action = url;
+					}
+					var e = null;
+					try {
+						mgsjQuery.ajax({
+							type: 'POST',
+							url: form.action,
+							dataType : 'json',
+							data: mgsjQuery('#edit_form').serialize(),
+							success: function(data, textStatus, xhr){
+								if(data.result=='success'){
+									button.disabled = false;
+									mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');
+									window.parent.mgsjQuery('#static_<?php echo $id ?>').html(data.content);
+									
+									if (window.parent == window.top) {
+										window.parent.mgsjQuery.magnificPopup.close();
+									}
+								}
+							}
+						});
+					} catch (e) {
+					}
+					this.form.action = oldUrl;
+					if (e) {
+						throw e;
+					}
+
+					if (button && button != 'undefined') {
+						button.disabled = true;
+					}
+				}
+			}.bind(updateForm);
+		</script>
+	</div>
+<?php else: ?>
+	<script type="text/javascript">
+		if (window.parent == window.top) {
+			window.parent.mgsjQuery.magnificPopup.close();
+		}
+	</script>
+<?php endif ?>

@@ -1,0 +1,158 @@
+<?php if(Mage::getStoreConfig('mgs_theme/general/back_to_top')): ?>
+	<a class="scroll-to-top"><i class="pe-7s-angle-up"></i></a>
+<?php endif ?>
+<?php if(Mage::getStoreConfig('mgs_theme/general/lazy_load_img')): ?>
+	<script type="text/javascript">
+		mgsjQuery("img.lazy").lazyload();
+	</script>
+<?php endif ?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	<script src="<?php echo $this->getSkinUrl('js/admin.js') ?>"></script>
+<?php endif ?>
+
+<?php $_helperAjaxCart = $this->helper('ajaxcart'); ?>
+<script type="text/javascript">
+	var newCount = 2;
+	var hotCount = 2;
+	var featuredCount = 2;
+	var saleCount = 2;
+	var rateCount = 2;
+	var swatchJs =  1;
+	
+	mgsjQuery(document).ready(function(){
+		if (document.getElementById('swatch-js'))
+		{
+			swatchJs = document.getElementById('swatch-js').innerHTML;
+		}
+	});
+	
+
+	function loadMore(count, type, productCount, perRow,displayType){
+		mgsjQuery('#'+type+'_loadmore_button .btn-loadmore').addClass('loading');
+		var request = new Ajax.Request(WEB_URL+'mpanel/loadmore/'+type+'?perrow='+perRow+'&p='+count+'&limit='+productCount+'&displaytype='+displayType, {
+			onSuccess: function(response) {
+				result = response.responseText;
+				mgsjQuery('#'+type+'_product_container').append(result);
+				mgsjQuery('#'+type+'_loadmore_button .btn-loadmore').removeClass('loading');
+				
+				initThemeJs();
+				<?php if ($_helperAjaxCart->isActive()): ?>
+					replaceStrings();
+				<?php endif ?>
+			}
+		});
+	}
+	// Ajax catalog load
+	function shopMore(url) {
+		oldHtml = mgsjQuery('.category-products ul.products-grid').html();
+		openOverlay();
+		oldUrl = url;
+		try {
+			mgsjQuery.ajax({
+				url: url,
+				dataType: 'json',
+				type: 'post',
+				data: data,
+				evalJS: true,
+				success: function(data) {
+					if (data.leftcontent) {
+						if (mgsjQuery('.block-layered-nav')) {
+							mgsjQuery('.block-layered-nav').empty();
+							mgsjQuery('.block-layered-nav').append(data.leftcontent);
+							
+						}
+					}
+					if (data.maincontent) {
+						mgsjQuery('#product-list-container').empty();
+						mgsjQuery('#product-list-container').append(data.maincontent);
+						mgsjQuery('.category-products ul.products-grid').prepend(oldHtml);
+						
+						swatch = document.getElementById('swatch-js').innerHTML;
+						swatch = swatch.replace("mgsjQuery(document).on('product-media-loaded', function() {","");
+						swatch = swatch.replace("});","");
+						eval(swatch);
+						
+
+					}
+					
+					if (mgsjQuery('.btn-cart').length > 0){
+						for (var i = 0; i < mgsjQuery('.btn-cart').length; i++) {
+							if (mgsjQuery('.btn-cart')[i].attributes.onclick !== undefined) {
+								mgsjQuery('.btn-cart')[i].attributes.onclick.nodeValue = mgsjQuery('.btn-cart')[i].attributes.onclick.nodeValue.replace('setLocation', 'ajaxAddToCart');
+								mgsjQuery('#product_addtocart_form').find(mgsjQuery('.btn-cart')[i]).attr('onclick', 'productAddToCartFormAjax.submit(this)');
+								mgsjQuery('.btn-cart')[i].attributes.onclick.nodeValue = mgsjQuery('.btn-cart')[i].attributes.onclick.nodeValue.replace('addWItemToCart', 'ajaxAddWItemToCart');
+								mgsjQuery('.btn-cart')[i].attributes.type.nodeValue = mgsjQuery('.btn-cart')[i].attributes.type.nodeValue.replace('submit', 'button');
+							} else {
+								mgsjQuery('#reorder-validate-detail').find(mgsjQuery('.btn-cart')[i]).attr('onclick', 'addMyOrderAjax.submit(this)');
+								mgsjQuery('#reorder-validate-detail').find(mgsjQuery('.btn-cart')[i]).prop('type', 'button');
+							}
+						}
+
+					}
+					if (mgsjQuery('.btn-add').length > 0){
+						for (var i = 0; i < mgsjQuery('.btn-add').length; i++) {
+							if (mgsjQuery('.btn-add')[i].attributes.onclick !== undefined) {
+								mgsjQuery('#wishlist-view-form').find(mgsjQuery('.btn-add')[i]).attr('onclick', 'ajaxAddAllWItemsToCart()');
+								mgsjQuery('#wishlist-view-form').find(mgsjQuery('.btn-add')[i]).prop('type', 'button');
+							}
+						}
+
+					}
+					
+					
+					
+					initThemeJs();
+					closeOverlay();
+					<?php if(Mage::getStoreConfig('mgs_theme/general/lazy_load_img')): ?>
+						mgsjQuery("img.lazy").lazyload();
+					<?php endif ?>
+				}
+			});
+		} catch (e) {}
+	}
+</script>
+
+<script type="text/javascript">
+	function zoomElement(el){
+		mgsjQuery(el).addClass('parentZoom');
+		<?php if(Mage::getStoreConfig('mpanel/product_details/disable_zoom_detail')): ?>
+			if(mgsjQuery(window).width() > 767){
+				mgsjQuery(el).zoom({magnify: 1.5});
+			}else {
+				mgsjQuery(el).trigger('zoom.destroy');
+			}
+		<?php else: ?>
+			mgsjQuery(el).zoom({magnify: 1.5});
+		<?php endif ?>
+	}
+	
+	function zoomElementQr(el){
+		el.parent().addClass('parentZoom');
+		<?php if(Mage::getStoreConfig('mpanel/product_details/disable_zoom_detail')): ?>
+			if(mgsjQuery(window).width() > 767){
+				el.parent().zoom({magnify: 1.5});
+			}else {
+				el.parent().trigger('zoom.destroy');
+			}
+		<?php else: ?>
+			el.parent().zoom({magnify: 1.5});
+		<?php endif ?>
+	}
+</script>
+
+<?php if(Mage::getStoreConfig('mpanel/product_details/disable_zoom_detail')): ?>
+	<script type="text/javascript">
+		mgsjQuery(window).resize(function(){
+			if (mgsjQuery(window).width() > 767) {
+				mgsjQuery('.parentZoom').each(function(i, obj) {
+					mgsjQuery(this).zoom({magnify: 1.5});
+				});
+			} else {
+				mgsjQuery('.parentZoom').each(function(i, obj) {
+					mgsjQuery(this).trigger('zoom.destroy');
+				});
+			}
+		});
+	</script>
+<?php endif ?>

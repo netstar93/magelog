@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MGS_Storelocator>
+            <version>0.1.3</version>
+        </MGS_Storelocator>
+    </modules>
+	
+	<frontend>
+        <routers>
+            <mgs_storelocator>
+                <use>standard</use>
+                <args>
+                    <module>MGS_Storelocator</module>
+                    <frontName>storelocator</frontName>
+                </args>
+            </mgs_storelocator>
+        </routers>
+        
+        <layout>
+            <updates>
+                <mgs_storelocator>
+                    <file>mgs_storelocator.xml</file>
+                </mgs_storelocator>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <adminhtml>
+		<menu>
+			<mgscore module="mgscore"> 
+				<children>
+					<storelocator module="mgs_storelocator">
+						<title>Store Locator</title>
+						<sort_order>100</sort_order>
+						<children>
+							<manage module="mgs_storelocator">
+								<title>Manage Stores</title>
+								<sort_order>1</sort_order>
+								<action>adminhtml/managestorelocator</action>
+							</manage>
+							<settings module="mgs_storelocator">
+								<title>Setting</title>
+								<sort_order>2</sort_order>
+								<action>adminhtml/system_config/edit/section/storelocator</action>
+							</settings> 
+						</children>
+					</storelocator>
+				</children>
+			</mgscore>
+		</menu>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<mgscore module="mgscore"> 
+							<children>
+								<storelocator module="mgs_storelocator">
+									<title>Store Locator</title>
+									<sort_order>100</sort_order>
+									<children>
+										<manage module="mgs_storelocator">
+											<title>Manage Stores</title>
+											<sort_order>1</sort_order>
+										</manage> 
+										<settings module="mgs_storelocator">
+											<title>General Settings</title>
+											<sort_order>2</sort_order>
+										</settings> 
+									</children>
+								</storelocator>
+							</children>
+						</mgscore>
+						
+						<system>
+							<children>
+								<config>
+									<children>
+										<storelocator translate="title">
+											<title>Store Locator</title>
+											<sort_order>2000</sort_order>
+										</storelocator>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+        
+        <layout>
+            <updates>
+                <mgs_storelocator>
+                    <file>mgs_storelocator.xml</file>
+                </mgs_storelocator>
+            </updates>
+        </layout>
+    </adminhtml>
+	
+	<admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <MGS_Storelocator after="Mage_Adminhtml">MGS_Storelocator_Adminhtml</MGS_Storelocator>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    <global>
+		<events>
+			<controller_front_init_routers>
+				<observers>
+					<storelocator_custom_router>
+						<class>MGS_Storelocator_Controller_Router</class>
+						<method>initControllerRouters</method>
+					</storelocator_custom_router>
+				</observers>
+			</controller_front_init_routers>
+		</events>
+         <models>
+            <mgs_storelocator>
+                <class>MGS_Storelocator_Model</class>
+                <resourceModel>storelocator_resource</resourceModel>
+            </mgs_storelocator>
+            <storelocator_resource>
+                <class>MGS_Storelocator_Model_Resource</class>
+                <entities>
+                    <storelocator>
+                        <table>mgs_storelocator</table>
+                    </storelocator>
+                    <storelocator_store>
+                        <table>mgs_storelocator_store</table>
+                    </storelocator_store>
+                </entities>
+            </storelocator_resource>
+        </models>
+        
+        <helpers>
+            <mgs_storelocator>
+                <class>MGS_Storelocator_Helper</class>
+            </mgs_storelocator>  
+        </helpers>
+        
+        <blocks>
+            <mgs_storelocator>
+                <class>MGS_Storelocator_Block</class>
+            </mgs_storelocator>
+        </blocks>
+        
+        <resources>
+            <mgs_storelocator_setup>
+                <setup>
+                    <module>MGS_Storelocator</module>
+                    <class>MGS_Storelocator_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mgs_storelocator_setup>
+            
+            <mgs_storelocator_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mgs_storelocator_write>
+            
+            <mgs_storelocator_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mgs_storelocator_read>
+        </resources>
+    </global> 
+</config>

@@ -1,0 +1,313 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $helper = $this->helper('mpanel'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+    <div class="product-essential">
+        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+            <?php echo $this->getBlockHtml('formkey') ?>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+			<div class="row">
+            <div class="product-img-box col-md-6">
+                <?php echo $this->getChildHtml('media') ?>
+            </div>
+            <div class="product-shop col-md-6">
+                <div class="product-name">
+                    <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                </div>
+				<?php if(Mage::getStoreConfig('mpanel/product_details/sku')): ?>
+					<div class="product-sku">
+						<?php echo $this->__('SKU: <span>%s</span>', $_product->getSku()) ?>
+					</div>
+				 <?php endif; ?>
+
+                <?php if (Mage::getStoreConfig('mpanel/product_details/reviews_summary')): ?>
+                    <?php echo $this->getReviewsSummaryHtml($_product, false, true) ?>
+                <?php endif; ?>
+                <?php if (Mage::getStoreConfig('mpanel/product_details/alert_urls')): ?>
+                    <?php echo $this->getChildHtml('alert_urls') ?>
+                <?php endif; ?>
+				<div>
+					<?php echo $this->getChildHtml('product_type_data') ?>
+				</div>
+
+                <?php echo $this->getTierPriceHtml() ?>
+
+
+                <?php echo $this->getChildHtml('extrahint') ?>
+
+
+                <?php if (!$this->hasOptions()): ?>
+                    <div class="add-to-box">
+                        <?php if ($_product->isSaleable()): ?>
+                            <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('mpanel/product_details/wishlist_compare')): ?>
+                            <?php echo $this->getChildHtml('addto') ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <?php echo $this->getChildHtml('extra_buttons') ?>
+
+                <?php elseif (!$_product->isSaleable()): ?>
+                    <div class="add-to-box">
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (Mage::getStoreConfig('mpanel/product_details/short_description')): ?>
+                    <?php if ($_product->getShortDescription()): ?>
+                        <div class="short-description">
+                            <h2><?php echo $this->__('Quick Overview') ?></h2>
+                            <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+				
+				<?php if (Mage::getStoreConfig('mpanel/product_details/brand_image')): ?>
+					<?php echo $this->getLayout()->createBlock('brand/product_brand')->setTemplate('mgs/brand/product_brand.phtml')->toHtml() ?>
+				<?php endif; ?>
+				
+                <?php echo $this->getChildHtml('other'); ?>
+
+				<div class="clearer"></div>
+				<div class="box-social">
+					<?php if (Mage::getStoreConfig('mpanel/product_details/email_friend')): ?>
+						<?php if ($this->canEmailToFriend()): ?>
+							<p class="email-friend pull-left"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
+						<?php endif; ?>
+					<?php endif; ?>
+					<?php if(Mage::getStoreConfig('mpanel/share_this/product')): ?>
+						<div class="social-icons pull-right">
+							<?php echo Mage::getStoreConfig('mpanel/share_this/span_tags') ?>
+						</div>
+					<?php endif; ?>	
+				</div>
+				
+                <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                <?php endif; ?>
+				<?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+                <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+				<?php endif; ?>
+				
+				<div class="clearer"></div>
+				<!-- custom statick block 1 -->
+				<div class="static-block-top">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mgs_panel_product_static_block_top')->setCanEdit(1)->toHtml() ?>
+				</div>
+            </div>
+			</div>
+            <div class="clearer"></div>
+        </form>
+        <script type="text/javascript">
+            //<![CDATA[
+            var productAddToCartForm = new VarienForm('product_addtocart_form');
+            productAddToCartForm.submit = function (button, url) {
+                if (this.validator.validate()) {
+                    var form = this.form;
+                    var oldUrl = form.action;
+
+                    if (url) {
+                        form.action = url;
+                    }
+                    var e = null;
+                    try {
+                        this.form.submit();
+                    } catch (e) {
+                    }
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+
+                    if (button && button != 'undefined') {
+                        button.disabled = true;
+                    }
+                }
+            }.bind(productAddToCartForm);
+
+            productAddToCartForm.submitLight = function (button, url) {
+                if (this.validator) {
+                    var nv = Validation.methods;
+                    delete Validation.methods['required-entry'];
+                    delete Validation.methods['validate-one-required'];
+                    delete Validation.methods['validate-one-required-by-name'];
+                    // Remove custom datetime validators
+                    for (var methodName in Validation.methods) {
+                        if (methodName.match(/^validate-datetime-.*/i)) {
+                            delete Validation.methods[methodName];
+                        }
+                    }
+
+                    if (this.validator.validate()) {
+                        if (url) {
+                            this.form.action = url;
+                        }
+                        this.form.submit();
+                    }
+                    Object.extend(Validation.methods, nv);
+                }
+            }.bind(productAddToCartForm);
+            //]]>
+        </script>
+    </div>
+    
+    <?php
+    $productTabs = $helper->getProductTabs();
+    $tabsArray = array();
+    foreach ($this->getChildGroup('tabs', 'getChildHtml') as $alias => $html) {
+        $tabsArray[$alias] = $html;
+    }
+    ?>
+    <div id="product_tabs" class="tabbable">
+        <ul class="nav nav-tabs">
+            <?php
+            $i = 0;
+            foreach ($productTabs as $key => $value): $i++;
+                ?>
+                <?php if ($key != 'description' && $key != 'additional' && $key != 'reviews' && $key != 'product_tag_list'): ?>                            
+                    <li<?php if ($i == 1): ?> class="active"<?php endif ?>>
+                        <a href="#<?php echo "box-{$key}" ?>" data-toggle="tab">		                        
+                            <?php echo Mage::getStoreConfig('mpanel/product_tabs/' . $key . '_title'); ?>                            		                                            
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <?php if ($tabsArray[$key] != ''): ?>
+                        <li<?php if ($i == 1): ?> class="active"<?php endif ?>>
+                            <a href="#<?php echo "box-{$key}" ?>" data-toggle="tab">                                                
+                                <?php if ($title = $this->getChildData($key, 'title')): ?>
+                                    <?php echo $this->escapeHtml($title); ?>
+                                <?php endif; ?>                                                                         
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                <?php endif; ?>
+            <?php endforeach ?>
+            <?php if ($helper->acceptToUsePanel()): ?>      
+                <li>
+                    <a class="btn btn-primary popup-link" title="<?php echo $this->__('Manage Product Tabs'); ?>" href="<?php echo $this->getUrl('mpanel/index/manageProductTabs'); ?>">
+                        <em class="fa fa-plus"> </em>
+                    </a>
+                </li>
+            <?php endif; ?>
+        </ul>
+        <div class="tab-content">
+            <?php
+            $i = 0;
+            foreach ($productTabs as $key => $value): $i++;
+                ?>
+                <?php if ($key != 'description' && $key != 'additional' && $key != 'reviews' && $key != 'product_tag_list' && $key != 'product_questions'): ?>   
+                    <div class="tab-pane<?php if ($value == 0): ?> active<?php endif ?>" id="<?php echo "box-{$key}" ?>">
+                        <?php if (Mage::getStoreConfig('mpanel/product_tabs/' . $key) == 'attribute'): ?>
+                            <?php $p = Mage::getModel('catalog/product')->load($_product->getId()); ?>                            
+                            <p><?php echo $p->getResource()->getAttribute(Mage::getStoreConfig('mpanel/product_tabs/' . $key . '_attribute_code_value'))->getFrontend()->getValue($p); ?></p>
+                        <?php else: ?>
+                            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId(Mage::getStoreConfig('mpanel/product_tabs/' . $key . '_identifier_value'))->toHtml(); ?>
+                        <?php endif; ?>
+                    </div>
+                <?php else: ?>
+                    <?php if ($key == 'product_questions'): ?>
+                        <div class="tab-pane<?php if ($value == 0): ?> active<?php endif ?>" id="<?php echo "box-{$key}" ?>">
+                            <?php echo $this->getChildHtml('product.questions') ?>
+                        </div>
+                    <?php else: ?>
+                        <?php
+                        $i = 0;
+                        foreach ($this->getChildGroup('tabs', 'getChildHtml') as $alias => $html): $i++;
+                            ?>
+                            <?php if ($key == $alias): ?>
+                                <div class="tab-pane<?php if ($i == 1): ?> active<?php endif ?>" id="<?php echo "box-{$alias}" ?>">
+                                    <?php echo $html; ?>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach ?>
+                    <?php endif; ?>                    
+                <?php endif; ?>                
+            <?php endforeach ?>            
+        </div>
+    </div>
+
+    <div class="product-collateral">
+        <?php if (Mage::getStoreConfig('mpanel/product_details/upsell_products')): ?>
+            <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php endif; ?>
+
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+
+    </div>
+	<?php if (Mage::getStoreConfig('mpanel/product_details/brand_products')): ?>
+		<?php echo $this->getLayout()->createBlock('brand/product_brand')->setData('show_product_short_description', 0)->setTemplate('mgs/brand/related_products.phtml')->toHtml(); ?>
+	<?php endif; ?>
+	
+	<div class="clearer"></div>
+	<!-- custom statick block 2 -->
+	<div class="static-block-bottom">
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mgs_panel_product_static_block_bottom')->setCanEdit(1)->toHtml() ?>
+	</div>
+	
+	<!-- start google rich snippets -->
+	<?php if(Mage::getStoreConfig('mgs_theme/general/snippets') == 1): ?>
+	<!-- MICRODATA -->
+	<div itemscope itemtype="http://schema.org/Product">
+	  <meta itemprop="name" content="<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>" />
+	  <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+	    <meta itemprop="priceCurrency" content="<?php echo $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode(); ?>">
+	    <meta itemprop="price" content="<?php echo strip_tags(Mage::helper('core')->currency($_product->getPrice())); ?>">
+	    <?php
+	    $microdata_stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getIsInStock();
+	    if ($microdata_stock >= 1){
+	      $microdata_stock_msg = 'In Stock';
+	    }else{
+	      $microdata_stock_msg = 'Out of Stock';
+	    }
+	    ?>
+	    <meta itemprop="availability" content="<?php echo $microdata_stock_msg; ?>">
+	    <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition" />
+	  </div>
+	  <div itemtype="http://schema.org/AggregateRating" itemscope="" itemprop="aggregateRating">
+		<?php $rating_summary = $_product->getRatingSummary();?>  
+		<meta itemprop="ratingValue" content="<?php echo $rating_summary->getRatingSummary()/20; ?>">
+		<meta itemprop="ratingCount" content="<?php echo $rating_summary->getReviewsCount(); ?>">
+	  </div>
+	</div>
+	<!-- MICRODATA -->
+	<?php endif; ?>	
+</div>

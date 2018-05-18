@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Advancedreports
+ * Author    : http://www.magesolution.com
+ * Copyright : (c) 2013 - Mage Solution
+*******************************************************/
+-->
+<config>
+    <menu>
+        <mgscore module="mgscore">
+            <children>
+                <advancedreports translate="title" module="advancedreports">
+                    <title>Advanced Reports</title>
+                    <sort_order>71</sort_order>
+                    <depends>
+                        <module>MGS_Advancedreports</module>
+                        <config>advancedreports/general/active</config>
+                    </depends>
+                    <children>		
+                        <salesbycountry translate="title" module="advancedreports">
+                            <title>Sales by Country</title>
+                            <sort_order>0</sort_order>
+                            <action>adminhtml/report/salesbycountry</action>
+                        </salesbycountry>
+                        <salesbycustomergroup translate="title" module="advancedreports">
+                            <title>Sales by Customer Group</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/report/salesbycustomergroup</action>
+                        </salesbycustomergroup>			
+                        <salesbycouponcode translate="title" module="advancedreports">
+                            <title>Sales by Coupon Code</title>
+                            <sort_order>2</sort_order>
+                            <action>adminhtml/report/salesbycouponcode</action>
+                        </salesbycouponcode>
+                        <salesreport translate="title" module="advancedreports">
+                            <title>Sales Report</title>
+                            <sort_order>3</sort_order>
+                            <action>adminhtml/report/salesreport</action>
+                        </salesreport>
+                        <salesbyproduct translate="title" module="advancedreports">
+                            <title>Sales by Product</title>
+                            <sort_order>4</sort_order>
+                            <action>adminhtml/report/salesbyproduct</action>
+                        </salesbyproduct>
+                        <salesbyhour translate="title" module="advancedreports">
+                            <title>Sales by Hour</title>
+                            <sort_order>5</sort_order>
+                            <action>adminhtml/report/salesbyhour</action>
+                        </salesbyhour>
+                        <salesbydayofweek translate="title" module="advancedreports">
+                            <title>Sales by Day of Week</title>
+                            <sort_order>6</sort_order>
+                            <action>adminhtml/report/salesbydayofweek</action>
+                        </salesbydayofweek>
+                        <salesbynewandreturning translate="title" module="advancedreports">
+                            <title>New and Returning Customer</title>
+                            <sort_order>7</sort_order>
+                            <action>adminhtml/report/salesbynewandreturning</action>
+                        </salesbynewandreturning>		    
+                    </children>
+                </advancedreports>
+            </children>
+        </mgscore>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <advancedreports translate="title">
+                                        <title>Advanced Reports</title>
+                                        <sort_order>10</sort_order>
+                                    </advancedreports>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <advancedreports translate="title" module="advancedreports">
+                        <title>Advanced Reports</title>
+                        <sort_order>71</sort_order>
+                        <depends>
+                            <module>MGS_Advancedreports</module>
+                            <config>advancedreports/general/active</config>
+                        </depends>
+                        <children>				
+                            <salesbycountry translate="title" module="advancedreports">
+                                <title>Sales by Country</title>
+                                <sort_order>0</sort_order>
+                                <action>advancedreports/adminhtml_report/salesbycountry</action>
+                            </salesbycountry>
+                            <salesbycustomergroup translate="title" module="advancedreports">
+                                <title>Sales by Customer Group</title>
+                                <sort_order>1</sort_order>
+                                <action>advancedreports/adminhtml_report/salesbycustomergroup</action>
+                            </salesbycustomergroup>
+                            <salesbycouponcode translate="title" module="advancedreports">
+                                <title>Sales by Coupon Code</title>
+                                <sort_order>2</sort_order>
+                                <action>advancedreports/adminhtml_report/salesbycouponcode</action>
+                            </salesbycouponcode>
+                            <salesreport translate="title" module="advancedreports">
+                                <title>Sales Report</title>
+                                <sort_order>3</sort_order>
+                                <action>advancedreports/adminhtml_report/salesreport</action>
+                            </salesreport>
+                            <salesbyproduct translate="title" module="advancedreports">
+                                <title>Sales by Product</title>
+                                <sort_order>4</sort_order>
+                                <action>advancedreports/adminhtml_report/salesbyproduct</action>
+                            </salesbyproduct>
+                            <salesbyhour translate="title" module="advancedreports">
+                                <title>Sales by Hour</title>
+                                <sort_order>5</sort_order>
+                                <action>advancedreports/adminhtml_report/salesbyhour</action>
+                            </salesbyhour>
+                            <salesbydayofweek translate="title" module="advancedreports">
+                                <title>Sales by Day of Week</title>
+                                <sort_order>6</sort_order>
+                                <action>advancedreports/adminhtml_report/salesbydayofweek</action>
+                            </salesbydayofweek>
+                            <salesbynewandreturning translate="title" module="advancedreports">
+                                <title>New and Returning Customer</title>
+                                <sort_order>7</sort_order>
+                                <action>advancedreports/adminhtml_report/salesbynewandreturning</action>
+                            </salesbynewandreturning>				
+                        </children>
+                    </advancedreports>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

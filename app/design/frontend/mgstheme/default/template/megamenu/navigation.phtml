@@ -1,0 +1,19 @@
+<?php $megaMenu = $this->getMegamenuItems(); ?>
+<?php if(count($megaMenu)>0 || Mage::getStoreConfig('megamenu/general/home')==1):?>
+	<ul id="mainMenu" class="nav nav-pills nav-main">
+		<?php if(Mage::getStoreConfig('megamenu/general/home')==1): ?>
+			<li<?php if($this->getUrl('') == $this->getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true))):?> class="active"<?php endif ?>>
+				<a href="<?php echo $this->getBaseUrl() ?>">
+					<?php echo Mage::getStoreConfig('megamenu/general/hometext') ?>
+				</a>
+			</li>
+		<?php endif ?>
+		<?php if(count($megaMenu)>0): ?>
+			<?php $i=0; foreach($megaMenu as $item): $i++ ?>
+				<li class="<?php echo $this->getClass($item) ?>">
+					<?php echo $this->getMenuHtml($item) ?>
+				</li>
+			<?php endforeach ?>
+		<?php endif ?>
+	</ul>
+<?php endif ?>

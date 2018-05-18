@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : Event
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+*******************************************************/
+-->
+<layout version="0.1.0">
+    <adminhtml_event_index>
+        <reference name="content">
+            <block type="event/adminhtml_event" name="event" />
+        </reference>
+    </adminhtml_event_index>
+</layout>

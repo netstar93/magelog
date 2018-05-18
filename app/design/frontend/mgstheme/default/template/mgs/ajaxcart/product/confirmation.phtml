@@ -1,0 +1,37 @@
+<?php
+/* * ****************************************************
+ * Package   : AjaxCart
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+ * ***************************************************** */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php
+$panelHelper = $this->helper('mpanel');
+$size = $panelHelper->convertRatioToSize();
+?>
+<div class="mfp-iframe-scaler ajaxcart-iframe">
+    <div class="frame">
+        <div class="loader" id="success-message-container">
+            <p style="margin: 0; line-height: 1.2;"><?php echo $this->__('You\'ve just added this product to the cart:') ?></p>
+            <div class="ajax-content">
+                <p>
+                    <b><?php echo $_product->getName(); ?></b>
+                </p>
+                <img src="<?php echo Mage::helper('catalog/image')->init($_product, 'image')->resize(135, 135); ?>"/>
+            </div>
+            <br><br>
+            <button class="btn btn-default btn-cart" id="finish_and_checkout" onclick="window.location.href = '<?php echo $this->getUrl('checkout/cart') ?>'" name="finish_and_checkout" type="button">
+                <span>
+                    <span><?php echo $this->__('Go to cart page') ?></span>                    
+                </span>
+            </button>
+            <button class="btn btn-primary btn-cart" id="continue_shopping" onclick="closeMgs()" name="continue_shopping" type="button">
+                <span>
+                    <span><?php echo $this->__('Continue shopping') ?></span>                                    
+                </span>
+            </button>
+
+        </div>
+    </div>
+</div>

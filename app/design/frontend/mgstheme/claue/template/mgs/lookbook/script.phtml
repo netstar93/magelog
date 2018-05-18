@@ -1,0 +1,18 @@
+<script type="text/javascript">
+	mgsjQuery(window).load(function () {
+		if(mgsjQuery('.pin__type').length){
+			mgsjQuery('.lookbook-container .pin__type').hover(function(){
+				mgsjQuery('.lookbook-container .pin__image').toggleClass('pm-mask');
+			});
+			
+			mgsjQuery('.lookbook-container .pin__type').click(function(){
+				mgsjQuery('.lookbook-container .pin__type').removeClass('pin__opened');
+				mgsjQuery(this).toggleClass('pin__opened');
+			});
+			
+			mgsjQuery('.lookbook-image').click(function(){
+				mgsjQuery('.lookbook-container .pin__type').removeClass('pin__opened');
+			});
+		}
+	});
+</script>

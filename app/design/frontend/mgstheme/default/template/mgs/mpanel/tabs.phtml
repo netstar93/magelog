@@ -1,0 +1,67 @@
+<?php $tabs = $this->getTabs(); $tabs = explode(',', $tabs) ?>
+<?php $catId = '' ?>
+<?php if($this->getCategoryId()!=''): ?>
+	<?php $catId = $this->getCategoryId() ?>
+<?php endif ?>
+<div id="product_tabs<?php echo $catId ?>" class="tabbable tabs tabs-style-flip">
+	<ul class="nav nav-tabs" role="tablist">
+		<?php $i=0; foreach($tabs as $_tab): $i++?>
+			<li<?php if($i==1): ?> class="active"<?php endif ?>  role="presentation">
+				<a href="#box-<?php echo $_tab ?><?php echo $catId ?>" role="tab" data-toggle="tab" aria-expanded="false">
+					<span><?php echo $this->helper('mpanel')->changeTabTitle($_tab, $this->getData()) ?></span>
+				</a>
+			</li>
+		<?php endforeach ?>
+	</ul>
+	<div class="col-md-12">
+	<div class="content-wrap products row tab-content">
+		<?php $i=0; foreach($tabs as $_tab): $i++;?>
+			<div  role="tabpanel" class="tab-pane fade <?php if($i==1): ?> active in<?php endif ?> " id="<?php echo "box-".$_tab ?><?php echo $catId ?>">
+				<?php if($_tab == 'sale_products' || $_tab == 'rate_products'): ?>
+					<?php if($_tab == 'sale_products'): ?>
+						<?php $block = 'mpanel/product_sale' ?>
+					<?php else: ?>
+						<?php $block = 'mpanel/product_rate' ?>
+					<?php endif ?>
+					<?php 
+						$html = $this->getLayout()
+									->createBlock($block)
+									->setTitle('')
+									->setProductsCount($this->getProductsCount())
+									->setSlider($this->getSlider())
+									->setProductRatio($this->getProductRatio())
+									->setCategoryId($this->getCategoryId())
+									->setCountPerRow($this->getCountPerRow())
+									->setNumberRow($this->getNumberRow())
+									->setAutoPlay($this->getAutoPlay())
+									->setStopHover($this->getStopHover())
+									->setNavigation($this->getNavigation())
+									->setPagination($this->getPagination())
+									->setTemplate('mgs/mpanel/products/'.$_tab.'.phtml')
+									->toHtml();
+					?>
+				<?php else: ?>
+					<?php 
+						$html = $this->getLayout()
+									->createBlock('mpanel/products')
+									->setTitle('')
+									->setProductsCount($this->getProductsCount())
+									->setSlider($this->getSlider())
+									->setProductRatio($this->getProductRatio())
+									->setCategoryId($this->getCategoryId())
+									->setCountPerRow($this->getCountPerRow())
+									->setNumberRow($this->getNumberRow())
+									->setAutoPlay($this->getAutoPlay())
+									->setStopHover($this->getStopHover())
+									->setNavigation($this->getNavigation())
+									->setPagination($this->getPagination())
+									->setTemplate('mgs/mpanel/products/'.$_tab.'.phtml')
+									->toHtml();
+					?>
+				<?php endif ?>
+				<?php echo $html; ?>
+			</div>
+		<?php endforeach; ?>
+	</div>
+	</div>
+</div>

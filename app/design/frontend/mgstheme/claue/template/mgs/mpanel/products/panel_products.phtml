@@ -1,0 +1,393 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php if ($this->getTitle() != '' || $this->getSubTitle() != ''): ?>
+	<div class="content-heading">
+		<?php if ($this->getTitle() != ''): ?>
+			<h3 class="title"><?php echo $this->getTitle(); ?></h3>
+		<?php endif ?>
+		<?php if ($this->getSubTitle() != ''): ?>
+			<div class="block-note"><?php echo $this->getSubTitle(); ?></div>
+		<?php endif ?>
+	</div>
+<?php endif ?>
+<?php $catId = ''; ?>
+<?php if ($this->getCategoryId() != ''): ?>
+	<?php $catId = $this->getCategoryId() ?>
+<?php endif ?>
+<?php $blockId = rand() . time(); ?>
+<?php $type_template =  $this->getTemplateType();?>
+
+<?php $baseImg = $this->getSkinUrl('images/blank.png'); ?>
+<?php $baseImgHover = $this->getSkinUrl('images/blank.png'); ?>
+<?php $lazyLoad = Mage::getStoreConfig('mgs_theme/general/lazy_load_img'); ?>
+
+<?php switch ($type = $this->getDisplayType()) {
+	case 'new_products':
+        $_products = $this->getProductCollection();
+		$typeFilter = 'new';
+		$_idLoadMore = 'new_loadmore_button';
+		$_idBlock = 'new-products-grid-carousel' . $blockId . $catId;
+		$block = 'mpanel/products';
+    break;
+	case 'featured_products':
+        $_products = $this->getSpecialProducts('featured');
+		$typeFilter = 'featured';
+		$_idLoadMore = 'featured_loadmore_button';
+		$_idBlock = 'featured-products-grid-carousel' . $blockId . $catId;
+		$block = 'mpanel/products';
+    break;
+	case 'hot_products':
+        $_products = $this->getSpecialProducts('hot');
+		$typeFilter = 'hot';
+		$_idLoadMore = 'hot_loadmore_button';
+		$_idBlock = 'hot-products-grid-carousel' . $blockId . $catId;
+		$block = 'mpanel/products';
+    break;
+	case 'product_sale':
+        $_products = $this->getSaleProducts();
+		$typeFilter = 'sale';
+		$_idLoadMore = 'sale_loadmore_button';
+		$_idBlock = 'sale-products-grid-carousel' . $blockId . $catId;
+		$block = 'mpanel/product_sale';
+    break;
+	case 'product_rate':
+        $_products = $this->getTopRateProducts();
+		$typeFilter = 'rate';
+		$_idLoadMore = 'rate_loadmore_button';
+		$_idBlock = 'rate-products-grid-carousel' . $blockId . $catId;
+		$block = 'mpanel/product_rate';
+    break;
+} ?>
+<?php $product_url_not_rw = Mage::getBaseUrl() . 'catalog/product/view/id/'; ?>
+<?php if ($_products && $_products->getSize()): ?>
+    <?php $helper = $this->helper('mpanel') ?>
+    <?php $size = $helper->convertRatioToSize($this->getProductRatio()) ?>
+    <?php
+    if ($this->getCountPerRow()) {
+        $col = $this->getCountPerRow();
+    } else {
+        $col = 1;
+    }
+    $perrow = $col;
+    $col = $helper->convertColRowCustom($col);
+    ?>
+	<?php if($type_template == 'grid' || $type_template == NULL): ?>
+		<?php if ($this->getSlider() == 1): ?>
+			<div class="row">
+				<div class="products-grid owl-carousel products-carousel product-category-tab<?php if ($this->getNumberRow() == 1): ?> products-carousel-1-row<?php endif ?>" id="<?php echo $_idBlock; ?>">
+					<?php $j = 0; foreach ($_products as $_product): $j++; ?>
+						<?php $_product = Mage::getModel('catalog/product')->load($_product->getId()) ?>
+						
+						<?php if ($this->getNumberRow() > 1): ?>
+							<?php $_columnCount = $this->getNumberRow() * $this->getCountPerRow(); ?>
+							<?php if ($j % $_columnCount == 1): ?>
+								<div class="items">
+							<?php endif ?>
+						<?php endif ?>
+						<?php $itemClass = $helper->getColClass($perrow) ?>
+						<?php $clearClass = $helper->getClearClass($perrow, $j) ?>
+						<div class="item<?php if ($this->getNumberRow() > 1): ?> <?php echo $itemClass ?> <?php echo $clearClass ?><?php endif ?>">
+							<div class="product-content">
+								<div class="product-top">
+									<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="product-image photo">
+										<?php $productImage = $this->helper('catalog/image')->init($_product, 'small_image')->resize($size['width'], $size['height']); ?>
+										<?php $productImageHover = $this->helper('catalog/image')->init($_product, 'thumbnail')->resize($size['width'], $size['height']); ?>
+										<?php if(!$lazyLoad): ?>
+											<?php $baseImg = $productImage; $baseImgHover = $productImageHover; ?>
+										<?php endif ?>
+										<img id="product-collection-image-<?php echo $_product->getId() ?>" src="<?php echo $baseImg ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive<?php if($lazyLoad): ?> lazyOwl<?php endif ?>" data-src="<?php echo $productImage ?>"/>
+										<?php if(basename($_product->getData('thumbnail')) != basename($_product->getData('small_image'))): ?>
+											<img src="<?php echo $baseImgHover ?>" 
+											alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="img-responsive img-hover<?php if($lazyLoad): ?> lazyOwl<?php endif ?>" data-src="<?php echo $productImage ?>"/>
+										<?php endif ?>
+									</a>
+									<?php echo $helper->getProductLabel($_product) ?>
+									<ul class="icon-links">
+										<?php if($this->helper('core')->isModuleEnabled('MGS_QuickView') && Mage::getStoreConfig('quickview/general/active')): ?>
+											<li class="li-quickview"><button type="button" title="<?php echo $this->__('Quickview') ?>" class="btn-quickview action quick-view" onclick="quickView('<?php echo $product_url_not_rw . $_product->getId() ?>'); return false;"><em class="pe-7s-search"></em></button></li>
+										<?php endif ?>
+										<?php if ($this->helper('wishlist')->isAllow() && $helper->isShowWishList()) : ?>
+											<li><button class="action action-wishlist" type="button" title="<?php echo $this->__('Add to Wishlist') ?>" onclick="setLocation('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>')"><em class="pe-7s-like"></em></button></li>
+										<?php endif; ?>
+										<?php $_compareUrl=$this->getAddToCompareUrl($_product); ?>
+										<?php if($_compareUrl && $helper->isShowCompare()): ?>
+											<li><button type="button" class="action action-compare" title="<?php echo $this->__('Add to Compare') ?>" onclick="setLocation('<?php echo $_compareUrl ?>')"><em class="pe-7s-graph3"></em></button></li>
+										<?php endif; ?>
+									</ul>
+									<?php if($helper->isShowAddtoCart() && $_product->isSaleable()): ?>
+										<div class="add-to-cart"><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn-cart action" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span class="icon pe-7s-shopbag"></span><span class="text"><?php echo $this->__('Add to Cart'); ?></span></button></div>
+									<?php endif ?>
+								</div>
+								<div class="product-desc">
+									<h5 class="product-name">
+										<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>)"><?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName() , 'name') ?></a>
+									</h5>
+									<?php echo $this->getPriceHtml($_product, true, '-widget-new-grid') ?>
+									
+									<?php 
+										//$_nameAfterChild = $this->getLayout()->getBlock('product_list.swatches');
+										$_nameAfterChild = $this->getLayout()->createBlock('core/template')->setTemplate('configurableswatches/catalog/product/list/swatches.phtml');
+										$_nameAfterChild->setProduct($_product);
+										echo $_nameAfterChild->toHtml();
+									?>
+								</div>
+							</div>                               
+						</div>
+						
+						<?php if ($this->getNumberRow() > 1): ?>
+							<?php if ($j % $_columnCount == 0 || $j == count($_products)): ?>
+								</div>
+								<?php $j = 0; ?>
+							<?php endif ?>
+						<?php endif ?>
+						
+					<?php endforeach ?>
+				</div>
+				<script type="text/javascript">
+					mgsjQuery("#<?php echo $_idBlock ?>").owlCarousel({
+						<?php if ($this->getNumberRow() == 1): ?>
+						items : <?php echo $this->getCountPerRow(); ?>,
+						<?php else: ?>
+						singleItem: true,
+						<?php endif ?>
+						lazyLoad : true,
+						navigation : <?php echo $this->getNavigation() ?>,
+						pagination : <?php echo $this->getPagination() ?>,
+						autoPlay: <?php echo $this->getAutoPlay() ?>,
+						stopOnHover: <?php echo $this->getStopHover() ?>,
+						navigationText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+						<?php if($this->getNumberRow() == 1): ?>
+						itemsDesktop: [1199,3],
+						itemsDesktopSmall: [991,3],
+						itemsTabletSmall: [767,2],
+						itemsMobile: [499,1],
+						itemsCustom: false
+						<?php endif ?>
+					});
+				</script>
+			</div>
+		<?php else: ?>
+			<ul class="products-grid row-<?php echo $perrow ?> row" id="<?php echo $typeFilter ?>_product_container<?php echo $catId ?>">
+				<?php
+				echo $this->getLayout()
+						->createBlock($block)
+						->setProductsCount($this->getProductsCount())
+						->setProductRatio($this->getProductRatio())
+						->setCategoryId($this->getCategoryId())
+						->setCountPerRow($this->getCountPerRow())
+						->setDisplayType($type)
+						->setTemplate('mgs/mpanel/products/grid/grid_panel_products.phtml')
+						->toHtml();
+				?>
+			</ul>
+			<?php if ($this->getLoadMore()): ?>
+				<div id="<?php echo $_idLoadMore ?>">
+					<div class="loadmore-product-action">
+						<a class="btn-loadmore" onclick="loadMore(<?php echo $typeFilter; ?>Count++, '<?php echo $typeFilter ?>', <?php echo $this->getProductsCount() ?>, <?php echo $this->getCountPerRow() ?>, '<?php echo $type ?>')"><i class="fa fa-circle-o-notch fa-spin"></i><span><?php echo __('Load More') ?></span></a>
+					</div>
+				</div>
+			<?php endif ?>
+		<?php endif ?>
+	
+	<?php elseif($type_template == 'metro1'): ?>
+		<div class="products-grid  layout-metro1">
+			<div class="row">
+			<div class="items <?php if($this->getSlider() == 1): ?> owl-carousel<?php endif;?>" id="<?php echo $typeFilter ?>_product_container_<?php echo $_idBlock;?>_<?php echo $catId ?>">
+				<?php $i=0; $j=0; foreach($_products as $_product): $j++; ?>
+				<?php $_product = Mage::getModel('catalog/product')->load($_product->getId()) ?>
+						
+					<?php if($j % 5 == 1):?>
+						<div class="item clearfix">
+					<?php endif;?>
+						<?php if($j % 10 == 1 || $j %10 == 0): ?>
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<div class="product-item big-item">
+									<?php
+										echo $this->getLayout()
+												->createBlock($block)
+												->setProductId($_product->getId())
+												->setProductsCount($this->getProductsCount())
+												->setProductRatio($this->getProductRatio())
+												->setCategoryId($this->getCategoryId())
+												->setCountPerRow($this->getCountPerRow())
+												->setDisplayType($type)
+												->setSlider($this->getSlider())
+												->setTemplate('mgs/mpanel/products/grid/metro_items.phtml')
+												->toHtml();
+										?>
+								</div>
+							</div>
+						<?php else:?>
+							<?php if($j % 10 == 2 || $j % 10 == 6): ?>
+								<div class="col-md-6 col-sm-12 col-xs-12"><div class="row">
+							<?php endif;?>
+									<div class="col-sm-6 col-xs-12">
+										<div class="product-item">
+											<?php
+										echo $this->getLayout()
+												->createBlock($block)
+												->setProductId($_product->getId())
+												->setProductsCount($this->getProductsCount())
+												->setProductRatio($this->getProductRatio())
+												->setCategoryId($this->getCategoryId())
+												->setCountPerRow($this->getCountPerRow())
+												->setDisplayType($type)
+												->setSlider($this->getSlider())
+												->setTemplate('mgs/mpanel/products/grid/metro_items.phtml')
+												->toHtml();
+										?>
+										</div>
+									</div>
+							<?php if($j % 10 == 5 || $j % 10 == 9 || $j == count($_products )): ?>
+								</div></div>
+							<?php endif?>
+						<?php endif;?>
+						
+					<?php if($j % 5 == 0 || $j == count($_products)): ?>
+						</div>
+					<?php endif;?>
+				<?php endforeach;?>
+			</div>
+			</div>
+			<?php if($this->getSlider() == 1): ?>
+			<script type="text/javascript">
+					mgsjQuery("#<?php echo $typeFilter ?>_product_container_<?php echo $_idBlock;?>_<?php echo $catId ?>").owlCarousel({
+						<?php if ($this->getNumberRow() == 1): ?>
+						items : <?php echo $this->getCountPerRow(); ?>,
+						<?php else: ?>
+						singleItem: true,
+						<?php endif ?>
+						lazyLoad : true,
+						navigation : <?php echo $this->getNavigation() ?>,
+						pagination : <?php echo $this->getPagination() ?>,
+						autoPlay: <?php echo $this->getAutoPlay() ?>,
+						stopOnHover: <?php echo $this->getStopHover() ?>,
+						navigationText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+						<?php if($this->getNumberRow() == 1): ?>
+						itemsDesktop: [1199,1],
+						itemsDesktopSmall: [991,1],
+						itemsTabletSmall: [767,1],
+						itemsMobile: [499,1],
+						itemsCustom: false
+						<?php endif ?>
+					});
+				</script>
+			<?php endif;?>
+		</div>
+	<?php else: ?>
+	<div class="products-grid  layout-metro2">
+		<div class="row">
+			<div class="items <?php if($this->getSlider() == 1): ?> owl-carousel<?php endif;?>" id="<?php echo $typeFilter ?>_product_container_<?php echo $_idBlock;?>_<?php echo $catId ?>">
+		<?php $i=0; $j=0; foreach($_products as $_product): $i++; ?>
+		<?php $_product = Mage::getModel('catalog/product')->load($_product->getId()) ?>
+						
+					<?php if($i % 5 == 1):?>
+						<div class="item clearfix">
+					<?php endif;?>
+						<?php if($i % 10 == 5 || $i % 6 == 0): ?> 
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<div class="product-item big-item">
+									<?php
+										echo $this->getLayout()
+												->createBlock($block)
+												->setProductId($_product->getId())
+												->setProductsCount($this->getProductsCount())
+												->setProductRatio($this->getProductRatio())
+												->setCategoryId($this->getCategoryId())
+												->setCountPerRow($this->getCountPerRow())
+												->setDisplayType($type)
+												->setSlider($this->getSlider())
+												->setTemplate('mgs/mpanel/products/grid/metro_items.phtml')
+												->toHtml();
+										?>
+								</div>
+							</div>
+						<?php else:?>
+							<?php if($i % 10 == 1 || $i % 10 == 7): ?> 
+								<div class="col-md-6 col-sm-12 col-xs-12"><div class="row">
+							<?php endif;?>
+									<div class="col-sm-6 col-xs-12">
+										<div class="product-item">
+											<?php
+										echo $this->getLayout()
+												->createBlock($block)
+												->setProductId($_product->getId())
+												->setProductsCount($this->getProductsCount())
+												->setProductRatio($this->getProductRatio())
+												->setCategoryId($this->getCategoryId())
+												->setCountPerRow($this->getCountPerRow())
+												->setDisplayType($type)
+												->setSlider($this->getSlider())
+												->setTemplate('mgs/mpanel/products/grid/metro_items.phtml')
+												->toHtml();
+										?>
+										</div>
+									</div>
+							<?php if($i % 10 == 4 || $i % 10 == 0 || $i == count($_products )): ?>
+								</div></div>
+							<?php endif?>
+						<?php endif;?>
+						
+					<?php if($i % 5 == 0 || $i == count($_products)): ?>
+						</div>
+					<?php endif;?>
+				<?php endforeach;?>
+				</div>
+				<?php if($this->getSlider() == 1): ?>
+				<script type="text/javascript">
+					mgsjQuery("#<?php echo $typeFilter ?>_product_container_<?php echo $_idBlock;?>_<?php echo $catId ?>").owlCarousel({
+						<?php if ($this->getNumberRow() == 1): ?>
+						items : <?php echo $this->getCountPerRow(); ?>,
+						<?php else: ?>
+						singleItem: true,
+						<?php endif ?>
+						lazyLoad : true,
+						navigation : <?php echo $this->getNavigation() ?>,
+						pagination : <?php echo $this->getPagination() ?>,
+						autoPlay: <?php echo $this->getAutoPlay() ?>,
+						stopOnHover: <?php echo $this->getStopHover() ?>,
+						navigationText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+						<?php if($this->getNumberRow() == 1): ?>
+						itemsDesktop: [1199,1],
+						itemsDesktopSmall: [991,1],
+						itemsTabletSmall: [767,1],
+						itemsMobile: [499,1],
+						itemsCustom: false
+						<?php endif ?>
+					});
+				</script>
+				<?php endif;?>
+				</div>
+				</div>
+	<?php endif;?>
+	<?php echo $this->getLayout()->createBlock('mpanel/configurableswatches_catalog_media_js_list')->setProductCollection($_products)->toHtml(); ?>
+<?php else: ?>
+    <div class="alert alert-danger no-product-display">
+        <p><?php echo $this->__('There are no products matching the selection.') ?></p>
+    </div>
+<?php endif; ?>
+

@@ -1,0 +1,33 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$_productStoreConfig = Mage::getStoreConfig('brand/product');
+$_showBrand = $_productStoreConfig['show_brand'];
+?>
+<?php if ($_showBrand): ?>
+    <?php
+    $helper = Mage::helper('brand');
+    $_product = Mage::registry('product');
+    $_brand = $this->getBrand($_product->getId());
+    $urlKey = $this->getUrlKey();
+    $_showBrandTitle = ($this->getData('show_brand_title') == "0") ? $this->getData('show_brand_title') : 1;
+    $_imageLinkToBrandPage = ($this->getData('image_link_to_brand_page') == "0") ? $this->getData('image_link_to_brand_page') : 1;
+    $_titleLinkToBrandPage = ($this->getData('title_link_to_brand_page') == "0") ? $this->getData('title_link_to_brand_page') : 1;
+    ?>
+
+    <?php if ($_brand->getId()): ?>
+		<span class="title"><?php echo $this->__('Brand') ?></span>
+		<?php if ($_imageLinkToBrandPage): ?>
+			<a title="<?php echo $_brand->getTitle(); ?>" href="<?php echo $this->getUrl() . $urlKey . '/' . $_brand->getUrlKey(); ?>">
+	   <?php endif; ?>
+			<?php echo $_brand->getTitle(); ?>
+		 <?php if ($_imageLinkToBrandPage): ?>
+			</a>
+		<?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

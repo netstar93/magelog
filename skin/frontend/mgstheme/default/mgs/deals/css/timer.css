@@ -1,0 +1,248 @@
+/**
+ * Contus Support Interactive.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file PRICE COUNTDOWN-LICENSE.txt.
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento 1.4.x and 1.5.x COMMUNITY edition
+ * Contus Support does not guarantee correct work of this package
+ * on any other Magento edition except Magento 1.4.x and 1.5.x COMMUNITY edition.
+ * =================================================================
+ */
+@font-face {
+    font-family: 'Lato';
+    src: url('fonts/Lato.eot');
+    src: local('?'), url('fonts/Lato.woff') format('woff'), 
+        url('fonts/Lato.ttf') format('truetype'), 
+        url('fonts/Lato.svg') format('svg');
+    font-style: normal;
+    font-weight: 700;
+}
+.timer-grid{float: left;width: 100%;padding: 3px 0 0 0;color: #000000;font-size: 18px;font-family: arial; font-weight: bold;}
+.timer-list{float: left;width: 100%;padding: 0;color: #000000;font-size: 18px;font-family: arial; font-weight: bold;}
+.timer-view{float: left;width: 100%;padding:2px 0 0 0px;color: #000000;font-size: 40px; font-family:arial;font-weight: bold;}
+.timer-view .day{margin:1px 1px}
+.timer-view .hour{margin:1px 1px}
+.timer-view .min{margin:1px 1px}
+.timer-view .sec{margin:1px 1px}
+.timer-compare{float: left;width: 100%;padding: 0;color: #000000;font-size: 22px;font-family: arial; font-weight: bold;}
+.timerspec{float: left;width: 100%;color: #1E7EC8;font-size: 13px;}
+.timerdate{float: left;width: 100%;padding:0 0 3px 0;color: #1E7EC8;font-size: 12px;}
+.timerdate .day{margin:1px 1px; width:20px; text-align: center;}
+.timerdate .hour{margin:1px 1px;width:20px; text-align: center;}
+.timerdate .min{margin:1px 1px; width:20px; text-align: center;}
+.timerdate .sec{margin:1px 1px; width:20px; text-align: center;}
+
+.deal-timer{
+    font-family: 'Lato',sans-serif; 
+    font-weight: 700;
+    float:left;
+    display:block;
+    clear:both;
+    margin-bottom:5px;
+}
+.category-products .deal-timer{
+    width:138px;
+}
+.product-shop .deal-timer{
+    width:100%;
+}
+.product-shop .deal-timer .countdown, .product-shop .deal-timer .time-note, .product-shop .deal-timer .item-left{
+    width:220px;
+    clear:both;
+}
+.product-view .product-shop .short-description{clear:both}
+.category-products .deal-timer .time-note{
+    font-size:9px;
+}
+.deal-timer .time-note span{
+    display:block;
+    float:left;
+    width:25%;
+    text-align:center;
+}
+.countdown span{
+    display:block; 
+    width:25%; 
+    float:left; 
+    text-align:center;
+
+}
+.countdown span b{
+    display:block; 
+    padding:2px 0 3px; 
+    color:#fff; 
+    background: #000; 
+    margin-right:2px; 
+    font-size:14px; 
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.product-shop .countdown span b{
+    padding:4px;
+    font-size:20px;	
+}
+#slideshow .deals-container {
+    overflow:hidden; 
+    height: 500px;
+    width: 252px;
+}
+.deals-container .deal-item{
+    background: none repeat scroll 0 0 #F8F8F8;
+    border: 1px solid #D4D4D4;
+    margin: 0 0 15px;
+    overflow: hidden;
+    padding: 4px;
+    width: 100%;
+}
+
+.deal-item .product-info {
+    float: left;
+    overflow: hidden;
+    width: 650px;
+}
+
+.deal-item .product-image-container {
+    float: left;
+    margin-right: 25px;
+    padding: 1px;
+    width: 250px;
+    position:relative;
+}
+.discount-save{
+    width:75px;
+    height:75px;
+    position:absolute;
+    top:0;
+    left:0;
+    background: url('../images/discount-save.png') top left no-repeat;
+    text-align:center;
+    color:#fff;
+    font-size:13px;
+}
+.discount-save .save-content{
+    padding-top:14px;
+}
+.discount-save .percent{
+    font-size:17px;
+    font-weight:bold;
+    line-height:17px;
+}
+.deal-item .product-content{
+    padding-top:8px;
+    float:left;
+    width:365px;
+}
+.deal-item .product-description{margin:0 0 15px}
+.product-description .view-detail{text-align:right}
+.product-price-container {
+    background: none repeat scroll 0 0 #EDEDED;
+    border: 1px solid #E3E3E3;
+    margin-bottom: 10px;
+    min-height: 45px;
+    padding: 15px;
+    position: relative;
+}
+.deal-item .special-price span{font-size:20px}
+
+.deal-item .deals-info {
+    background: none repeat scroll 0 0 #CFEEF5;
+    border: 1px solid #DBDBDB;
+    float: right;
+    height: 230px;
+    padding: 7px;
+    width: 225px;
+    text-align:center;
+}
+.deal-item  .slide-deals .deals-info {
+    display: block;
+    width: 226px;
+    margin: 0 auto;
+    clear:both;
+}
+.deal-item .deals-info .time-left{
+    background:#f1f1f1;
+    float:left;
+    width:100%;
+    padding:5px 0;
+
+}
+.deal-item .deals-info .deal-timer{
+    padding: 0 8px;
+    width: 210px;
+    margin:3px 0;
+}
+.deal-item .deals-info .countdown span b{
+    font-size:20px
+}
+.deal-item .sold{display:block !important}
+.addcart-button{
+    padding:5px 15px;
+}
+
+.deal-item .item-info {
+    clear: both;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 10px 0 3px;
+    width: 100%;
+}
+.deal-item .item-info span{color:#EB4500}
+.addcart-button a{
+    background: -moz-linear-gradient(center top , #FF7601, #EB4500) repeat scroll 0 0 transparent;
+    border-radius: 5px 5px 5px 5px;
+    background: -webkit-linear-gradient(top, #FF7601 0%, #EB4500 100%);  
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF7601', endColorstr='#EB4500');
+    color: #FFFFFF;
+    display: block;
+    font-size: 2em;
+    line-height: 20px;
+    padding: 13px 30px;
+    text-transform: uppercase;
+    text-decoration:none;
+}
+.addcart-button a:hover{
+    background:-moz-linear-gradient(center top , #EB4500, #FF7601) repeat scroll 0 0 transparent;
+}
+.deal-timer .item-left{
+    color:#EB4500;
+    font-size:12px
+}
+.deal-item .time-left .item-left{display:none}
+.category-products .deals-grid .products-grid{ width: auto; padding: 0;}
+.category-products .deals-grid .pager .pages{ margin: 0 auto;}
+.category-products .deals-grid .pager .pages ol { padding: 0;}
+.deals-grid .products-grid .product-name,  
+.deals-grid .products-grid .special-price { height: 40px;}
+
+.button-addcart {
+    background: -moz-linear-gradient(center top , #FF7601, #EB4500) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top, #FF7601 0%, #EB4500 100%);  
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF7601', endColorstr='#EB4500');
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 2em;
+    line-height: 20px;
+    padding: 13px 20px;
+    text-transform: uppercase;
+}
+.button-addcart:hover {
+    background: -moz-linear-gradient(center top , #EB4500, #FF7601) repeat scroll 0 0 transparent;
+}
+.addcart-qty {
+    height: 44px;
+    border-radius: 5px;
+}
+#addcartqty {
+    width: 44px !important;
+    font-size: 2em;
+    text-align: center;
+}

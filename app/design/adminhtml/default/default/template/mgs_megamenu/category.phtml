@@ -1,0 +1,274 @@
+<?php 
+	if($this->getRequest()->getParam('store')!=''){
+		$category = Mage::getModel('catalog/category')->load(Mage::app()->getStore($this->getRequest()->getParam('store'))->getRootCategoryId());
+	}
+	else{
+		$category = Mage::getModel('catalog/category')->load(Mage::app()->getWebsite(true)->getDefaultStore()->getRootCategoryId());
+	}
+?>
+
+<div id="product_info_tabs_categories_content" style="">
+	<div class="entry-edit">
+		<div class="entry-edit-head">
+			<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Categories') ?></h4>
+		</div>
+	</div>
+	<fieldset id="grop_fields">
+		<div id="product-categories" class="tree x-tree">
+			<ul id="dhtmlgoodies_tree">
+				<?php echo $this->getTreeCategory($category, 0) ?>
+			</ul>
+			<div id="expandCollapse">
+				<a href="#" onclick="expandAll();return false"><?php echo $this->__('Expand all') ?></a>
+				<a href="#" onclick="collapseAll();return false"><?php echo $this->__('Collapse all') ?></a>
+				<a href="#" onclick="uncheckAll();return false"><?php echo $this->__('Uncheck all') ?></a>
+			</div>
+			<div id="ajaxMessage"></div>
+		</div>
+	</fieldset>
+</div>
+
+<script type="text/javascript">
+	var dhtmlgoodies_tree;
+	var imageFolder = '<?php echo $this->getSkinUrl('mgs_megamenu/images') ?>/';	// Path to images
+	var folderImage = 'folder-open.gif';
+	var plusImage = 'elbow-end-plus.gif';
+	var minusImage = 'elbow-end-minus.gif';
+	var initExpandedNodes = '';	// Cookie - initially expanded nodes;
+	var fileName = 'updateNode.php';	// External file called by AJAX	
+	var timeoutEdit = 20;	// Lower value = shorter delay from mouse is pressed down to textbox appears.
+	
+	
+	var ajax = new sack();
+
+	function expandAll()
+	{
+		var menuItems = dhtmlgoodies_tree.getElementsByTagName('LI');
+		for(var no=0;no<menuItems.length;no++){
+			var subItems = menuItems[no].getElementsByTagName('UL');
+			if(subItems.length>0 && subItems[0].style.display!='block'){
+				showHideNode(false,menuItems[no].id.replace(/[^0-9]/g,''));
+			}			
+		}
+	}
+	
+	function collapseAll()
+	{
+		var menuItems = dhtmlgoodies_tree.getElementsByTagName('LI');
+		for(var no=0;no<menuItems.length;no++){
+			var subItems = menuItems[no].getElementsByTagName('UL');
+			if(subItems.length>0 && subItems[0].style.display=='block'){
+				showHideNode(false,menuItems[no].id.replace(/[^0-9]/g,''));
+			}			
+		}		
+	}
+			
+	function showHideNode(e,inputId)
+	{
+		if(inputId){
+			if(!document.getElementById('dhtmlgoodies_treeNode'+inputId))return;
+			thisNode = document.getElementById('dhtmlgoodies_treeNode'+inputId).getElementsByTagName('IMG')[0]; 
+		}else {
+			thisNode = this;
+		}
+		if(thisNode.style.visibility=='hidden')return;
+		var parentNode = thisNode.parentNode;
+		inputId = parentNode.id.replace(/[^0-9]/g,'');
+		if(thisNode.src.indexOf('plus')>=0){
+			thisNode.src = thisNode.src.replace('plus','minus');
+			parentNode.getElementsByTagName('UL')[0].style.display='block';
+			if(!initExpandedNodes)initExpandedNodes = ',';
+			if(initExpandedNodes.indexOf(',' + inputId + ',')<0) initExpandedNodes = initExpandedNodes + inputId + ',';
+			
+		}else{
+			thisNode.src = thisNode.src.replace('minus','plus');
+			parentNode.getElementsByTagName('UL')[0].style.display='none';
+			initExpandedNodes = initExpandedNodes.replace(',' + inputId,'');
+		}	
+	}
+
+	function okToNavigate()
+	{
+		if(editCounter<10)return true;
+		return false;		
+	}
+	
+	var editCounter = -1;
+	var editEl = false;
+	
+	function initEditLabel(){	}
+	
+	function startEditLabel(){}
+	
+	function showUpdate()
+	{
+		document.getElementById('ajaxMessage').innerHTML = ajax.response;
+	}
+	
+	function hideEdit()
+	{				
+		var editObj = editEl.previousSibling;	
+		if(editObj.value.length>0){
+			editEl.innerHTML = editObj.value;	
+			ajax.requestFile = fileName + '?updateNode='+editObj.id.replace(/[^0-9]/g,'') + '&newValue='+editObj.value;	// Specifying which file to get
+			ajax.onCompletion = showUpdate;	// Specify function that will be executed after file has been found
+			ajax.runAJAX();		// Execute AJAX function
+						
+		}
+		editEl.style.display='inline';
+		editObj.style.display='none';
+		editEl = false;			
+		editCounter=-1;
+	}
+	
+	function mouseUpEvent()
+	{
+		editCounter=-1;		
+	}
+	
+	function initTree()
+	{
+		dhtmlgoodies_tree = document.getElementById('dhtmlgoodies_tree');
+		var menuItems = dhtmlgoodies_tree.getElementsByTagName('LI');	// Get an array of all menu items
+		for(var no=0;no<menuItems.length;no++){
+			var subItems = menuItems[no].getElementsByTagName('UL');
+			var img = document.createElement('IMG');
+			img.src = imageFolder + plusImage;
+			img.onclick = showHideNode;
+			if(subItems.length==0)img.style.visibility='hidden';
+			var aTag = menuItems[no].getElementsByTagName('A')[0];
+			
+			if(aTag.id)numericId = aTag.id.replace(/[^0-9]/g,'');else numericId = (no+1);
+			
+			aTag.id = 'dhtmlgoodies_treeNodeLink' + numericId;
+			
+			var input = document.createElement('INPUT');
+			input.style.width = '200px';
+			input.style.display='none';
+			menuItems[no].insertBefore(input,aTag);
+			input.id = 'dhtmlgoodies_treeNodeInput' + numericId;
+			input.onblur = hideEdit;
+						
+			menuItems[no].insertBefore(img,input);
+			menuItems[no].id = 'dhtmlgoodies_treeNode' + numericId;
+			aTag.onclick = okToNavigate;
+			aTag.onmousedown = initEditLabel;
+			var folderImg = document.createElement('IMG');
+			if(menuItems[no].className){
+				folderImg.src = imageFolder + menuItems[no].className;
+			}else{
+				folderImg.src = imageFolder + folderImage;
+			}
+			menuItems[no].insertBefore(folderImg,input);
+		}	
+		<?php if ($this->getRequest()->getParam('id')): ?>
+			<?php if(Mage::getModel('megamenu/megamenu')->load($this->getRequest()->getParam('id'))->getCategoryId()!=0): ?>
+				<?php 
+					$categoryId = Mage::getModel('megamenu/megamenu')->load($this->getRequest()->getParam('id'))->getCategoryId();
+					$ids = $this->_ids;
+					//$ids = str_replace(','.$categoryId,'',$ids);
+				?>
+		
+				initExpandedNodes = '<?php echo $ids ?>';
+				if(initExpandedNodes){
+					var nodes = initExpandedNodes.split(',');
+					for(var no=0;no<nodes.length;no++){
+						if(nodes[no])showHideNode(false,nodes[no]);	
+					}			
+				}
+			<?php endif ?>
+		<?php endif ?>
+		
+		document.documentElement.onmouseup = mouseUpEvent;
+	}
+	
+	window.onload = initTree;	
+	
+	
+	function setCheckbox(el){
+		changeType(el);
+		if($('radio'+el)){
+			$('radio'+el).checked="checked";
+		}
+	}
+	
+	function changeType(el){
+		$A(document.getElementsByClassName('radio')).each(
+			function(a)
+			{
+				a.writeAttribute('type','radio');
+				a.writeAttribute('name','category_id');
+				/* a.removeClassName('checkbox');
+				a.addClassName('radio'); */
+				
+				a.writeAttribute('onclick','setCheckbox(this.value)');
+			}
+		);
+		$$('#container'+el+' .radio').each(
+			function(b)
+			{
+				b.writeAttribute('type','checkbox');
+				b.writeAttribute('name','sub_category[]');
+				b.addClassName('checkbox');
+				//b.removeClassName('radio');
+				b.writeAttribute('onclick','setValueCheckbox(this.value, this.id)');
+				
+				b.checked = 'checked';
+				
+			}
+		);
+		
+		
+	}
+	
+	function setValueCheckbox(val, el){
+		if($(el).checked == false){
+			$$('#container'+val+' .checkbox').each(
+				function(c)
+				{
+					c.checked = false;
+				}
+			);
+		}
+		else{
+			$$('#container'+val+' .checkbox').each(
+				function(c)
+				{
+					c.checked = 'checked';
+				}
+			);
+		}
+	}
+	
+	
+	<?php if ($this->getRequest()->getParam('id')): $megamenu = Mage::getModel('megamenu/megamenu')->load($this->getRequest()->getParam('id')) ?>
+		<?php if($megamenu->getCategoryId()!=0): ?>
+			<?php $categoryId = $megamenu->getCategoryId(); ?>
+			document.observe("dom:loaded", function() {
+				setCheckbox(<?php echo $categoryId ?>);
+				
+				$$('#container<?php echo $categoryId ?> .checkbox').each(
+					function(b)
+					{
+						b.checked = false;
+					}
+				);
+				<?php $subCatIds = $megamenu->getSubCategoryIds();?>
+				<?php if(($subCatIds!='') && (is_array(explode(',', $subCatIds)))): ?>
+					<?php foreach(explode(',', $subCatIds) as $_catId): ?>
+						$('radio<?php echo $_catId ?>').checked = 'checked';
+					<?php endforeach; ?>
+				<?php endif ?>
+			});
+		<?php endif ?>
+	<?php endif ?>
+	
+	function uncheckAll(){
+		var catId = <?php echo Mage::app()->getWebsite(true)->getDefaultStore()->getRootCategoryId()?>;
+		setCheckbox(10000);
+		$$('#container'+catId+' .radio').each(function(ele){
+		   $(ele).checked = false;
+		});
+		return false;
+	}
+</script>

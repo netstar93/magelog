@@ -1,0 +1,66 @@
+<?php $currentHeader = Mage::getStoreConfig('mgs_theme/general/header') ?>
+<div class="edit-static-form">
+	<div class="row">
+		<div class="col-md-12 builder-title">
+			<h2><?php echo $this->__('Change Header Version') ?></h2>
+		</div>
+	</div>
+	<form action="" method="post" id="change-header-form">
+		<div class="row headers" id="headers">
+			<?php $headers = Mage::helper('mpanel')->getHeaderVersion(); ?>
+			<?php foreach($headers as $header): ?>
+				<div class="col-sm-6">
+					<div class="margin-top15">
+						<?php $headerPath = 'asset/headers/'.$header['value'].'.jpg'?>
+						<a href="#" onclick="setHeaderActive('<?php echo $header['value'] ?>'); return false" id="<?php echo $header['value'] ?>"<?php if($currentHeader == $header['value']):?> class="active"<?php endif ?>>
+							<img src="<?php echo $this->getSkinUrl($headerPath) ?>" alt="" class="img-responsive"/>
+						</a>
+					</div>
+				</div>
+			<?php endforeach ?>
+			<input type="hidden" name="header" id="header_version" value="<?php echo $currentHeader ?>"/>
+			
+			<div class="col-md-12 builder-action">
+				<div class="buttons">
+					<button type="submit" class="btn btn-primary"><span><?php echo $this->__('Submit') ?></span></button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<?php if($this->getRequest()->getPost()):?>
+
+	<script type="text/javascript">
+		<?php if(Mage::getSingleton('core/session')->getSaved()==1): ?>
+		<?php Mage::getSingleton('core/session')->setSaved(false); ?>
+
+			if (window.parent == window.top) {
+				window.top.location.reload();
+			}
+
+		<?php endif ?>
+	</script>
+
+<?php else: ?>
+	
+	
+	<script type="text/javascript">
+		// set header to view
+		function setHeaderActive(header){
+			if(mgsjQuery('#'+header).hasClass('active')){
+				mgsjQuery('#'+header).removeClass('active');
+				mgsjQuery('#header_version').val('');
+			}
+			else{
+				mgsjQuery('#headers a').removeClass('active');
+				mgsjQuery('#'+header).addClass('active');
+				mgsjQuery('#header_version').val(header);
+			}
+		}
+	</script>
+<?php endif ?>
+
+
+
+

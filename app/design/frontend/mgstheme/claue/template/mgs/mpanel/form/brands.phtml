@@ -1,0 +1,254 @@
+<?php $template = $this->getRequest()->getParam('template') ?>
+<?php $block = $this->getRequest()->getParam('block') ?>
+
+<?php 
+	$collection = Mage::getModel('revslider/slider')
+		->getCollection();
+
+	$exist = 0;
+	if($id = $this->getRequest()->getParam('id')){
+		$child =  Mage::getModel('mpanel/childs')->load($id);
+		$exist = 1;
+		$settings = json_decode($child->getSetting(), true);
+	}
+	
+	$brands = Mage::getModel('brand/brand')->getCollection()->addFieldToFilter('status', 1);
+        $brands->addStoreFilter(Mage::app()->getStore()->getStoreId());
+?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	
+		<div class="edit-static-form">
+			<form id="edit_form" method="post" action="<?php echo $this->getUrl('mpanel/post/child') ?>">
+			
+				<div class="row">
+					<div class="col-md-12 builder-title">
+						<h2><?php echo $this->__('Brand Block') ?></h2>
+					</div>
+				</div>
+				
+				<div class="form-horizontal">
+				
+					<div id="form_tabs" class="tabbable">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#general" data-toggle="tab">
+									<?php echo $this->__('General') ?>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#product" data-toggle="tab" id="product-tab-nav">
+									<?php echo $this->__('Brands Config') ?>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="general">
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="col"><?php echo $this->__('Block col (12 to full)') ?></label>
+									<div class="col-sm-8">
+										<select name="col" class="required-entry input-text" id="col">
+											<?php for($i=12; $i>=1; $i--): ?>
+												<option value="<?php echo $i ?>"<?php if($exist && ($child->getCol()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<input type="hidden" value="brands" name="type" id="block_type"/>
+									<input type="hidden" value="<?php echo $template ?>" name="home_name" id="block_home_name"/>
+									<input type="hidden" value="<?php echo $block ?>" name="block_name" id="block_block_name"/>
+									<?php if($exist): ?>
+										<input type="hidden" value="<?php echo $child->getId() ?>" name="child_id" />
+									<?php endif ?>
+									
+									<label class="col-sm-4 control-label" for="title"><?php echo $this->__('Title') ?></label>
+									<div class="col-sm-8">
+										<input type="text" name="setting[title]" class="input-text" id="title"<?php if($exist): ?> value="<?php echo $settings['title'] ?>"<?php endif ?>/>
+									</div>
+								</div>
+									
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="title"><?php echo $this->__('Sub Title') ?></label>
+									<div class="col-sm-8">
+										<input type="text" name="setting[sub_title]" class="input-text" id="sub_title"<?php if($exist): ?> value="<?php echo $settings['sub_title'] ?>"<?php endif ?>/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="custom_class"><?php echo $this->__('Custom Class') ?></label>
+									<div class="col-sm-8">
+										<input type="text" name="setting[custom_class]" class="input-text" id="custom_class"<?php if($exist): ?> value="<?php echo $settings['custom_class'] ?>"<?php endif ?> />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="animation"><?php echo $this->__('Block Animation') ?></label>
+									<div class="col-sm-4">
+										<select name="setting[animation]" class="input-text" id="animation" onchange="changeAnimationClass(this.value)">
+											<?php $animation = $helper->getAnimationClass() ?>
+											<?php foreach($animation as $_animate): ?>
+												<option value="<?php echo $_animate['value'] ?>"<?php if($exist && ($settings['animation']==$_animate['value'])): ?> selected="selected"<?php endif ?>><?php echo $_animate['label'] ?></option>
+											<?php endforeach ?>
+										</select>
+									</div>
+									<div class="col-sm-4 text-center animated<?php if($exist && ($settings['animation']!='')): ?> <?php echo $settings['animation'] ?><?php endif ?>" id="animation-test"><h1>Animation Preview</h1></div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="animation_delay"><?php echo $this->__('Animation Delay') ?></label>
+									<div class="col-sm-8">
+										<input type="text" name="setting[animation_delay]" class="input-text validate-number" id="animation_delay" placeholder="ms" <?php if($exist && isset($settings['animation_delay'])): ?> value="<?php echo $settings['animation_delay'] ?>"<?php endif ?>/>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tab-pane" id="product">
+								<div class="form-group">
+									<label class="col-sm-4 control-label"><?php echo $this->__('Brands') ?></label>
+									<div class="col-sm-8">
+										<table class="table table-bordered deal-table">
+											<thead>
+												<tr>
+													<th>&nbsp;</th>
+													<th><?php echo $this->__('Name') ?></th>
+													<th><?php echo $this->__('Logo') ?></th>
+													<th><?php echo $this->__('Number of Products') ?></th>
+												</tr>
+											</thead>
+											<?php if(count($brands)>0): ?>
+												<?php $i=0; foreach($brands as $brand): $i++; ?>
+													<tr>
+														<td class="a-center">
+															<input type="checkbox" name="setting[brand][]" value="<?php echo $brand->getId() ?>"<?php if($exist && in_array($brand->getId(),$settings['brand'])): ?> checked="checked"<?php endif ?> id="brand<?php echo $i ?>" class="validate-one-required-by-name"/>
+														</td>
+														<td><label for="brand<?php echo $i ?>"><?php echo $brand->getTitle() ?></label></td>
+														<td><img height="50px" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $brand->getIcon() ?>" /></td>
+														<td><?php echo $brand->getNumberOfProducts(); ?></td>
+													</tr>
+												<?php endforeach ?>
+											<?php else: ?>
+												<tr><td colspan="6"><?php echo $this->__('There are no brands matching the selection.') ?></td></tr>
+											<?php endif ?>
+										</table>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="count_per_row"><?php echo $this->__('Number of brands per row') ?></label>
+									<div class="col-sm-8">
+										<input type="text" name="setting[count_per_row]" class="required-entry input-text validate-number validate-greater-than-zero" id="count_per_row"<?php if($exist): ?> value="<?php echo $settings['count_per_row'] ?>"<?php endif ?>/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="slider"><?php echo $this->__('Use slider') ?></label>
+									<div class="col-sm-8">
+										<select name="setting[slider][active]" class="required-entry input-text" id="slider" onchange="toggleSliderSettings(this.value)">
+											<option value="0"<?php if($exist && ($settings['slider']['active']==0)): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+											<option value="1"<?php if($exist && ($settings['slider']['active']==1)): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+										</select>
+									</div>
+								</div>
+								
+								
+								<div class="row slider-config" id="slider-settings"<?php if(($exist && ($settings['slider']['active']==0)) || !$exist): ?> style="display:none"<?php endif ?>>
+									<hr/>
+									
+									<div class="form-group">
+										<label class="col-sm-4 control-label" for="number_row"><?php echo $this->__('Number of row') ?></label>
+										<div class="col-sm-8">
+											<input type="text" name="setting[number_row]" class="input-text" id="animation_delay" <?php if($exist && isset($settings['number_row'])): ?> value="<?php echo $settings['number_row'] ?>"<?php endif ?>/>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-4 control-label" for="auto_play"><?php echo $this->__('Auto play') ?></label>
+										<div class="col-sm-8">
+											<select name="setting[slider][auto]" class="required-entry input-text" id="auto_play">
+												<option value="false"<?php if($exist && ($settings['slider']['auto']=='false')): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+												<option value="true"<?php if($exist && ($settings['slider']['auto']=='true')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-4 control-label" for="stop_hover"><?php echo $this->__('Stop autoplay on mouse hover') ?></label>
+										<div class="col-sm-8">
+											<select name="setting[slider][stop_hover]" class="required-entry input-text" id="stop_hover">
+												<option value="false"<?php if($exist && ($settings['slider']['stop_hover']=='false')): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+												<option value="true"<?php if($exist && ($settings['slider']['stop_hover']=='true')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-4 control-label" for="navigation"><?php echo $this->__('Display Navigation') ?></label>
+										<div class="col-sm-8">
+											<select name="setting[slider][navigation]" class="required-entry input-text" id="navigation">
+												<option value="false"<?php if($exist && ($settings['slider']['navigation']=='false')): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+												<option value="true"<?php if($exist && ($settings['slider']['navigation']=='true')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-4 control-label" for="pagination"><?php echo $this->__('Display Pagination') ?></label>
+										<div class="col-sm-8">
+											<select name="setting[slider][pagination]" class="required-entry input-text" id="pagination">
+												<option value="false"<?php if($exist && ($settings['slider']['pagination']=='false')): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+												<option value="true"<?php if($exist && ($settings['slider']['pagination']=='true')): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="row builder-action">
+						<div class="col-md-12">
+							<div class="buttons">
+								<?php if(!$exist): ?>
+									<button onclick="history.go(-1)" class="btn btn-back" type="button">
+										<span><span><?php echo $this->__('Back') ?></span></span>
+									</button>
+								<?php endif ?>
+								<button id="submit-button" onclick="updateForm.submit(this)" class="btn btn-primary" type="button">
+									<span><span><?php echo $this->__('Submit') ?></span></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/form/script_action.phtml')->toHtml() ?>
+	<script type="text/javascript">
+		function toggleSliderSettings(val){
+			if(val==1){
+				$('slider-settings').show();
+			}
+			else{
+				$('slider-settings').hide();
+			}
+		}
+		
+		var currentAnimate = '';
+		<?php if($exist): ?>
+			currentAnimate = '<?php echo $settings['animation'] ?>';
+		<?php endif ?>
+		
+		function changeAnimationClass(animate){
+			if(currentAnimate!=''){
+				mgsjQuery('#animation-test').removeClass(currentAnimate);
+			}
+			mgsjQuery('#animation-test').addClass(animate);
+			currentAnimate = animate;
+		}
+	</script>
+<?php endif ?>

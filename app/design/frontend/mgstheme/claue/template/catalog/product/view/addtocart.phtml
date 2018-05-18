@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $_product = $this->getProduct(); $_product = Mage::getModel('catalog/product')->load($_product->getId()); ?>
+
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+	<?php echo $this->getLayout()->createBlock('deals/deals')->setTemplate('mgs/deals/list.phtml')->setProductId($_product->getId())->toHtml(); ?>
+	
+	<div class="shop_meta add_item_actions">
+		<div class="form-group">
+			<span onclick="minusQty('qty')" class="qty minus">-</span>
+			<input type="text" class="form-control input-qty-product" title="Qty" value="<?php echo $this->getProductDefaultQty() * 1 ?>" name="qty" id="qty"/>
+			<span onclick="plusQty('qty')" class="qty plus">+</span>
+		</div>
+		<div class="btn-shop">
+			<button type="button" title="<?php echo $buttonTitle ?>" id="product-addtocart-button" class="btn-cart btn-secondary" onclick="productAddToCartForm.submit(this)"><?php echo $buttonTitle ?></button>
+		</div>
+	</div>
+	<?php echo $this->getChildHtml('', true, true) ?>
+
+	<?php $inventory = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product); ?>
+
+	<script type="text/javascript">
+		function plusQty(qtyInput){
+			if(jQuery('#'+qtyInput).attr('disabled')!='disabled'){
+				qty = $(qtyInput).value;
+				qty = parseInt(qty);
+				<?php if($inventory->getEnableQtyIncrements()): ?>
+				qty = qty + <?php echo $inventory->getQtyIncrements() ?>;
+				<?php else: ?>
+				qty++;
+				<?php endif ?>
+				$(qtyInput).value = qty;
+			}
+		}
+		
+		function minusQty(qtyInput){
+			if(jQuery('#'+qtyInput).attr('disabled')!='disabled'){
+				qty = $(qtyInput).value;
+				qty = parseInt(qty);
+				<?php if($inventory->getEnableQtyIncrements()): ?>
+					if(qty><?php echo $inventory->getQtyIncrements() ?>){
+						qty = qty - <?php echo $inventory->getQtyIncrements() ?>;
+						$(qtyInput).value = qty;
+					}
+				<?php else: ?>
+					if(qty>1){
+						qty--;
+						$(qtyInput).value = qty;
+					}
+				<?php endif ?>
+			}
+		}
+	</script>
+<?php endif; ?>

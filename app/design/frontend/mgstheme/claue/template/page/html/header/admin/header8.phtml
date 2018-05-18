@@ -1,0 +1,130 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php $helper = $this->helper('mpanel'); ?>
+<div id="header-v8" class="builder-container header-builder header header-v8 <?php if (Mage::getStoreConfig('mgs_theme/general/sticky_menu')): ?> sticky-menu <?php endif ?>">
+<?php echo $helper->getEditHeaderPanel() ?>
+    <div class="top-bar header-top">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-8 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('claue_header_custom_link')->setCanEdit(1)->toHtml();?>
+				</div>
+				<div class="col-lg-4 col-md-4 col-xs-12 top-bar-right">				
+					<div class="dropdown-sm hidden-lg hidden-md hidden-sm account-topbar">						
+							<button class="dropdown-toggle" type="button" id="topbar-link-dropdown" data-toggle="dropdown" ><?php echo $this->__('Account')?><span class="fa fa-angle-down" style="margin-left: 5px;"></span></button>
+							<div class="dropdown-menu" aria-labelledby="topbar-link-dropdown">
+								<?php echo $this->getChildHtml('topLinks') ?>
+							</div>
+						</div>
+					<?php if (Mage::helper('social')->getGeneralConfig('show_on_header', Mage::app()->getStore()->getStoreId()) && !Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+					<div class="login-with-social dropdown-sm">
+						<button id="dropdown-social-login" class="dropdown-toggle" type="button" data-toggle="dropdown">
+							<?php echo $this->__('Social Login')?><span class="fa fa-angle-down" style="margin-left: 5px;"></span>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdown-social-login">							
+								<?php echo $this->getChildHtml('social_header'); ?>							
+						</div>
+					</div>	
+					<?php endif; ?>					
+					<?php echo $this->getChildHtml('store_language') ?>
+                    <?php echo $this->getChildHtml('top.currency') ?>	
+				</div>
+            </div>
+        </div>        
+    </div>
+    <div class="top-content header-content">
+        <div class="container">
+            <div class="header-container">			
+                <div class="header">
+					<div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-6 middle-left">
+						<div class="logo-container builder-container child-builder">
+							<?php $sticky_logo =  $this->getLayout()->createBlock('cms/block')->setBlockId('panel_logo_sticky')->toHtml(); ?>
+                            <?php if ($this->getIsHomePage()): ?>
+                                <h1 class="logo">
+                                    <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo <?php if($sticky_logo): ?> logo-header<?php endif ?>">
+                                        <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+                                    </a>
+									
+                                </h1>
+                            <?php else: ?>
+                                <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo <?php if($sticky_logo): ?> logo-header<?php endif ?>">
+                                    <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+                                </a>
+								
+                            <?php endif ?>
+							<?php echo $helper->getEditLogoPanel() ?>
+                        </div>  
+                    					
+                    </div>
+					<div class="col-lg-9 col-sm-9 col-xs-6 parrent_menu">
+						<div class="nav-main-collapse">
+							<h3 class="title-topabs hidden-lg hidden-md"><?php echo $this->__('Menu')?><i class="pe-7s-close nav-close"></i></h3>
+							<nav class="mega-menu">
+								<?php echo $this->getChildHtml('topMenu') ?>
+							</nav>
+						</div>
+						<button class="btn-responsive-nav hidden-lg hidden-md">
+							<span class="icon-navbar"></span>
+						</button>
+					</div>				
+                   
+					</div>
+                </div>				
+                <?php echo $this->getChildHtml('topContainer'); ?>
+            </div>
+        </div>
+    </div>	
+	<div class="header-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('claue_vertical_menu')->setCanEdit(1)->toHtml();?>
+				</div>
+				 <div class="col-lg-9 col-md-9 col-xs-4 header-bottom-right">
+						<?php echo $this->getChildHtml('topSearch') ?> 
+						<div class="account-dropdown dropdown-sm">						
+							<button class="dropdown-toggle" type="button" id="top-link-dropdown" data-toggle="dropdown" ><span class="pe-7s-user"></span></button>
+							<div class="dropdown-menu" aria-labelledby="top-link-dropdown">
+								<?php echo $this->getChildHtml('topLinks') ?>
+							</div>
+						</div>
+						<?php if ($this->helper('wishlist')->isAllow()): ?>
+						<div class="wishlist-link">
+							<a href="<?php echo $this->helper('wishlist')->getListUrl() ?>"><i class="pe-7s-like"></i><span class="wishlist-counter"><?php echo $this->helper('wishlist')->getItemCount();?></span></a>
+						</div>
+						<?php endif;?>
+                        <?php echo $this->getChildHtml('cart_icon')?>						
+                    </div>
+			</div>			
+		</div>
+	</div>
+	<?php echo $this->getChildHtml('cart_header')?>
+</div>

@@ -1,0 +1,112 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$_productStoreConfig = Mage::getStoreConfig('brand/product');
+$_showRelatedProducts = $_productStoreConfig['show_related_products'];
+?>
+<?php if ($_showRelatedProducts): ?>
+    <?php
+    $_product = Mage::registry('product');
+    $_brand = $this->getBrand($_product->getId());
+
+    $_relatedProductsLimit = intval($_productStoreConfig['related_products_limit']) ? $_productStoreConfig['related_products_limit'] : 8;
+    $_relatedProductsSortBy = $_productStoreConfig['related_products_sort_by'] ? $_productStoreConfig['related_products_sort_by'] : null;
+    $_relatedProductsSortDir = $_productStoreConfig['related_products_sort_dir'] ? $_productStoreConfig['related_products_sort_dir'] : null;
+
+    $_collection = $this->getRelatedProducts($_brand->getId(), $_relatedProductsLimit, 1, $_relatedProductsSortBy, $_relatedProductsSortDir);
+    $_helper = $this->helper('catalog/output');
+
+    $_listLayout = ($this->getData('list_layout')) ? $this->getData('list_layout') : "grid";
+    if ($_listLayout == "grid") {
+        $_columnsCount = ($this->getData('columns_count')) ? $this->getData('columns_count') : 4;
+        $_ulClass = "products-related-grid products-related-grid-" . $_columnsCount . "cols";
+    } else {
+        $_ulClass = "products-list";
+    }
+    $_showProductImage = ($this->getData('show_product_image') == "0") ? $this->getData('show_product_image') : 1;
+    if ($_showProductImage) {
+        $_imgWidth = ($this->getData('image_width')) ? $this->getData('image_width') : 300;
+        $_imgHeight = ($this->getData('image_height')) ? $this->getData('image_height') : 300;
+    }
+    $_showProductTitle = ($this->getData('show_product_title') == "0") ? $this->getData('show_product_title') : 1;
+    $_showProductPrice = ($this->getData('show_product_price') == "0") ? $this->getData('show_product_price') : 1;
+    $_showProductRating = ($this->getData('show_product_rating') == "0") ? $this->getData('show_product_rating') : 1;
+    $_showProductShortDescription = ($this->getData('show_product_short_description') == "0") ? $this->getData('show_product_short_description') : 1;
+    $_showAddToCart = ($this->getData('show_add_to_cart') == "0") ? $this->getData('show_add_to_cart') : 1;
+    $_showAddToWishlist = ($this->getData('show_add_to_wishlist') == "0") ? $this->getData('show_add_to_wishlist') : 1;
+    $_showAddToCompare = ($this->getData('show_add_to_compare') == "0") ? $this->getData('show_add_to_compare') : 1;
+    ?>
+<?php
+	$panelHelper = $this->helper('mpanel');
+	$size = $panelHelper->convertRatioToSize();
+?>
+    <?php if (count($_collection)): ?>
+        <div class="block-brand-related">
+            <div class="block-title">
+                <h2 class="title-name"><span><?php echo $this->__('Related Products By Brand') ?></span></h2>
+            </div>
+			<div class="products-grid">
+				<div id="related_brands" class="owl-carousel products-carousel owl-theme product-one-row">
+					<?php foreach ($_collection as $_item): ?>
+						<div class="item">
+							<div class="product-content">
+								<div class="product-top">
+									<?php if ($_showProductImage): ?>
+									<a href="<?php echo $_item->getProductUrl() ?>"
+									   title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image">
+										<img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize($size['width'], $size['height']) ?>"
+											 alt="<?php echo $this->escapeHtml($_item->getName()) ?>"/>
+									</a>
+									<?php endif; ?>
+								</div>
+								<div class="product-desc">
+									<h4 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></h4>
+									<?php if ($_showProductPrice): ?>
+									<?php echo $this->getPriceHtml($_item, true, '-brand-related') ?>
+									<?php endif; ?>
+									<div class="controls">
+										<div class="add-to-cart">
+											<?php if ($_item->isSaleable()): ?>
+												<button type="button" title="<?php echo $this->__('Add to Cart') ?>"
+														class="btn btn-xs btn-default btn-cart"
+														onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')">
+													<span><span><?php echo $this->__('Add to Cart') ?></span></span>
+												</button>
+											<?php else: ?>
+												<p class="availability out-of-stock">
+													<span><?php echo $this->__('Out of stock') ?></span></p>
+											<?php endif; ?>
+										</div>
+										<ul class="icon-links">
+											<?php if($this->helper('core')->isModuleEnabled('MGS_QuickView') && Mage::getStoreConfig('quickview/general/active')): ?>
+												<li><button type="button" onclick="quickView('<?php echo $_item->getProductUrl() ?>'); return false;"><em class="fa fa-search"></em></button></li>
+											<?php endif ?>
+											<?php if (($this->helper('wishlist')->isAllow()) && $_showAddToWishlist) : ?>
+                                                    <li>
+                                                        <button type="button" href="<?php echo $this->helper('wishlist')->getAddUrl($_item) ?>"><em class="fa fa-heart-o"></em></button>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php if (($_compareUrl = $this->getAddToCompareUrl($_item)) && $_showAddToCompare): ?>
+                                                    <li>
+														<button href="<?php echo $_compareUrl ?>" ><em class="fa fa-retweet"></em></button>
+                                                    </li>
+                                                <?php endif; ?>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endforeach ?>
+				</div>
+			</div>
+        </div>
+    <?php endif ?>
+<?php endif; ?>
+<script type="text/javascript">
+		initSlider('related_brands', 4, false, false, true, false);
+	</script>

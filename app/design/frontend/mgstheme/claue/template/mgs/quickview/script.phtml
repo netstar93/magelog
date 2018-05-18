@@ -1,0 +1,64 @@
+<?php
+/* * ****************************************************
+ * Package   : QuickView
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php $_helper = $this->helper('quickview'); ?>
+<?php if ($_helper->isActive()): ?>
+    <script type="text/javascript">
+        function quickView(url) {
+            mgsjQuery.magnificPopup.open({
+                items: {
+                    src: '<?php echo $this->getUrl('quickview/index/show/'); ?>' + '?url=' + url
+                },
+                type: 'iframe'
+            });
+        }
+    </script>
+<?php endif; ?>
+
+<script type="text/javascript">
+	function zoomElement(el){
+		mgsjQuery(el).addClass('parentZoom');
+		<?php if(Mage::getStoreConfig('mpanel/product_details/disable_zoom_detail')): ?>
+			if(mgsjQuery(window).width() > 767){
+				mgsjQuery(el).zoom({magnify: 1.5});
+			}else {
+				mgsjQuery(el).trigger('zoom.destroy');
+			}
+		<?php else: ?>
+			mgsjQuery(el).zoom({magnify: 1.5});
+		<?php endif ?>
+	}
+	
+	function zoomElementQr(el){
+		el.parent().addClass('parentZoom');
+		<?php if(Mage::getStoreConfig('mpanel/product_details/disable_zoom_detail')): ?>
+			if(mgsjQuery(window).width() > 767){
+				el.parent().zoom({magnify: 1.5});
+			}else {
+				el.parent().trigger('zoom.destroy');
+			}
+		<?php else: ?>
+			el.parent().zoom({magnify: 1.5});
+		<?php endif ?>
+	}
+</script>
+
+<?php if(Mage::getStoreConfig('mpanel/product_details/disable_zoom_detail')): ?>
+	<script type="text/javascript">
+		mgsjQuery(window).resize(function(){
+			if (mgsjQuery(window).width() > 767) {
+				mgsjQuery('.parentZoom').each(function(i, obj) {
+					mgsjQuery(this).zoom({magnify: 1.5});
+				});
+			} else {
+				mgsjQuery('.parentZoom').each(function(i, obj) {
+					mgsjQuery(this).trigger('zoom.destroy');
+				});
+			}
+		});
+	</script>
+<?php endif ?>

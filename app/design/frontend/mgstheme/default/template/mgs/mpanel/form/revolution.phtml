@@ -1,0 +1,147 @@
+<?php $template = $this->getRequest()->getParam('template') ?>
+<?php $block = $this->getRequest()->getParam('block') ?>
+
+<?php 
+	$collection = Mage::getModel('revslider/slider')
+		->getCollection();
+
+	$exist = 0;
+	if($id = $this->getRequest()->getParam('id')){
+		$child =  Mage::getModel('mpanel/childs')->load($id);
+		$exist = 1;
+	}
+?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	
+		<div class="edit-static-form">
+			
+			<form id="edit_form" method="post" action="<?php echo $this->getUrl('mpanel/post/child') ?>">
+				<div class="row">
+					<div class="col-md-12 builder-title">
+						<h2><?php echo $this->__('Revolution Slider Block') ?></h2>
+					</div>
+				</div>
+				
+				<div class="form-horizontal">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="col"><?php echo $this->__('Block col (12 to full)') ?></label>
+							<div class="col-sm-8">
+								<select name="col" class="required-entry input-text" id="col">
+									<?php for($i=12; $i>=1; $i--): ?>
+										<option value="<?php echo $i ?>"<?php if($exist && ($child->getCol()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+									<?php endfor ?>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<input type="hidden" value="revolution" name="type" id="block_type"/>
+							<input type="hidden" value="<?php echo $template ?>" name="home_name" id="block_home_name"/>
+							<input type="hidden" value="<?php echo $block ?>" name="block_name" id="block_block_name"/>
+							<input type="hidden" name="current_url" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ?>"/>
+							<?php if($exist): ?>
+								<input type="hidden" value="<?php echo $child->getId() ?>" name="child_id" />
+							<?php endif ?>
+							
+							<label class="col-sm-4 control-label" for="slider_id"><?php echo $this->__('Slider') ?></label>
+							
+							<div class="col-sm-8">
+								<select class="required-entry input-text" name="content" id="slider_id" onchange="updateRevolutionInfo(this.value)">
+									<option value=""></option>
+									<?php if(count($collection)>0): ?>
+										<?php foreach($collection as $slide): ?>
+											<option value="<?php echo $slide->getId() ?>"<?php if($exist && ($child->getSetting()==$slide->getId())): ?> selected="selected"<?php endif ?>><?php echo $slide->getTitle() ?></option>
+										<?php endforeach ?>
+									<?php endif ?>
+								</select>
+							</div>
+							
+						</div>
+						
+						<div class="form-group" style="margin-bottom:0">
+							<label class="col-sm-5 control-label"></label>
+							<div class="col-sm-7" id="loading-img" style="display:none">
+								<img src="<?php echo $this->getSkinUrl('images/ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading...') ?>"/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12" id="revolution-preview">
+								
+							</div>
+						</div>
+						<div class="form-group builder-action">
+							<div class="col-md-12">
+								<div class="buttons">
+									<?php if(!$exist): ?>
+										<button onclick="history.go(-1)" class="btn btn-back" type="button">
+											<span><span><?php echo $this->__('Back') ?></span></span>
+										</button>
+									<?php endif ?>
+									<button id="submit-button" onclick="updateForm.submit(this)" class="btn btn-primary" type="button">
+										<span><span><?php echo $this->__('Submit') ?></span></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	<?php //echo $this->getLayout()->createBlock('core/template')->setTemplate('mgs/mpanel/form/script_action.phtml')->toHtml() ?>
+	
+	<script type="text/javascript">
+		var updateForm = new VarienForm('edit_form');
+		updateForm.submit = function(button, url) {
+			if (this.validator.validate()) {
+				mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+				button.disabled = true;
+				var form = this.form;
+				var oldUrl = form.action;
+
+				if (url) {
+				   form.action = url;
+				}
+				var e = null;
+				try {
+					this.form.submit();
+				} catch (e) {
+				}
+				this.form.action = oldUrl;
+				if (e) {
+					throw e;
+				}
+				if (button && button != 'undefined') {
+					button.disabled = true;
+				}
+			}
+		}.bind(updateForm);
+		
+		function updateRevolutionInfo(val){
+			mgsjQuery('#loading-img').show();
+			mgsjQuery('#revolution-preview').hide();
+			mgsjQuery.ajax({
+				url: '<?php echo $this->getUrl('mpanel/index/revolution') ?>id/'+val,
+				success: function(data, textStatus, xhr){
+					mgsjQuery('#loading-img').hide();
+					mgsjQuery('#revolution-preview').html(data);
+					mgsjQuery('#revolution-preview').show();
+				}
+			});
+		}
+	</script>
+<?php endif ?>
+
+<?php if(Mage::getSingleton('core/session')->getSaved()==1): ?>
+	<?php Mage::getSingleton('core/session')->setSaved(false); ?>
+	
+	<script type="text/javascript">
+		if (window.parent == window.top) {
+			parent.location.href=parent.location.href;
+			window.parent.mgsjQuery.magnificPopup.close();
+		}
+	</script>
+<?php endif ?>

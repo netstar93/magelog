@@ -1,0 +1,384 @@
+<?php $template = $this->getRequest()->getParam('template') ?>
+<?php $block = $this->getRequest()->getParam('block') ?>
+
+<?php 
+	$helper = $this->helper('mpanel');
+	//$cms = $helper->getExistCmsStatic('IN');
+	$cms = $helper->getAllStatic();
+	$exist = 0;
+	if($id = $this->getRequest()->getParam('id')){
+		$child =  Mage::getModel('mpanel/childs')->load($id);
+		$exist = 1;
+		$settings = json_decode($child->getSetting(), true);
+	}
+?>
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+<div id="error_mgs_content" style="display: none;" class="alert alert-danger">
+            <ul class="messages"><li class="error-msg"><ul><li><span id="error_mgs_txt"></span></li></ul></li></ul>
+        </div>
+	<div class="edit-static-form">
+		<div class="row">
+			<div class="col-md-12 builder-title">
+				<h2><?php echo $this->__('Text & Image Block') ?></h2>
+			</div>
+		</div>
+		<?php if(!$exist): ?>
+			
+				<form id="edit_form1" method="post" action="<?php echo $this->getUrl('mpanel/post/child') ?>">
+					<div class="form-horizontal">
+						<div class="row">
+							<input type="hidden" value="duplicate_static" name="type" id="block_type"/>
+							<input type="hidden" value="<?php echo $template ?>" name="home_name" id="block_home_name"/>
+							<input type="hidden" value="<?php echo $block ?>" name="block_name" id="block_block_name"/>
+						
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="chooser"><?php echo $this->__('Choose Block or Create new') ?></label>
+								<div class="col-sm-8">
+									<select name="chooser" class="input-text" id="chooser" onchange="mgsjQuery('.toggle-div').slideToggle('fast');">
+										<option value="exist_cms"><?php echo $this->__('Choose Exist Static Block') ?></option>
+										<option value="new_cms"><?php echo $this->__('Create New Static Block') ?></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div id="choose-cms" class="toggle-div">
+						
+							<div class="row">
+								<hr/>
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="col"><?php echo $this->__('Block col (12 to full)') ?></label>
+									<div class="col-sm-8">
+										<select name="col" class="required-entry input-text" id="col">
+											<?php for($i=12; $i>=1; $i--): ?>
+												<option value="<?php echo $i ?>"<?php if($exist && ($child->getCol()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+								</div>
+							
+					
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="duplicate_static_block"><?php echo $this->__('Static Block') ?></label>
+									<div class="col-sm-8">
+										<select name="duplicate_static_block" class="input-text" id="duplicate_static_block">
+											<?php foreach($cms as $_cms): ?>
+												<option value="<?php echo $_cms->getId() ?>"><?php echo $_cms->getTitle() ?></option>
+											<?php endforeach ?>
+										</select>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="custom_class"><?php echo $this->__('Custom Class') ?></label>
+									<div class="col-sm-8">
+										<input type="text" name="setting[custom_class]" class="input-text" id="custom_class" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="animation"><?php echo $this->__('Block Animation') ?></label>
+									<div class="col-sm-4">
+										<select name="setting[animation]" class="input-text" id="animation" onchange="changeAnimationClass(this.value)">
+											<?php $animation = $helper->getAnimationClass() ?>
+											<?php foreach($animation as $_animate): ?>
+												<option value="<?php echo $_animate['value'] ?>"><?php echo $_animate['label'] ?></option>
+											<?php endforeach ?>
+										</select>
+									</div>
+									<div class="col-sm-4 text-center animated" id="animation-test"><h1>Animation Preview</h1></div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="animation_delay"><?php echo $this->__('Animation Delay') ?></label>
+									<div class="col-sm-8">
+										<input type="text" name="setting[animation_delay]" class="input-text validate-number" id="animation_delay" placeholder="ms"/>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="builder-action">
+									<div class="buttons">
+										<button onclick="history.go(-1)" class="btn btn-back" type="button"><span><span><?php echo $this->__('Back') ?></span></span></button>
+										<button type="button" class="btn btn-primary" onclick="updateForm1.submit(this)" id="submit-button1"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			
+		<?php endif ?>
+		<div id="new-form" class="toggle-div"<?php if(!$exist): ?> style="display:none"<?php endif ?>>
+		<?php 
+			$form = new Varien_Data_Form(
+				array('id' => 'edit_form', 'action' => $this->getUrl('mpanel/post/child'), 'method' => 'post')
+			);
+			
+			$form->setHtmlIdPrefix('block_');
+			
+			$fieldset1 = $form->addFieldset('setting_fieldset', array('legend'=>'', 'class' => 'fieldset-wide'));
+			
+			$fieldset1->addField('col', 'select', array(
+				'name'      => 'col',
+				'label'		=> $this->__('Block col (12 to full)'),
+				'class'		=> 'input-text',
+				'values'	=> array(
+					array('label'=>12, 'value'=>12),
+					array('label'=>11, 'value'=>11),
+					array('label'=>10, 'value'=>10),
+					array('label'=>9, 'value'=>9),
+					array('label'=>8, 'value'=>8),
+					array('label'=>7, 'value'=>7),
+					array('label'=>6, 'value'=>6),
+					array('label'=>5, 'value'=>5),
+					array('label'=>4, 'value'=>4),
+					array('label'=>3, 'value'=>3),
+					array('label'=>2, 'value'=>2),
+					array('label'=>1, 'value'=>1),
+				)
+			));
+			
+			$fieldset1->addField('custom_class', 'text', array(
+				'name'      => 'setting[custom_class]',
+				'class'		=> 'input-text',
+				'label'     => $this->__('Custom Class'),
+			));
+			
+			$fieldset1->addField('animation', 'select', array(
+				'name'      => 'setting[animation]',
+				'label'		=> $this->__('Block Animation'),
+				'class'		=> 'input-text',
+				'values'	=> $helper->getAnimationClass(),
+				'onchange'	=> 'changeAnimationClassTwo(this.value)',
+				'after_element_html' => '<div class="text-center animated" id="animation-test-2"><h1>Animation Preview</h1></div>',
+			));
+			
+			$fieldset1->addField('animation_delay', 'text', array(
+				'name'      => 'setting[animation_delay]',
+				'class'		=> 'input-text validate-number',
+				'label'     => $this->__('Animation Delay'),
+			));
+			
+			$fieldset = $form->addFieldset('base_fieldset', array('legend'=>'', 'class' => 'fieldset-wide'));
+			
+			if($this->getRequest()->getParam('id')){
+				
+				$fieldset->addField('child_id', 'hidden', array(
+					'name'      => 'child_id'
+				));
+				
+				$fieldset->addField('static_block_id', 'hidden', array(
+					'name'      => 'static_block_id'
+				));
+				
+				$static = Mage::getModel('cms/block')->load($child->getStaticBlockId());
+
+				$child->setContent($static->getContent());
+				$child->setTitle($static->getTitle());
+				$child->setIdentifier($static->getIdentifier());
+			}
+			
+			$fieldset->addField('type', 'hidden', array(
+				'name'      => 'type',
+				'value'		=> 'static'
+			));
+			
+			$fieldset->addField('home_name', 'hidden', array(
+				'name'      => 'home_name',
+			));
+			
+			$fieldset->addField('block_name', 'hidden', array(
+				'name'      => 'block_name',
+			));
+			
+			$fieldset->addField('title', 'text', array(
+				'name'      => 'title',
+				'required'  => true,
+				'class'		=> 'input-text required-entry',
+				'label'     => $this->__('Title'),
+			));
+			
+			$fieldset->addField('identifier', 'text', array(
+				'name'      => 'identifier',
+				'label'     => Mage::helper('cms')->__('Identifier'),
+				'title'     => Mage::helper('cms')->__('Identifier'),
+				'required'  => true,
+				'class'     => 'validate-xml-identifier required-entry',
+			));
+			
+			$fieldset->addField('content', 'editor', array(
+				'name'      => 'content',
+				'label'     => $this->__('Content'),
+				'title'     => $this->__('Content'),
+				'class'		=> 'input-text',
+				'style'     => 'height:22em',
+				'config'    => $helper->getConfig(),
+				'required'  => true,
+			));
+			
+			
+			
+			$form->setUseContainer(true);
+
+				
+
+			if($this->getRequest()->getParam('id')){
+				$values = $child->getData();
+				$values['type'] = 'static';
+				$values['home_name'] = $template;
+				$values['block_name'] = $block;
+				$values['col'] = $child->getCol();
+				$values['animation'] = $settings['animation'];
+				$values['custom_class'] = $settings['custom_class'];
+				if(isset($settings['animation_delay'])){
+					$values['animation_delay'] = $settings['animation_delay'];
+				}
+				
+				$form->setValues($values);
+			}
+			else{
+				$values['home_name'] = $template;
+				$values['type'] = 'static';
+				$values['block_name'] = $block;
+				$form->setValues($values);
+				
+			}
+			echo $form->toHtml();
+		?>
+		</div>
+	</div>
+	
+	
+	
+	<script type="text/javascript">
+		mgsjQuery("#block_base_fieldset").append( '<div class="builder-action"><div class="buttons"><?php if(!$exist): ?><button onclick="history.go(-1)" class="btn btn-back" type="button"><span><span><?php echo $this->__('Back') ?></span></span></button><?php endif ?><button type="button" class="btn btn-primary" onclick="updateForm.submit(this)" id="submit-button"><span><span><?php echo $this->__('Submit') ?></span></span></button></div></div>' );
+		
+		var updateForm = new VarienForm('edit_form');
+		
+		updateForm.submit = function(button, url) {
+		
+			if (this.validator.validate()) {
+				mgsjQuery('#submit-button span span').html('<?php echo $this->__('Saving...') ?>');
+				mgsjQuery('#toggleblock_content').click();
+				button.disabled = true;
+				var form = this.form;
+				var oldUrl = form.action;
+
+				if (url) {
+				   form.action = url;
+				}
+				var e = null;
+				try {
+					mgsjQuery.ajax({
+						type: 'POST',
+						url: form.action,
+						dataType : 'json',
+						data: mgsjQuery('#edit_form').serialize(),
+						success: function(data, textStatus, xhr){
+							if(data.result=='success'){
+								button.disabled = false;
+								mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');
+								parent.loadHomepageContent();
+								
+								if (window.parent == window.top) {
+									window.parent.mgsjQuery.magnificPopup.close();
+								}
+							} else {
+                                $('error_mgs_content').show();
+                                $('error_mgs_content').update(data.result);
+                                button.disabled = false;
+                                mgsjQuery('#submit-button span span').html('<?php echo $this->__('Submit') ?>');
+                            }
+						}
+					});
+				} catch (e) {
+				}
+				this.form.action = oldUrl;
+				if (e) {
+					throw e;
+				}
+
+				if (button && button != 'undefined') {
+					button.disabled = true;
+				}
+			}
+		}.bind(updateForm);
+		
+		
+		
+		var updateForm1 = new VarienForm('edit_form1');
+		
+		updateForm1.submit = function(button, url) {
+		
+			if (this.validator.validate()) {
+				mgsjQuery('#submit-button1 span span').html('<?php echo $this->__('Saving...') ?>');
+				button.disabled = true;
+				var form = this.form;
+				var oldUrl = form.action;
+
+				if (url) {
+				   form.action = url;
+				}
+				var e = null;
+				try {
+					mgsjQuery.ajax({
+						type: 'POST',
+						url: form.action,
+						dataType : 'json',
+						data: mgsjQuery('#edit_form1').serialize(),
+						success: function(data, textStatus, xhr){
+							if(data.result=='success'){
+								button.disabled = false;
+								mgsjQuery('#submit-button1 span span').html('<?php echo $this->__('Submit') ?>');
+								parent.loadHomepageContent();
+								
+								if (window.parent == window.top) {
+									window.parent.mgsjQuery.magnificPopup.close();
+								}
+							}
+						}
+					});
+				} catch (e) {
+				}
+				this.form.action = oldUrl;
+				if (e) {
+					throw e;
+				}
+
+				if (button && button != 'undefined') {
+					button.disabled = true;
+				}
+			}
+		}.bind(updateForm1);
+		
+		var currentAnimate = '';
+		<?php if($exist): ?>
+			currentAnimate = '<?php echo $settings['animation'] ?>';
+		<?php endif ?>
+		
+		var currentAnimate2 = '';
+		<?php if($exist): ?>
+			currentAnimate2 = '<?php echo $settings['animation'] ?>';
+		<?php endif ?>
+		
+		function changeAnimationClass(animate){
+			if(currentAnimate!=''){
+				mgsjQuery('#animation-test').removeClass(currentAnimate);
+			}
+			mgsjQuery('#animation-test').addClass(animate);
+			currentAnimate = animate;
+		}
+		function changeAnimationClassTwo(animate){
+			if(currentAnimate2!=''){
+				mgsjQuery('#animation-test-2').removeClass(currentAnimate2);
+			}
+			mgsjQuery('#animation-test-2').addClass(animate);
+			currentAnimate2 = animate;
+		}
+		
+		mgsjQuery('#block_animation_delay').attr('placeholder','ms');
+	</script>
+<?php endif ?>

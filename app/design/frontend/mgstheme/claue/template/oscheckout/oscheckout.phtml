@@ -1,0 +1,238 @@
+<form id="oscheckout-form" action="" method="post">
+    <?php if (Mage::getStoreConfig('oscheckout/display/discount')): ?>
+        <div class="calloutbox">
+            <div class="col-lg-9">
+                <p class="lead"><?php echo $this->__('Want discount on your Purchase? Enter your coupon now.'); ?></p>
+            </div>
+            <div class="col-lg-3">
+                <div id="coupon-notice" style="display: none;"></div>
+                <?php $couponcode = $this->getQuote()->getCouponCode(); ?>
+                <input class="input-text form-control" type="text" name="couponcode" placeholder="<?php echo $this->__('Enter coupon here'); ?>" id="couponcode" value="<?php echo $couponcode; ?>" />            
+                <button style="display:none" type="button" class="btn btn-primary" onclick="updateCouponCode()">
+                    <?php echo Mage::helper('oscheckout')->__('Apply Coupon'); ?>
+                </button>
+                <button style="display:none" type="button" class="btn btn-primary" id="coupon_remove" onclick="couponremove();" style="<?php if ($couponcode == '') {
+                    echo 'display: none;';
+                } ?>">
+    <?php echo Mage::helper('oscheckout')->__('Cancel Coupon'); ?>
+                </button>
+                <script type="text/javascript">
+                    function updateCouponCode()
+                    {
+                        var coupon = $('couponcode').getValue();
+                        var couponMessage = $('coupon-notice');
+                        couponMessage.hide();
+                        if (coupon == '')
+                        {
+                            alert('<?php echo Mage::helper('oscheckout')->__('Please enter coupon code.'); ?>');
+                            return;
+                        }
+
+                        var url = '<?php echo $this->getUrl('oscheckout/index/updatecoupon', array('_secure' => true)); ?>';
+                        var parameters = {code: coupon};
+                        var summary = $('oscheckout-review');
+                        summary.update('<div class="ajax-load">&nbsp;</div>');
+                        new Ajax.Request(url, {
+                            method: 'post',
+                            parameters: parameters,
+                            onSuccess: function (transport) {
+                                if (transport.status == 200) {
+
+                                    var response = transport.responseText.evalJSON();
+
+                                    if (response.success) {
+                                        checkout.loadReview();
+                                        couponMessage.update(response.message);
+                                        couponMessage.removeClassName('error-msg');
+                                        couponMessage.addClassName('success-msg');
+                                        couponMessage.show();
+                                        $('coupon_remove').show();
+                                    }
+                                    else {
+                                        checkout.loadReview();
+                                        couponMessage.update(response.message);
+                                        couponMessage.removeClassName('success-msg');
+                                        couponMessage.addClassName('error-msg');
+                                        couponMessage.show();
+                                        $('coupon_remove').hide();
+                                    }
+                                }
+                            }
+
+                        });
+                    }
+
+                    function couponremove()
+                    {
+                        var coupon = $('couponcode').getValue();
+                        var couponNotice = $('coupon-notice');
+                        couponNotice.hide();
+                        var url = '<?php echo $this->getUrl('oscheckout/index/updatecoupon', array('_secure' => true)); ?>';
+                        var parameters = {code: coupon, remove: '1'};
+                        var summary = $('oscheckout-review');
+
+                        summary.update('<div class="ajax-load">&nbsp;</div>');
+
+                        new Ajax.Request(url, {
+                            method: 'post',
+                            parameters: parameters,
+                            onSuccess: function (transport) {
+                                if (transport.status == 200) {
+                                    var response = transport.responseText.evalJSON();
+
+                                    if (response.success) {
+                                        $('couponcode').setValue('')
+                                        $('coupon_remove').hide();
+                                    }
+                                    var summary = $('oscheckout-review');
+
+                                    checkout.loadReview();
+                                    couponNotice.hide();
+                                    couponNotice.update(response.message);
+                                    couponNotice.removeClassName('error-msg');
+                                    couponNotice.addClassName('success-msg');
+                                    couponNotice.show();
+                                }
+                            }
+                        });
+
+                    }
+                </script>
+            </div>
+        </div>
+        <?php endif ?>
+    <div class="login-link">
+            <?php if (!$this->isCustomerLoggedIn()): ?>
+            <a href="javascript:openLightbox('login-form')">
+            <?php echo Mage::helper('oscheckout')->__('Already registered? Click here to Login'); ?>
+            </a> 
+<?php endif ?>
+    </div>
+
+    <div class="checkout-container">
+        <div class="row">
+            <?php
+            if (!$this->isCustomerLoggedIn()) {
+                $logged = 0;
+            } else {
+                $logged = 1;
+            }
+            ?>
+            <input type="hidden" id="customer-loggedin" value="<?php echo $logged ?>"/>
+            <input type="hidden" id="login-action-url" value="<?php echo $this->getUrl('oscheckout/index/login', array('_secure' => true)); ?>" />
+                <div class="col-md-4 col-sm-12 col-xs-12 order-address">
+                    <div id="billing-shipping-column" class="billing-shipping-column">
+                        <div id="checkout-billing">
+						<?php echo $this->getChildHtml('billing'); ?>
+                        </div>
+                    </div>
+					<?php if (!$this->getVirtual()): ?>
+                        <div id="checkout-shipping">
+                        <?php echo $this->getChildHtml('shipping'); ?>
+                        </div>
+                    <?php endif ?>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12 order-method">
+					<div id="checkout-method" class="checkout-method row">
+                        <?php if (!$this->getVirtual()): ?>
+                            <div class="col-md-6 method" id="checkout-shipping_method">
+                                <?php echo $this->getChildHtml('shipping_method'); ?>
+                            </div>
+						<?php endif; ?>
+                        <div id="checkout-payment" class="col-md-6 method">
+							<?php echo $this->getChildHtml('payment'); ?>
+                        </div>
+					</div>
+					<hr/>
+					<div id="checkout-review" class="checkout-review">
+						<ul>
+							<li id="review-step">
+								<?php echo $this->getChildHtml('review'); ?>
+							</li>
+						</ul>
+					</div>
+					<?php if (Mage::getStoreConfig('oscheckout/comment/enabled')): ?>
+                        <div class="order-comment margin-bottom20 margin-top20">
+							<div class="step-title">
+								<h3><?php echo Mage::getStoreConfig('oscheckout/comment/title'); ?></h3>
+							</div>
+                            <textarea class="form-control" id="id_comments" name="oscheckout_comments" placeholder="<?php echo Mage::helper('oscheckout')->__('Notes about your order, Special Notes for Delivery'); ?>" rows="10"><?php if (isset($_POST['oscheckout_comments'])) {
+							echo $_POST['oscheckout_comments'];
+							} ?></textarea>
+						</div>
+					<?php endif; ?>
+					<?php if (Mage::getStoreConfig('oscheckout/terms/enabled')): ?>
+                        <div class="oscheckout-enable-terms">
+							<div class="step-title">
+								<h3><?php echo Mage::getStoreConfig('oscheckout/terms/title'); ?></h3>
+							</div>
+                            <textarea class="form-control terms-condition-content margin-bottom10" disabled="disabled" style="resize:none"><?php echo Mage::getStoreConfig('oscheckout/terms/contents'); ?></textarea>
+                            <input class="required-entry" type="checkbox" id="id_accept_terms" name="accept_terms" value="1" />
+                            <label for="id_accept_terms"><?php echo Mage::getStoreConfig('oscheckout/terms/label'); ?></label>
+                        </div>
+					<?php endif; ?>
+					<div class="button-set" id="review-buttons-container">
+						<button type="button" id="review-btn" title="<?php echo Mage::helper('oscheckout')->__('Place Order') ?>" class="btn btn-lg btn-primary pull-right  text-uppercase" onclick="review.save();"><span><span><?php echo Mage::helper('oscheckout')->__('Place Order') ?></span></span></button>
+						<div class="wait" id="review-require"></div>
+					</div>
+                </div>
+
+            <script type="text/javascript">
+                //<![CDATA[
+                var checkout = new Checkout({
+                    review: '<?php echo $this->getUrl('oscheckout/index/load', array('_secure' => true)) ?>',
+                    saveMethod: '<?php echo $this->getUrl('checkout/onepage/saveBilling', array('_secure' => true)) ?>',
+                    failure: '<?php echo $this->getUrl('oscheckout', array('_secure' => true)) ?>'}
+                );
+                checkout.loadReview();
+                //]]>
+            </script>
+
+
+            <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/oscheckout/checkout-step.js') ?>"></script>
+            <!-- Copyright -->
+            <div style="position:absolute;top:-8888px;">Copyright &copy;2012&nbsp;<a href="http://www.mage-shop.com/">Mage-shop.com</a>&nbsp;|&nbsp;<a href="http://www.mage-shop.com/one-step-checkout-extension.html">One Step Checkout</a></div>
+            <div class="clearer"></div>
+        </div>
+    </div>
+</form>
+<div id="lightbox-container" style="visibility: hidden;"></div>
+
+<?php if (!$this->isCustomerLoggedIn()): ?>
+    <div id="login-form" style="display:none;position: fixed; z-index: 99999;">
+        <div class="oscheckout-popup-wrapper">
+            <div id="oscheckout-login-popup-contents-login" style="">
+                <a  class="close" href="javascript:closeLightbox()"> <img src="<?php echo $this->getSkinUrl('images/close.png') ?>" alt="<?php echo Mage::helper('oscheckout')->__('Close') ?>" width="14" height="14" title="<?php echo Mage::helper('oscheckout')->__('Close') ?>"  /></a>
+                <div id="oscheckout-login-form">
+                    <h3><?php echo Mage::helper('oscheckout')->__('Login'); ?></h3>
+                    <p><?php echo Mage::helper('oscheckout')->__('If you have an account with us, please log in.'); ?></p>
+                    <form id="oscheckout-login-form-detail">
+                        <div id="oscheckout-login-loading" style="display: none; " class="ajax-load">&nbsp;</div>
+                        <div id="login-container">
+                            <div class="input">
+                                <div class="input-box">
+                                    <label for="id_oscheckout_username"><?php echo Mage::helper('oscheckout')->__('Email address'); ?></label>
+                                    <div>
+                                        <input tabindex="100" type="text" class="input-text form-control" name="oscheckout_username" id="id_oscheckout_username" />
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label for="id_oscheckout_password"><?php echo Mage::helper('oscheckout')->__('Password'); ?></label>
+                                    <div>
+                                        <input type="password" tabindex="101" name="oscheckout_password" class="input-text form-control" id="id_oscheckout_password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="oscheckout-login-error" class="oscheckout-error" style="display: none; "><?php echo Mage::helper('oscheckout')->__('Invalid email or password.'); ?></div>
+                            <div class="bottom-control">
+                                <button tabindex="102" id="oscheckout-login-button" class="btn btn-primary margin-right10" type="button"><span><span><?php echo Mage::helper('oscheckout')->__('Login'); ?></span></span></button>
+                                <a href="<?php echo $this->getUrl('customer/account/forgotpassword') ?>"><?php echo Mage::helper('oscheckout')->__('Forgot password?'); ?></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+ endif ?>

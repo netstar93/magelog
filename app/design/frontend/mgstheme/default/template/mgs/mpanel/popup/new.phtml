@@ -1,0 +1,195 @@
+<?php $helper = $this->helper('mpanel') ?>
+<?php if($helper->acceptToUsePanel()): ?>
+	<?php $template = $this->getRequest()->getParam('template') ?>
+	<?php $block = $this->getRequest()->getParam('block') ?>
+	<div class="edit-static-form">
+	
+		<div class="row">
+			<div class="col-md-12 builder-title">
+				<h2><?php echo $this->__('Select Block') ?></h2>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-12">
+				<div class="bs-glyphicons">
+					<ul class="bs-glyphicons-list" id="list-item">
+						<li id="static-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'static')) ?>')">
+							<span class="glyphicon glyphicon-text-width"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Text & Image') ?></span>
+						</li>
+						
+						<li id="slider-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'revolution')) ?>')">
+							<span class="glyphicon glyphicon-picture"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Revolution slider') ?></span>
+						</li>
+						
+						<li id="new-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'new_products')) ?>')">
+							<span class="glyphicon glyphicon-fire"></span>
+							<span class="glyphicon-class"><?php echo $this->__('New Products') ?></span>
+						</li>
+						
+						<?php if(Mage::getStoreConfig('mpanel/catalog/featured')!=''): ?>
+							<li id="featured-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'featured_products')) ?>')">
+								<span class="glyphicon glyphicon-flag"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Featured Products') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if(Mage::getStoreConfig('mpanel/catalog/hot')!=''): ?>
+							<li id="hot-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'hot')) ?>')">
+								<span class="glyphicon glyphicon-bookmark"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Best Selling Products') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<li id="sale-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'sale')) ?>')">
+							<span class="glyphicon glyphicon-certificate"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Sale Products') ?></span>
+						</li>
+						
+						<li id="rate-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'rate')) ?>')">
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Top Rate Products') ?></span>
+						</li>
+						
+						
+						
+						<?php if(Mage::getStoreConfig('deals/general/enabled')): ?>
+							<li id="deals-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'deals')) ?>')">
+								<span class="glyphicon glyphicon-tag"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Deals') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<li id="tabs-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'tabs')) ?>')">
+							<span class="glyphicon glyphicon-tasks"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Product Tabs') ?></span>
+						</li>
+						
+						<?php $categoryProductLayout = $helper->getCategoryProductLayout(); ?>
+						<?php if(count($categoryProductLayout)>0): ?>
+							<li id="category-product" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'category_products')) ?>')">
+								<span class="glyphicon glyphicon-align-center"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Category Products') ?></span>
+							</li>
+						<?php endif ?>
+						
+						
+						<li id="special_product" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'special_product')) ?>')">
+							<span class="glyphicon glyphicon-qrcode"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Single Product') ?></span>
+						</li>
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Brand')): ?>
+							<li id="brands-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'brands')) ?>')">
+								<span class="glyphicon glyphicon-th"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Featured Brands') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Promobanners')): ?>
+							<li id="banner-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'promo_banner')) ?>')">
+								<span class="glyphicon glyphicon-gift"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Promo Banner') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('core')->isModuleEnabled('AW_Blog') && Mage::getStoreConfig('blog/blog/enabled')): ?>
+							<li id="post-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'latest_posts')) ?>')">
+								<span class="glyphicon glyphicon-comment"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Latest Post') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<li id="separator-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'separator')) ?>')">
+							<span class="glyphicon glyphicon-resize-vertical"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Separator') ?></span>
+						</li>
+						
+						<li id="category-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'category')) ?>')">
+							<span class="glyphicon glyphicon-list-alt"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Category Navigation') ?></span>
+						</li>						
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Testimonial')): ?>
+							<li id="testimonials-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'testimonials')) ?>')">
+								<span class="fa fa-quote-left"></span>&nbsp;&nbsp;&nbsp;<span class="fa fa-quote-right"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Testimonial') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Event')): ?>
+							<li id="events-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'events')) ?>')">
+								<span class="glyphicon glyphicon-calendar"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Events') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Profiles')): ?>
+							<li id="profiles-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'profiles')) ?>')">
+								<span class="glyphicon glyphicon-user"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Profiles') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<li id="megamenu-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'megamenu')) ?>')">
+							<span class="glyphicon glyphicon-align-justify"></span>
+							<span class="glyphicon-class"><?php echo $this->__('Megamenu') ?></span>
+						</li>
+						
+						<?php if($this->helper('mpanel/social')->checkBlockAccept('facebook')): ?>
+							<li id="facebook-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'facebook')) ?>')">
+								<span class="fa fa-facebook-square" style="font-size:30px"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Facebook Like Box') ?></span>
+							</li>
+						<?php endif ?>
+
+						<?php if($this->helper('mpanel/social')->checkBlockAccept('twitter')): ?>
+							<li id="twitter-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'twitter')) ?>')">
+								<span class="fa fa-twitter-square" style="font-size:30px"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Twitter Feed') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Portfolio')): ?>
+							<li id="twitter-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'portfolio')) ?>')">
+								<span class="glyphicon glyphicon-folder-open"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Portfolio') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('mpanel/social')->checkBlockAccept('instagram')): ?>
+							<li id="instagram-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'instagram')) ?>')">
+								<span class="glyphicon glyphicon-camera"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Instagram') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('mpanel/social')->checkBlockAccept('flick_photo')): ?>
+							<li id="flick-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'flick_photo')) ?>')">
+								<span class="glyphicon glyphicon-picture"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Flick Photo') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Lookbook')): ?>
+							<li id="lookbook-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'lookbook')) ?>')">
+								<span class="glyphicon glyphicon-remove-circle" style="transform: rotate(45deg); -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg);"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Lookbook') ?></span>
+							</li>
+						<?php endif ?>
+						
+						<?php if($this->helper('core')->isModuleEnabled('MGS_Lookbook')): ?>
+							<li id="lookbook-slider-item" onclick="setLocation('<?php echo $this->getUrl('mpanel/index/form', array('template'=>$template, 'block'=>$block, 'type'=>'lookbook_slider')) ?>')">
+								<span class="glyphicon glyphicon-picture"></span>
+								<span class="glyphicon-class"><?php echo $this->__('Lookbook Slider') ?></span>
+							</li>
+						<?php endif ?>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php endif ?>
+

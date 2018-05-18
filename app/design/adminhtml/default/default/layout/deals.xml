@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>deals/css/widget.css</name></action>
+		</reference>
+	</default>
+	<!-- <deals_adminhtml_widget_chooser>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="deals/adminhtml_catalog_product_widget_chooser" name="adminhtml.catalog.product.widget.chooser"/>
+			<block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+				<reference name="related_grid_serializer">
+					<action method="initSerializerBlock">
+						<grid_block_name>adminhtml.catalog.product.widget.chooser</grid_block_name>
+						<data_callback>getSelectedRelatedProducts</data_callback>
+						<hidden_input_name>widget[deals]</hidden_input_name>
+						<reload_param_name>widget_deals</reload_param_name>
+					</action>
+					<action method="addColumnInputName">
+                        <input_name>deals_id</input_name>
+                    </action>
+				</reference>
+			</block>
+		</block>
+	</deals_adminhtml_widget_chooser>
+	<deals_adminhtml_widget_choosergrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="deals/adminhtml_catalog_product_widget_chooser" name="adminhtml.catalog.product.widget.chooser"/>
+        </block>
+    </deals_adminhtml_widget_choosergrid> -->
+</layout>

@@ -1,0 +1,24 @@
+<?php
+/* * ****************************************************
+ * Package   : Social
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php
+$helper = Mage::helper('social/google');
+$storeId = Mage::app()->getStore()->getStoreId();
+?>
+<?php if ($helper->isActived($storeId)): ?>
+    <div class="social-google">    
+        <a class="google" id="gg-login" href="javascript:void(0);" onclick="googleLogin();" title="<?php echo $this->__('Google Login'); ?>"></a>
+        <script type="text/javascript">
+            function googleLogin() {
+                gglogin = window.open('<?php echo $this->getUrl('social/google/connect', array('_secure' => true)); ?>', 'gglogin', 'menubar=1,resizable=1,width=600,height=auto');
+                if (window.focus) {
+                    gglogin.focus();
+                }
+            }
+        </script>
+    </div>
+<?php endif; ?>

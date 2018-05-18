@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : AjaxCart
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_AjaxCart>
+            <version>0.1.0</version>
+        </MGS_AjaxCart>
+    </modules>
+    <frontend>
+        <routers>
+            <ajaxcart>
+                <use>standard</use>
+                <args>
+                    <module>MGS_AjaxCart</module>
+                    <frontName>ajaxcart</frontName>
+                </args>
+            </ajaxcart>
+        </routers>
+        <layout>
+            <updates>
+                <ajaxcart>
+                    <file>ajaxcart.xml</file>
+                </ajaxcart>
+            </updates>
+        </layout>
+    </frontend>
+    <!--admin>
+        <routers>
+            <ajaxcart>
+                <use>admin</use>
+                <args>
+                    <module>MGS_AjaxCart</module>
+                    <frontName>ajaxcart</frontName>
+                </args>
+            </ajaxcart>
+        </routers>
+    </admin-->
+    <adminhtml>
+        <menu>
+            <mgscore module="mgscore"> 
+                <children>
+                    <ajaxcart module="ajaxcart">
+                        <title>Ajax Cart</title>
+                        <sort_order>15</sort_order>               
+                        <action>adminhtml/system_config/edit/section/ajaxcart</action>
+                    </ajaxcart>
+                </children>
+            </mgscore>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ajaxcart translate="title">
+                                            <title>Ajax Cart</title>
+                                            <sort_order>10</sort_order>
+                                        </ajaxcart>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>                        
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>       
+    <global>                
+        <blocks>
+            <ajaxcart>
+                <class>MGS_AjaxCart_Block</class>
+            </ajaxcart>
+        </blocks>
+        <helpers>
+            <ajaxcart>
+                <class>MGS_AjaxCart_Helper</class>
+            </ajaxcart>
+        </helpers>
+    </global>
+    <default>
+        <ajaxcart>
+            <general>
+                <active>1</active>                                
+            </general>
+        </ajaxcart>
+    </default>
+</config>

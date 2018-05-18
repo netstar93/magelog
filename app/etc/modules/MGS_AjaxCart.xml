@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : AjaxCart
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MGS_AjaxCart>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MGS_AjaxCart>
+    </modules>
+</config> 

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <profiles_index_index>   
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+    </reference>   
+    <reference name="content">   
+      <block type="profiles/index" name="profiles_index" template="mgs/profiles/index.phtml"/>   
+    </reference>   
+  </profiles_index_index>  
+
+	<profiles_index_view>   
+		<reference name="root">   
+			<action method="setTemplate"><template>page/1column.phtml</template></action>   
+		</reference>   
+		<reference name="content">   
+			<block type="profiles/view" name="profiles_view" template="mgs/profiles/view.phtml"/>   
+		</reference>   
+	</profiles_index_view> 
+</layout>   
+	

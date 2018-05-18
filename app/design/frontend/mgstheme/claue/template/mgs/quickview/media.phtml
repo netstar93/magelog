@@ -1,0 +1,32 @@
+
+<?php $_product = $this->getProduct(); ?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $panelHelper = $this->helper('mpanel'); ?>
+<?php $size = $panelHelper->convertRatioToDetailSize(); ?>
+	<input type="hidden" id="gallery_type" value="quickview_media">
+	<div class="gallery-quickview">
+		<div class="owl-carousel owl-quickview">
+			<?php if (count($this->getGalleryImages()) > 0): ?>
+				<?php foreach ($this->getGalleryImages() as $_image): ?>
+					<div class="item">
+						<img alt="" class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize($size['width'], $size['height']); ?>">
+					</div>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
+	</div>
+	<?php echo $this->getChildHtml('after'); ?>
+<script type="text/javascript">
+	mgsjQuery('.owl-quickview').owlCarousel({
+		singleItem: true,
+		lazyLoad : true,
+		navigation : true,
+		pagination : false,
+		autoPlay: false,
+		stopOnHover: false,
+		navigationText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"]
+	});
+	mgsjQuery(document).ready(function() {
+		zoomElement(".owl-quickview .item");
+	});
+</script>

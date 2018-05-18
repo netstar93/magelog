@@ -1,0 +1,110 @@
+<?php $settings = $this->helper('mpanel')->getThemeSettings() ?>
+<div>
+	<div class="col-md-12">
+		<div class="form-horizontal row">
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_sku"><?php echo $this->__('Show Sku') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[sku]" id="mpanel_product_details_sku">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($settings['sku']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_email_friend"><?php echo $this->__('Show Email Friend') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[email_friend]" id="mpanel_product_details_email_friend">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($settings['email_friend']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_reviews_summary"><?php echo $this->__('Show Reviews Summary') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[reviews_summary]" id="mpanel_product_details_reviews_summary">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($settings['reviews_summary']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_alert_urls"><?php echo $this->__('Show Alert URLs') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[alert_urls]" id="mpanel_product_details_alert_urls">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($settings['alert_urls']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_wishlist_compare"><?php echo $this->__('Show Wishlist, Compare Link') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[wishlist_compare]" id="mpanel_product_details_wishlist_compare">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($settings['wishlist_compare']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_short_description"><?php echo $this->__('Show Short Description') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[short_description]" id="mpanel_product_details_short_description">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($settings['short_description']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_upsell_products"><?php echo $this->__('Show Upsell Products') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[upsell_products]" id="mpanel_product_details_upsell_products">
+						<option value="1"><?php echo $this->__('Yes') ?></option>
+						<option value="0"<?php if($settings['upsell_products']==0): ?> selected="selected"<?php endif ?>><?php echo $this->__('No') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_brand_image"><?php echo $this->__('Show Brand Image') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[brand_image]" id="mpanel_product_details_brand_image">
+						<option value="0"><?php echo $this->__('No') ?></option>
+						<option value="1"<?php if($settings['brand_image']==1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label" for="mpanel_product_details_brand_products"><?php echo $this->__('Show Same Brand Products') ?></label>
+				<div class="col-sm-6">
+					<select class="form-control select" name="product_details[brand_products]" id="mpanel_product_details_brand_products">
+						<option value="0"><?php echo $this->__('No') ?></option>
+						<option value="1"<?php if($settings['brand_products']==1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="share_this_product" class="col-sm-5 control-label"><?php echo $this->__('Enable Share This') ?></label>
+				<div class="col-sm-6">
+					<select name="share_this[share_this][product]" class="form-control" id="share_this_product">
+						<option value="0"><?php echo $this->__('No') ?></option>
+						<option value="1"<?php if(Mage::getStoreConfig('mpanel/share_this/product')==1): ?> selected="selected"<?php endif ?>><?php echo $this->__('Yes') ?></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-md-12">
+		<button class="btn btn-primary" type="submit"><span><span><?php echo $this->__('Update') ?></span></span></button>
+	</div>
+</div>

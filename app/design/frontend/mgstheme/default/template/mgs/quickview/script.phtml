@@ -1,0 +1,20 @@
+<?php
+/* * ****************************************************
+ * Package   : QuickView
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php $_helper = $this->helper('quickview'); ?>
+<?php if ($_helper->isActive()): ?>
+    <script type="text/javascript">
+        function quickView(url) {
+            mgsjQuery.magnificPopup.open({
+                items: {
+                    src: '<?php echo $this->getUrl('quickview/index/show/'); ?>' + '?url=' + url
+                },
+                type: 'iframe'
+            });
+        }
+    </script>
+<?php endif; ?>

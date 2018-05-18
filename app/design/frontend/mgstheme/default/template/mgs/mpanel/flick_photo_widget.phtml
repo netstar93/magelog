@@ -1,0 +1,27 @@
+<?php $title = $this->getTitle(); ?>
+<?php if($title==''){ $title = 'Flick photo'; } ?>
+<div class="title">
+	<span><?php echo $title; ?></span>
+</div>
+<?php $user = $this->getUser(); ?>
+<?php $key = $this->getKey(); ?>
+<?php if(Mage::getStoreConfig('social/flickr/active') == 1 && Mage::getStoreConfig('social/flickr/client_id') && Mage::getStoreConfig('social/flickr/user_id')): ?>
+<?php $images = $this->helper('mpanel/social')->getWidgetFlickrData($key, $user); ?>
+<div id="flick" class="flick owl-carousel">
+	<?php foreach($images as $image): ?>
+		<div class="item col-md-3 col-sm-6 col-xs-12">
+			<a href="<?php echo $image ?>" target="_blank"><img src="<?php echo $image ?>" alt="image" /></a>
+		</div>
+	<?php endforeach; ?>
+</div>
+<script type="text/javascript">
+	socialSlider('flick', 4);
+</script>
+<?php else: ?>
+<div class="alert alert-warning">
+	<?php echo $this->__('Please update your instagram settings first.') ?>
+</div>
+<?php endif; ?>
+
+
+

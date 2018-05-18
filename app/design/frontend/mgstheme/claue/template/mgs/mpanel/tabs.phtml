@@ -1,0 +1,62 @@
+<?php $tabs = $this->getTabs(); $tabs = explode(',', $tabs) ?>
+
+<?php $blockId = rand() . time(); ?>
+<?php $catId = '' ?>
+<?php if($this->getCategoryId()!=''): ?>
+	<?php $catId = $this->getCategoryId() ?>
+<?php endif ?>
+
+<div id="product_tabs<?php echo $catId ?>" class="tabbable product-tab tabs tabs-style-flip">
+	<ul class="nav nav-tabs menu-product-tabs" role="tablist">
+		<?php $j=0; foreach($tabs as $_tab): $j++?>
+			<li <?php if($j==1): ?>class="active"<?php endif ?>>
+				<a href="#box-<?php echo $_tab ?><?php echo $catId ?><?php echo $blockId;?>" role="tab" data-toggle="tab" aria-expanded="false">
+					<span><?php echo $this->helper('mpanel')->changeTabTitle($_tab, $this->getData()) ?></span>
+				</a>
+			</li>
+		<?php endforeach ?>
+	</ul>
+	<div class="content-wrap products tab-content">
+		<?php $i=0; foreach($tabs as $_tab): $i++;?>
+			<div  role="tabpanel" class="tab-pane fade <?php if($i==1): ?> active in<?php endif ?> " id="<?php echo "box-".$_tab ?><?php echo $catId ?><?php echo $blockId;?>">
+			
+				<?php if($_tab == 'new_products'){
+					$block = 'mpanel/products';
+					$displayType = 'new_products';
+				}elseif($_tab == 'featured_products'){
+					$block = 'mpanel/products';
+					$displayType = 'featured_products';
+				}elseif($_tab == 'hot_products'){
+					$block = 'mpanel/products';
+					$displayType = 'hot_products';
+				}elseif($_tab == 'sale_products'){
+					$block = 'mpanel/product_sale';
+					$displayType = 'product_sale';
+				}elseif($_tab == 'rate_products'){
+					$block = 'mpanel/product_rate';
+					$displayType = 'product_rate';
+				}
+				?>
+				
+				<?php $html = $this->getLayout()
+							->createBlock($block)
+							->setTitle('')
+							->setProductsCount($this->getProductsCount())
+							->setSlider($this->getSlider())
+							->setProductRatio($this->getProductRatio())
+							->setCategoryId($this->getCategoryId())
+							->setCountPerRow($this->getCountPerRow())
+							->setNumberRow($this->getNumberRow())
+							->setAutoPlay($this->getAutoPlay())
+							->setStopHover($this->getStopHover())
+							->setDisplayType($displayType)
+							->setNavigation($this->getNavigation())
+							->setPagination($this->getPagination())
+							->setTemplateType($this->getProductTemplate())
+							->setTemplate('mgs/mpanel/products/panel_products.phtml')
+							->toHtml(); ?>
+				<?php echo $html; ?>
+			</div>
+		<?php endforeach; ?>
+	</div>
+</div>

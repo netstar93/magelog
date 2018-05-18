@@ -1,0 +1,268 @@
+.brand-page-title,
+.feature-brand-title {
+    border: 0 none;
+    margin: 0 0 7px;
+}
+.brand-description {
+    margin: 0 0 10px;
+}
+.feature-brands {
+    margin-bottom: 10px;
+    border: 1px solid #bbafa0;
+    background-color: #fbfaf6;
+    padding: 15px;
+}
+.std ul.brands-list {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+.feature-brands:before,
+.feature-brands:after,
+.brands-list:before,
+.brands-list:after,
+.chars-filter:before,
+.chars-filter:after {
+    display: table;
+    content: "";
+}
+.feature-brands:after,
+.brands-list:after,
+.chars-filter:after {
+    clear: both;
+}
+.feature-brands .feature-brand-item {
+    float: left;
+    width: 23.5%;
+    margin-left: 2%;
+    text-align: center;
+}
+.feature-brands .feature-brand-item .feature-brand-title {
+    font-size: 14px;
+}
+.feature-brands .feature-brand-item:nth-child(4n+1) {
+    margin-left: 0;
+    clear: left;
+}
+.feature-brands .feature-brand-item .feature-brand-image a {
+    display: block;
+}
+.feature-brands .feature-brand-item .feature-brand-image .brand-img {
+    max-width: 100%;
+    border: 1px solid #cccccc;
+}
+
+.brands-search .block-content {
+    padding: 10px;
+}
+.brands-search .block-content ul.chars-filter {
+    margin-top: 10px;
+}
+.brands-search .block-content ul.chars-filter li {
+    float: left;
+}
+ul.chars-filter li a {
+    text-decoration: none;
+}
+ul.chars-filter li a {
+    display: block;
+    border: 1px solid transparent;
+    height: 28px;
+    line-height: 28px;
+    width: 28px;
+    text-align: center;
+}
+ul.chars-filter li a:hover,
+ul.chars-filter li.active a {
+    background-color: #F18200;
+    color: #ffffff;
+    border: 1px solid #de5400;
+}
+.brands-list .brand-item {
+    float: left;
+    text-align: center;
+    margin-top: 10px;
+}
+.brands-list .brand-item .brand-image a {
+    display: block;
+}
+.brands-list .brand-item .brand-image .brand-img {
+    max-width: 100%;
+    border: 1px solid #cccccc;
+}
+.brands-list .brand-item .brand-title {
+    font-size: 12px;
+    color: #203548;
+}
+.brands-list .brand-item .brand-title a {
+    color: #203548;
+}
+
+.brands-widget .brand-item {
+    text-align: center;
+}
+.brands-widget .brand-item .brand-item-inner {
+    padding: 5px;
+    margin: 5px;
+}
+.brands-widget .brand-item .brand-image .brand-img img {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+}
+.brands-widget .slick-prev:before,
+.brands-widget .slick-next:before {
+    color: #333333;
+}
+.brands-widget .slick-prev {
+    right: 100%;
+}
+.brands-widget .slick-next {
+    left: 100%;
+}
+.brands-widget.vertical-slider .brand-item .brand-image .brand-img {
+    display: inline-block;
+}
+.brands-widget.vertical-slider .slick-prev:before {
+    content: "▲";
+}
+.brands-widget.vertical-slider .slick-next:before {
+    content: "▼";
+}
+.brands-widget.vertical-slider .slick-prev {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+}
+.brands-widget.vertical-slider .slick-next {
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+}
+
+.block-brand-related {
+    margin-top: 20px;
+}
+.block-brand-related .products-list .product-shop {
+    margin-left: 160px;
+}
+.block-brand-related .products-list .price-box {
+    float: none;
+}
+.block-brand-related .products-list .add-to-links,
+.block-brand-related .products-list .ratings::after,
+.block-brand-related .products-list .desc {
+    clear: none;
+}
+.block-brand-related .products-related-grid .ratings .rating-box {
+    float: none;
+    margin-bottom: 5px;
+}
+.block-brand-related .actions {
+    background: none;
+    padding: 0;
+    text-align: inherit;
+}
+.block-brand-related .actions button.button,
+.block-brand-related .actions a {
+    float: none;
+}
+.products-related-grid .product-name {
+    color: #203548;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+.products-related-grid .product-name a {
+    color: #203548;
+}
+ul.products-related-grid {
+}
+ul.products-related-grid:before,
+ul.products-related-grid:after {
+    content: "";
+    display: table;
+}
+ul.products-related-grid:after {
+    clear: both;
+}
+.block-brand-related .block-content ul.products-related-grid li.item {
+    padding: 0;
+    margin-top: 10px;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-2cols li.item {
+    float: left;
+    width: 49%;
+    margin-left: 2%;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-2cols li.item:nth-child(2n+1) {
+    margin-left: 0;
+    clear: left;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-3cols li.item {
+    float: left;
+    width: 32%;
+    margin-left: 2%;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-3cols li.item:nth-child(3n+1) {
+    margin-left: 0;
+    clear: left;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-4cols li.item {
+    float: left;
+    width: 23.5%;
+    margin-left: 2%;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-4cols li.item:nth-child(4n+1) {
+    margin-left: 0;
+    clear: left;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-5cols li.item {
+    float: left;
+    width: 18.4%;
+    margin-left: 2%;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-5cols li.item:nth-child(5n+1) {
+    margin-left: 0;
+    clear: left;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-6cols li.item {
+    float: left;
+    width: 15%;
+    margin-left: 2%;
+}
+.block-brand-related .block-content ul.products-related-grid.products-related-grid-6cols li.item:nth-child(6n+1) {
+    margin-left: 0;
+    clear: left;
+}
+.block-brand-related .block-content ul.products-related-grid li.item .product-image,
+.block-brand-related .block-content ul.products-list li.item .product-image {
+    background-color: #eeeded;
+    border: 1px solid #d9dde3;
+    display: block;
+    padding: 5px;
+}
+.block-brand-related .block-content ul.products-related-grid li.item .product-image img,
+.block-brand-related .block-content ul.products-list li.item .product-image img {
+    max-width: 100%;
+}
+.product-brand {
+    margin-bottom: 10px;
+}
+.product-brand .product-brand-inner {
+    display: inline-block;
+    text-align: center;
+    background-color: #f8f7f5;
+    border: 1px solid #d9dde3;
+}
+.product-brand .product-brand-inner .brand-title {
+    margin-top: 5px;
+}

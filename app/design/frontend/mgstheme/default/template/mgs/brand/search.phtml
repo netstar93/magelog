@@ -1,0 +1,39 @@
+<?php
+/* * ****************************************************
+ * Package   : Brand
+ * Author    : HIEPNH
+ * Copyright : (c) 2015
+ * ***************************************************** */
+?>
+<?php
+$params = $this->getRequest()->getParams();
+$urlKey = $this->getUrlKey();
+?>
+<div class="block brands-search">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Brands Search'); ?></span></strong>
+    </div>
+    <div class="block-content">
+        <div class="brands-search-form">
+            <form action="" method="get" id="brands-search-form">
+                <input type="text" value="<?php
+                if (isset($params['q'])) {
+                    echo $params['q'];
+                }
+                ?>" title="<?php echo $this->__('Enter Keyword'); ?>" class="input-text form-control"
+                       placeholder="<?php echo $this->__('Enter Keyword'); ?>" name="q">
+                <button type="submit" class="button btn-primary"><span><span><?php echo $this->__('Search'); ?></span></span>
+                </button>
+                <button type="button" class="button btn-primary" onclick="setLocation('<?php echo $this->getUrl() . $urlKey; ?>')">
+                    <span><span><?php echo $this->__('Reset Filter'); ?></span></span></button>
+            </form>
+        </div>
+        <ul class="chars-filter">
+            <li><a href="<?php echo $this->getUrl() . $urlKey; ?>"><?php echo $this->__('All'); ?></a></li>
+            <?php foreach (range('A', 'Z') as $char): ?>
+                <li <?php if (isset($params['char']) && $params['char'] == $char): ?>class="active"<?php endif; ?>><a
+                        href="<?php echo $this->getUrl() . $urlKey . '?char=' . $char; ?>"><?php echo $char; ?></a></li>
+                <?php endforeach; ?>
+        </ul>
+    </div>
+</div>

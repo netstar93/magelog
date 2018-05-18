@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <portfolio_adminhtml_portfolio_index>
+        <reference name="content">
+            <block type="portfolio/adminhtml_portfolio" name="portfolio" />
+        </reference>
+    </portfolio_adminhtml_portfolio_index>
+</layout>

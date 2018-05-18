@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+*******************************************************/
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="setCanLoadExtJs">
+                <flag>1</flag>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/wysiwyg/widget.js</script>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>prototype/window.js</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addCss">
+                <name>lib/prototype/windows/themes/magento.css</name>
+            </action>
+        </reference>
+    </default>
+    <adminhtml_question_index>
+        <reference name="content">
+            <block type="productquestions/adminhtml_question" name="questions" />
+        </reference>
+    </adminhtml_question_index>
+    <adminhtml_question_sharing>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="productquestions/adminhtml_question_edit_tab_sharing" name="question.edit.tab.sharing"/>
+            <block type="adminhtml/widget_grid_serializer" name="sharing_grid_serializer">
+                <reference name="sharing_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>question.edit.tab.sharing</grid_block_name>
+                        <data_callback>getSelectedProducts</data_callback>
+                        <hidden_input_name>question[product_ids]</hidden_input_name>
+                        <reload_param_name>product_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_question_sharing>
+    <adminhtml_question_sharinggrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="productquestions/adminhtml_question_edit_tab_sharing" name="question.edit.tab.sharing"/>
+        </block>
+    </adminhtml_question_sharinggrid>
+    <adminhtml_question_answergrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="productquestions/adminhtml_question_edit_tab_answer" name="question.edit.tab.answer"/>
+        </block>
+    </adminhtml_question_answergrid>
+    <adminhtml_answer_new>        
+        <block type="core/template" name="answer_new" template="productquestions/answer/new.phtml" output="toHtml" />     
+    </adminhtml_answer_new>
+    <adminhtml_answer_edit>        
+        <block type="core/template" name="answer_edit" template="productquestions/answer/edit.phtml" output="toHtml" />     
+    </adminhtml_answer_edit>
+    <adminhtml_topic_index>
+        <reference name="content">
+            <block type="productquestions/adminhtml_topic" name="topics" />
+        </reference>
+    </adminhtml_topic_index>  
+    <adminhtml_topic_question>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="productquestions/adminhtml_topic_edit_tab_question" name="topic.edit.tab.question"/>
+            <block type="adminhtml/widget_grid_serializer" name="sharing_grid_serializer">
+                <reference name="sharing_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>topic.edit.tab.question</grid_block_name>
+                        <data_callback>getSelectedQuestions</data_callback>
+                        <hidden_input_name>topic[question_ids]</hidden_input_name>
+                        <reload_param_name>question_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_topic_question>
+    <adminhtml_topic_questiongrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="productquestions/adminhtml_topic_edit_tab_question" name="topic.edit.tab.question"/>
+        </block>
+    </adminhtml_topic_questiongrid>  
+</layout>

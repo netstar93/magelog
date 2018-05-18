@@ -1,0 +1,8 @@
+<?php
+	$data = array(
+		'shipping_method' => $this->getChildHtml('shipping_method'),
+		'payment_method' => $this->getChildHtml('payment_methods'),
+		'product_information' => $this->getChildHtml('product-info')
+	);
+	echo Zend_Json::encode($data); 
+?>

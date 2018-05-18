@@ -1,0 +1,26 @@
+<?php
+/* * ****************************************************
+ * Package   : Social
+ * Author    : HIEPNH
+ * Copyright : (c) 2014
+ * ***************************************************** */
+?>
+<?php
+$helper = Mage::helper('social/twitter');
+$storeId = Mage::app()->getStore()->getStoreId();
+?>
+<?php if ($helper->isActived($storeId)): ?>
+    <div class="social-twitter social-item">    
+        <a class="twitter" id="gg-login" href="javascript:void(0);" onclick="twitterLogin();" title="<?php echo $this->__('Twitter Login'); ?>">
+			<span class="icon fa fa-twitter"></span>
+		</a>
+        <script type="text/javascript">
+            function twitterLogin() {
+                ttlogin = window.open('<?php echo $this->getUrl('social/twitter/connect', array('_secure' => true)); ?>', 'ttlogin', 'menubar=1,resizable=1,width=600,height=auto');
+                if (window.focus) {
+                    ttlogin.focus();
+                }
+            }
+        </script>
+    </div>
+<?php endif; ?>

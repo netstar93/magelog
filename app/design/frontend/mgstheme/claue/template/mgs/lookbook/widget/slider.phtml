@@ -1,0 +1,37 @@
+<?php $slider = $this->getSlider() ?>
+<?php if($slider && (count($this->getLookbooks())>0)): ?>
+	<div class="lookbook-slider-container">
+		<div class="lookbook-slider owl-carousel owl-theme <?php echo $slider->getCustomClass() ?>" id="lookbook_slider_<?php echo $slider->getId() ?>">
+			<?php $lookbooks = $this->getLookbooks() ?>
+			<?php foreach($lookbooks as $lookbook): ?>
+				<div class="lookbook-container">
+					<div class="mgs-lookbook-container">
+						<div class="pin__image">
+							<img src="<?php echo $this->getImageUrl($lookbook) ?>" alt="<?php $lookbook->getName() ?>" class="lookbook-image"/>
+						</div>
+						<?php echo $this->getPinHtml($lookbook) ?>
+					</div>
+				</div>
+			<?php endforeach ?>
+		</div>
+		<script type="text/javascript">
+			mgsjQuery('#lookbook_slider_<?php echo $slider->getId() ?>').owlCarousel({
+				singleItem: true,
+				loop: <?php echo $this->getLoop(); ?>,
+				navigation: <?php echo $this->getNavigation(); ?>,
+				pagination: <?php echo $this->getPagination(); ?>,
+				<?php if($this->getAutoPlay() == 'true'): ?>
+					<?php if(($this->getAutoplayTimeout() != 0) && ($this->getAutoplayTimeout() != '')): ?>
+						autoPlay: <?php echo $this->getAutoplayTimeout(); ?>,
+					<?php else: ?>
+						autoPlay: <?php echo $this->getAutoPlay(); ?>,
+					<?php endif ?>
+				<?php else: ?>
+					autoPlay: false,
+				<?php endif ?>
+				stopOnHover: <?php echo $this->getStopAuto(); ?>,
+				navigationText : ['<?php echo $this->getPrevIcon() ?>','<?php echo $this->getNextIcon() ?>']
+			});
+		</script>
+	</div>
+<?php endif ?>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/******************************************************
+ * Package   : ProductQuestions
+ * Author    : http://www.arrowhitech.com
+ * Copyright : (c) 2013 - ArrowHiTech.Com
+*******************************************************/
+-->
+<config>
+    <menu>        
+        <mgscore translate="title" module="mgscore">
+            <children>
+                <productquestions translate="title" module="productquestions">
+                    <title>Product Questions</title>
+                    <sort_order>99</sort_order>               
+                    <children>
+                        <topics translate="title" module="productquestions">
+                            <title>Manage Topics</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/topic</action>
+                        </topics>                        
+                        <items translate="title" module="productquestions">
+                            <title>Manage Questions</title>
+                            <sort_order>2</sort_order>
+                            <action>adminhtml/question</action>
+                        </items>
+                        <configuration translate="title" module="productquestions">
+                            <title>Configuration</title>
+                            <sort_order>3</sort_order>
+                            <action>adminhtml/system_config/edit/section/productquestions</action>
+                        </configuration>
+                    </children>
+                </productquestions>
+            </children>
+        </mgscore>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <productquestions translate="title">
+                                        <title>Product Questions</title>
+                                        <sort_order>10</sort_order>
+                                    </productquestions>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <productquestions translate="title" module="productquestions">
+                        <title>Product Questions</title>
+                        <sort_order>99</sort_order>               
+                        <children>
+                            <topics translate="title" module="productquestions">
+                                <title>Manage Topics</title>
+                                <sort_order>1</sort_order>
+                                <action>productquestions/adminhtml_topic</action>
+                            </topics>                            
+                            <items translate="title" module="productquestions">
+                                <title>Manage Questions</title>
+                                <sort_order>2</sort_order>
+                                <action>productquestions/adminhtml_question</action>
+                            </items>
+                            <configuration translate="title" module="productquestions">
+                                <title>Configuration</title>
+                                <sort_order>2</sort_order>
+                                <action>adminhtml/system_config/edit/section/productquestions</action>
+                            </configuration>
+                        </children>
+                    </productquestions>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

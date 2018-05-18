@@ -1,0 +1,16 @@
+.store-list-container .form-group{width:100%; float:left}
+.store-list-container .store-list{border:1px solid #ccc; padding:10px 15px}
+.store-list-container .store-list h3{border-bottom:1px solid #ccc}
+.store-list-container .store-list .items{max-height: 600px; overflow: auto;}
+.store-list-container .store-list .items li{border:1px solid #ccc; padding:10px; margin: 0 5px 10px 0}
+#store-list-map {height: 650px; width: 100%;	border:1px solid #ccc;}
+.store-list-container .input-text::-webkit-input-placeholder { color:#c9c9c9; }
+.store-list-container .input-text::-moz-placeholder { color:#c9c9c9; }
+.store-list-container .input-text:-ms-input-placeholder { color:#c9c9c9; }
+.store-list-container .search-form{border:1px solid #ccc; float:left; padding:10px; margin-bottom:30px}
+.store-list-container .search-form h2{border-bottom:1px solid #ccc; margin-bottom:20px; padding-bottom:5px}
+
+.map-short-info {font-family:arial; font-size:12px; max-width:180px}
+.map-short-info h3{font-family:arial; font-size:15px}
+.map-short-info p{margin-bottom:5px}
+#map-detail{height:650px}

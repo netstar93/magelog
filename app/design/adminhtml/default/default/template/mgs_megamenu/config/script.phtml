@@ -1,0 +1,46 @@
+<script type="text/javascript">
+	document.observe("dom:loaded", function() {
+		if($('row_megamenu_general_theme')){
+			var newE = new Template('<tr><td id="image-row" colspan="3">#{name}</td></tr>').evaluate({name: '1',});
+			Element.insert($('row_megamenu_general_theme'),{'after':newE} );
+			
+			Event.observe($("megamenu_general_theme"),'change', function(){
+				setImageTheme();
+				theme = $('megamenu_general_theme').value;
+				if(theme=='default'){
+					$('megamenu_general_height').value = 28;
+				}
+				
+				if(theme=='black-white'){
+					$('megamenu_general_height').value = 32;
+				}
+				
+				if(theme=='gray-white' || theme=='romantic'){
+					$('megamenu_general_height').value = 40;
+				}
+				
+				if(theme=='red'){
+					$('megamenu_general_height').value = 39;
+				}
+				
+				if(theme=='blue'){
+					$('megamenu_general_height').value = 35;
+				}
+				
+				if(theme=='green'){
+					$('megamenu_general_height').value = 52;
+				}
+				
+				if(theme=='silver'){
+					$('megamenu_general_height').value = 45;
+				}
+			});
+			setImageTheme();
+		}
+	});
+	function setImageTheme(){
+		theme = $('megamenu_general_theme').value;
+		html = '<img style="margin:10px 0" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>mgs_megamenu/'+theme+'.gif" alt=""/>';
+			$('image-row').innerHTML = html;
+	}
+</script>
