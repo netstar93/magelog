@@ -692,7 +692,7 @@ select[multiple] option,select.form-control[multiple] option,select.input-text[m
 	display: -webkit-flex;
 	justify-content: center;
 	-webkit-justify-content: center;
-	padding: 17px 0;
+	/*padding: 17px 0;*/
 }
 .header .logo-container h1{
 	font-size: 1px;
