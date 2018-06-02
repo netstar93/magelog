@@ -1,5 +1,5 @@
 .lookbook-container{float:left; width:100%; display:block}
-.mgs-lookbook-container{position:relative; float:left}
+.mgs-lookbook-container{position:relative; float:left;height:400px}
 .mgs-lookbook-container .lookbook-image{max-width:100%}
 .mgs-lookbook-container .pin-item{position:absolute; text-align:center}
 
